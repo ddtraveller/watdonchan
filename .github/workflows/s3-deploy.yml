@@ -24,4 +24,4 @@ jobs:
 
       - name: Sync content directory to S3
         run: |
-          aws s3 sync HTML/ s3://watdonechan/ --delete --exclude "icons/*" --exclude "audio/*" --exclude "images/*" --exclude "pdf/*"
+          aws s3 sync HTML/ s3://watdonchan/ --delete --exclude "icons/*" --exclude "audio/*" --exclude "images/*" --exclude "pdf/*"
