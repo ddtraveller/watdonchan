@@ -171,6 +171,14 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
+        .sound-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            display: none;
+        }
         @keyframes pulse {
             0% { opacity: 0.6; }
             50% { opacity: 1; }
@@ -196,6 +204,7 @@
     <div id="consonants" class="content active">
         <div class="infoBox">
             <p>Thai has 44 consonants divided into three classes: middle, high, and low. Click on any letter to hear its pronunciation.</p>
+            <div id="speech-status-consonants" class="sound-status"></div>
         </div>
         <h2>Middle Class Consonants</h2>
         <div class="letterGrid" id="middleConsonants"></div>
@@ -210,6 +219,7 @@
     <div id="vowels" class="content">
         <div class="infoBox">
             <p>Thai has 32 vowel sounds that can be written using various symbols, often combined with consonants. Click on any vowel to hear its pronunciation.</p>
+            <div id="speech-status-vowels" class="sound-status"></div>
         </div>
         <h2>Short Vowels</h2>
         <div class="vowelGrid" id="shortVowels"></div>
@@ -224,6 +234,7 @@
     <div id="practice" class="content">
         <div class="infoBox">
             <p>Practice with common Thai words. Click on a word to hear it pronounced and see which parts are highlighted.</p>
+            <div id="speech-status-words" class="sound-status"></div>
         </div>
         <button id="newWordsBtn">Show New Words</button>
         <div id="wordContainer" class="wordList"></div>
@@ -232,192 +243,189 @@
     <div id="soundNotification" class="sound-notification"></div>
 
     <script>
-        // Audio context for sound synthesis
-        let audioContext;
-        let isAudioInitialized = false;
-        let isSoundPlaying = false;
+        // Check if speech synthesis is available
+        let speechAvailable = 'speechSynthesis' in window;
+        let isSpeaking = false;
+        let voices = [];
+        let thaiVoice = null;
         
-        // Initialize audio context - will be triggered on first user interaction
-        function initAudio() {
-            if (!isAudioInitialized) {
-                try {
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    isAudioInitialized = true;
-                    console.log("Audio context initialized");
-                } catch (e) {
-                    console.error("AudioContext not supported:", e);
-                    alert("Your browser doesn't support the Web Audio API. Please try another browser.");
+        // Function to show status message
+        function updateSpeechStatus(message, statusElement, isError = false) {
+            const element = document.getElementById(statusElement);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+                element.style.backgroundColor = isError ? '#ffcdd2' : '#e0f7fa';
+                element.style.color = isError ? '#b71c1c' : '#006064';
+                
+                // Hide after 5 seconds if not an error
+                if (!isError) {
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                    }, 5000);
                 }
             }
         }
         
-        // Function to show sound notification
+        // Initialize speech synthesis
+        function initSpeech() {
+            if (!speechAvailable) {
+                updateSpeechStatus('Speech synthesis is not supported in your browser. Please try Chrome, Safari, or Edge.', 
+                    'speech-status-consonants', true);
+                updateSpeechStatus('Speech synthesis is not supported in your browser. Please try Chrome, Safari, or Edge.', 
+                    'speech-status-vowels', true);
+                updateSpeechStatus('Speech synthesis is not supported in your browser. Please try Chrome, Safari, or Edge.', 
+                    'speech-status-words', true);
+                return false;
+            }
+            
+            voices = window.speechSynthesis.getVoices();
+            
+            // If voices array is empty, wait for the voiceschanged event
+            if (voices.length === 0) {
+                window.speechSynthesis.addEventListener('voiceschanged', () => {
+                    voices = window.speechSynthesis.getVoices();
+                    findThaiVoice();
+                });
+            } else {
+                findThaiVoice();
+            }
+            
+            return true;
+        }
+        
+        // Find a Thai voice
+        function findThaiVoice() {
+            // Look for Thai voice
+            thaiVoice = voices.find(voice => 
+                voice.lang === 'th-TH' || 
+                voice.lang.startsWith('th') || 
+                voice.name.includes('Thai')
+            );
+            
+            if (!thaiVoice) {
+                updateSpeechStatus('Thai voice not found. Using default voice instead.', 
+                    'speech-status-consonants', true);
+                updateSpeechStatus('Thai voice not found. Using default voice instead.', 
+                    'speech-status-vowels', true);
+                updateSpeechStatus('Thai voice not found. Using default voice instead.', 
+                    'speech-status-words', true);
+            } else {
+                updateSpeechStatus(`Using Thai voice: ${thaiVoice.name}`, 'speech-status-consonants');
+                console.log("Thai voice found:", thaiVoice.name);
+            }
+        }
+        
+        // Speak Thai text using speech synthesis
+        function speakThai(text) {
+            if (!speechAvailable) return;
+            
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Set Thai language
+            utterance.lang = 'th-TH';
+            
+            // Use Thai voice if available
+            if (thaiVoice) {
+                utterance.voice = thaiVoice;
+            }
+            
+            // Set speech parameters
+            utterance.rate = 0.9;  // Slightly slower
+            utterance.pitch = 1.0;
+            
+            // Add events to track speaking status
+            utterance.onstart = () => {
+                isSpeaking = true;
+                showSoundNotification(`Speaking: ${text}`);
+            };
+            
+            utterance.onend = () => {
+                isSpeaking = false;
+                hideSoundNotification();
+            };
+            
+            utterance.onerror = (event) => {
+                console.error("Speech synthesis error:", event.error);
+                isSpeaking = false;
+                hideSoundNotification();
+                updateSpeechStatus(`Error speaking: ${event.error}`, 'speech-status-consonants', true);
+            };
+            
+            // Speak the text
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        // Function to show notification
         function showSoundNotification(text) {
             const notification = document.getElementById('soundNotification');
             notification.textContent = text;
             notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 1500);
+        }
+        
+        // Function to hide notification
+        function hideSoundNotification() {
+            const notification = document.getElementById('soundNotification');
+            notification.style.display = 'none';
         }
 
-        // Data for Thai consonants with audio parameters
+        // Data for Thai consonants with pronunciation
         const consonants = {
             middle: [
-                { thai: 'ก', romanized: 'k', sound: 'gor gai', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'percussive', frequency: 380, duration: 0.08, attack: 0.01, decay: 0.3 },
-                    { type: 'vowel', frequency: 300, duration: 0.4, formants: [340, 900, 2300] }
-                ]},
-                { thai: 'จ', romanized: 'j', sound: 'jor jaan', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'fricative', frequency: 420, duration: 0.1, noise: 0.3 },
-                    { type: 'vowel', frequency: 280, duration: 0.4, formants: [320, 1000, 2400] }
-                ]},
-                { thai: 'ด', romanized: 'd', sound: 'dor dek', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'percussive', frequency: 360, duration: 0.1, attack: 0.01, decay: 0.2 },
-                    { type: 'vowel', frequency: 320, duration: 0.35, formants: [380, 950, 2450] }
-                ]},
-                { thai: 'ต', romanized: 't', sound: 'tor tao', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'percussive', frequency: 400, duration: 0.1, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 300, duration: 0.4, formants: [360, 980, 2500] }
-                ]},
-                { thai: 'บ', romanized: 'b', sound: 'bor baimai', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'percussive', frequency: 340, duration: 0.08, attack: 0.01, decay: 0.2 },
-                    { type: 'vowel', frequency: 290, duration: 0.4, formants: [350, 920, 2350] }
-                ]},
-                { thai: 'ป', romanized: 'p', sound: 'por plaa', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'percussive', frequency: 380, duration: 0.08, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 280, duration: 0.4, formants: [330, 900, 2400] }
-                ]},
-                { thai: 'อ', romanized: '', sound: 'or aang', class: 'Middle', tonePitch: 'mid', audioParams: [
-                    { type: 'vowel', frequency: 260, duration: 0.5, formants: [300, 850, 2200] }
-                ]}
+                { thai: 'ก', romanized: 'k', sound: 'gor gai', class: 'Middle', pronunciation: 'ก ไก่' },
+                { thai: 'จ', romanized: 'j', sound: 'jor jaan', class: 'Middle', pronunciation: 'จ จาน' },
+                { thai: 'ด', romanized: 'd', sound: 'dor dek', class: 'Middle', pronunciation: 'ด เด็ก' },
+                { thai: 'ต', romanized: 't', sound: 'tor tao', class: 'Middle', pronunciation: 'ต เต่า' },
+                { thai: 'บ', romanized: 'b', sound: 'bor baimai', class: 'Middle', pronunciation: 'บ ใบไม้' },
+                { thai: 'ป', romanized: 'p', sound: 'por plaa', class: 'Middle', pronunciation: 'ป ปลา' },
+                { thai: 'อ', romanized: '', sound: 'or aang', class: 'Middle', pronunciation: 'อ อ่าง' }
             ],
             high: [
-                { thai: 'ข', romanized: 'kh', sound: 'kor khai', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'percussive', frequency: 420, duration: 0.1, attack: 0.01, decay: 0.3 },
-                    { type: 'vowel', frequency: 340, duration: 0.4, formants: [380, 950, 2400] }
-                ]},
-                { thai: 'ฉ', romanized: 'ch', sound: 'chor ching', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'fricative', frequency: 460, duration: 0.12, noise: 0.3 },
-                    { type: 'vowel', frequency: 320, duration: 0.4, formants: [380, 1100, 2600] }
-                ]},
-                { thai: 'ถ', romanized: 'th', sound: 'thor thung', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'fricative', frequency: 440, duration: 0.1, noise: 0.2 },
-                    { type: 'vowel', frequency: 300, duration: 0.4, formants: [360, 980, 2500] }
-                ]},
-                { thai: 'ผ', romanized: 'ph', sound: 'por phung', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'percussive', frequency: 420, duration: 0.1, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 320, duration: 0.4, formants: [360, 1000, 2500] }
-                ]},
-                { thai: 'ฝ', romanized: 'f', sound: 'for faa', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'fricative', frequency: 440, duration: 0.15, noise: 0.4 },
-                    { type: 'vowel', frequency: 340, duration: 0.4, formants: [390, 1050, 2550] }
-                ]},
-                { thai: 'ศ', romanized: 's', sound: 'sor sala', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'fricative', frequency: 460, duration: 0.15, noise: 0.5 },
-                    { type: 'vowel', frequency: 330, duration: 0.4, formants: [380, 1020, 2600] }
-                ]},
-                { thai: 'ส', romanized: 's', sound: 'sor sua', class: 'High', tonePitch: 'high', audioParams: [
-                    { type: 'fricative', frequency: 450, duration: 0.15, noise: 0.5 },
-                    { type: 'vowel', frequency: 320, duration: 0.4, formants: [370, 1000, 2500] }
-                ]}
+                { thai: 'ข', romanized: 'kh', sound: 'kor khai', class: 'High', pronunciation: 'ข ไข่' },
+                { thai: 'ฉ', romanized: 'ch', sound: 'chor ching', class: 'High', pronunciation: 'ฉ ฉิ่ง' },
+                { thai: 'ถ', romanized: 'th', sound: 'thor thung', class: 'High', pronunciation: 'ถ ถุง' },
+                { thai: 'ผ', romanized: 'ph', sound: 'por phung', class: 'High', pronunciation: 'ผ ผึ้ง' },
+                { thai: 'ฝ', romanized: 'f', sound: 'for faa', class: 'High', pronunciation: 'ฝ ฝา' },
+                { thai: 'ศ', romanized: 's', sound: 'sor sala', class: 'High', pronunciation: 'ศ ศาลา' },
+                { thai: 'ส', romanized: 's', sound: 'sor sua', class: 'High', pronunciation: 'ส เสือ' }
             ],
             low: [
-                { thai: 'ค', romanized: 'kh', sound: 'kor kwai', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'percussive', frequency: 340, duration: 0.1, attack: 0.01, decay: 0.3 },
-                    { type: 'vowel', frequency: 260, duration: 0.4, formants: [320, 880, 2300] }
-                ]},
-                { thai: 'ช', romanized: 'ch', sound: 'chor chaang', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'fricative', frequency: 360, duration: 0.12, noise: 0.3 },
-                    { type: 'vowel', frequency: 240, duration: 0.4, formants: [300, 950, 2400] }
-                ]},
-                { thai: 'ท', romanized: 'th', sound: 'thor thahaan', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'percussive', frequency: 350, duration: 0.1, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 250, duration: 0.4, formants: [310, 900, 2400] }
-                ]},
-                { thai: 'น', romanized: 'n', sound: 'nor nuu', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'nasal', frequency: 330, duration: 0.15 },
-                    { type: 'vowel', frequency: 240, duration: 0.4, formants: [300, 880, 2300] }
-                ]},
-                { thai: 'พ', romanized: 'ph', sound: 'por phaan', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'percussive', frequency: 340, duration: 0.1, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 250, duration: 0.4, formants: [310, 900, 2350] }
-                ]},
-                { thai: 'ฟ', romanized: 'f', sound: 'for fan', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'fricative', frequency: 350, duration: 0.15, noise: 0.4 },
-                    { type: 'vowel', frequency: 260, duration: 0.4, formants: [320, 920, 2400] }
-                ]},
-                { thai: 'ม', romanized: 'm', sound: 'mor maa', class: 'Low', tonePitch: 'low', audioParams: [
-                    { type: 'nasal', frequency: 320, duration: 0.15 },
-                    { type: 'vowel', frequency: 230, duration: 0.4, formants: [290, 850, 2250] }
-                ]}
+                { thai: 'ค', romanized: 'kh', sound: 'kor kwai', class: 'Low', pronunciation: 'ค ควาย' },
+                { thai: 'ช', romanized: 'ch', sound: 'chor chaang', class: 'Low', pronunciation: 'ช ช้าง' },
+                { thai: 'ท', romanized: 'th', sound: 'thor thahaan', class: 'Low', pronunciation: 'ท ทหาร' },
+                { thai: 'น', romanized: 'n', sound: 'nor nuu', class: 'Low', pronunciation: 'น หนู' },
+                { thai: 'พ', romanized: 'ph', sound: 'por phaan', class: 'Low', pronunciation: 'พ พาน' },
+                { thai: 'ฟ', romanized: 'f', sound: 'for fan', class: 'Low', pronunciation: 'ฟ ฟัน' },
+                { thai: 'ม', romanized: 'm', sound: 'mor maa', class: 'Low', pronunciation: 'ม ม้า' }
             ]
         };
 
-        // Data for Thai vowels with audio parameters
+        // Data for Thai vowels with pronunciation
         const vowels = {
             short: [
-                { thai: 'ะ', romanized: 'a', sound: 'sara a', example: 'กะ (ka)', audioParams: [
-                    { type: 'vowel', frequency: 300, duration: 0.2, formants: [800, 1200, 2500] }
-                ]},
-                { thai: 'ิ', romanized: 'i', sound: 'sara i', example: 'กิ (ki)', audioParams: [
-                    { type: 'vowel', frequency: 340, duration: 0.2, formants: [320, 2200, 2800] }
-                ]},
-                { thai: 'ึ', romanized: 'ue', sound: 'sara ue', example: 'กึ (kue)', audioParams: [
-                    { type: 'vowel', frequency: 320, duration: 0.2, formants: [360, 1800, 2400] }
-                ]},
-                { thai: 'ุ', romanized: 'u', sound: 'sara u', example: 'กุ (ku)', audioParams: [
-                    { type: 'vowel', frequency: 280, duration: 0.2, formants: [320, 800, 2200] }
-                ]},
-                { thai: 'เ-ะ', romanized: 'e', sound: 'sara e', example: 'เกะ (ke)', audioParams: [
-                    { type: 'vowel', frequency: 330, duration: 0.2, formants: [500, 1800, 2600] }
-                ]},
-                { thai: 'แ-ะ', romanized: 'ae', sound: 'sara ae', example: 'แกะ (kae)', audioParams: [
-                    { type: 'vowel', frequency: 350, duration: 0.2, formants: [650, 1700, 2600] }
-                ]}
+                { thai: 'ะ', romanized: 'a', sound: 'sara a', example: 'กะ (ka)', pronunciation: 'สระอะ' },
+                { thai: 'ิ', romanized: 'i', sound: 'sara i', example: 'กิ (ki)', pronunciation: 'สระอิ' },
+                { thai: 'ึ', romanized: 'ue', sound: 'sara ue', example: 'กึ (kue)', pronunciation: 'สระอึ' },
+                { thai: 'ุ', romanized: 'u', sound: 'sara u', example: 'กุ (ku)', pronunciation: 'สระอุ' },
+                { thai: 'เ-ะ', romanized: 'e', sound: 'sara e', example: 'เกะ (ke)', pronunciation: 'สระเอะ' },
+                { thai: 'แ-ะ', romanized: 'ae', sound: 'sara ae', example: 'แกะ (kae)', pronunciation: 'สระแอะ' }
             ],
             long: [
-                { thai: 'า', romanized: 'aa', sound: 'sara aa', example: 'กา (kaa)', audioParams: [
-                    { type: 'vowel', frequency: 300, duration: 0.5, formants: [800, 1200, 2500] }
-                ]},
-                { thai: 'ี', romanized: 'ii', sound: 'sara ii', example: 'กี (kii)', audioParams: [
-                    { type: 'vowel', frequency: 340, duration: 0.5, formants: [320, 2200, 2800] }
-                ]},
-                { thai: 'ื', romanized: 'uee', sound: 'sara uee', example: 'กื (kuee)', audioParams: [
-                    { type: 'vowel', frequency: 320, duration: 0.5, formants: [360, 1800, 2400] }
-                ]},
-                { thai: 'ู', romanized: 'uu', sound: 'sara uu', example: 'กู (kuu)', audioParams: [
-                    { type: 'vowel', frequency: 280, duration: 0.5, formants: [320, 800, 2200] }
-                ]},
-                { thai: 'เ-', romanized: 'ee', sound: 'sara ee', example: 'เก (kee)', audioParams: [
-                    { type: 'vowel', frequency: 330, duration: 0.5, formants: [500, 1800, 2600] }
-                ]},
-                { thai: 'แ-', romanized: 'aae', sound: 'sara aae', example: 'แก (kaae)', audioParams: [
-                    { type: 'vowel', frequency: 350, duration: 0.5, formants: [650, 1700, 2600] }
-                ]}
+                { thai: 'า', romanized: 'aa', sound: 'sara aa', example: 'กา (kaa)', pronunciation: 'สระอา' },
+                { thai: 'ี', romanized: 'ii', sound: 'sara ii', example: 'กี (kii)', pronunciation: 'สระอี' },
+                { thai: 'ื', romanized: 'uee', sound: 'sara uee', example: 'กื (kuee)', pronunciation: 'สระอือ' },
+                { thai: 'ู', romanized: 'uu', sound: 'sara uu', example: 'กู (kuu)', pronunciation: 'สระอู' },
+                { thai: 'เ-', romanized: 'ee', sound: 'sara ee', example: 'เก (kee)', pronunciation: 'สระเอ' },
+                { thai: 'แ-', romanized: 'aae', sound: 'sara aae', example: 'แก (kaae)', pronunciation: 'สระแอ' }
             ],
             diphthongs: [
-                { thai: 'เ-ียะ', romanized: 'ia', sound: 'sara ia', example: 'เกียะ (kia)', audioParams: [
-                    { type: 'vowel', frequency: 340, duration: 0.2, formants: [320, 2200, 2800] },
-                    { type: 'transition', duration: 0.1 },
-                    { type: 'vowel', frequency: 300, duration: 0.2, formants: [800, 1200, 2500] }
-                ]},
-                { thai: 'เ-ีย', romanized: 'iia', sound: 'sara iia', example: 'เกีย (kiia)', audioParams: [
-                    { type: 'vowel', frequency: 340, duration: 0.3, formants: [320, 2200, 2800] },
-                    { type: 'transition', duration: 0.1 },
-                    { type: 'vowel', frequency: 300, duration: 0.3, formants: [800, 1200, 2500] }
-                ]},
-                { thai: 'เ-ือะ', romanized: 'uea', sound: 'sara uea', example: 'เกือะ (kuea)', audioParams: [
-                    { type: 'vowel', frequency: 320, duration: 0.2, formants: [360, 1800, 2400] },
-                    { type: 'transition', duration: 0.1 },
-                    { type: 'vowel', frequency: 300, duration: 0.2, formants: [800, 1200, 2500] }
-                ]},
-                { thai: 'เ-ือ', romanized: 'ueea', sound: 'sara ueea', example: 'เกือ (kueea)', audioParams: [
-                    { type: 'vowel', frequency: 320, duration: 0.3, formants: [360, 1800, 2400] },
-                    { type: 'transition', duration: 0.1 },
-                    { type: 'vowel', frequency: 300, duration: 0.3, formants: [800, 1200, 2500] }
-                ]}
+                { thai: 'เ-ียะ', romanized: 'ia', sound: 'sara ia', example: 'เกียะ (kia)', pronunciation: 'สระเอียะ' },
+                { thai: 'เ-ีย', romanized: 'iia', sound: 'sara iia', example: 'เกีย (kiia)', pronunciation: 'สระเอีย' },
+                { thai: 'เ-ือะ', romanized: 'uea', sound: 'sara uea', example: 'เกือะ (kuea)', pronunciation: 'สระเอือะ' },
+                { thai: 'เ-ือ', romanized: 'ueea', sound: 'sara ueea', example: 'เกือ (kueea)', pronunciation: 'สระเอือ' }
             ]
         };
 
@@ -431,14 +439,7 @@
                     { char: 'วัส', start: 1, end: 3 }, 
                     { char: 'ดี', start: 4, end: 5 }
                 ],
-                audioParams: [
-                    { type: 'fricative', frequency: 440, duration: 0.1, noise: 0.5 },
-                    { type: 'vowel', frequency: 300, duration: 0.15, formants: [600, 1500, 2400] },
-                    { type: 'percussive', frequency: 380, duration: 0.05, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 300, duration: 0.3, formants: [800, 1200, 2500], toneBend: 'falling' },
-                    { type: 'percussive', frequency: 360, duration: 0.05, attack: 0.01, decay: 0.2 },
-                    { type: 'vowel', frequency: 340, duration: 0.4, formants: [320, 2200, 2800], toneBend: 'high' }
-                ]
+                pronunciation: 'สวัสดี'
             },
             { 
                 thai: 'ขอบคุณ', 
@@ -447,14 +448,7 @@
                     { char: 'ขอบ', start: 0, end: 2 },
                     { char: 'คุณ', start: 3, end: 5 }
                 ],
-                audioParams: [
-                    { type: 'percussive', frequency: 420, duration: 0.08, attack: 0.01, decay: 0.3 },
-                    { type: 'vowel', frequency: 330, duration: 0.25, formants: [500, 1100, 2400] },
-                    { type: 'percussive', frequency: 340, duration: 0.05, attack: 0.01, decay: 0.2 },
-                    { type: 'percussive', frequency: 380, duration: 0.08, attack: 0.01, decay: 0.3 },
-                    { type: 'vowel', frequency: 280, duration: 0.3, formants: [320, 800, 2200] },
-                    { type: 'nasal', frequency: 320, duration: 0.15 }
-                ]
+                pronunciation: 'ขอบคุณ'
             },
             { 
                 thai: 'อาหาร', 
@@ -463,12 +457,7 @@
                     { char: 'อา', start: 0, end: 1 },
                     { char: 'หาร', start: 2, end: 4 }
                 ],
-                audioParams: [
-                    { type: 'vowel', frequency: 300, duration: 0.4, formants: [800, 1200, 2500] },
-                    { type: 'fricative', frequency: 440, duration: 0.1, noise: 0.3 },
-                    { type: 'vowel', frequency: 300, duration: 0.3, formants: [800, 1200, 2500], toneBend: 'middle' },
-                    { type: 'nasal', frequency: 320, duration: 0.15 }
-                ]
+                pronunciation: 'อาหาร'
             },
             { 
                 thai: 'น้ำ', 
@@ -476,11 +465,7 @@
                 components: [
                     { char: 'น้ำ', start: 0, end: 2 }
                 ],
-                audioParams: [
-                    { type: 'nasal', frequency: 330, duration: 0.15 },
-                    { type: 'vowel', frequency: 300, duration: 0.4, formants: [800, 1200, 2500], toneBend: 'falling' },
-                    { type: 'nasal', frequency: 280, duration: 0.1 }
-                ]
+                pronunciation: 'น้ำ'
             },
             { 
                 thai: 'ร้อน', 
@@ -488,11 +473,7 @@
                 components: [
                     { char: 'ร้อน', start: 0, end: 2 }
                 ],
-                audioParams: [
-                    { type: 'fricative', frequency: 400, duration: 0.15, noise: 0.3 },
-                    { type: 'vowel', frequency: 330, duration: 0.3, formants: [500, 1000, 2400], toneBend: 'falling' },
-                    { type: 'nasal', frequency: 320, duration: 0.1 }
-                ]
+                pronunciation: 'ร้อน'
             },
             { 
                 thai: 'เย็น', 
@@ -500,11 +481,7 @@
                 components: [
                     { char: 'เย็น', start: 0, end: 2 }
                 ],
-                audioParams: [
-                    { type: 'fricative', frequency: 420, duration: 0.1, noise: 0.2 },
-                    { type: 'vowel', frequency: 330, duration: 0.3, formants: [500, 1800, 2600], toneBend: 'falling' },
-                    { type: 'nasal', frequency: 320, duration: 0.1 }
-                ]
+                pronunciation: 'เย็น'
             },
             { 
                 thai: 'แม่', 
@@ -512,10 +489,7 @@
                 components: [
                     { char: 'แม่', start: 0, end: 1 }
                 ],
-                audioParams: [
-                    { type: 'nasal', frequency: 320, duration: 0.15 },
-                    { type: 'vowel', frequency: 350, duration: 0.35, formants: [650, 1700, 2600], toneBend: 'falling' }
-                ]
+                pronunciation: 'แม่'
             },
             { 
                 thai: 'พ่อ', 
@@ -523,10 +497,7 @@
                 components: [
                     { char: 'พ่อ', start: 0, end: 1 }
                 ],
-                audioParams: [
-                    { type: 'percussive', frequency: 340, duration: 0.1, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 330, duration: 0.4, formants: [500, 1100, 2400], toneBend: 'falling' }
-                ]
+                pronunciation: 'พ่อ'
             },
             { 
                 thai: 'เพื่อน', 
@@ -534,11 +505,7 @@
                 components: [
                     { char: 'เพื่อน', start: 0, end: 4 }
                 ],
-                audioParams: [
-                    { type: 'percussive', frequency: 340, duration: 0.1, attack: 0.01, decay: 0.1 },
-                    { type: 'vowel', frequency: 320, duration: 0.3, formants: [360, 1800, 2400], toneBend: 'falling' },
-                    { type: 'nasal', frequency: 320, duration: 0.1 }
-                ]
+                pronunciation: 'เพื่อน'
             },
             { 
                 thai: 'กิน', 
@@ -546,11 +513,7 @@
                 components: [
                     { char: 'กิน', start: 0, end: 1 }
                 ],
-                audioParams: [
-                    { type: 'percussive', frequency: 380, duration: 0.08, attack: 0.01, decay: 0.3 },
-                    { type: 'vowel', frequency: 340, duration: 0.3, formants: [320, 2200, 2800] },
-                    { type: 'nasal', frequency: 320, duration: 0.1 }
-                ]
+                pronunciation: 'กิน'
             }
         ];
 
@@ -562,265 +525,16 @@
                 thai: baseWord.thai + (i % 3 === 0 ? 'ๆ' : ''),
                 meaning: baseWord.meaning + ' (variation ' + (i + 1) + ')',
                 components: [...baseWord.components],
-                audioParams: [...baseWord.audioParams]
+                pronunciation: baseWord.pronunciation + (i % 3 === 0 ? 'ๆ' : '')
             });
         }
 
         const allWords = [...thaiWords, ...extraWords];
 
-        // Sound synthesis functions
-        function synthesizeThaiSound(params) {
-            if (!isAudioInitialized) {
-                initAudio();
-            }
-            
-            if (isSoundPlaying) {
-                return; // Prevent overlapping sounds
-            }
-            
-            isSoundPlaying = true;
-            
-            // Show notification
-            showSoundNotification("Playing sound...");
-            
-            let totalDuration = 0;
-            
-            // Calculate total duration
-            params.forEach(param => {
-                totalDuration += param.duration || 0.3;
-            });
-            
-            let currentTime = audioContext.currentTime;
-            const startTime = currentTime;
-            
-            params.forEach(param => {
-                switch(param.type) {
-                    case 'percussive':
-                        currentTime = createPercussiveSound(param, currentTime);
-                        break;
-                    case 'vowel':
-                        currentTime = createVowelSound(param, currentTime);
-                        break;
-                    case 'fricative':
-                        currentTime = createFricativeSound(param, currentTime);
-                        break;
-                    case 'nasal':
-                        currentTime = createNasalSound(param, currentTime);
-                        break;
-                    case 'transition':
-                        currentTime += param.duration || 0.1;
-                        break;
-                }
-            });
-            
-            // Reset sound playing flag after total duration
-            setTimeout(() => {
-                isSoundPlaying = false;
-            }, totalDuration * 1000 + 100);
-            
-            return totalDuration;
-        }
-        
-        function createPercussiveSound(param, startTime) {
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.type = 'triangle';
-            oscillator.frequency.value = param.frequency || 300;
-            
-            // Very quick attack, quick decay for percussive sounds
-            gainNode.gain.setValueAtTime(0, startTime);
-            gainNode.gain.linearRampToValueAtTime(0.8, startTime + (param.attack || 0.01));
-            gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + (param.duration || 0.2));
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.start(startTime);
-            oscillator.stop(startTime + (param.duration || 0.2) + 0.05);
-            
-            return startTime + (param.duration || 0.2);
-        }
-        
-        function createVowelSound(param, startTime) {
-            const duration = param.duration || 0.3;
-            const fundamental = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            // Create formants (overtones characteristic of vowel sounds)
-            const formantOscillators = [];
-            const formantGains = [];
-            const formants = param.formants || [500, 1500, 2500];
-            
-            // Set up fundamental frequency
-            fundamental.type = 'sine';
-            fundamental.frequency.value = param.frequency || 300;
-            
-            // Set up tone bending if specified
-            if (param.toneBend) {
-                switch(param.toneBend) {
-                    case 'rising':
-                        fundamental.frequency.setValueAtTime(param.frequency * 0.8, startTime);
-                        fundamental.frequency.linearRampToValueAtTime(param.frequency * 1.2, startTime + duration);
-                        break;
-                    case 'falling':
-                        fundamental.frequency.setValueAtTime(param.frequency * 1.2, startTime);
-                        fundamental.frequency.linearRampToValueAtTime(param.frequency * 0.8, startTime + duration);
-                        break;
-                    case 'high':
-                        fundamental.frequency.setValueAtTime(param.frequency * 1.2, startTime);
-                        break;
-                    case 'low':
-                        fundamental.frequency.setValueAtTime(param.frequency * 0.8, startTime);
-                        break;
-                }
-            }
-            
-            // Create formants (vowel characteristics)
-            formants.forEach((formantFreq, i) => {
-                const formant = audioContext.createOscillator();
-                const formantGain = audioContext.createGain();
-                
-                formant.type = 'sine';
-                formant.frequency.value = formantFreq;
-                
-                // Higher formants are typically quieter
-                formantGain.gain.value = 0.2 / (i + 1);
-                
-                formant.connect(formantGain);
-                formantGain.connect(audioContext.destination);
-                
-                formant.start(startTime);
-                formant.stop(startTime + duration + 0.05);
-                
-                formantOscillators.push(formant);
-                formantGains.push(formantGain);
-            });
-            
-            // Envelope for main oscillator
-            gainNode.gain.setValueAtTime(0, startTime);
-            gainNode.gain.linearRampToValueAtTime(0.5, startTime + 0.05);
-            gainNode.gain.setValueAtTime(0.5, startTime + duration - 0.05);
-            gainNode.gain.linearRampToValueAtTime(0, startTime + duration);
-            
-            fundamental.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            fundamental.start(startTime);
-            fundamental.stop(startTime + duration + 0.05);
-            
-            return startTime + duration;
-        }
-        
-        function createFricativeSound(param, startTime) {
-            // Create noise source for fricatives (like 's', 'f', 'sh')
-            const bufferSize = 2 * audioContext.sampleRate;
-            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-            const output = noiseBuffer.getChannelData(0);
-            
-            // Fill buffer with noise
-            for (let i = 0; i < bufferSize; i++) {
-                output[i] = Math.random() * 2 - 1;
-            }
-            
-            const noise = audioContext.createBufferSource();
-            noise.buffer = noiseBuffer;
-            
-            // Bandpass filter to shape the noise
-            const bandpass = audioContext.createBiquadFilter();
-            bandpass.type = 'bandpass';
-            bandpass.frequency.value = param.frequency || 3000;
-            bandpass.Q.value = 1;
-            
-            // Gain node for envelope
-            const gainNode = audioContext.createGain();
-            
-            // Envelope
-            gainNode.gain.setValueAtTime(0, startTime);
-            gainNode.gain.linearRampToValueAtTime((param.noise || 0.3) * 0.5, startTime + 0.02);
-            gainNode.gain.setValueAtTime((param.noise || 0.3) * 0.5, startTime + (param.duration || 0.15) - 0.02);
-            gainNode.gain.linearRampToValueAtTime(0, startTime + (param.duration || 0.15));
-            
-            // Add some tonal component for voiced fricatives
-            if (param.voiced) {
-                const oscillator = audioContext.createOscillator();
-                const oscGain = audioContext.createGain();
-                
-                oscillator.type = 'sine';
-                oscillator.frequency.value = param.frequency / 5 || 200;
-                
-                oscGain.gain.value = 0.1;
-                
-                oscillator.connect(oscGain);
-                oscGain.connect(audioContext.destination);
-                
-                oscillator.start(startTime);
-                oscillator.stop(startTime + (param.duration || 0.15) + 0.05);
-            }
-            
-            noise.connect(bandpass);
-            bandpass.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            noise.start(startTime);
-            noise.stop(startTime + (param.duration || 0.15) + 0.05);
-            
-            return startTime + (param.duration || 0.15);
-        }
-        
-        function createNasalSound(param, startTime) {
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            // Create a nasal-like sound with a fundamental and formants
-            oscillator.type = 'sine';
-            oscillator.frequency.value = param.frequency || 300;
-            
-            // Formants for nasal sounds
-            const formantOscillators = [];
-            const formantGains = [];
-            
-            // Nasal formants
-            const formants = [300, 1000, 2500, 3000];
-            const formantAmplitudes = [0.4, 0.15, 0.1, 0.05];
-            
-            formants.forEach((formantFreq, i) => {
-                const formant = audioContext.createOscillator();
-                const formantGain = audioContext.createGain();
-                
-                formant.type = 'sine';
-                formant.frequency.value = formantFreq;
-                formantGain.gain.value = formantAmplitudes[i] || 0.1;
-                
-                formant.connect(formantGain);
-                formantGain.connect(audioContext.destination);
-                
-                formant.start(startTime);
-                formant.stop(startTime + (param.duration || 0.15) + 0.05);
-                
-                formantOscillators.push(formant);
-                formantGains.push(formantGain);
-            });
-            
-            // Envelope for main oscillator
-            gainNode.gain.setValueAtTime(0, startTime);
-            gainNode.gain.linearRampToValueAtTime(0.3, startTime + 0.02);
-            gainNode.gain.setValueAtTime(0.3, startTime + (param.duration || 0.15) - 0.02);
-            gainNode.gain.linearRampToValueAtTime(0, startTime + (param.duration || 0.15));
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.start(startTime);
-            oscillator.stop(startTime + (param.duration || 0.15) + 0.05);
-            
-            return startTime + (param.duration || 0.15);
-        }
-
         // Function to play sound for various elements
         function playSound(item, element) {
             if (typeof item === 'string') {
-                // Find the corresponding element and get its audio parameters
+                // Find the corresponding element and get its pronunciation
                 let found = false;
                 
                 // Check in consonants
@@ -866,21 +580,13 @@
                 // Remove class after sound is done
                 setTimeout(() => {
                     domElement.classList.remove('playing');
-                }, element.audioParams ? calculateTotalDuration(element.audioParams) * 1000 + 100 : 500);
+                }, 1500);
             }
             
-            // Play the sound
-            if (element.audioParams) {
-                synthesizeThaiSound(element.audioParams);
+            // Play the sound using speech synthesis
+            if (element.pronunciation) {
+                speakThai(element.pronunciation);
             }
-        }
-        
-        function calculateTotalDuration(params) {
-            let total = 0;
-            params.forEach(param => {
-                total += param.duration || 0.3;
-            });
-            return total;
         }
 
         // Function to populate the grids
@@ -994,13 +700,12 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize speech synthesis
+            initSpeech();
+            
+            // Populate UI elements
             populateGrids();
             populateWords();
-            
-            // Add click event to entire document to initialize audio
-            document.addEventListener('click', () => {
-                initAudio();
-            }, { once: true });
         });
     </script>
 </body>
