@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun English Learning for Thai Students</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffe66d;
+            --dark: #1a535c;
+            --light: #f7fff7;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--dark);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        .activity {
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3ab7ae;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #ff5252;
+        }
+        
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .highlight {
+            background-color: var(--accent);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+        
+        .pronunciation-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .word-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        
+        #result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        #timer {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        #score {
+            font-size: 1.5rem;
+            text-align: right;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        #hangman-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #word-display {
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        #alphabet {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .letter-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light);
+            border: 1px solid var(--dark);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .letter-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .flashcard {
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+            margin: 1rem auto;
+        }
+        
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .flashcard-front {
+            background-color: var(--secondary);
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .flashcard-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 1.5rem;
+        }
+        
+        .thai-hint {
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fun English Learning Hub</h1>
+        <div class="subtitle">เรียนภาษาอังกฤษอย่างสนุกสนาน</div>
+    </header>
+    
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Daily Vocabulary Challenge</h2>
+            <p>Improve your English vocabulary with our daily challenge. Match the English words with their Thai meanings!</p>
+            <p class="thai-hint">เพิ่มคำศัพท์ภาษาอังกฤษของคุณด้วยความท้าทายประจำวันของเรา จับคู่คำภาษาอังกฤษกับความหมายภาษาไทย</p>
+            
+            <div id="vocab-game">
+                <div id="score">Score: <span id="score-value">0</span></div>
+                <div id="timer">60</div>
+                
+                <div id="word-pairs">
+                    <!-- Word pairs will be generated here -->
+                </div>
+                
+                <div id="result"></div>
+                <button class="btn btn-primary" id="start-vocab">Start Challenge</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Pronunciation Practice</h2>
+            <p>Practice these challenging English sounds that are difficult for Thai speakers.</p>
+            <p class="thai-hint">ฝึกออกเสียงภาษาอังกฤษที่ยากสำหรับคนไทย</p>
+            
+            <div class="pronunciation-container">
+                <div>
+                    <h3>R vs L Sounds</h3>
+                    <p>"Right" vs "Light"</p>
+                    <button class="btn" onclick="speak('right')">Listen: Right</button>
+                    <button class="btn" onclick="speak('light')">Listen: Light</button>
+                </div>
+                
+                <div>
+                    <h3>V vs W Sounds</h3>
+                    <p>"Vest" vs "West"</p>
+                    <button class="btn" onclick="speak('vest')">Listen: Vest</button>
+                    <button class="btn" onclick="speak('west')">Listen: West</button>
+                </div>
+                
+                <div>
+                    <h3>TH Sounds</h3>
+                    <p>"Think" and "The"</p>
+                    <button class="btn" onclick="speak('think')">Listen: Think</button>
+                    <button class="btn" onclick="speak('the')">Listen: The</button>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>Repeat After Me Challenge</h3>
+                <p>Listen to these phrases and repeat them out loud:</p>
+                <div id="phrase-practice">
+                    <button class="btn" onclick="speak('The three thick thorns throw thoughts thoroughly.')">Phrase 1</button>
+                    <button class="btn" onclick="speak('Rarely do we realize real results really rapidly.')">Phrase 2</button>
+                    <button class="btn" onclick="speak('Very wise visitors went west via various villages.')">Phrase 3</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Hangman Game</h2>
+            <p>Test your vocabulary with this classic word guessing game!</p>
+            <p class="thai-hint">ทดสอบคำศัพท์ของคุณด้วยเกมทายคำคลาสสิก!</p>
+            
+            <div id="hangman-container">
+                <div id="word-display">_ _ _ _ _</div>
+                <div id="guesses-left">Guesses left: <span id="guesses-left-value">6</span></div>
+                <div id="alphabet"></div>
+                <div id="hangman-message"></div>
+                <button class="btn btn-primary" id="new-hangman-game">New Game</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Common Phrase Flashcards</h2>
+            <p>Learn everyday English phrases with these interactive flashcards. Click on a card to see the Thai translation!</p>
+            <p class="thai-hint">เรียนรู้วลีภาษาอังกฤษในชีวิตประจำวันด้วยบัตรคำโต้ตอบเหล่านี้ คลิกที่บัตรเพื่อดูคำแปลภาษาไทย!</p>
+            
+            <div id="flashcard-container">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">Nice to meet you</div>
+                        <div class="flashcard-back">ยินดีที่ได้รู้จัก</div>
+                    </div>
+                </div>
+                <button class="btn" id="next-flashcard">Next Card</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Grammar Challenge</h2>
+            <p>Test your English grammar knowledge with these practice questions.</p>
+            <p class="thai-hint">ทดสอบความรู้ไวยากรณ์ภาษาอังกฤษของคุณด้วยคำถามเหล่านี้</p>
+            
+            <div id="grammar-quiz">
+                <div id="quiz-question">
+                    <h3>Question: <span id="question-number">1</span>/5</h3>
+                    <p id="question-text">Select the correct form of the verb to complete this sentence: She _____ to the market yesterday.</p>
+                    <div id="options">
+                        <button class="btn" onclick="checkAnswer(this, 'go')">go</button>
+                        <button class="btn" onclick="checkAnswer(this, 'goes')">goes</button>
+                        <button class="btn" onclick="checkAnswer(this, 'went')">went</button>
+                        <button class="btn" onclick="checkAnswer(this, 'going')">going</button>
+                    </div>
+                    <p id="explanation" style="display: none;"></p>
+                </div>
+                <button class="btn btn-primary" id="next-question" style="display: none;">Next Question</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Created for Thai TEFL Learners | © 2025 English Learning Hub</p>
+    </footer>
+
+    <script>
+        // Speech synthesis for pronunciation
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech!');
+            }
+        }
+        
+        // Vocabulary game logic
+        const wordPairs = [
+            { english: "Happy", thai: "มีความสุข" },
+            { english: "Sad", thai: "เศร้า" },
+            { english: "Friend", thai: "เพื่อน" },
+            { english: "Teacher", thai: "ครู" },
+            { english: "Student", thai: "นักเรียน" },
+            { english: "Book", thai: "หนังสือ" },
+            { english: "Water", thai: "น้ำ" },
+            { english: "Food", thai: "อาหาร" },
+            { english: "Hello", thai: "สวัสดี" },
+            { english: "Goodbye", thai: "ลาก่อน" },
+            { english: "Thank you", thai: "ขอบคุณ" },
+            { english: "Sorry", thai: "ขอโทษ" }
+        ];
+        
+        let currentScore = 0;
+        let timerInterval;
+        let secondsLeft = 60;
+        let selectedWord = null;
+        
+        document.getElementById('start-vocab').addEventListener('click', startVocabGame);
+        
+        function startVocabGame() {
+            // Reset game state
+            currentScore = 0;
+            secondsLeft = 60;
+            document.getElementById('score-value').textContent = currentScore;
+            document.getElementById('timer').textContent = secondsLeft;
+            document.getElementById('result').textContent = '';
+            document.getElementById('start-vocab').style.display = 'none';
+            
+            // Generate word pairs
+            generateWordPairs();
+            
+            // Start timer
+            timerInterval = setInterval(() => {
+                secondsLeft--;
+                document.getElementById('timer').textContent = secondsLeft;
+                
+                if (secondsLeft <= 0) {
+                    clearInterval(timerInterval);
+                    endVocabGame();
+                }
+            }, 1000);
+        }
+        
+        function generateWordPairs() {
+            const wordPairsContainer = document.getElementById('word-pairs');
+            wordPairsContainer.innerHTML = '';
+            
+            // Shuffle and get 6 English words
+            const shuffledEnglish = [...wordPairs].sort(() => 0.5 - Math.random()).slice(0, 6);
+            // Get all Thai translations (shuffled)
+            const shuffledThai = [...shuffledEnglish].sort(() => 0.5 - Math.random());
+            
+            // Create English word buttons
+            const englishContainer = document.createElement('div');
+            englishContainer.className = 'word-container';
+            
+            shuffledEnglish.forEach(pair => {
+                const btn = document.createElement('button');
+                btn.textContent = pair.english;
+                btn.className = 'btn';
+                btn.dataset.english = pair.english;
+                btn.dataset.thai = pair.thai;
+                btn.addEventListener('click', selectEnglishWord);
+                englishContainer.appendChild(btn);
+            });
+            
+            // Create Thai word buttons
+            const thaiContainer = document.createElement('div');
+            thaiContainer.className = 'word-container';
+            
+            shuffledThai.forEach(pair => {
+                const btn = document.createElement('button');
+                btn.textContent = pair.thai;
+                btn.className = 'btn';
+                btn.dataset.english = pair.english;
+                btn.dataset.thai = pair.thai;
+                btn.addEventListener('click', matchThaiWord);
+                thaiContainer.appendChild(btn);
+            });
+            
+            wordPairsContainer.appendChild(englishContainer);
+            wordPairsContainer.appendChild(thaiContainer);
+        }
+        
+        function selectEnglishWord() {
+            // Clear previous selection
+            document.querySelectorAll('#word-pairs .btn').forEach(btn => {
+                btn.style.backgroundColor = '';
+            });
+            
+            // Highlight selected word
+            this.style.backgroundColor = 'var(--accent)';
+            selectedWord = {
+                english: this.dataset.english,
+                thai: this.dataset.thai
+            };
+        }
+        
+        function matchThaiWord() {
+            if (!selectedWord) {
+                document.getElementById('result').textContent = 'Please select an English word first';
+                return;
+            }
+            
+            if (this.dataset.thai === selectedWord.thai) {
+                // Correct match
+                document.getElementById('result').textContent = 'Correct! +1 point';
+                document.getElementById('result').style.color = 'green';
+                currentScore++;
+                document.getElementById('score-value').textContent = currentScore;
+                
+                // Disable matched words
+                document.querySelectorAll('#word-pairs .btn').forEach(btn => {
+                    if (btn.dataset.english === selectedWord.english || btn.dataset.thai === selectedWord.thai) {
+                        btn.disabled = true;
+                        btn.style.opacity = '0.5';
+                    }
+                });
+                
+                // Check if all words are matched
+                const remainingButtons = Array.from(document.querySelectorAll('#word-pairs .btn')).filter(btn => !btn.disabled);
+                if (remainingButtons.length === 0) {
+                    generateWordPairs();
+                }
+            } else {
+                // Incorrect match
+                document.getElementById('result').textContent = 'Try again!';
+                document.getElementById('result').style.color = 'red';
+            }
+            
+            // Reset selection
+            selectedWord = null;
+            document.querySelectorAll('#word-pairs .btn').forEach(btn => {
+                if (!btn.disabled) {
+                    btn.style.backgroundColor = '';
+                }
+            });
+        }
+        
+        function endVocabGame() {
+            document.getElementById('result').textContent = `Time's up! Your final score: ${currentScore}`;
+            document.getElementById('start-vocab').style.display = 'block';
+            document.getElementById('start-vocab').textContent = 'Play Again';
+        }
+        
+        // Hangman game logic
+        const hangmanWords = [
+            "ENGLISH", "TEACHER", "LANGUAGE", "PRACTICE", "LEARNING",
+            "VOCABULARY", "GRAMMAR", "SPEAKING", "LISTENING", "READING",
+            "WRITING", "FLUENCY", "PRONUNCIATION", "CONVERSATION", "COMMUNICATION"
+        ];
+        
+        let selectedHangmanWord = "";
+        let guessedLetters = [];
+        let guessesLeft = 6;
+        
+        document.getElementById('new-hangman-game').addEventListener('click', startHangmanGame);
+        
+        function startHangmanGame() {
+            // Reset game state
+            guessedLetters = [];
+            guessesLeft = 6;
+            document.getElementById('guesses-left-value').textContent = guessesLeft;
+            document.getElementById('hangman-message').textContent = '';
+            
+            // Select random word
+            selectedHangmanWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)];
+            
+            // Generate alphabet buttons
+            generateAlphabet();
+            
+            // Update word display
+            updateWordDisplay();
+        }
+        
+        function generateAlphabet() {
+            const alphabetContainer = document.getElementById('alphabet');
+            alphabetContainer.innerHTML = '';
+            
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const btn = document.createElement('div');
+                btn.className = 'letter-btn';
+                btn.textContent = letter;
+                btn.dataset.letter = letter;
+                btn.addEventListener('click', guessLetter);
+                alphabetContainer.appendChild(btn);
+            }
+        }
+        
+        function updateWordDisplay() {
+            const wordDisplay = document.getElementById('word-display');
+            let display = '';
+            
+            for (let letter of selectedHangmanWord) {
+                if (guessedLetters.includes(letter)) {
+                    display += letter + ' ';
+                } else {
+                    display += '_ ';
+                }
+            }
+            
+            wordDisplay.textContent = display.trim();
+            
+            // Check win condition
+            if (!display.includes('_')) {
+                document.getElementById('hangman-message').textContent = 'Congratulations! You won!';
+                document.getElementById('hangman-message').style.color = 'green';
+                disableAllLetters();
+            }
+        }
+        
+        function guessLetter() {
+            const letter = this.dataset.letter;
+            
+            // Disable button
+            this.removeEventListener('click', guessLetter);
+            this.style.opacity = '0.5';
+            
+            // Add to guessed letters
+            guessedLetters.push(letter);
+            
+            // Check if letter is in word
+            if (selectedHangmanWord.includes(letter)) {
+                this.style.backgroundColor = 'green';
+                this.style.color = 'white';
+            } else {
+                this.style.backgroundColor = 'red';
+                this.style.color = 'white';
+                guessesLeft--;
+                document.getElementById('guesses-left-value').textContent = guessesLeft;
+                
+                // Check lose condition
+                if (guessesLeft <= 0) {
+                    document.getElementById('hangman-message').textContent = `Game over! The word was: ${selectedHangmanWord}`;
+                    document.getElementById('hangman-message').style.color = 'red';
+                    disableAllLetters();
+                }
+            }
+            
+            // Update word display
+            updateWordDisplay();
+        }
+        
+        function disableAllLetters() {
+            document.querySelectorAll('.letter-btn').forEach(btn => {
+                btn.removeEventListener('click', guessLetter);
+                btn.style.opacity = '0.5';
+            });
+        }
+        
+        // Flashcard logic
+        const phrases = [
+            { english: "Nice to meet you", thai: "ยินดีที่ได้รู้จัก" },
+            { english: "How are you?", thai: "คุณสบายดีไหม" },
+            { english: "What's your name?", thai: "คุณชื่ออะไร" },
+            { english: "Where are you from?", thai: "คุณมาจากไหน" },
+            { english: "I don't understand", thai: "ฉันไม่เข้าใจ" },
+            { english: "Can you help me?", thai: "คุณช่วยฉันได้ไหม" },
+            { english: "How much is this?", thai: "อันนี้ราคาเท่าไร" },
+            { english: "Thank you very much", thai: "ขอบคุณมาก" },
+            { english: "You're welcome", thai: "ด้วยความยินดี" },
+            { english: "See you later", thai: "แล้วเจอกัน" }
+        ];
+        
+        let currentFlashcardIndex = 0;
+        
+        document.getElementById('next-flashcard').addEventListener('click', nextFlashcard);
+        
+        function nextFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex + 1) % phrases.length;
+            const flashcard = document.querySelector('.flashcard');
+            
+            // Reset flip state
+            flashcard.classList.remove('flipped');
+            
+            // After a brief delay, update the content
+            setTimeout(() => {
+                const front = flashcard.querySelector('.flashcard-front');
+                const back = flashcard.querySelector('.flashcard-back');
+                
+                front.textContent = phrases[currentFlashcardIndex].english;
+                back.textContent = phrases[currentFlashcardIndex].thai;
+            }, 100);
+        }
+        
+        // Grammar quiz logic
+        const grammarQuestions = [
+            {
+                question: "Select the correct form of the verb to complete this sentence: She _____ to the market yesterday.",
+                options: ["go", "goes", "went", "going"],
+                correct: "went",
+                explanation: "We use the past tense form of the verb 'go' (went) because the action happened in the past, as indicated by 'yesterday'."
+            },
+            {
+                question: "Choose the correct article: I saw _____ elephant at the zoo.",
+                options: ["a", "an", "the", "no article needed"],
+                correct: "an",
+                explanation: "We use 'an' before words starting with a vowel sound. 'Elephant' starts with the vowel sound 'e', so 'an' is correct."
+            },
+            {
+                question: "Select the correct preposition: The book is _____ the table.",
+                options: ["in", "on", "at", "with"],
+                correct: "on",
+                explanation: "We use 'on' to indicate that something is positioned on the surface of something else."
+            },
+            {
+                question: "Choose the correct plural form: There are five _____ in the garden.",
+                options: ["child", "childs", "childrens", "children"],
+                correct: "children",
+                explanation: "The plural form of 'child' is 'children'. This is an irregular plural form that doesn't follow the usual rule of adding -s or -es."
+            },
+            {
+                question: "Select the correct order of adjectives: She bought a _____ dress.",
+                options: ["new beautiful red", "beautiful red new", "red new beautiful", "new red beautiful"],
+                correct: "beautiful red new",
+                explanation: "The correct order of adjectives in English is: opinion (beautiful), color (red), age (new)."
+            }
+        ];
+        
+        let currentQuestionIndex = 0;
+        
+        document.getElementById('next-question').addEventListener('click', nextQuestion);
+        
+        function displayQuestion() {
+            const question = grammarQuestions[currentQuestionIndex];
+            
+            document.getElementById('question-number').textContent = currentQuestionIndex + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Generate option buttons
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.textContent = option;
+                btn.addEventListener('click', () => checkAnswer(btn, option));
+                optionsContainer.appendChild(btn);
+            });
+            
+            // Hide explanation and next button
+            document.getElementById('explanation').style.display = 'none';
+            document.getElementById('next-question').style.display = 'none';
+        }
+        
+        function checkAnswer(buttonElement, selectedOption) {
+            const question = grammarQuestions[currentQuestionIndex];
+            
+            // Disable all option buttons
+            document.querySelectorAll('#options .btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // Highlight correct and incorrect answers
+            document.querySelectorAll('#options .btn').forEach(btn => {
+                if (btn.textContent === question.correct) {
+                    btn.style.backgroundColor = 'green';
+                    btn.style.color = 'white';
+                } else if (btn === buttonElement) {
+                    btn.style.backgroundColor = 'red';
+                    btn.style.color = 'white';
+                }
+            });
+            
+            // Show explanation
+            document.getElementById('explanation').textContent = question.explanation;
+            document.getElementById('explanation').style.display = 'block';
+            
+            // Show next question button
+            document.getElementById('next-question').style.display = 'block';
+        }
+        
+        function nextQuestion() {
+            currentQuestionIndex = (currentQuestionIndex + 1) % grammarQuestions.length;
+            displayQuestion();
+        }
+        
+        // Initialize the page
+        window.addEventListener('load', () => {
+            // Initialize Hangman
+            startHangmanGame();
+            
+            // Initialize Grammar Quiz
+            displayQuestion();
+        });
+    </script>
+</body>
+</html>
