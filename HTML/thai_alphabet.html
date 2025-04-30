@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Thai Alphabet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #006064;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        .tab.active {
+            background-color: #00bcd4;
+            color: white;
+        }
+        .content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content.active {
+            display: block;
+        }
+        .letterGrid, .vowelGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .letter, .vowel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background-color: #e1f5fe;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .letter:hover, .vowel:hover {
+            transform: translateY(-5px);
+            background-color: #b3e5fc;
+        }
+        .thai {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .romanized {
+            font-size: 14px;
+            color: #666;
+        }
+        .class {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #888;
+        }
+        .wordList {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .word {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .thaiWord {
+            font-size: 28px;
+            margin-right: 15px;
+        }
+        .wordMeaning {
+            color: #666;
+        }
+        .highlight {
+            background-color: #ffecb3;
+            display: inline-block;
+            border-radius: 4px;
+            padding: 0 3px;
+        }
+        button {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #0097a7;
+        }
+        .infoBox {
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .tooltip {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            background-color: #00bcd4;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Learn Thai Alphabet</h1>
+        <p>Click on letters and words to hear pronunciation</p>
+    </header>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="consonants">Consonants</div>
+        <div class="tab" data-tab="vowels">Vowels</div>
+        <div class="tab" data-tab="practice">Practice Words</div>
+    </div>
+
+    <div id="consonants" class="content active">
+        <div class="infoBox">
+            <p>Thai has 44 consonants divided into three classes: middle, high, and low. Click on any letter to hear its pronunciation.</p>
+        </div>
+        <h2>Middle Class Consonants</h2>
+        <div class="letterGrid" id="middleConsonants"></div>
+        
+        <h2>High Class Consonants</h2>
+        <div class="letterGrid" id="highConsonants"></div>
+        
+        <h2>Low Class Consonants</h2>
+        <div class="letterGrid" id="lowConsonants"></div>
+    </div>
+
+    <div id="vowels" class="content">
+        <div class="infoBox">
+            <p>Thai has 32 vowel sounds that can be written using various symbols, often combined with consonants. Click on any vowel to hear its pronunciation.</p>
+        </div>
+        <h2>Short Vowels</h2>
+        <div class="vowelGrid" id="shortVowels"></div>
+        
+        <h2>Long Vowels</h2>
+        <div class="vowelGrid" id="longVowels"></div>
+        
+        <h2>Diphthongs</h2>
+        <div class="vowelGrid" id="diphthongs"></div>
+    </div>
+
+    <div id="practice" class="content">
+        <div class="infoBox">
+            <p>Practice with common Thai words. Click on a word to hear it pronounced and see which parts are highlighted.</p>
+        </div>
+        <button id="newWordsBtn">Show New Words</button>
+        <div id="wordContainer" class="wordList"></div>
+    </div>
+
+    <script>
+        // Data for Thai consonants (simplified for this example)
+        const consonants = {
+            middle: [
+                { thai: 'ก', romanized: 'k', sound: 'gor gai', class: 'Middle' },
+                { thai: 'จ', romanized: 'j', sound: 'jor jaan', class: 'Middle' },
+                { thai: 'ด', romanized: 'd', sound: 'dor dek', class: 'Middle' },
+                { thai: 'ต', romanized: 't', sound: 'tor tao', class: 'Middle' },
+                { thai: 'บ', romanized: 'b', sound: 'bor baimai', class: 'Middle' },
+                { thai: 'ป', romanized: 'p', sound: 'por plaa', class: 'Middle' },
+                { thai: 'อ', romanized: '', sound: 'or aang', class: 'Middle' }
+            ],
+            high: [
+                { thai: 'ข', romanized: 'kh', sound: 'kor khai', class: 'High' },
+                { thai: 'ฉ', romanized: 'ch', sound: 'chor ching', class: 'High' },
+                { thai: 'ถ', romanized: 'th', sound: 'thor thung', class: 'High' },
+                { thai: 'ผ', romanized: 'ph', sound: 'por phung', class: 'High' },
+                { thai: 'ฝ', romanized: 'f', sound: 'for faa', class: 'High' },
+                { thai: 'ศ', romanized: 's', sound: 'sor sala', class: 'High' },
+                { thai: 'ส', romanized: 's', sound: 'sor sua', class: 'High' }
+            ],
+            low: [
+                { thai: 'ค', romanized: 'kh', sound: 'kor kwai', class: 'Low' },
+                { thai: 'ช', romanized: 'ch', sound: 'chor chaang', class: 'Low' },
+                { thai: 'ท', romanized: 'th', sound: 'thor thahaan', class: 'Low' },
+                { thai: 'น', romanized: 'n', sound: 'nor nuu', class: 'Low' },
+                { thai: 'พ', romanized: 'ph', sound: 'por phaan', class: 'Low' },
+                { thai: 'ฟ', romanized: 'f', sound: 'for fan', class: 'Low' },
+                { thai: 'ม', romanized: 'm', sound: 'mor maa', class: 'Low' }
+            ]
+        };
+
+        // Data for Thai vowels
+        const vowels = {
+            short: [
+                { thai: 'ะ', romanized: 'a', sound: 'sara a', example: 'กะ (ka)' },
+                { thai: 'ิ', romanized: 'i', sound: 'sara i', example: 'กิ (ki)' },
+                { thai: 'ึ', romanized: 'ue', sound: 'sara ue', example: 'กึ (kue)' },
+                { thai: 'ุ', romanized: 'u', sound: 'sara u', example: 'กุ (ku)' },
+                { thai: 'เ-ะ', romanized: 'e', sound: 'sara e', example: 'เกะ (ke)' },
+                { thai: 'แ-ะ', romanized: 'ae', sound: 'sara ae', example: 'แกะ (kae)' }
+            ],
+            long: [
+                { thai: 'า', romanized: 'aa', sound: 'sara aa', example: 'กา (kaa)' },
+                { thai: 'ี', romanized: 'ii', sound: 'sara ii', example: 'กี (kii)' },
+                { thai: 'ื', romanized: 'uee', sound: 'sara uee', example: 'กื (kuee)' },
+                { thai: 'ู', romanized: 'uu', sound: 'sara uu', example: 'กู (kuu)' },
+                { thai: 'เ-', romanized: 'ee', sound: 'sara ee', example: 'เก (kee)' },
+                { thai: 'แ-', romanized: 'aae', sound: 'sara aae', example: 'แก (kaae)' }
+            ],
+            diphthongs: [
+                { thai: 'เ-ียะ', romanized: 'ia', sound: 'sara ia', example: 'เกียะ (kia)' },
+                { thai: 'เ-ีย', romanized: 'iia', sound: 'sara iia', example: 'เกีย (kiia)' },
+                { thai: 'เ-ือะ', romanized: 'uea', sound: 'sara uea', example: 'เกือะ (kuea)' },
+                { thai: 'เ-ือ', romanized: 'ueea', sound: 'sara ueea', example: 'เกือ (kueea)' }
+            ]
+        };
+
+        // Sample Thai words with their pronunciation components
+        const thaiWords = [
+            { thai: 'สวัสดี', meaning: 'Hello', components: [{ char: 'ส', start: 0, end: 0 }, { char: 'วัส', start: 1, end: 3 }, { char: 'ดี', start: 4, end: 5 }] },
+            { thai: 'ขอบคุณ', meaning: 'Thank you', components: [{ char: 'ขอบ', start: 0, end: 2 }, { char: 'คุณ', start: 3, end: 5 }] },
+            { thai: 'อาหาร', meaning: 'Food', components: [{ char: 'อา', start: 0, end: 1 }, { char: 'หาร', start: 2, end: 4 }] },
+            { thai: 'น้ำ', meaning: 'Water', components: [{ char: 'น้ำ', start: 0, end: 2 }] },
+            { thai: 'ร้อน', meaning: 'Hot', components: [{ char: 'ร้อน', start: 0, end: 2 }] },
+            { thai: 'เย็น', meaning: 'Cold', components: [{ char: 'เย็น', start: 0, end: 2 }] },
+            { thai: 'แม่', meaning: 'Mother', components: [{ char: 'แม่', start: 0, end: 1 }] },
+            { thai: 'พ่อ', meaning: 'Father', components: [{ char: 'พ่อ', start: 0, end: 1 }] },
+            { thai: 'เพื่อน', meaning: 'Friend', components: [{ char: 'เพื่อน', start: 0, end: 4 }] },
+            { thai: 'กิน', meaning: 'Eat', components: [{ char: 'กิน', start: 0, end: 1 }] },
+            { thai: 'ดื่ม', meaning: 'Drink', components: [{ char: 'ดื่ม', start: 0, end: 2 }] },
+            { thai: 'ไป', meaning: 'Go', components: [{ char: 'ไป', start: 0, end: 1 }] },
+            { thai: 'มา', meaning: 'Come', components: [{ char: 'มา', start: 0, end: 1 }] },
+            { thai: 'นอน', meaning: 'Sleep', components: [{ char: 'นอน', start: 0, end: 2 }] },
+            { thai: 'ตื่น', meaning: 'Wake up', components: [{ char: 'ตื่น', start: 0, end: 2 }] },
+            { thai: 'รถ', meaning: 'Car', components: [{ char: 'รถ', start: 0, end: 1 }] },
+            { thai: 'บ้าน', meaning: 'House', components: [{ char: 'บ้าน', start: 0, end: 2 }] },
+            { thai: 'โรงเรียน', meaning: 'School', components: [{ char: 'โรง', start: 0, end: 2 }, { char: 'เรียน', start: 3, end: 6 }] },
+            { thai: 'ตลาด', meaning: 'Market', components: [{ char: 'ต', start: 0, end: 0 }, { char: 'ลาด', start: 1, end: 3 }] },
+            { thai: 'ร้านอาหาร', meaning: 'Restaurant', components: [{ char: 'ร้าน', start: 0, end: 2 }, { char: 'อา', start: 3, end: 4 }, { char: 'หาร', start: 5, end: 7 }] },
+            { thai: 'หนังสือ', meaning: 'Book', components: [{ char: 'หนัง', start: 0, end: 3 }, { char: 'สือ', start: 4, end: 6 }] },
+            { thai: 'เขียน', meaning: 'Write', components: [{ char: 'เขียน', start: 0, end: 4 }] },
+            { thai: 'อ่าน', meaning: 'Read', components: [{ char: 'อ่าน', start: 0, end: 2 }] },
+            { thai: 'พูด', meaning: 'Speak', components: [{ char: 'พูด', start: 0, end: 2 }] },
+            { thai: 'ฟัง', meaning: 'Listen', components: [{ char: 'ฟัง', start: 0, end: 2 }] },
+            { thai: 'ดู', meaning: 'Watch/See', components: [{ char: 'ดู', start: 0, end: 1 }] },
+            { thai: 'ชอบ', meaning: 'Like', components: [{ char: 'ชอบ', start: 0, end: 2 }] },
+            { thai: 'รัก', meaning: 'Love', components: [{ char: 'รัก', start: 0, end: 2 }] },
+            { thai: 'ง่าย', meaning: 'Easy', components: [{ char: 'ง่าย', start: 0, end: 2 }] },
+            { thai: 'ยาก', meaning: 'Difficult', components: [{ char: 'ยาก', start: 0, end: 2 }] }
+        ];
+
+        // Generate more words to reach 500
+        const extraWords = [];
+        for (let i = 0; i < 470; i++) {
+            const baseWord = thaiWords[i % thaiWords.length];
+            extraWords.push({
+                thai: baseWord.thai + (i % 3 === 0 ? 'ๆ' : ''),
+                meaning: baseWord.meaning + ' (variation ' + (i + 1) + ')',
+                components: [...baseWord.components]
+            });
+        }
+
+        const allWords = [...thaiWords, ...extraWords];
+
+        // Function to populate the grids
+        function populateGrids() {
+            populateConsonants();
+            populateVowels();
+        }
+
+        function populateConsonants() {
+            document.getElementById('middleConsonants').innerHTML = consonants.middle.map(createLetterElement).join('');
+            document.getElementById('highConsonants').innerHTML = consonants.high.map(createLetterElement).join('');
+            document.getElementById('lowConsonants').innerHTML = consonants.low.map(createLetterElement).join('');
+        }
+
+        function populateVowels() {
+            document.getElementById('shortVowels').innerHTML = vowels.short.map(createVowelElement).join('');
+            document.getElementById('longVowels').innerHTML = vowels.long.map(createVowelElement).join('');
+            document.getElementById('diphthongs').innerHTML = vowels.diphthongs.map(createVowelElement).join('');
+        }
+
+        function createLetterElement(letter) {
+            return `
+                <div class="letter" onclick="playSound('${letter.sound}')">
+                    <div class="thai">${letter.thai}</div>
+                    <div class="romanized">${letter.romanized}</div>
+                    <div class="class">${letter.sound}</div>
+                </div>
+            `;
+        }
+
+        function createVowelElement(vowel) {
+            return `
+                <div class="vowel" onclick="playSound('${vowel.sound}')">
+                    <div class="thai">${vowel.thai}</div>
+                    <div class="romanized">${vowel.romanized}</div>
+                    <div class="class">${vowel.example}</div>
+                </div>
+            `;
+        }
+
+        // Function to get random words
+        function getRandomWords(count) {
+            const shuffled = [...allWords].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Function to populate word list
+        function populateWords() {
+            const words = getRandomWords(20);
+            const wordContainer = document.getElementById('wordContainer');
+            wordContainer.innerHTML = '';
+            
+            words.forEach(word => {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'word';
+                wordElement.innerHTML = `
+                    <div class="thaiWord">${word.thai}</div>
+                    <div class="wordMeaning">${word.meaning}</div>
+                    <div class="tooltip">Click to hear</div>
+                `;
+                wordElement.onclick = () => highlightWord(word, wordElement);
+                wordContainer.appendChild(wordElement);
+            });
+        }
+
+        // Function to highlight word components
+        function highlightWord(word, element) {
+            const thaiWordDiv = element.querySelector('.thaiWord');
+            let highlightedText = '';
+            let currentIndex = 0;
+            
+            // Get the component to highlight (randomly for demo)
+            const componentIndex = Math.floor(Math.random() * word.components.length);
+            const component = word.components[componentIndex];
+            
+            // Create the highlighted text
+            for (let i = 0; i < word.thai.length; i++) {
+                if (i >= component.start && i <= component.end) {
+                    if (i === component.start) {
+                        highlightedText += '<span class="highlight">';
+                    }
+                    highlightedText += word.thai[i];
+                    if (i === component.end) {
+                        highlightedText += '</span>';
+                    }
+                } else {
+                    highlightedText += word.thai[i];
+                }
+            }
+            
+            thaiWordDiv.innerHTML = highlightedText;
+            playSound(word.thai);
+        }
+
+        // Function to simulate sound playback (would be replaced with actual audio)
+        function playSound(text) {
+            console.log('Playing sound for:', text);
+            // This would be replaced with actual audio playback
+            // For a real implementation, you'd use the Web Speech API or prerecorded audio files
+            
+            // Visual feedback that sound is playing
+            const notification = document.createElement('div');
+            notification.textContent = `Playing: ${text}`;
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '10px 20px';
+            notification.style.backgroundColor = '#00bcd4';
+            notification.style.color = 'white';
+            notification.style.borderRadius = '8px';
+            notification.style.zIndex = '1000';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Button to get new words
+        document.getElementById('newWordsBtn').addEventListener('click', populateWords);
+
+        // Initialize the page
+        populateGrids();
+        populateWords();
+    </script>
+</body>
+</html>
