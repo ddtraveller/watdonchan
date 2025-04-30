@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai TEFL Learning Hub</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #ff9642;
+            --accent: #6ecb63;
+            --light: #f5f7fa;
+            --dark: #2d3748;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .thai-text {
+            color: #666;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        .btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #e8833a;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #3a5a84;
+        }
+        
+        .vocabulary-pairs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .vocab-card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .vocab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .vocab-english {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .vocab-thai {
+            color: #666;
+        }
+        
+        .feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+            height: 1.5rem;
+        }
+        
+        .scrambled-letters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .letter-tile {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .letter-tile:hover {
+            background-color: #3a5a84;
+        }
+        
+        .answer-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            min-height: 50px;
+            margin: 1.5rem 0;
+        }
+        
+        .answer-slot {
+            width: 40px;
+            height: 40px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .vocabulary-pairs {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thai TEFL Learning Hub</h1>
+        <div class="subtitle">Interactive English Learning for Thai Students</div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Daily Vocabulary</div>
+            <div class="card-body">
+                <p>Match the English words with their Thai translations. Click on the cards to hear pronunciation.</p>
+                <p class="thai-text">จับคู่คำภาษาอังกฤษกับคำแปลภาษาไทย คลิกที่การ์ดเพื่อฟังการออกเสียง</p>
+                
+                <div class="vocabulary-pairs" id="vocab-container">
+                    <!-- Vocabulary pairs will be generated here -->
+                </div>
+                
+                <div class="feedback" id="vocab-feedback"></div>
+                
+                <button class="btn" id="check-vocab">Check Answers</button>
+                <button class="btn" id="new-vocab">New Words</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Word Scramble Challenge</div>
+            <div class="card-body">
+                <p>Unscramble the letters to form an English word. Click on the letters in order.</p>
+                <p class="thai-text">เรียงตัวอักษรให้เป็นคำภาษาอังกฤษ คลิกที่ตัวอักษรตามลำดับ</p>
+                
+                <div id="hint-container">
+                    <p>Hint: <span id="word-hint">A person who teaches students</span></p>
+                </div>
+                
+                <div class="scrambled-letters" id="scrambled-letters">
+                    <!-- Scrambled letters will be generated here -->
+                </div>
+                
+                <div class="answer-container" id="answer-container">
+                    <!-- Answer slots will be generated here -->
+                </div>
+                
+                <div class="feedback" id="scramble-feedback"></div>
+                
+                <button class="btn" id="check-word">Check Answer</button>
+                <button class="btn" id="clear-word">Clear</button>
+                <button class="btn" id="new-word">New Word</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Created for Thai TEFL Learners | © 2025 Learning Hub</p>
+    </footer>
+
+    <script>
+        // Vocabulary matching game
+        const vocabularyPairs = [
+            { english: "Hello", thai: "สวัสดี" },
+            { english: "Thank you", thai: "ขอบคุณ" },
+            { english: "Friend", thai: "เพื่อน" },
+            { english: "Teacher", thai: "ครู" },
+            { english: "Student", thai: "นักเรียน" },
+            { english: "Book", thai: "หนังสือ" },
+            { english: "Water", thai: "น้ำ" },
+            { english: "Food", thai: "อาหาร" },
+            { english: "Good", thai: "ดี" },
+            { english: "Bad", thai: "แย่" },
+            { english: "Happy", thai: "มีความสุข" },
+            { english: "Sad", thai: "เศร้า" }
+        ];
+        
+        let selectedVocabPairs = [];
+        let selectedVocabCard = null;
+        let matchedPairs = [];
+        
+        // Word scramble game
+        const scrambleWords = [
+            { word: "TEACHER", hint: "A person who teaches students" },
+            { word: "STUDENT", hint: "A person who studies at a school" },
+            { word: "LANGUAGE", hint: "A system of communication used by people" },
+            { word: "ENGLISH", hint: "The language you are learning" },
+            { word: "LEARNING", hint: "The process of gaining knowledge" },
+            { word: "PRACTICE", hint: "Repeating an activity to improve" },
+            { word: "VOCABULARY", hint: "Words that are part of a language" },
+            { word: "GRAMMAR", hint: "Rules for using a language correctly" }
+        ];
+        
+        let currentScrambleWord = "";
+        let scrambledLetters = [];
+        let selectedLetters = [];
+        
+        // Initialize games
+        window.addEventListener('load', () => {
+            initVocabularyGame();
+            initScrambleGame();
+        });
+        
+        // Speech synthesis for pronunciation
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Vocabulary game functions
+        function initVocabularyGame() {
+            // Select random vocabulary pairs
+            selectRandomVocabPairs();
+            
+            // Add event listeners
+            document.getElementById('check-vocab').addEventListener('click', checkVocabAnswers);
+            document.getElementById('new-vocab').addEventListener('click', selectRandomVocabPairs);
+        }
+        
+        function selectRandomVocabPairs() {
+            // Reset state
+            selectedVocabPairs = [];
+            selectedVocabCard = null;
+            matchedPairs = [];
+            
+            // Select 6 random pairs
+            const shuffled = [...vocabularyPairs].sort(() => 0.5 - Math.random());
+            selectedVocabPairs = shuffled.slice(0, 6);
+            
+            // Display vocabulary pairs
+            displayVocabularyPairs();
+            
+            // Clear feedback
+            document.getElementById('vocab-feedback').textContent = '';
+        }
+        
+        function displayVocabularyPairs() {
+            const container = document.getElementById('vocab-container');
+            container.innerHTML = '';
+            
+            // Create English cards
+            const englishCards = selectedVocabPairs.map((pair, index) => {
+                const card = document.createElement('div');
+                card.className = 'vocab-card';
+                card.innerHTML = `<div class="vocab-english">${pair.english}</div>`;
+                card.dataset.type = 'english';
+                card.dataset.index = index;
+                card.addEventListener('click', handleVocabCardClick);
+                return card;
+            });
+            
+            // Create Thai cards (shuffled)
+            const thaiCards = selectedVocabPairs.map((pair, index) => {
+                const card = document.createElement('div');
+                card.className = 'vocab-card';
+                card.innerHTML = `<div class="vocab-thai">${pair.thai}</div>`;
+                card.dataset.type = 'thai';
+                card.dataset.index = index;
+                card.addEventListener('click', handleVocabCardClick);
+                return card;
+            }).sort(() => 0.5 - Math.random());
+            
+            // Add all cards to container
+            [...englishCards, ...thaiCards].forEach(card => {
+                container.appendChild(card);
+            });
+        }
+        
+        function handleVocabCardClick() {
+            // Ignore if already matched
+            if (matchedPairs.includes(parseInt(this.dataset.index))) {
+                return;
+            }
+            
+            // If English card, speak the word
+            if (this.dataset.type === 'english') {
+                speakText(selectedVocabPairs[this.dataset.index].english);
+            }
+            
+            // If no card selected yet
+            if (!selectedVocabCard) {
+                selectedVocabCard = this;
+                this.style.backgroundColor = '#e6f7ff';
+                return;
+            }
+            
+            // If same card clicked twice
+            if (selectedVocabCard === this) {
+                selectedVocabCard.style.backgroundColor = '';
+                selectedVocabCard = null;
+                return;
+            }
+            
+            // If cards are of same type (both English or both Thai)
+            if (selectedVocabCard.dataset.type === this.dataset.type) {
+                selectedVocabCard.style.backgroundColor = '';
+                selectedVocabCard = this;
+                this.style.backgroundColor = '#e6f7ff';
+                return;
+            }
+            
+            // Check if pair matches
+            if (selectedVocabCard.dataset.index === this.dataset.index) {
+                // Match found
+                selectedVocabCard.style.backgroundColor = '#e6ffea';
+                this.style.backgroundColor = '#e6ffea';
+                matchedPairs.push(parseInt(this.dataset.index));
+                
+                // Check if all pairs matched
+                if (matchedPairs.length === selectedVocabPairs.length) {
+                    document.getElementById('vocab-feedback').textContent = 'Congratulations! All matches found!';
+                    document.getElementById('vocab-feedback').style.color = 'green';
+                }
+            } else {
+                // No match
+                selectedVocabCard.style.backgroundColor = '';
+                this.style.backgroundColor = '';
+            }
+            
+            // Reset selection
+            selectedVocabCard = null;
+        }
+        
+        function checkVocabAnswers() {
+            if (matchedPairs.length === selectedVocabPairs.length) {
+                document.getElementById('vocab-feedback').textContent = 'Great job! All matches are correct!';
+                document.getElementById('vocab-feedback').style.color = 'green';
+            } else {
+                document.getElementById('vocab-feedback').textContent = `You've found ${matchedPairs.length} out of ${selectedVocabPairs.length} matches.`;
+                document.getElementById('vocab-feedback').style.color = 'orange';
+            }
+        }
+        
+        // Word scramble functions
+        function initScrambleGame() {
+            selectRandomScrambleWord();
+            
+            // Add event listeners
+            document.getElementById('check-word').addEventListener('click', checkScrambleAnswer);
+            document.getElementById('clear-word').addEventListener('click', clearScrambleSelection);
+            document.getElementById('new-word').addEventListener('click', selectRandomScrambleWord);
+        }
+        
+        function selectRandomScrambleWord() {
+            // Select random word
+            const randomIndex = Math.floor(Math.random() * scrambleWords.length);
+            currentScrambleWord = scrambleWords[randomIndex].word;
+            document.getElementById('word-hint').textContent = scrambleWords[randomIndex].hint;
+            
+            // Scramble letters
+            scrambledLetters = currentScrambleWord.split('');
+            for (let i = scrambledLetters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [scrambledLetters[i], scrambledLetters[j]] = [scrambledLetters[j], scrambledLetters[i]];
+            }
+            
+            // Reset selected letters
+            selectedLetters = [];
+            
+            // Display scrambled letters
+            displayScrambledLetters();
+            
+            // Create answer slots
+            createAnswerSlots();
+            
+            // Clear feedback
+            document.getElementById('scramble-feedback').textContent = '';
+        }
+        
+        function displayScrambledLetters() {
+            const container = document.getElementById('scrambled-letters');
+            container.innerHTML = '';
+            
+            scrambledLetters.forEach((letter, index) => {
+                // Skip if already selected
+                if (selectedLetters.includes(index)) {
+                    return;
+                }
+                
+                const tile = document.createElement('div');
+                tile.className = 'letter-tile';
+                tile.textContent = letter;
+                tile.dataset.index = index;
+                tile.addEventListener('click', selectScrambleLetter);
+                container.appendChild(tile);
+            });
+        }
+        
+        function createAnswerSlots() {
+            const container = document.getElementById('answer-container');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < currentScrambleWord.length; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'answer-slot';
+                container.appendChild(slot);
+            }
+        }
+        
+        function selectScrambleLetter() {
+            const letterIndex = parseInt(this.dataset.index);
+            selectedLetters.push(letterIndex);
+            
+            // Update display
+            displayScrambledLetters();
+            updateAnswerDisplay();
+        }
+        
+        function updateAnswerDisplay() {
+            const slots = document.querySelectorAll('.answer-slot');
+            
+            selectedLetters.forEach((letterIndex, slotIndex) => {
+                if (slotIndex < slots.length) {
+                    slots[slotIndex].textContent = scrambledLetters[letterIndex];
+                }
+            });
+        }
+        
+        function checkScrambleAnswer() {
+            if (selectedLetters.length !== currentScrambleWord.length) {
+                document.getElementById('scramble-feedback').textContent = 'Please use all the letters.';
+                document.getElementById('scramble-feedback').style.color = 'orange';
+                return;
+            }
+            
+            // Get user answer
+            const userAnswer = selectedLetters.map(index => scrambledLetters[index]).join('');
+            
+            if (userAnswer === currentScrambleWord) {
+                document.getElementById('scramble-feedback').textContent = 'Correct! Well done!';
+                document.getElementById('scramble-feedback').style.color = 'green';
+                speakText(currentScrambleWord);
+            } else {
+                document.getElementById('scramble-feedback').textContent = 'Not quite right. Try again!';
+                document.getElementById('scramble-feedback').style.color = 'red';
+            }
+        }
+        
+        function clearScrambleSelection() {
+            selectedLetters = [];
+            displayScrambledLetters();
+            
+            // Clear answer slots
+            document.querySelectorAll('.answer-slot').forEach(slot => {
+                slot.textContent = '';
+            });
+            
+            // Clear feedback
+            document.getElementById('scramble-feedback').textContent = '';
+        }
+    </script>
+</body>
+</html>
