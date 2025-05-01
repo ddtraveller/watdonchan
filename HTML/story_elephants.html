@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magical Elephant - A Story for Thai Children Learning English</title>
+    <style>
+        :root {
+            --primary: #5b8c85;
+            --secondary: #f6c667;
+            --accent: #ed6a5a;
+            --light: #f5f5f5;
+            --dark: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .story-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .story-part {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .english-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .thai-summary {
+            font-size: 1rem;
+            background-color: #f0f8ff;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary);
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .play-button {
+            background-color: var(--secondary);
+            border: none;
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .play-button:hover {
+            background-color: #e5b456;
+        }
+        
+        .play-button svg {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .main-controls {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .control-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .control-button:hover {
+            background-color: #4a7a73;
+        }
+        
+        .control-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .story-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: block;
+        }
+        
+        .active-part {
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin-left: -1rem;
+        }
+        
+        .speech-status {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .story-container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Magical Elephant</h1>
+        <div class="subtitle">
+            ช้างวิเศษ - เรื่องสำหรับเด็กไทยเรียนภาษาอังกฤษ
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="story-container">
+            <div id="part1" class="story-part">
+                <div class="english-text">
+                    <p>Once upon a time, in a small village near the mountains in Chiang Mai, there lived a young girl named Mali. Mali loved animals, especially elephants. Every day after school, she would visit the nearby sanctuary to see the gentle giants.</p>
+                </div>
+                <div class="thai-summary">
+                    <p>มีเด็กหญิงชื่อมะลิอาศัยอยู่ในหมู่บ้านเล็กๆ ใกล้ภูเขาในประเทศไทย มะลิรักสัตว์โดยเฉพาะช้าง ทุกวันหลังเลิกเรียน เธอจะไปเยี่ยมช้างที่ศูนย์อนุรักษ์ใกล้บ้าน</p>
+                </div>
+                <button class="play-button" onclick="speakText('part1')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part2" class="story-part">
+                <div class="english-text">
+                    <p>One rainy afternoon, Mali discovered a baby elephant hidden behind the trees. The small elephant was alone and seemed lost. It had a beautiful mark on its forehead that looked like a star. "Hello, little one," Mali said softly. "Are you lost? Where is your family?"</p>
+                </div>
+                <div class="thai-summary">
+                    <p>วันหนึ่งตอนฝนตก มะลิพบลูกช้างตัวน้อยซ่อนอยู่หลังต้นไม้ ลูกช้างอยู่คนเดียวและดูเหมือนหลงทาง มันมีรอยดาวที่หน้าผาก มะลิทักทายและถามว่ามันหลงทางหรือไม่</p>
+                </div>
+                <button class="play-button" onclick="speakText('part2')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part3" class="story-part">
+                <div class="english-text">
+                    <p>To Mali's surprise, the baby elephant spoke! "My name is Sawan," said the elephant in a gentle voice. "I am a magical elephant. I became separated from my herd during the storm. Can you help me find my way home?"</p>
+                </div>
+                <div class="thai-summary">
+                    <p>มะลิประหลาดใจมากเมื่อลูกช้างพูดได้! มันบอกว่าชื่อสวรรค์ เป็นช้างวิเศษ และพลัดหลงจากฝูงระหว่างพายุ มันขอให้มะลิช่วยพากลับบ้าน</p>
+                </div>
+                <button class="play-button" onclick="speakText('part3')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part4" class="story-part">
+                <div class="english-text">
+                    <p>Mali couldn't believe her ears. A talking elephant! She promised to help Sawan find his family. "My home is in the Mountain of Mists," explained Sawan. "It's a secret place where magical elephants have lived for centuries. I can show you the way, but we must be careful. The journey will not be easy."</p>
+                </div>
+                <div class="thai-summary">
+                    <p>มะลิไม่อยากเชื่อหูตัวเอง! ช้างพูดได้! เธอสัญญาว่าจะช่วยสวรรค์หาครอบครัว สวรรค์บอกว่าบ้านของมันอยู่ที่ภูเขาหมอก ซึ่งเป็นที่อยู่ลับของช้างวิเศษมาหลายร้อยปี การเดินทางจะไม่ง่าย</p>
+                </div>
+                <button class="play-button" onclick="speakText('part4')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part5" class="story-part">
+                <div class="english-text">
+                    <p>The next morning, Mali and Sawan began their adventure. They walked through dense forests and crossed rushing rivers. Sawan used his magic to help them. He could make flowers bloom with his trunk and create rainbows that served as bridges over water.</p>
+                </div>
+                <div class="thai-summary">
+                    <p>เช้าวันต่อมา มะลิและสวรรค์เริ่มการผจญภัย พวกเขาเดินผ่านป่าทึบและข้ามแม่น้ำที่ไหลเชี่ยว สวรรค์ใช้เวทมนตร์ช่วย มันสามารถทำให้ดอกไม้บานด้วยงวงและสร้างรุ้งเป็นสะพานข้ามน้ำ</p>
+                </div>
+                <button class="play-button" onclick="speakText('part5')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part6" class="story-part">
+                <div class="english-text">
+                    <p>"Mali, I think we're being followed," whispered Sawan one evening. "There's a hunter who wants to capture magical elephants. He believes our tusks have special powers." Mali was worried. "Don't worry," she said. "I won't let anyone hurt you. We'll be extra careful."</p>
+                </div>
+                <div class="thai-summary">
+                    <p>สวรรค์กระซิบว่ามีคนตามพวกเขาอยู่ เป็นนายพรานที่ต้องการจับช้างวิเศษ เพราะเชื่อว่างาของพวกมันมีพลังพิเศษ มะลิเป็นห่วง แต่สัญญาว่าจะไม่ให้ใครทำร้ายสวรรค์</p>
+                </div>
+                <button class="play-button" onclick="speakText('part6')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part7" class="story-part">
+                <div class="english-text">
+                    <p>Days passed, and they traveled further into the mountains. The air grew colder, and mist surrounded them. Suddenly, they heard a noise. It was the hunter! "Quick, Mali, climb on my back," said Sawan. Mali jumped onto Sawan's back, and to her amazement, the elephant began to fly above the ground!</p>
+                </div>
+                <div class="thai-summary">
+                    <p>หลายวันผ่านไป พวกเขาเดินทางเข้าไปในภูเขาลึกขึ้น อากาศเย็นลงและมีหมอกรอบตัว ทันใดนั้นก็ได้ยินเสียง เป็นนายพราน! สวรรค์บอกให้มะลิขึ้นหลัง แล้วช้างก็เริ่มบินได้อย่างน่าอัศจรรย์!</p>
+                </div>
+                <button class="play-button" onclick="speakText('part7')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part8" class="story-part">
+                <div class="english-text">
+                    <p>"I didn't know you could fly!" gasped Mali. "Only in the mist," explained Sawan. "It's part of our magic." They flew higher and higher until they reached a hidden valley between two mountains. There, Mali saw dozens of elephants with star-shaped marks on their foreheads, just like Sawan's.</p>
+                </div>
+                <div class="thai-summary">
+                    <p>มะลิไม่รู้มาก่อนว่าสวรรค์บินได้! สวรรค์อธิบายว่าบินได้เฉพาะในหมอกเท่านั้น เป็นส่วนหนึ่งของเวทมนตร์ พวกเขาบินสูงขึ้นจนถึงหุบเขาลับระหว่างภูเขาสองลูก ที่นั่นมะลิเห็นช้างหลายสิบเชือกที่มีรอยดาวบนหน้าผากเหมือนสวรรค์</p>
+                </div>
+                <button class="play-button" onclick="speakText('part8')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part9" class="story-part">
+                <div class="english-text">
+                    <p>The herd welcomed Sawan home with happy trumpeting sounds. The oldest and largest elephant approached Mali. "Thank you for helping our young one find his way home," he said. "You have a kind heart. As a reward, we will grant you a wish." Mali thought carefully. "I wish for the magical elephants to be safe forever," she said.</p>
+                </div>
+                <div class="thai-summary">
+                    <p>ฝูงช้างต้อนรับสวรรค์กลับบ้านด้วยเสียงร้องดีใจ ช้างที่แก่และใหญ่ที่สุดเข้ามาหามะลิ ขอบคุณที่ช่วยพาลูกช้างกลับบ้าน และจะให้พรหนึ่งข้อเป็นรางวัล มะลิขอให้ช้างวิเศษปลอดภัยตลอดไป</p>
+                </div>
+                <button class="play-button" onclick="speakText('part9')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part10" class="story-part">
+                <div class="english-text">
+                    <p>The old elephant nodded and touched Mali's forehead with his trunk. A small star appeared there, just like the ones the elephants had. "Now you are connected to us," he said. "Whenever hunters come near, you will know, and you can warn us." Mali was overjoyed. She promised to visit Sawan often and to always protect the secret of the magical elephants.</p>
+                </div>
+                <div class="thai-summary">
+                    <p>ช้างแก่พยักหน้าและแตะหน้าผากของมะลิด้วยงวง ดาวเล็กๆ ปรากฏขึ้นที่นั่น เหมือนกับที่ช้างทุกตัวมี "ตอนนี้เธอเชื่อมต่อกับพวกเรา" ช้างพูด "เมื่อใดที่นายพรานเข้ามาใกล้ เธอจะรู้และเตือนพวกเราได้" มะลิดีใจมาก เธอสัญญาว่าจะมาเยี่ยมสวรรค์บ่อยๆ และจะปกป้องความลับของช้างวิเศษเสมอ</p>
+                </div>
+                <button class="play-button" onclick="speakText('part10')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div id="part11" class="story-part">
+                <div class="english-text">
+                    <p>From that day forward, Mali became the guardian of the magical elephants. She returned to her village, but often visited her friends in the Mountain of Mists. The star on her forehead would disappear when she was around other people, but in the presence of the elephants, it would shine brightly. Mali learned that friendship, courage, and kindness are the most powerful magic of all.</p>
+                </div>
+                <div class="thai-summary">
+                    <p>นับจากวันนั้น มะลิกลายเป็นผู้พิทักษ์ช้างวิเศษ เธอกลับไปยังหมู่บ้าน แต่มักจะไปเยี่ยมเพื่อนของเธอที่ภูเขาหมอกบ่อยๆ ดาวบนหน้าผากของเธอจะหายไปเมื่ออยู่กับคนอื่น แต่เมื่ออยู่กับช้าง มันจะส่องสว่าง มะลิเรียนรู้ว่ามิตรภาพ ความกล้าหาญ และความเมตตาคือเวทมนตร์ที่ทรงพลังที่สุด</p>
+                </div>
+                <button class="play-button" onclick="speakText('part11')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Read Aloud
+                </button>
+            </div>
+            
+            <div class="controls">
+                <div class="main-controls">
+                    <button class="control-button" id="read-all">Read Entire Story</button>
+                    <button class="control-button" id="pause-button" disabled>Pause</button>
+                    <button class="control-button" id="stop-button" disabled>Stop</button>
+                </div>
+            </div>
+            
+            <div id="speech-status" class="speech-status"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Designed for Thai Children Learning English | ออกแบบสำหรับเด็กไทยที่เรียนภาษาอังกฤษ</p>
+    </footer>
+
+    <script>
+        // Get all story parts
+        const storyParts = document.querySelectorAll('.story-part');
+        const readAllButton = document.getElementById('read-all');
+        const pauseButton = document.getElementById('pause-button');
+        const stopButton = document.getElementById('stop-button');
+        const speechStatus = document.getElementById('speech-status');
+        
+        let currentPart = 0;
+        let utterance = null;
+        let speaking = false;
+        let paused = false;
+        
+        // Function to speak a specific part of the story
+        function speakText(partId) {
+            if (!window.speechSynthesis) {
+                alert('Sorry, your browser does not support text-to-speech!');
+                return;
+            }
+            
+            // Stop any ongoing speech
+            window.speechSynthesis.cancel();
+            
+            const part = document.getElementById(partId);
+            const text = part.querySelector('.english-text').textContent.trim();
+            
+            // Remove active class from all parts
+            storyParts.forEach(part => part.classList.remove('active-part'));
+            
+            // Add active class to current part
+            part.classList.add('active-part');
+            
+            // Create utterance
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            
+            // Update status
+            speaking = true;
+            paused = false;
+            updateButtonStates();
+            speechStatus.textContent = 'Reading...';
+            
+            // Add event listener for when speech ends
+            utterance.onend = function() {
+                speaking = false;
+                paused = false;
+                updateButtonStates();
+                speechStatus.textContent = '';
+                part.classList.remove('active-part');
+            };
+            
+            // Speak
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        // Function to read the entire story
+        function readAllStory() {
+            currentPart = 0;
+            readNextPart();
+        }
+        
+        // Function to read the next part of the story
+        function readNextPart() {
+            if (currentPart < storyParts.length) {
+                const partId = storyParts[currentPart].id;
+                
+                // Stop any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const part = document.getElementById(partId);
+                const text = part.querySelector('.english-text').textContent.trim();
+                
+                // Remove active class from all parts
+                storyParts.forEach(part => part.classList.remove('active-part'));
+                
+                // Add active class to current part
+                part.classList.add('active-part');
+                
+                // Create utterance
+                utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                
+                // Update status
+                speaking = true;
+                paused = false;
+                updateButtonStates();
+                speechStatus.textContent = `Reading part ${currentPart + 1} of ${storyParts.length}...`;
+                
+                // Add event listener for when speech ends
+                utterance.onend = function() {
+                    // Move to next part
+                    currentPart++;
+                    
+                    if (currentPart < storyParts.length) {
+                        // Read next part
+                        readNextPart();
+                    } else {
+                        // End of story
+                        speaking = false;
+                        paused = false;
+                        updateButtonStates();
+                        speechStatus.textContent = 'Story completed!';
+                        setTimeout(() => {
+                            speechStatus.textContent = '';
+                            storyParts.forEach(part => part.classList.remove('active-part'));
+                        }, 3000);
+                    }
+                };
+                
+                // Speak
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Function to pause speech
+        function pauseSpeech() {
+            if (speaking && !paused) {
+                window.speechSynthesis.pause();
+                paused = true;
+                updateButtonStates();
+                speechStatus.textContent = 'Paused';
+            } else if (speaking && paused) {
+                window.speechSynthesis.resume();
+                paused = false;
+                updateButtonStates();
+                speechStatus.textContent = 'Reading...';
+            }
+        }
+        
+        // Function to stop speech
+        function stopSpeech() {
+            window.speechSynthesis.cancel();
+            speaking = false;
+            paused = false;
+            updateButtonStates();
+            speechStatus.textContent = '';
+            storyParts.forEach(part => part.classList.remove('active-part'));
+        }
+        
+        // Function to update button states
+        function updateButtonStates() {
+            if (speaking) {
+                readAllButton.disabled = true;
+                pauseButton.disabled = false;
+                stopButton.disabled = false;
+                
+                if (paused) {
+                    pauseButton.textContent = 'Resume';
+                } else {
+                    pauseButton.textContent = 'Pause';
+                }
+            } else {
+                readAllButton.disabled = false;
+                pauseButton.disabled = true;
+                stopButton.disabled = true;
+                pauseButton.textContent = 'Pause';
+            }
+        }
+        
+        // Add event listeners
+        readAllButton.addEventListener('click', readAllStory);
+        pauseButton.addEventListener('click', pauseSpeech);
+        stopButton.addEventListener('click', stopSpeech);
+        
+        // Initialize button states
+        updateButtonStates();
+    </script>
+</body>
+</html>
