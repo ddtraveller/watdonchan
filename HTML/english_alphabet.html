@@ -683,7 +683,8 @@
             if (askForExample) {
                 // Example question
                 options.push(currentQuestion.example);
-                document.querySelector('#game-area > p').textContent = 'What does this letter stand for?';
+                const questionText = document.querySelector('.game-area > p');
+                questionText.textContent = 'What does this letter stand for?';
                 
                 // Add incorrect options
                 while (options.length < 4) {
@@ -695,7 +696,8 @@
             } else {
                 // Phonetic question
                 options.push(currentQuestion.phonetic);
-                document.querySelector('#game-area > p').textContent = 'What is this letter\'s sound?';
+                const questionText = document.querySelector('.game-area > p');
+                questionText.textContent = 'What is this letter\'s sound?';
                 
                 // Add incorrect options
                 while (options.length < 4) {
@@ -714,8 +716,62 @@
             
             // Add options to container
             optionsContainer.innerHTML = '';
-            options.forEach(option => {
+                            options.forEach(option => {
                 const button = document.createElement('button');
                 button.className = 'option-btn';
                 button.textContent = option;
-                button.addEventListener('click', ()
+                button.addEventListener('click', () => checkAnswer(option, askForExample));
+                optionsContainer.appendChild(button);
+            });
+            
+            // Increment question count
+            questionCount++;
+            updateProgress();
+        }
+        
+        function checkAnswer(selectedOption, isExampleQuestion) {
+            // Disable all option buttons
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(button => {
+                button.disabled = true;
+                if ((isExampleQuestion && button.textContent === currentQuestion.example) || 
+                    (!isExampleQuestion && button.textContent === currentQuestion.phonetic)) {
+                    button.style.backgroundColor = '#4caf50';
+                }
+            });
+            
+            // Check if answer is correct
+            if ((isExampleQuestion && selectedOption === currentQuestion.example) || 
+                (!isExampleQuestion && selectedOption === currentQuestion.phonetic)) {
+                feedbackElement.textContent = '✓ Correct! | ถูกต้อง!';
+                feedbackElement.classList.add('correct');
+                gameLetter.classList.add('bounce');
+                speak(currentQuestion.letter + '. ' + currentQuestion.example.split('|')[0].trim());
+                score++;
+                updateProgress();
+                setTimeout(() => {
+                    gameLetter.classList.remove('bounce');
+                }, 500);
+            } else {
+                feedbackElement.textContent = '✗ Try again! | ลองใหม่!';
+                feedbackElement.classList.add('incorrect');
+                gameLetter.classList.add('shake');
+                setTimeout(() => {
+                    gameLetter.classList.remove('shake');
+                }, 500);
+            }
+            
+            // Update score
+            scoreElement.textContent = score;
+        }
+        
+        function updateProgress() {
+            const percentage = (questionCount / totalQuestions) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+        
+        // Initialize the page on load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
