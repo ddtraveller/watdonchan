@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ดนตรีไทย - Thai Music Concepts</title>
+    <style>
+        :root {
+            --primary: #f5812e;
+            --secondary: #2e7cf5;
+            --bg-light: #f5f5f5;
+            --text-dark: #333;
+            --card-bg: #fff;
+        }
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        
+        .flex-item {
+            flex: 1 1 300px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background-color: #ddd;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 0.5rem;
+        }
+        
+        .tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .thai {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .english {
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        .audio-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .flashcard {
+            perspective: 1000px;
+            height: 200px;
+            margin-bottom: 1rem;
+        }
+        
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        
+        .quiz-container {
+            margin-top: 2rem;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-option {
+            padding: 0.5rem 1rem;
+            background-color: #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .quiz-option:hover {
+            background-color: #ccc;
+        }
+        
+        .quiz-option.correct {
+            background-color: #5cb85c;
+            color: white;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #d9534f;
+            color: white;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .progress {
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 4px;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ดนตรีไทย - Thai Music Concepts</h1>
+        <p>เรียนรู้ภาษาไทยผ่านดนตรี | Learn Thai through Music</p>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" onclick="openTab('basics')">พื้นฐาน (Basics)</button>
+            <button class="tab" onclick="openTab('instruments')">เครื่องดนตรี (Instruments)</button>
+            <button class="tab" onclick="openTab('vocabulary')">คำศัพท์ (Vocabulary)</button>
+            <button class="tab" onclick="openTab('practice')">ฝึกฝน (Practice)</button>
+        </div>
+        
+        <div id="basics" class="tab-content active">
+            <div class="card">
+                <h2>ยินดีต้อนรับสู่โลกของดนตรีไทย! (Welcome to the world of Thai music!)</h2>
+                <p>ดนตรีไทยมีประวัติศาสตร์อันยาวนานและมีเอกลักษณ์เฉพาะตัว</p>
+                <p><span class="english">Thai music has a long history and unique characteristics</span></p>
+                
+                <h3>ระบบเสียงในดนตรีไทย (Thai Musical Scale System)</h3>
+                <p>ดนตรีไทยใช้ระบบเสียง 7 เสียง เรียกว่า "เสียงเจ็ดเสียง" หรือ "บันไดเสียงเจ็ดเสียง"</p>
+                <p><span class="english">Thai music uses a 7-note scale system called "Seven Sounds" or "Seven-note Scale"</span></p>
+                
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <h4>โน้ตดนตรีไทย (Thai Music Notes)</h4>
+                        <ul>
+                            <li><span class="thai">โด (Do)</span> - <span class="english">C</span></li>
+                            <li><span class="thai">เร (Re)</span> - <span class="english">D</span></li>
+                            <li><span class="thai">มี (Mi)</span> - <span class="english">E</span></li>
+                            <li><span class="thai">ฟา (Fa)</span> - <span class="english">F</span></li>
+                            <li><span class="thai">ซอล (Sol)</span> - <span class="english">G</span></li>
+                            <li><span class="thai">ลา (La)</span> - <span class="english">A</span></li>
+                            <li><span class="thai">ที (Ti)</span> - <span class="english">B</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>จังหวะในดนตรีไทย (Rhythm in Thai Music)</h4>
+                        <p>จังหวะในดนตรีไทยมีความซับซ้อนและมีชื่อเรียกเฉพาะ เช่น:</p>
+                        <ul>
+                            <li><span class="thai">จังหวะฉิ่ง (Ching Rhythm)</span></li>
+                            <li><span class="thai">จังหวะสองชั้น (Song Chan Rhythm)</span></li>
+                            <li><span class="thai">จังหวะชั้นเดียว (Chan Diaw Rhythm)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>ฟังตัวอย่างดนตรีไทย (Listen to Thai Music Examples)</h3>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <h4>เพลงลาวดวงเดือน (Lao Duang Duen)</h4>
+                        <p>เพลงไทยที่มีชื่อเสียงและเป็นที่รู้จักกันดี</p>
+                        <p><span class="english">A famous and well-known Thai song</span></p>
+                        <button class="audio-btn" onclick="alert('This would play the audio in a real implementation')">▶️ ฟังเพลง (Listen)</button>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>เพลงลมพัดชายเขา (Lom Pat Chai Khao)</h4>
+                        <p>เพลงไทยที่มีท่วงทำนองไพเราะ</p>
+                        <p><span class="english">A Thai song with beautiful melody</span></p>
+                        <button class="audio-btn" onclick="alert('This would play the audio in a real implementation')">▶️ ฟังเพลง (Listen)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="instruments" class="tab-content">
+            <div class="card">
+                <h2>เครื่องดนตรีไทย (Thai Musical Instruments)</h2>
+                <p>เครื่องดนตรีไทยแบ่งออกเป็นหลายประเภท</p>
+                <p><span class="english">Thai musical instruments are divided into several categories</span></p>
+                
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <h4>เครื่องดีด (Plucked Instruments)</h4>
+                        <ul>
+                            <li><span class="thai">จะเข้ (Jakhe)</span> - <span class="english">Thai zither</span></li>
+                            <li><span class="thai">กระจับปี่ (Krajappi)</span> - <span class="english">Thai lute</span></li>
+                            <li><span class="thai">พิณ (Pin)</span> - <span class="english">Northeastern lute</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>เครื่องสี (Bowed Instruments)</h4>
+                        <ul>
+                            <li><span class="thai">ซอด้วง (Saw Duang)</span> - <span class="english">High-pitched fiddle</span></li>
+                            <li><span class="thai">ซออู้ (Saw U)</span> - <span class="english">Low-pitched fiddle</span></li>
+                            <li><span class="thai">ซอสามสาย (Saw Sam Sai)</span> - <span class="english">Three-stringed fiddle</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>เครื่องตี (Percussion Instruments)</h4>
+                        <ul>
+                            <li><span class="thai">ระนาดเอก (Ranat Ek)</span> - <span class="english">High-pitched xylophone</span></li>
+                            <li><span class="thai">ระนาดทุ้ม (Ranat Thum)</span> - <span class="english">Low-pitched xylophone</span></li>
+                            <li><span class="thai">ฆ้องวงใหญ่ (Khong Wong Yai)</span> - <span class="english">Large gong circle</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>เครื่องเป่า (Wind Instruments)</h4>
+                        <ul>
+                            <li><span class="thai">ปี่ใน (Pi Nai)</span> - <span class="english">Oboe-like instrument</span></li>
+                            <li><span class="thai">ขลุ่ย (Khlui)</span> - <span class="english">Thai flute</span></li>
+                            <li><span class="thai">แคน (Kaen)</span> - <span class="english">Northeastern mouth organ</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>วงดนตรีไทย (Thai Musical Ensembles)</h3>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <h4>วงปี่พาทย์ (Pi Phat Ensemble)</h4>
+                        <p>วงดนตรีไทยที่ใช้บรรเลงในงานพิธีและการแสดง</p>
+                        <p><span class="english">Thai ensemble used in ceremonies and performances</span></p>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>วงเครื่องสาย (Kruang Sai Ensemble)</h4>
+                        <p>วงดนตรีไทยที่ประกอบด้วยเครื่องสายเป็นหลัก</p>
+                        <p><span class="english">Thai ensemble consisting mainly of string instruments</span></p>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <h4>วงมโหรี (Mahori Ensemble)</h4>
+                        <p>วงดนตรีไทยที่ผสมผสานระหว่างวงปี่พาทย์และวงเครื่องสาย</p>
+                        <p><span class="english">Thai ensemble combining Pi Phat and Kruang Sai ensembles</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="vocabulary" class="tab-content">
+            <div class="card">
+                <h2>คำศัพท์เกี่ยวกับดนตรี (Music Vocabulary)</h2>
+                
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <h3>ดนตรี</h3>
+                        </div>
+                        <div class="flashcard-back">
+                            <h3>Music (dohn-dtree)</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <h3>เสียง</h3>
+                        </div>
+                        <div class="flashcard-back">
+                            <h3>Sound (siang)</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <h3>ทำนอง</h3>
+                        </div>
+                        <div class="flashcard-back">
+                            <h3>Melody (tam-nong)</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <h3>จังหวะ</h3>
+                        </div>
+                        <div class="flashcard-back">
+                            <h3>Rhythm (jang-wa)</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <h3>นักดนตรี</h3>
+                        </div>
+                        <div class="flashcard-back">
+                            <h3>Musician (nak-dohn-dtree)</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>คำกริยาเกี่ยวกับดนตรี (Music Verbs)</h3>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <ul>
+                            <li><span class="thai">เล่น (Len)</span> - <span class="english">To play (an instrument)</span></li>
+                            <li><span class="thai">ร้อง (Rong)</span> - <span class="english">To sing</span></li>
+                            <li><span class="thai">แต่ง (Tang)</span> - <span class="english">To compose</span></li>
+                            <li><span class="thai">ฟัง (Fang)</span> - <span class="english">To listen</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <ul>
+                            <li><span class="thai">บรรเลง (Banleng)</span> - <span class="english">To perform (music)</span></li>
+                            <li><span class="thai">ดีด (Deed)</span> - <span class="english">To pluck</span></li>
+                            <li><span class="thai">สี (See)</span> - <span class="english">To bow</span></li>
+                            <li><span class="thai">ตี (Tee)</span> - <span class="english">To hit/strike</span></li>
+                            <li><span class="thai">เป่า (Pao)</span> - <span class="english">To blow</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="practice" class="tab-content">
+            <div class="card">
+                <h2>แบบทดสอบความรู้ (Knowledge Quiz)</h2>
+                <div class="progress-bar">
+                    <div class="progress" id="quiz-progress"></div>
+                </div>
+                
+                <div id="quiz-container">
+                    <div class="quiz-question">
+                        <h3>1. "ระนาดเอก" เป็นเครื่องดนตรีประเภทใด?</h3>
+                        <p><span class="english">What type of instrument is "Ranat Ek"?</span></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">เครื่องตี (Percussion)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">เครื่องสี (Bowed)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">เครื่องเป่า (Wind)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">เครื่องดีด (Plucked)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">
+                        <h3>2. คำว่า "บรรเลง" ในภาษาไทยหมายถึงอะไร?</h3>
+                        <p><span class="english">What does the Thai word "Banleng" mean?</span></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">To compose</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">To sing</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">To perform music</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">To listen</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">
+                        <h3>3. วงดนตรีไทยที่ผสมผสานระหว่างวงปี่พาทย์และวงเครื่องสายเรียกว่าอะไร?</h3>
+                        <p><span class="english">What is the name of the Thai ensemble that combines Pi Phat and Kruang Sai ensembles?</span></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">วงปี่พาทย์ (Pi Phat)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">วงเครื่องสาย (Kruang Sai)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">วงมโหรี (Mahori)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">วงกลองยาว (Klong Yao)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">
+                        <h3>4. "โด เร มี ฟา ซอล ลา ที" ในภาษาไทยเรียกว่าอะไร?</h3>
+                        <p><span class="english">What is "Do Re Mi Fa Sol La Ti" called in Thai?</span></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">ตัวโน้ต (Notes)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">บันไดเสียงเจ็ดเสียง (Seven-note Scale)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">ระบบเสียง (Sound System)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">จังหวะ (Rhythm)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">
+                        <h3>5. เครื่องดนตรีชนิดใดที่มีลักษณะคล้ายกับฟลุตของตะวันตก?</h3>
+                        <p><span class="english">Which instrument is similar to the Western flute?</span></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">ปี่ใน (Pi Nai)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">ขลุ่ย (Khlui)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">แคน (Kaen)</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">สังข์ (Sang)</div>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-complete" style="display: none;">
+                        <h3>แบบทดสอบเสร็จสิ้น! (Quiz Complete!)</h3>
+                        <p>คุณได้คะแนน <span id="score">0</span>/5</p>
+                        <button class="audio-btn" onclick="resetQuiz()">เริ่มใหม่ (Restart)</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>กิจกรรมการฟัง (Listening Activity)</h2>
+                <p>ฟังเสียงเครื่องดนตรีและเลือกชื่อที่ถูกต้อง</p>
+                <p><span class="english">Listen to the instrument sounds and choose the correct name</span></p>
+                
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <button class="audio-btn" onclick="playSound(1)">▶️ ฟังเสียงที่ 1 (Listen to Sound 1)</button>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkSoundAnswer(this, false)">ซอด้วง (Saw Duang)</div>
+                            <div class="quiz-option" onclick="checkSoundAnswer(this, true)">ระนาดเอก (Ranat Ek)</div>
+                            <div class="quiz-option" onclick="checkSoundAnswer(this, false)">ขลุ่ย (Khlui)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-item">
+                        <button class="audio-btn" onclick="playSound(2)">▶️ ฟังเสียงที่ 2 (Listen to Sound 2)</button>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkSoundAnswer(this, false)">จะเข้ (Jakhe)</div>
+                            <div class="quiz-option" onclick="checkSoundAnswer(this, false)">ฆ้องวงใหญ่ (Khong Wong Yai)</div>
+                            <div class="quiz-option" onclick="checkSoundAnswer(this, true)">ซออู้ (Saw U)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+        
+        function openTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Deactivate all tabs
+            const tabs = document.getElementsByClassName('tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate the clicked tab
+            event.currentTarget.classList.add('active');
+        }
+        
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+        
+        function checkAnswer(option, isCorrect) {
+            // Remove previously selected options
+            const options = option.parentElement.getElementsByClassName('quiz-option');
+            for (let i = 0; i < options.length; i++) {
+                options[i].classList.remove('correct', 'incorrect');
+            }
+            
+            if (isCorrect) {
+                option.classList.add('correct');
+                score++;
+            } else {
+                option.classList.add('incorrect');
+                // Find and highlight the correct answer
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].onclick.toString().includes('true')) {
+                        options[i].classList.add('correct');
+                    }
+                }
+            }
+            
+            // Disable options after selection
+            for (let i = 0; i < options.length; i++) {
+                options[i].onclick = null;
+            }
+            
+            // Move to next question after a delay
+            setTimeout(() => {
+                const questions = document.getElementsByClassName('quiz-question');
+                questions[currentQuestion].style.display = 'none';
+                currentQuestion++;
+                
+                // Update progress bar
+                document.getElementById('quiz-progress').style.width = (currentQuestion * 20) + '%';
+                
+                if (currentQuestion < 5) {
+                    questions[currentQuestion].style.display = 'block';
+                } else {
+                    document.getElementById('quiz-complete').style.display = 'block';
+                    document.getElementById('score').textContent = score;
+                }
+            }, 1500);
+        }
+        
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            
+            // Reset display of questions
+            const questions = document.getElementsByClassName('quiz-question');
+            for (let i = 0; i < questions.length; i++) {
+                questions[i].style.display = i === 0 ? 'block' : 'none';
+                
+                // Reset options clickability and classes
+                const options = questions[i].getElementsByClassName('quiz-option');
+                for (let j = 0; j < options.length; j++) {
+                    options[j].classList.remove('correct', 'incorrect');
+                    options[j].onclick = options[j].getAttribute('original-onclick') 
+                        ? new Function(`return ${options[j].getAttribute('original-onclick')}`)() 
+                        : null;
+                }
+            }
+            
+            // Hide completion message
+            document.getElementById('quiz-complete').style.display = 'none';
+            
+            // Reset progress bar
+            document.getElementById('quiz-progress').style.width = '0%';
+        }
+        
+        function playSound(soundNumber) {
+            // In a real implementation, this would play an audio file
+            alert(`This would play the sound of instrument ${soundNumber} in a real implementation`);
+        }
+        
+        function checkSoundAnswer(option, isCorrect) {
+            // Remove previously selected options
+            const options = option.parentElement.getElementsByClassName('quiz-option');
+            for (let i = 0; i < options.length; i++) {
+                options[i].classList.remove('correct', 'incorrect');
+            }
+            
+            if (isCorrect) {
+                option.classList.add('correct');
+                alert('ถูกต้อง! (Correct!)');
+            } else {
+                option.classList.add('incorrect');
+                // Find and highlight the correct answer
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].onclick.toString().includes('true')) {
+                        options[i].classList.add('correct');
+                    }
+                }
+                alert('ไม่ถูกต้อง ลองใหม่อีกครั้ง (Incorrect, try again)');
+            }
+        }
+        
+        // Store original onclick functions for quiz reset
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.getElementsByClassName('quiz-option');
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].onclick) {
+                    options[i].setAttribute('original-onclick', options[i].onclick.toString());
+                }
+            }
+        });
+    </script>
+    
+    <footer style="background-color: var(--text-dark); color: white; text-align: center; padding: 1rem; margin-top: 2rem;">
+        <p>© 2025 เว็บไซต์การเรียนรู้ดนตรีไทย | Thai Music Learning Website</p>
+        <p>สร้างขึ้นเพื่อนักเรียน TEFL | Created for TEFL Learners</p>
+    </footer>
+</body>
+</html>
