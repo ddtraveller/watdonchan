@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magic Garden Adventure | ผจญภัยในสวนมหัศจรรย์</title>
+    <style>
+        :root {
+            --primary: #4ecdc4;
+            --secondary: #ff6b6b;
+            --accent: #ffe66d;
+            --dark: #1a535c;
+            --light: #f7fff7;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-section {
+            margin-bottom: 20px;
+        }
+        
+        .story-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .thai-hint {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .choice-btn {
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .choice-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .english-text {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .thai-text {
+            font-size: 0.9rem;
+        }
+        
+        .story-image {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .control-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            padding: 10px 15px;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .vocabulary {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        
+        .vocab-word {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .restart-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .speak-btn {
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .speak-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .ending {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 30px 0;
+            color: var(--secondary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .choices {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Magic Garden Adventure</h1>
+        <p>ผจญภัยในสวนมหัศจรรย์</p>
+    </header>
+    
+    <div class="container">
+        <div id="story-container">
+            <!-- Story content will be dynamically loaded here -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>English Learning Adventure | การผจญภัยเพื่อการเรียนรู้ภาษาอังกฤษ</p>
+        <p>© 2025 English Learning Hub</p>
+    </footer>
+
+    <script>
+        // Story data structure
+        const storyData = {
+            start: {
+                title: "The Magic Garden",
+                text: "Your name is Mee-Mee. You are walking in the park on a sunny day. Suddenly, you see a butterfly with beautiful blue wings. The butterfly flies to a gate hidden behind some trees. You have never seen this gate before. There is a sign that says 'Magic Garden'.",
+                thai: "คุณชื่อมี่มี่ คุณกำลังเดินเล่นในสวนสาธารณะในวันที่แดดจ้า ทันใดนั้น คุณเห็นผีเสื้อที่มีปีกสีฟ้าสวยงาม ผีเสื้อบินไปที่ประตูที่ซ่อนอยู่หลังต้นไม้ คุณไม่เคยเห็นประตูนี้มาก่อน มีป้ายเขียนว่า 'สวนมหัศจรรย์'",
+                
+                vocabulary: [
+                    { word: "butterfly", meaning: "ผีเสื้อ" },
+                    { word: "beautiful", meaning: "สวยงาม" },
+                    { word: "gate", meaning: "ประตู" },
+                    { word: "hidden", meaning: "ซ่อนอยู่" }
+                ],
+                choices: [
+                    { text: "Follow the butterfly", thai: "ตามผีเสื้อไป", next: "garden" },
+                    { text: "Go home", thai: "กลับบ้าน", next: "home" }
+                ]
+            },
+            garden: {
+                title: "The Strange Garden",
+                text: "You follow the butterfly through the gate. Wow! This garden is amazing! The flowers are all different colors, and some of them are glowing. The trees have fruits you've never seen before. The butterfly sits on a talking flower. 'Welcome to the Magic Garden!' says the flower. 'Would you like to explore or have some magic fruit?'",
+                thai: "คุณตามผีเสื้อผ่านประตูไป ว้าว! สวนนี้น่าทึ่งมาก! ดอกไม้มีสีต่างๆ กัน และบางดอกก็เรืองแสง ต้นไม้มีผลไม้ที่คุณไม่เคยเห็นมาก่อน ผีเสื้อเกาะอยู่บนดอกไม้ที่พูดได้ 'ยินดีต้อนรับสู่สวนมหัศจรรย์!' ดอกไม้พูด 'คุณอยากสำรวจหรืออยากลองผลไม้วิเศษไหม?'",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "glowing", meaning: "เรืองแสง" },
+                    { word: "talking", meaning: "พูดได้" },
+                    { word: "explore", meaning: "สำรวจ" },
+                    { word: "magic", meaning: "วิเศษ, มหัศจรรย์" }
+                ],
+                choices: [
+                    { text: "Explore the garden", thai: "สำรวจสวน", next: "explore" },
+                    { text: "Try the magic fruit", thai: "ลองชิมผลไม้วิเศษ", next: "fruit" }
+                ]
+            },
+            home: {
+                title: "Back Home",
+                text: "You decide to go home. Maybe the butterfly was just a normal butterfly. The next day, you tell your friends about the butterfly and the gate, but they don't believe you. You try to find the gate again, but it's gone! Maybe next time you'll be brave enough to follow the butterfly.",
+                thai: "คุณตัดสินใจกลับบ้าน บางทีผีเสื้อนั้นอาจเป็นเพียงผีเสื้อธรรมดา วันต่อมา คุณเล่าให้เพื่อนๆ ฟังเกี่ยวกับผีเสื้อและประตู แต่พวกเขาไม่เชื่อคุณ คุณพยายามหาประตูนั้นอีกครั้ง แต่มันหายไปแล้ว! บางทีครั้งหน้าคุณอาจกล้าพอที่จะตามผีเสื้อไป",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "decide", meaning: "ตัดสินใจ" },
+                    { word: "normal", meaning: "ธรรมดา" },
+                    { word: "believe", meaning: "เชื่อ" },
+                    { word: "brave", meaning: "กล้าหาญ" }
+                ],
+                ending: true
+            },
+            explore: {
+                title: "Magical Friends",
+                text: "You decide to explore the garden. As you walk around, you meet a small dragon who is playing with water bubbles. 'Hello!' says the dragon. 'My name is Spark. Would you like to play with me or meet the garden fairy?'",
+                thai: "คุณตัดสินใจสำรวจสวน ขณะที่คุณเดินไปรอบๆ คุณพบมังกรตัวเล็กที่กำลังเล่นกับฟองน้ำ 'สวัสดี!' มังกรพูด 'ฉันชื่อสปาร์ค คุณอยากเล่นกับฉันหรืออยากพบกับนางฟ้าแห่งสวน?'",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "dragon", meaning: "มังกร" },
+                    { word: "bubbles", meaning: "ฟองน้ำ" },
+                    { word: "fairy", meaning: "นางฟ้า" },
+                    { word: "play", meaning: "เล่น" }
+                ],
+                choices: [
+                    { text: "Play with Spark", thai: "เล่นกับสปาร์ค", next: "dragon" },
+                    { text: "Meet the garden fairy", thai: "พบกับนางฟ้าแห่งสวน", next: "fairy" }
+                ]
+            },
+            fruit: {
+                title: "The Magic Fruit",
+                text: "You try a purple star-shaped fruit. It tastes like ice cream and honey! But suddenly, you start to float up into the air! 'Don't worry,' says the flower. 'The flying fruit effect will wear off soon. Would you like to fly to the cloud palace or to the rainbow river while you wait?'",
+                thai: "คุณลองชิมผลไม้รูปดาวสีม่วง มันมีรสชาติเหมือนไอศกรีมและน้ำผึ้ง! แต่ทันใดนั้น คุณเริ่มลอยขึ้นไปในอากาศ! 'ไม่ต้องกังวล' ดอกไม้พูด 'ผลของผลไม้บินได้จะหมดไปในไม่ช้า คุณอยากบินไปที่วังเมฆหรือไปที่แม่น้ำสายรุ้งในระหว่างที่รอไหม?'",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "float", meaning: "ลอย" },
+                    { word: "wear off", meaning: "หมดฤทธิ์, จางหายไป" },
+                    { word: "cloud", meaning: "เมฆ" },
+                    { word: "rainbow", meaning: "สายรุ้ง" }
+                ],
+                choices: [
+                    { text: "Go to the cloud palace", thai: "ไปที่วังเมฆ", next: "cloud" },
+                    { text: "Visit the rainbow river", thai: "ไปเยี่ยมแม่น้ำสายรุ้ง", next: "rainbow" }
+                ]
+            },
+            dragon: {
+                title: "Dragon Games",
+                text: "You play with Spark the dragon. He teaches you how to make water bubbles that don't pop! You have so much fun that you don't notice the time passing. Spark says, 'It's getting late. But before you go, I can give you a magic scale or a special bubble wand to take home.'",
+                thai: "คุณเล่นกับสปาร์คมังกร เขาสอนคุณวิธีทำฟองน้ำที่ไม่แตก! คุณสนุกมากจนไม่สังเกตว่าเวลาผ่านไป สปาร์คพูดว่า 'มันดึกแล้ว แต่ก่อนที่คุณจะไป ฉันสามารถให้เกล็ดวิเศษหรือไม้กายสิทธิ์ทำฟองน้ำพิเศษให้คุณเอากลับบ้านได้'",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "teach", meaning: "สอน" },
+                    { word: "pop", meaning: "แตก (สำหรับฟองน้ำ)" },
+                    { word: "scale", meaning: "เกล็ด" },
+                    { word: "wand", meaning: "ไม้กายสิทธิ์" }
+                ],
+                choices: [
+                    { text: "Take the magic scale", thai: "รับเกล็ดวิเศษ", next: "scale" },
+                    { text: "Choose the bubble wand", thai: "เลือกไม้กายสิทธิ์ทำฟองน้ำ", next: "wand" }
+                ]
+            },
+            fairy: {
+                title: "The Garden Fairy",
+                text: "The garden fairy lives in a house made from a giant flower. She has sparkly wings and a dress made of leaves. 'Welcome to my home!' she says. 'Would you like me to teach you how to talk to plants or how to make flowers grow instantly?'",
+                thai: "นางฟ้าแห่งสวนอาศัยอยู่ในบ้านที่ทำจากดอกไม้ยักษ์ เธอมีปีกที่เปล่งประกายและชุดที่ทำจากใบไม้ 'ยินดีต้อนรับสู่บ้านของฉัน!' เธอพูด 'คุณอยากให้ฉันสอนวิธีพูดคุยกับพืชหรือวิธีทำให้ดอกไม้เติบโตทันทีไหม?'",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "sparkly", meaning: "เปล่งประกาย" },
+                    { word: "wings", meaning: "ปีก" },
+                    { word: "leaves", meaning: "ใบไม้" },
+                    { word: "instantly", meaning: "ทันที" }
+                ],
+                choices: [
+                    { text: "Learn to talk to plants", thai: "เรียนรู้วิธีพูดคุยกับพืช", next: "plants" },
+                    { text: "Learn flower magic", thai: "เรียนรู้เวทมนตร์ดอกไม้", next: "flower" }
+                ]
+            },
+            cloud: {
+                title: "The Cloud Palace",
+                text: "You fly up to a beautiful palace made of clouds. There, you meet the Cloud King. He has a long white beard and a crown made of lightning. 'Welcome to my palace!' he says. 'Would you like to ride on a cloud horse or play with lightning in a bottle?'",
+                thai: "คุณบินขึ้นไปยังพระราชวังสวยงามที่ทำจากเมฆ ที่นั่น คุณพบกับราชาแห่งเมฆ เขามีเคราขาวยาวและมงกุฎที่ทำจากสายฟ้า 'ยินดีต้อนรับสู่พระราชวังของข้า!' เขาพูด 'เจ้าอยากขี่ม้าเมฆหรืออยากเล่นกับสายฟ้าในขวดไหม?'",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "beard", meaning: "เครา" },
+                    { word: "crown", meaning: "มงกุฎ" },
+                    { word: "lightning", meaning: "สายฟ้า" },
+                    { word: "bottle", meaning: "ขวด" }
+                ],
+                choices: [
+                    { text: "Ride a cloud horse", thai: "ขี่ม้าเมฆ", next: "horse" },
+                    { text: "Play with lightning", thai: "เล่นกับสายฟ้า", next: "lightning" }
+                ]
+            },
+            rainbow: {
+                title: "The Rainbow River",
+                text: "You fly to a river made of flowing rainbow colors. Fish with crystal fins jump in and out of the water. A friendly turtle with a rainbow shell invites you to slide down a waterfall or go fishing for treasure.",
+                thai: "คุณบินไปยังแม่น้ำที่เป็นสีของสายรุ้งไหล ปลาที่มีครีบคริสตัลกระโดดเข้าออกจากน้ำ เต่าที่เป็นมิตรซึ่งมีกระดองสายรุ้งเชิญคุณไถลลงน้ำตกหรือไปตกปลาเพื่อหาสมบัติ",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "flowing", meaning: "ไหล" },
+                    { word: "crystal", meaning: "คริสตัล" },
+                    { word: "shell", meaning: "กระดอง" },
+                    { word: "waterfall", meaning: "น้ำตก" }
+                ],
+                choices: [
+                    { text: "Slide down the waterfall", thai: "ไถลลงน้ำตก", next: "waterfall" },
+                    { text: "Go fishing for treasure", thai: "ไปตกปลาเพื่อหาสมบัติ", next: "fishing" }
+                ]
+            },
+            scale: {
+                title: "The Magic Scale",
+                text: "Spark gives you a shiny blue dragon scale. 'This scale will keep you safe in water. You can breathe underwater when you hold it!' he says. You thank Spark and head home. That night, you take a bath and try the scale. It works! You can breathe underwater and talk to your rubber duck! Your adventures in the Magic Garden give you wonderful stories to tell.",
+                thai: "สปาร์คให้เกล็ดมังกรสีฟ้าเงางามแก่คุณ 'เกล็ดนี้จะช่วยให้คุณปลอดภัยในน้ำ คุณสามารถหายใจใต้น้ำได้เมื่อถือมัน!' เขาพูด คุณขอบคุณสปาร์คและมุ่งหน้ากลับบ้าน คืนนั้น คุณอาบน้ำและลองใช้เกล็ด มันใช้ได้! คุณสามารถหายใจใต้น้ำและพูดคุยกับเป็ดยางของคุณได้! การผจญภัยของคุณในสวนมหัศจรรย์ให้เรื่องราวที่ยอดเยี่ยมสำหรับการเล่า",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "shiny", meaning: "เงางาม" },
+                    { word: "breathe", meaning: "หายใจ" },
+                    { word: "underwater", meaning: "ใต้น้ำ" },
+                    { word: "rubber duck", meaning: "เป็ดยาง" }
+                ],
+                ending: true
+            },
+            wand: {
+                title: "Bubble Magic",
+                text: "You choose the special bubble wand. It creates bubbles that don't pop and can carry small objects! At home, you use the wand to send your little sister a cookie in a bubble. She is amazed! Your friends love playing with your magical bubbles, and you tell them about your adventure in the Magic Garden. They want to find the garden too!",
+                thai: "คุณเลือกไม้กายสิทธิ์ทำฟองน้ำพิเศษ มันสร้างฟองน้ำที่ไม่แตกและสามารถขนส่งวัตถุขนาดเล็กได้! ที่บ้าน คุณใช้ไม้กายสิทธิ์เพื่อส่งคุกกี้ให้น้องสาวตัวน้อยของคุณในฟองน้ำ เธอรู้สึกประหลาดใจ! เพื่อนๆ ของคุณชอบเล่นกับฟองน้ำวิเศษของคุณ และคุณเล่าให้พวกเขาฟังเกี่ยวกับการผจญภัยของคุณในสวนมหัศจรรย์ พวกเขาอยากหาสวนด้วยเช่นกัน!",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "carry", meaning: "ขน, นำพา" },
+                    { word: "objects", meaning: "วัตถุ" },
+                    { word: "amazed", meaning: "ประหลาดใจ" },
+                    { word: "adventure", meaning: "การผจญภัย" }
+                ],
+                ending: true
+            },
+            plants: {
+                title: "Plant Whisperer",
+                text: "The fairy teaches you how to talk to plants. She sprinkles magic dust on your ears. Suddenly, you can hear the flowers singing and the trees telling stories! The plants tell you about a treasure hidden in the garden. When it's time to go home, the fairy lets you keep the magic dust. Now you can talk to the plants in your garden at home!",
+                thai: "นางฟ้าสอนคุณวิธีพูดคุยกับพืช เธอโรยผงวิเศษบนหูของคุณ ทันใดนั้น คุณสามารถได้ยินดอกไม้ร้องเพลงและต้นไม้เล่าเรื่องราว! พืชบอกคุณเกี่ยวกับสมบัติที่ซ่อนอยู่ในสวน เมื่อถึงเวลากลับบ้าน นางฟ้าให้คุณเก็บผงวิเศษไว้ ตอนนี้คุณสามารถพูดคุยกับพืชในสวนที่บ้านของคุณได้!",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "sprinkle", meaning: "โรย" },
+                    { word: "dust", meaning: "ผง" },
+                    { word: "treasure", meaning: "สมบัติ" },
+                    { word: "hidden", meaning: "ซ่อนอยู่" }
+                ],
+                ending: true
+            },
+            flower: {
+                title: "Flower Power",
+                text: "The fairy teaches you how to make flowers grow instantly with a special song. You sing the song and wave your hands, and beautiful flowers appear! When you go home, you use your new magic in your family's garden. Your parents are surprised when colorful flowers grow everywhere! Your garden becomes the most beautiful in the neighborhood.",
+                thai: "นางฟ้าสอนคุณวิธีทำให้ดอกไม้เติบโตทันทีด้วยเพลงพิเศษ คุณร้องเพลงและโบกมือ และดอกไม้สวยงามก็ปรากฏขึ้น! เมื่อคุณกลับบ้าน คุณใช้เวทมนตร์ใหม่ของคุณในสวนของครอบครัว พ่อแม่ของคุณประหลาดใจเมื่อดอกไม้หลากสีเติบโตขึ้นทุกที่! สวนของคุณกลายเป็นสวนที่สวยที่สุดในละแวกบ้าน",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "wave", meaning: "โบก" },
+                    { word: "appear", meaning: "ปรากฏ" },
+                    { word: "surprised", meaning: "ประหลาดใจ" },
+                    { word: "neighborhood", meaning: "ละแวกบ้าน" }
+                ],
+                ending: true
+            },
+            horse: {
+                title: "Cloud Rider",
+                text: "You ride on a beautiful horse made of clouds. It gallops through the sky, and you can see the whole magic garden below. The Cloud King gives you a small cloud in a jar to take home. 'This cloud will make it rain in your room whenever you want!' he says. At home, you use the cloud to water your plants and make rainbows in your bedroom.",
+                thai: "คุณขี่ม้าสวยงามที่ทำจากเมฆ มันควบไปทั่วท้องฟ้า และคุณสามารถเห็นสวนมหัศจรรย์ทั้งหมดด้านล่าง ราชาแห่งเมฆให้เมฆก้อนเล็กในโหลแก่คุณเพื่อนำกลับบ้าน 'เมฆนี้จะทำให้ฝนตกในห้องของเจ้าเมื่อไหร่ก็ได้ที่เจ้าต้องการ!' เขาพูด ที่บ้าน คุณใช้เมฆเพื่อรดน้ำต้นไม้และสร้างสายรุ้งในห้องนอนของคุณ",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "gallop", meaning: "ควบ (การวิ่งของม้า)" },
+                    { word: "jar", meaning: "โหล" },
+                    { word: "rain", meaning: "ฝน" },
+                    { word: "water", meaning: "รดน้ำ (กริยา)" }
+                ],
+                ending: true
+            },
+            lightning: {
+                title: "Lightning Magic",
+                text: "You learn how to play with lightning in a bottle. The small lightning bolts make pretty light shows. The Cloud King gives you a tiny lightning bottle to keep. 'This will light up your room during storms,' he says. When you go home, you use your lightning bottle during a scary thunderstorm. It makes you feel brave, and you're not afraid of storms anymore.",
+                thai: "คุณเรียนรู้วิธีเล่นกับสายฟ้าในขวด สายฟ้าเส้นเล็กๆ ทำให้เกิดการแสดงแสงที่สวยงาม ราชาแห่งเมฆให้ขวดสายฟ้าขนาดเล็กแก่คุณเพื่อเก็บไว้ 'นี่จะให้แสงสว่างแก่ห้องของเจ้าระหว่างพายุ' เขาพูด เมื่อคุณกลับบ้าน คุณใช้ขวดสายฟ้าของคุณระหว่างพายุฝนฟ้าคะนองที่น่ากลัว มันทำให้คุณรู้สึกกล้าหาญ และคุณไม่กลัวพายุอีกต่อไป",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "bolts", meaning: "สายฟ้า" },
+                    { word: "light show", meaning: "การแสดงแสง" },
+                    { word: "thunderstorm", meaning: "พายุฝนฟ้าคะนอง" },
+                    { word: "afraid", meaning: "กลัว" }
+                ],
+                ending: true
+            },
+            waterfall: {
+                title: "Rainbow Slide",
+                text: "You slide down the colorful waterfall. It's so much fun! At the bottom, you find a pool with magic water. The turtle says, 'This water can change colors! You can take some home in this shell.' You take the magic water home. Now, you can change the color of anything you want! Your drawings become magical, changing colors as people look at them.",
+                thai: "คุณไถลลงน้ำตกที่มีสีสัน มันสนุกมาก! ที่ด้านล่าง คุณพบสระน้ำที่มีน้ำวิเศษ เต่าพูดว่า 'น้ำนี้สามารถเปลี่ยนสีได้! คุณสามารถนำกลับบ้านได้ในเปลือกหอยนี้' คุณนำน้ำวิเศษกลับบ้าน ตอนนี้ คุณสามารถเปลี่ยนสีของสิ่งใดก็ได้ที่คุณต้องการ! ภาพวาดของคุณกลายเป็นวิเศษ เปลี่ยนสีเมื่อคนมองดู",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "pool", meaning: "สระน้ำ" },
+                    { word: "change", meaning: "เปลี่ยน" },
+                    { word: "drawings", meaning: "ภาพวาด" },
+                    { word: "magical", meaning: "วิเศษ" }
+                ],
+                ending: true
+            },
+            fishing: {
+                title: "Treasure Hunt",
+                text: "You go fishing with the turtle. Instead of fish, you catch shiny treasures! You find golden coins, sparkling gems, and a magic music box. The turtle lets you keep the music box. 'This box plays songs that make people happy,' he says. At home, you play the magic music for your family when they feel sad. The music always cheers them up!",
+                thai: "คุณไปตกปลากับเต่า แทนที่จะเป็นปลา คุณจับได้สมบัติที่เปล่งประกาย! คุณพบเหรียญทอง อัญมณีเปล่งประกาย และกล่องดนตรีวิเศษ เต่าให้คุณเก็บกล่องดนตรีไว้ 'กล่องนี้เล่นเพลงที่ทำให้คนมีความสุข' เขาพูด ที่บ้าน คุณเล่นดนตรีวิเศษให้ครอบครัวของคุณฟังเมื่อพวกเขารู้สึกเศร้า ดนตรีทำให้พวกเขามีความสุขขึ้นเสมอ!",
+                image: "/api/placeholder/400/250",
+                vocabulary: [
+                    { word: "coins", meaning: "เหรียญ" },
+                    { word: "gems", meaning: "อัญมณี" },
+                    { word: "music box", meaning: "กล่องดนตรี" },
+                    { word: "cheer up", meaning: "ทำให้มีความสุขขึ้น" }
+                ],
+                ending: true
+            }
+        };
+        
+        // Initialize the story
+        let currentScene = 'start';
+        let audioPlaying = false;
+        
+        // Function to show a scene
+        function showScene(sceneId) {
+            // Get the scene data
+            const scene = storyData[sceneId];
+            currentScene = sceneId;
+            
+            // Create the HTML for the scene
+            let sceneHTML = `
+                <div class="story-section">
+                    <h2>${scene.title}</h2>
+                    <button class="speak-btn" onclick="speakText('${scene.text.replace(/'/g, "\\'")}')">🔊</button>
+                    <p class="story-text">${scene.text}</p>
+                    <p class="thai-hint">${scene.thai}</p>
+                    
+                    <div class="vocabulary">
+                        <h3>Vocabulary | คำศัพท์</h3>
+                        ${scene.vocabulary.map(item => `
+                            <p><span class="vocab-word">${item.word}</span> - ${item.meaning}</p>
+                        `).join('')}
+                    </div>
+            `;
+            
+            // Add choices if this is not an ending
+            if (!scene.ending) {
+                sceneHTML += `
+                    <div class="choices">
+                        ${scene.choices.map(choice => `
+                            <button class="choice-btn" onclick="showScene('${choice.next}')">
+                                <div class="english-text">${choice.text}</div>
+                                <div class="thai-text">${choice.thai}</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                // Add ending and restart button
+                sceneHTML += `
+                    <p class="ending">THE END | จบเรื่อง</p>
+                    <button class="restart-btn" onclick="showScene('start')">Start Again | เริ่มใหม่</button>
+                `;
+            }
+            
+            sceneHTML += `</div>`;
+            
+            // Update the story container
+            document.getElementById('story-container').innerHTML = sceneHTML;
+        }
+        
+        // Function to speak text
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+                
+                audioPlaying = true;
+                
+                utterance.onend = function() {
+                    audioPlaying = false;
+                };
+            } else {
+                alert('Sorry, your browser does not support text-to-speech!');
+            }
+        }
+        
+        // Initialize the story when the page loads
+        window.onload = function() {
+            showScene('start');
+        };
+    </script>
+</body>
+</html>
