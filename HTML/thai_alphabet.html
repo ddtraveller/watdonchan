@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Alphabet Learning Adventure | เรียนรู้อักษรไทย</title>
+    <style>
+        :root {
+            --primary: #FF9E1B;
+            --secondary: #5CC8FF;
+            --accent: #FF5F5D;
+            --background: #FFF7E8;
+            --text: #333333;
+            --success: #92D36E;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', 'Prompt', sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #eee;
+            border-radius: 10px 10px 0 0;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: var(--secondary);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        
+        .letter-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .letter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .letter {
+            font-size: 3rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .phonetic {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        
+        .example {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .game-container {
+            text-align: center;
+        }
+        
+        .game-area {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        .game-letter {
+            font-size: 6rem;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .option-btn {
+            padding: 15px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            height: 40px;
+        }
+        
+        .correct {
+            color: var(--success);
+        }
+        
+        .incorrect {
+            color: var(--accent);
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #eee;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--success);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            background-color: var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .alphabet-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .alphabet-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .letter {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animation classes */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .bounce {
+            animation: bounce 0.5s;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .shake {
+            animation: rotate 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Thai Alphabet Learning Adventure</h1>
+        <p>เรียนรู้อักษรไทยแสนสนุก</p>
+    </header>
+    
+    <div class="container">
+        <div class="tab-container">
+            <div class="tab active" data-tab="consonants">Consonants | พยัญชนะ</div>
+            <div class="tab" data-tab="vowels">Vowels | สระ</div>
+            <div class="tab" data-tab="game">Games | เกม</div>
+        </div>
+        
+        <div class="content active" id="consonants">
+            <h2>Thai Consonants | พยัญชนะไทย</h2>
+            <div class="alphabet-grid" id="consonants-grid">
+                <!-- Consonants will be dynamically added here -->
+            </div>
+        </div>
+        
+        <div class="content" id="vowels">
+            <h2>Thai Vowels | สระไทย</h2>
+            <div class="alphabet-grid" id="vowels-grid">
+                <!-- Vowels will be dynamically added here -->
+            </div>
+        </div>
+        
+        <div class="content" id="game">
+            <div class="game-container">
+                <h2>Letter Matching Game | เกมจับคู่ตัวอักษร</h2>
+                <p>Match the Thai letter with the correct sound or example</p>
+                
+                <div class="game-area">
+                    <div class="game-letter" id="game-letter"></div>
+                    <p>What is this letter's sound?</p>
+                    <div class="options" id="options">
+                        <!-- Options will be dynamically added here -->
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                    <button class="button" id="next-btn">Next Question</button>
+                </div>
+                
+                <div class="progress-container">
+                    <p>Progress: <span id="score">0</span>/<span id="total">0</span></p>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Created for young Thai language learners | สร้างสำหรับเด็กๆที่กำลังเรียนรู้ภาษาไทย</p>
+    </footer>
+
+    <script>
+        // Thai consonants data
+        const consonants = [
+            { letter: 'ก', phonetic: 'ko kai', example: 'ไก่ (chicken)', sound: 'k' },
+            { letter: 'ข', phonetic: 'kho khai', example: 'ไข่ (egg)', sound: 'kh' },
+            { letter: 'ค', phonetic: 'kho khwai', example: 'ควาย (buffalo)', sound: 'kh' },
+            { letter: 'ฆ', phonetic: 'kho rakhang', example: 'ระฆัง (bell)', sound: 'kh' },
+            { letter: 'ง', phonetic: 'ngo ngu', example: 'งู (snake)', sound: 'ng' },
+            { letter: 'จ', phonetic: 'cho chan', example: 'จาน (plate)', sound: 'ch' },
+            { letter: 'ฉ', phonetic: 'cho ching', example: 'ฉิ่ง (cymbals)', sound: 'ch' },
+            { letter: 'ช', phonetic: 'cho chang', example: 'ช้าง (elephant)', sound: 'ch' },
+            { letter: 'ซ', phonetic: 'so so', example: 'โซ่ (chain)', sound: 's' },
+            { letter: 'ฌ', phonetic: 'cho choe', example: 'เฌอ (tree)', sound: 'ch' },
+            { letter: 'ญ', phonetic: 'yo ying', example: 'หญิง (woman)', sound: 'y' },
+            { letter: 'ฎ', phonetic: 'do cha-da', example: 'ชฎา (headdress)', sound: 'd' },
+            { letter: 'ฏ', phonetic: 'to pa-tak', example: 'ปฏัก (spear)', sound: 't' },
+            { letter: 'ฐ', phonetic: 'tho than', example: 'ฐาน (base)', sound: 'th' },
+            { letter: 'ฑ', phonetic: 'tho montho', example: 'มณโฑ (woman\'s name)', sound: 'th' },
+            { letter: 'ฒ', phonetic: 'tho phu-thao', example: 'ผู้เฒ่า (elder)', sound: 'th' },
+            { letter: 'ณ', phonetic: 'no nen', example: 'เณร (novice monk)', sound: 'n' },
+            { letter: 'ด', phonetic: 'do dek', example: 'เด็ก (child)', sound: 'd' },
+            { letter: 'ต', phonetic: 'to tao', example: 'เต่า (turtle)', sound: 't' },
+            { letter: 'ถ', phonetic: 'tho thung', example: 'ถุง (bag)', sound: 'th' },
+            { letter: 'ท', phonetic: 'tho thahan', example: 'ทหาร (soldier)', sound: 'th' },
+            { letter: 'ธ', phonetic: 'tho thong', example: 'ธง (flag)', sound: 'th' },
+            { letter: 'น', phonetic: 'no nu', example: 'หนู (mouse)', sound: 'n' },
+            { letter: 'บ', phonetic: 'bo bai-mai', example: 'ใบไม้ (leaf)', sound: 'b' },
+            { letter: 'ป', phonetic: 'po pla', example: 'ปลา (fish)', sound: 'p' },
+            { letter: 'ผ', phonetic: 'pho phueng', example: 'ผึ้ง (bee)', sound: 'ph' },
+            { letter: 'ฝ', phonetic: 'fo fa', example: 'ฝา (lid)', sound: 'f' },
+            { letter: 'พ', phonetic: 'pho phan', example: 'พาน (tray)', sound: 'ph' },
+            { letter: 'ฟ', phonetic: 'fo fan', example: 'ฟัน (teeth)', sound: 'f' },
+            { letter: 'ภ', phonetic: 'pho sam-phao', example: 'สำเภา (sailboat)', sound: 'ph' },
+            { letter: 'ม', phonetic: 'mo ma', example: 'ม้า (horse)', sound: 'm' },
+            { letter: 'ย', phonetic: 'yo yak', example: 'ยักษ์ (giant)', sound: 'y' },
+            { letter: 'ร', phonetic: 'ro ruea', example: 'เรือ (boat)', sound: 'r' },
+            { letter: 'ล', phonetic: 'lo ling', example: 'ลิง (monkey)', sound: 'l' },
+            { letter: 'ว', phonetic: 'wo waen', example: 'แหวน (ring)', sound: 'w' },
+            { letter: 'ศ', phonetic: 'so sala', example: 'ศาลา (pavilion)', sound: 's' },
+            { letter: 'ษ', phonetic: 'so ruesi', example: 'ฤๅษี (hermit)', sound: 's' },
+            { letter: 'ส', phonetic: 'so suea', example: 'เสือ (tiger)', sound: 's' },
+            { letter: 'ห', phonetic: 'ho hip', example: 'หีบ (chest)', sound: 'h' },
+            { letter: 'ฬ', phonetic: 'lo chu-la', example: 'จุฬา (kite)', sound: 'l' },
+            { letter: 'อ', phonetic: 'o ang', example: 'อ่าง (basin)', sound: '' },
+            { letter: 'ฮ', phonetic: 'ho nok-huk', example: 'นกฮูก (owl)', sound: 'h' }
+        ];
+        
+        // Thai vowels data
+        const vowels = [
+            { letter: '-ะ', phonetic: 'sara a', example: 'จะ (will)', sound: 'a' },
+            { letter: '-า', phonetic: 'sara aa', example: 'นา (field)', sound: 'aa' },
+            { letter: '-ิ', phonetic: 'sara i', example: 'มิ (not)', sound: 'i' },
+            { letter: '-ี', phonetic: 'sara ii', example: 'ปี (year)', sound: 'ii' },
+            { letter: '-ึ', phonetic: 'sara ue', example: 'ซึ้ง (touched)', sound: 'ue' },
+            { letter: '-ื', phonetic: 'sara uue', example: 'รื่น (fresh)', sound: 'uue' },
+            { letter: '-ุ', phonetic: 'sara u', example: 'ดุ (fierce)', sound: 'u' },
+            { letter: '-ู', phonetic: 'sara uu', example: 'รู (hole)', sound: 'uu' },
+            { letter: 'เ-ะ', phonetic: 'sara e', example: 'เละ (messy)', sound: 'e' },
+            { letter: 'เ-', phonetic: 'sara ee', example: 'เท (pour)', sound: 'ee' },
+            { letter: 'แ-ะ', phonetic: 'sara ae', example: 'และ (and)', sound: 'ae' },
+            { letter: 'แ-', phonetic: 'sara ae', example: 'แก (you)', sound: 'ae' },
+            { letter: 'โ-ะ', phonetic: 'sara o', example: 'โละ (discard)', sound: 'o' },
+            { letter: 'โ-', phonetic: 'sara oo', example: 'โต (grow)', sound: 'oo' },
+            { letter: 'เ-าะ', phonetic: 'sara aw', example: 'เกาะ (island)', sound: 'aw' },
+            { letter: '-อ', phonetic: 'sara aw', example: 'ลอ (float)', sound: 'aw' },
+            { letter: 'เ-อะ', phonetic: 'sara oe', example: 'เงอะ (stupid)', sound: 'oe' },
+            { letter: 'เ-อ', phonetic: 'sara oe', example: 'เธอ (you)', sound: 'oe' },
+            { letter: 'เ-ียะ', phonetic: 'sara ia', example: 'เสียะ (risk)', sound: 'ia' },
+            { letter: 'เ-ีย', phonetic: 'sara ia', example: 'เสีย (broken)', sound: 'ia' },
+            { letter: 'เ-ือะ', phonetic: 'sara uea', example: 'เกือะ (almost)', sound: 'uea' },
+            { letter: 'เ-ือ', phonetic: 'sara uea', example: 'เรือ (boat)', sound: 'uea' },
+            { letter: '-ัวะ', phonetic: 'sara ua', example: 'ผัวะ (slap)', sound: 'ua' },
+            { letter: '-ัว', phonetic: 'sara ua', example: 'ผัว (husband)', sound: 'ua' },
+            { letter: '-ำ', phonetic: 'sara am', example: 'น้ำ (water)', sound: 'am' },
+            { letter: 'ใ-', phonetic: 'sara ai mai muan', example: 'ใจ (heart)', sound: 'ai' },
+            { letter: 'ไ-', phonetic: 'sara ai mai malai', example: 'ไป (go)', sound: 'ai' },
+            { letter: 'เ-า', phonetic: 'sara ao', example: 'เรา (we)', sound: 'ao' }
+        ];
+        
+        // DOM elements
+        const consonantsGrid = document.getElementById('consonants-grid');
+        const vowelsGrid = document.getElementById('vowels-grid');
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.content');
+        const gameLetter = document.getElementById('game-letter');
+        const optionsContainer = document.getElementById('options');
+        const feedbackElement = document.getElementById('feedback');
+        const nextButton = document.getElementById('next-btn');
+        const scoreElement = document.getElementById('score');
+        const totalElement = document.getElementById('total');
+        const progressBar = document.getElementById('progress');
+        
+        // Game variables
+        let currentQuestion = {};
+        let score = 0;
+        let questionCount = 0;
+        let totalQuestions = 10;
+        
+        // Initialize the page
+        function init() {
+            // Populate consonants grid
+            populateGrid(consonantsGrid, consonants);
+            
+            // Populate vowels grid
+            populateGrid(vowelsGrid, vowels);
+            
+            // Tab functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    const contentId = tab.getAttribute('data-tab');
+                    document.getElementById(contentId).classList.add('active');
+                    
+                    // Reset game if game tab is clicked
+                    if (contentId === 'game') {
+                        resetGame();
+                    }
+                });
+            });
+            
+            // Initialize game
+            nextButton.addEventListener('click', nextQuestion);
+            resetGame();
+        }
+        
+        // Populate grid with alphabet characters
+        function populateGrid(grid, data) {
+            grid.innerHTML = '';
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'letter-card';
+                
+                const letter = document.createElement('div');
+                letter.className = 'letter';
+                letter.textContent = item.letter;
+                
+                const phonetic = document.createElement('div');
+                phonetic.className = 'phonetic';
+                phonetic.textContent = item.phonetic;
+                
+                const example = document.createElement('div');
+                example.className = 'example';
+                example.textContent = item.example;
+                
+                card.appendChild(letter);
+                card.appendChild(phonetic);
+                card.appendChild(example);
+                
+                // Add click event for pronunciation
+                card.addEventListener('click', () => {
+                    // Play audio (would require actual audio files)
+                    // For now, just animate the letter
+                    letter.classList.add('bounce');
+                    setTimeout(() => {
+                        letter.classList.remove('bounce');
+                    }, 500);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // Game functions
+        function resetGame() {
+            score = 0;
+            questionCount = 0;
+            scoreElement.textContent = score;
+            totalElement.textContent = totalQuestions;
+            progressBar.style.width = '0%';
+            nextQuestion();
+        }
+        
+        function nextQuestion() {
+            // Clear feedback
+            feedbackElement.textContent = '';
+            feedbackElement.className = 'feedback';
+            
+            // Check if game is over
+            if (questionCount >= totalQuestions) {
+                gameLetter.textContent = '🎉';
+                optionsContainer.innerHTML = '';
+                feedbackElement.textContent = `You scored ${score} out of ${totalQuestions}!`;
+                feedbackElement.classList.add('correct');
+                nextButton.textContent = 'Play Again';
+                nextButton.onclick = resetGame;
+                return;
+            }
+            
+            // Reset next button
+            nextButton.textContent = 'Next Question';
+            nextButton.onclick = nextQuestion;
+            
+            // Decide whether to test consonant or vowel
+            const useConsonants = Math.random() > 0.3; // 70% chance of consonants
+            const allLetters = useConsonants ? consonants : vowels;
+            
+            // Select random letter
+            const randomIndex = Math.floor(Math.random() * allLetters.length);
+            currentQuestion = allLetters[randomIndex];
+            
+            // Display the letter
+            gameLetter.textContent = currentQuestion.letter;
+            
+            // Generate options (1 correct, 3 incorrect)
+            const options = [];
+            options.push(currentQuestion.phonetic);
+            
+            // Add incorrect options
+            while (options.length < 4) {
+                const randomOption = allLetters[Math.floor(Math.random() * allLetters.length)].phonetic;
+                if (!options.includes(randomOption)) {
+                    options.push(randomOption);
+                }
+            }
+            
+            // Shuffle options
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            
+            // Add options to container
+            optionsContainer.innerHTML = '';
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option;
+                button.addEventListener('click', () => checkAnswer(option));
+                optionsContainer.appendChild(button);
+            });
+            
+            // Increment question count
+            questionCount++;
+            updateProgress();
+        }
+        
+        function checkAnswer(selectedOption) {
+            // Disable all option buttons
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(button => {
+                button.disabled = true;
+                if (button.textContent === currentQuestion.phonetic) {
+                    button.style.backgroundColor = 'var(--success)';
+                }
+            });
+            
+            // Check if answer is correct
+            if (selectedOption === currentQuestion.phonetic) {
+                feedbackElement.textContent = '✓ ถูกต้อง! (Correct!)';
+                feedbackElement.classList.add('correct');
+                gameLetter.classList.add('bounce');
+                score++;
+                updateProgress();
+                setTimeout(() => {
+                    gameLetter.classList.remove('bounce');
+                }, 500);
+            } else {
+                feedbackElement.textContent = '✗ ลองใหม่ (Try again!)';
+                feedbackElement.classList.add('incorrect');
+                gameLetter.classList.add('shake');
+                setTimeout(() => {
+                    gameLetter.classList.remove('shake');
+                }, 500);
+            }
+            
+            // Update score
+            scoreElement.textContent = score;
+        }
+        
+        function updateProgress() {
+            const percentage = (questionCount / totalQuestions) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+        
+        // Initialize the page on load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
