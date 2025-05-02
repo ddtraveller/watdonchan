@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คณิตศาสตร์สนุก | Fun Math</title>
+    <style>
+        :root {
+            --primary: #FF9E1B;
+            --secondary: #4CAF50;
+            --accent: #E91E63;
+            --light: #F5F5F5;
+            --dark: #333333;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .language-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .language-btn {
+            background-color: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            margin: 0 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tab-container {
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-weight: bold;
+        }
+        
+        .tab:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .math-exercise {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-title {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-size: 1.3em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        .exercise-content {
+            margin-bottom: 15px;
+        }
+        
+        .choices {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .choice-btn {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.1em;
+        }
+        
+        .choice-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .choice-btn.correct {
+            background-color: #AED581;
+        }
+        
+        .choice-btn.incorrect {
+            background-color: #EF9A9A;
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            display: block;
+        }
+        
+        .feedback.incorrect {
+            background-color: #FFEBEE;
+            color: #C62828;
+            display: block;
+        }
+        
+        .algebra-problem {
+            padding: 15px;
+            background-color: #E8F5E9;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .equation-display {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .choices {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Language-specific styles */
+        .th {
+            font-family: 'Prompt', 'Sarabun', sans-serif;
+        }
+        
+        .en {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="th">คณิตศาสตร์สนุก</h1>
+        <h1 class="en">Fun Math</h1>
+    </header>
+    
+    <div class="container">
+        <div class="language-toggle">
+            <button class="language-btn th-btn active">ภาษาไทย</button>
+            <button class="language-btn en-btn">English</button>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="basic">
+                    <span class="th">คณิตศาสตร์พื้นฐาน</span>
+                    <span class="en">Basic Math</span>
+                </div>
+                <div class="tab" data-tab="algebra">
+                    <span class="th">พีชคณิตเบื้องต้น</span>
+                    <span class="en">Intro to Algebra</span>
+                </div>
+            </div>
+            
+            <!-- Basic Math Tab -->
+            <div class="tab-content active" id="basic-content">
+                <h2 class="th">คณิตศาสตร์พื้นฐาน</h2>
+                <h2 class="en">Basic Math Skills</h2>
+                
+                <div class="math-exercise" id="addition-exercise">
+                    <h3 class="exercise-title">
+                        <span class="th">บวกเลข</span>
+                        <span class="en">Addition</span>
+                    </h3>
+                    <div class="exercise-content">
+                        <p class="th">ลองแก้โจทย์นี้: 24 + 18 = ?</p>
+                        <p class="en">Solve this problem: 24 + 18 = ?</p>
+                    </div>
+                    <div class="choices">
+                        <button class="choice-btn" data-value="42">42</button>
+                        <button class="choice-btn" data-value="32">32</button>
+                        <button class="choice-btn" data-value="44">44</button>
+                        <button class="choice-btn" data-value="38">38</button>
+                    </div>
+                    <div class="feedback" id="addition-feedback"></div>
+                </div>
+                
+                <div class="math-exercise" id="subtraction-exercise">
+                    <h3 class="exercise-title">
+                        <span class="th">ลบเลข</span>
+                        <span class="en">Subtraction</span>
+                    </h3>
+                    <div class="exercise-content">
+                        <p class="th">ลองแก้โจทย์นี้: 50 - 27 = ?</p>
+                        <p class="en">Solve this problem: 50 - 27 = ?</p>
+                    </div>
+                    <div class="choices">
+                        <button class="choice-btn" data-value="23">23</button>
+                        <button class="choice-btn" data-value="33">33</button>
+                        <button class="choice-btn" data-value="27">27</button>
+                        <button class="choice-btn" data-value="13">13</button>
+                    </div>
+                    <div class="feedback" id="subtraction-feedback"></div>
+                </div>
+                
+                <button id="new-basic-problem" class="new-problem-btn">
+                    <span class="th">โจทย์ใหม่</span>
+                    <span class="en">New Problem</span>
+                </button>
+            </div>
+            
+            <!-- Algebra Tab -->
+            <div class="tab-content" id="algebra-content">
+                <h2 class="th">พีชคณิตเบื้องต้น</h2>
+                <h2 class="en">Introduction to Algebra</h2>
+                
+                <div class="math-exercise">
+                    <h3 class="exercise-title">
+                        <span class="th">ตัวแปร x คืออะไร?</span>
+                        <span class="en">What is variable x?</span>
+                    </h3>
+                    <div class="exercise-content">
+                        <p class="th">พีชคณิตใช้ตัวอักษรแทนตัวเลขที่เราไม่รู้ค่า เราเรียกสิ่งนี้ว่า "ตัวแปร"</p>
+                        <p class="en">Algebra uses letters to represent unknown numbers. We call these "variables".</p>
+                        
+                        <div class="algebra-problem">
+                            <p class="th">ถ้า x + 3 = 10, x มีค่าเท่าไหร่?</p>
+                            <p class="en">If x + 3 = 10, what is the value of x?</p>
+                            
+                            <div class="choices">
+                                <button class="choice-btn algebra-btn" data-value="7">7</button>
+                                <button class="choice-btn algebra-btn" data-value="13">13</button>
+                                <button class="choice-btn algebra-btn" data-value="3">3</button>
+                                <button class="choice-btn algebra-btn" data-value="6">6</button>
+                            </div>
+                            <div class="feedback" id="algebra-feedback-1"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-exercise">
+                    <h3 class="exercise-title">
+                        <span class="th">สมการเชิงเส้น</span>
+                        <span class="en">Linear Equations</span>
+                    </h3>
+                    <div class="exercise-content">
+                        <p class="th">สมการ y = mx + b เป็นสมการเส้นตรง ค่า m คือความชัน และ b คือจุดตัดแกน y</p>
+                        <p class="en">The equation y = mx + b is a linear equation, where m is the slope and b is the y-intercept.</p>
+                        
+                        <div class="equation-display">y = 2x + 3</div>
+                        
+                        <div class="algebra-problem">
+                            <p class="th">ถ้า x = 4, y มีค่าเท่าไหร่?</p>
+                            <p class="en">If x = 4, what is the value of y?</p>
+                            
+                            <div class="choices">
+                                <button class="choice-btn algebra-btn-2" data-value="11">11</button>
+                                <button class="choice-btn algebra-btn-2" data-value="10">10</button>
+                                <button class="choice-btn algebra-btn-2" data-value="8">8</button>
+                                <button class="choice-btn algebra-btn-2" data-value="7">7</button>
+                            </div>
+                            <div class="feedback" id="algebra-feedback-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Language toggle functionality
+        const thBtn = document.querySelector('.th-btn');
+        const enBtn = document.querySelector('.en-btn');
+        const thElements = document.querySelectorAll('.th');
+        const enElements = document.querySelectorAll('.en');
+        
+        thBtn.addEventListener('click', () => {
+            thBtn.classList.add('active');
+            enBtn.classList.remove('active');
+            thElements.forEach(el => el.style.display = 'block');
+            enElements.forEach(el => el.style.display = 'none');
+        });
+        
+        enBtn.addEventListener('click', () => {
+            enBtn.classList.add('active');
+            thBtn.classList.remove('active');
+            enElements.forEach(el => el.style.display = 'block');
+            thElements.forEach(el => el.style.display = 'none');
+        });
+        
+        // Initialize language display
+        if (thBtn.classList.contains('active')) {
+            thElements.forEach(el => el.style.display = 'block');
+            enElements.forEach(el => el.style.display = 'none');
+        } else {
+            enElements.forEach(el => el.style.display = 'block');
+            thElements.forEach(el => el.style.display = 'none');
+        }
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                tab.classList.add('active');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+        
+        // Basic math exercises
+        const additionButtons = document.querySelectorAll('#addition-exercise .choice-btn');
+        
+        additionButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const value = e.target.getAttribute('data-value');
+                const feedbackElement = document.getElementById('addition-feedback');
+                
+                // Remove any previous result classes
+                additionButtons.forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                });
+                
+                // Check answer
+                const correct = value === '42';
+                button.classList.add(correct ? 'correct' : 'incorrect');
+                
+                // Prepare feedback text
+                const feedbackText = correct ? 
+                    { th: 'ถูกต้อง! 24 + 18 = 42', en: 'Correct! 24 + 18 = 42' } : 
+                    { th: 'ไม่ถูกต้อง ลองอีกครั้ง! คำตอบที่ถูกต้องคือ 42', en: 'Incorrect. Try again! The correct answer is 42' };
+                
+                // Show feedback
+                feedbackElement.innerHTML = `
+                    <span class="th">${feedbackText.th}</span>
+                    <span class="en">${feedbackText.en}</span>
+                `;
+                feedbackElement.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                
+                // Apply current language setting to feedback
+                if (thBtn.classList.contains('active')) {
+                    feedbackElement.querySelector('.th').style.display = 'block';
+                    feedbackElement.querySelector('.en').style.display = 'none';
+                } else {
+                    feedbackElement.querySelector('.th').style.display = 'none';
+                    feedbackElement.querySelector('.en').style.display = 'block';
+                }
+            });
+        });
+        
+        // Subtraction exercise
+        const subtractionButtons = document.querySelectorAll('#subtraction-exercise .choice-btn');
+        
+        subtractionButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const value = e.target.getAttribute('data-value');
+                const feedbackElement = document.getElementById('subtraction-feedback');
+                
+                // Remove any previous result classes
+                subtractionButtons.forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                });
+                
+                // Check answer
+                const correct = value === '23';
+                button.classList.add(correct ? 'correct' : 'incorrect');
+                
+                // Prepare feedback text
+                const feedbackText = correct ? 
+                    { th: 'ถูกต้อง! 50 - 27 = 23', en: 'Correct! 50 - 27 = 23' } : 
+                    { th: 'ไม่ถูกต้อง ลองอีกครั้ง! คำตอบที่ถูกต้องคือ 23', en: 'Incorrect. Try again! The correct answer is 23' };
+                
+                // Show feedback
+                feedbackElement.innerHTML = `
+                    <span class="th">${feedbackText.th}</span>
+                    <span class="en">${feedbackText.en}</span>
+                `;
+                feedbackElement.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                
+                // Apply current language setting to feedback
+                if (thBtn.classList.contains('active')) {
+                    feedbackElement.querySelector('.th').style.display = 'block';
+                    feedbackElement.querySelector('.en').style.display = 'none';
+                } else {
+                    feedbackElement.querySelector('.th').style.display = 'none';
+                    feedbackElement.querySelector('.en').style.display = 'block';
+                }
+            });
+        });
+        
+        // Algebra exercise 1 - Find x
+        const algebraButtons = document.querySelectorAll('.algebra-btn');
+        
+        algebraButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const value = e.target.getAttribute('data-value');
+                const algebraFeedback = document.getElementById('algebra-feedback-1');
+                
+                // Remove any previous result classes
+                algebraButtons.forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                });
+                
+                const correct = value === '7';
+                button.classList.add(correct ? 'correct' : 'incorrect');
+                
+                const feedbackText = correct ? 
+                    { th: 'ถูกต้อง! ถ้า x + 3 = 10, เราลบทั้งสองด้านด้วย 3 เพื่อหาค่า x: x = 7', en: 'Correct! If x + 3 = 10, we subtract 3 from both sides to find x: x = 7' } : 
+                    { th: 'ไม่ถูกต้อง ลองอีกครั้ง! เราต้องลบ 3 ออกจากทั้งสองด้านของสมการ: x + 3 - 3 = 10 - 3, ดังนั้น x = 7', en: 'Incorrect. Try again! We need to subtract 3 from both sides: x + 3 - 3 = 10 - 3, so x = 7' };
+                
+                algebraFeedback.innerHTML = `
+                    <span class="th">${feedbackText.th}</span>
+                    <span class="en">${feedbackText.en}</span>
+                `;
+                algebraFeedback.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                
+                // Apply current language setting
+                if (thBtn.classList.contains('active')) {
+                    algebraFeedback.querySelector('.th').style.display = 'block';
+                    algebraFeedback.querySelector('.en').style.display = 'none';
+                } else {
+                    algebraFeedback.querySelector('.th').style.display = 'none';
+                    algebraFeedback.querySelector('.en').style.display = 'block';
+                }
+            });
+        });
+        
+        // Algebra exercise 2 - Linear equation
+        const algebraButtons2 = document.querySelectorAll('.algebra-btn-2');
+        
+        algebraButtons2.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const value = e.target.getAttribute('data-value');
+                const algebraFeedback = document.getElementById('algebra-feedback-2');
+                
+                // Remove any previous result classes
+                algebraButtons2.forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                });
+                
+                const correct = value === '11';
+                button.classList.add(correct ? 'correct' : 'incorrect');
+                
+                const feedbackText = correct ? 
+                    { th: 'ถูกต้อง! ถ้า y = 2x + 3 และ x = 4, เราแทนค่า x: y = 2(4) + 3 = 8 + 3 = 11', en: 'Correct! If y = 2x + 3 and x = 4, we substitute x: y = 2(4) + 3 = 8 + 3 = 11' } : 
+                    { th: 'ไม่ถูกต้อง ลองอีกครั้ง! เราต้องแทนค่า x = 4 ในสมการ: y = 2(4) + 3 = 8 + 3 = 11', en: 'Incorrect. Try again! We need to substitute x = 4 in the equation: y = 2(4) + 3 = 8 + 3 = 11' };
+                
+                algebraFeedback.innerHTML = `
+                    <span class="th">${feedbackText.th}</span>
+                    <span class="en">${feedbackText.en}</span>
+                `;
+                algebraFeedback.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                
+                // Apply current language setting
+                if (thBtn.classList.contains('active')) {
+                    algebraFeedback.querySelector('.th').style.display = 'block';
+                    algebraFeedback.querySelector('.en').style.display = 'none';
+                } else {
+                    algebraFeedback.querySelector('.th').style.display = 'none';
+                    algebraFeedback.querySelector('.en').style.display = 'block';
+                }
+            });
+        });
+        
+        // New Problem button styles
+        const newProblemBtn = document.getElementById('new-basic-problem');
+        newProblemBtn.style.padding = '10px 20px';
+        newProblemBtn.style.margin = '20px auto';
+        newProblemBtn.style.display = 'block';
+        newProblemBtn.style.backgroundColor = '#FF9E1B';
+        newProblemBtn.style.color = 'white';
+        newProblemBtn.style.border = 'none';
+        newProblemBtn.style.borderRadius = '5px';
+        newProblemBtn.style.cursor = 'pointer';
+        
+        // Generate new addition problem
+        function generateAdditionProblem() {
+            const num1 = Math.floor(Math.random() * 50) + 10;
+            const num2 = Math.floor(Math.random() * 50) + 10;
+            const sum = num1 + num2;
+            
+            const additionExercise = document.getElementById('addition-exercise');
+            const exerciseContent = additionExercise.querySelector('.exercise-content');
+            
+            exerciseContent.innerHTML = `
+                <p class="th">ลองแก้โจทย์นี้: ${num1} + ${num2} = ?</p>
+                <p class="en">Solve this problem: ${num1} + ${num2} = ?</p>
+            `;
+            
+            // Generate choices (1 correct, 3 wrong)
+            const choices = [sum];
+            while (choices.length < 4) {
+                const wrongAnswer = sum + Math.floor(Math.random() * 10) - 5;
+                if (wrongAnswer !== sum && !choices.includes(wrongAnswer)) {
+                    choices.push(wrongAnswer);
+                }
+            }
+            
+            // Shuffle choices
+            for (let i = choices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [choices[i], choices[j]] = [choices[j], choices[i]];
+            }
+            
+            // Update choice buttons
+            const choiceButtons = additionExercise.querySelectorAll('.choice-btn');
+            choiceButtons.forEach((button, index) => {
+                button.textContent = choices[index];
+                button.setAttribute('data-value', choices[index]);
+                button.classList.remove('correct', 'incorrect');
+            });
+            
+            // Clear feedback
+            const feedback = document.getElementById('addition-feedback');
+            feedback.className = 'feedback';
+            feedback.innerHTML = '';
+            
+            // Update event listeners for new buttons
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const value = e.target.getAttribute('data-value');
+                    const feedbackElement = document.getElementById('addition-feedback');
+                    
+                    // Remove any previous result classes
+                    choiceButtons.forEach(btn => {
+                        btn.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    // Check answer
+                    const correct = parseInt(value) === sum;
+                    button.classList.add(correct ? 'correct' : 'incorrect');
+                    
+                    // Prepare feedback text
+                    const feedbackText = correct ? 
+                        { th: `ถูกต้อง! ${num1} + ${num2} = ${sum}`, en: `Correct! ${num1} + ${num2} = ${sum}` } : 
+                        { th: `ไม่ถูกต้อง ลองอีกครั้ง! คำตอบที่ถูกต้องคือ ${sum}`, en: `Incorrect. Try again! The correct answer is ${sum}` };
+                    
+                    // Show feedback
+                    feedbackElement.innerHTML = `
+                        <span class="th">${feedbackText.th}</span>
+                        <span class="en">${feedbackText.en}</span>
+                    `;
+                    feedbackElement.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                    
+                    // Apply current language setting to feedback
+                    if (thBtn.classList.contains('active')) {
+                        feedbackElement.querySelector('.th').style.display = 'block';
+                        feedbackElement.querySelector('.en').style.display = 'none';
+                    } else {
+                        feedbackElement.querySelector('.th').style.display = 'none';
+                        feedbackElement.querySelector('.en').style.display = 'block';
+                    }
+                });
+            });
+        }
+        
+        // Generate new subtraction problem
+        function generateSubtractionProblem() {
+            const num1 = Math.floor(Math.random() * 50) + 30; // Larger number
+            const num2 = Math.floor(Math.random() * 20) + 10; // Smaller number
+            const difference = num1 - num2;
+            
+            const subtractionExercise = document.getElementById('subtraction-exercise');
+            const exerciseContent = subtractionExercise.querySelector('.exercise-content');
+            
+            exerciseContent.innerHTML = `
+                <p class="th">ลองแก้โจทย์นี้: ${num1} - ${num2} = ?</p>
+                <p class="en">Solve this problem: ${num1} - ${num2} = ?</p>
+            `;
+            
+            // Generate choices (1 correct, 3 wrong)
+            const choices = [difference];
+            while (choices.length < 4) {
+                const wrongAnswer = difference + Math.floor(Math.random() * 10) - 5;
+                if (wrongAnswer !== difference && !choices.includes(wrongAnswer) && wrongAnswer > 0) {
+                    choices.push(wrongAnswer);
+                }
+            }
+            
+            // Shuffle choices
+            for (let i = choices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [choices[i], choices[j]] = [choices[j], choices[i]];
+            }
+            
+            // Update choice buttons
+            const choiceButtons = subtractionExercise.querySelectorAll('.choice-btn');
+            choiceButtons.forEach((button, index) => {
+                button.textContent = choices[index];
+                button.setAttribute('data-value', choices[index]);
+                button.classList.remove('correct', 'incorrect');
+            });
+            
+            // Clear feedback
+            const feedback = document.getElementById('subtraction-feedback');
+            feedback.className = 'feedback';
+            feedback.innerHTML = '';
+            
+            // Update event listeners for new buttons
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const value = e.target.getAttribute('data-value');
+                    const feedbackElement = document.getElementById('subtraction-feedback');
+                    
+                    // Remove any previous result classes
+                    choiceButtons.forEach(btn => {
+                        btn.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    // Check answer
+                    const correct = parseInt(value) === difference;
+                    button.classList.add(correct ? 'correct' : 'incorrect');
+                    
+                    // Prepare feedback text
+                    const feedbackText = correct ? 
+                        { th: `ถูกต้อง! ${num1} - ${num2} = ${difference}`, en: `Correct! ${num1} - ${num2} = ${difference}` } : 
+                        { th: `ไม่ถูกต้อง ลองอีกครั้ง! คำตอบที่ถูกต้องคือ ${difference}`, en: `Incorrect. Try again! The correct answer is ${difference}` };
+                    
+                    // Show feedback
+                    feedbackElement.innerHTML = `
+                        <span class="th">${feedbackText.th}</span>
+                        <span class="en">${feedbackText.en}</span>
+                    `;
+                    feedbackElement.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                    
+                    // Apply current language setting to feedback
+                    if (thBtn.classList.contains('active')) {
+                        feedbackElement.querySelector('.th').style.display = 'block';
+                        feedbackElement.querySelector('.en').style.display = 'none';
+                    } else {
+                        feedbackElement.querySelector('.th').style.display = 'none';
+                        feedbackElement.querySelector('.en').style.display = 'block';
+                    }
+                });
+            });
+        }
+        
+        // New Problem Button Event Listener
+        newProblemBtn.addEventListener('click', () => {
+            generateAdditionProblem();
+            generateSubtractionProblem();
+        });
+        
+        // Generate a random algebra problem
+        function generateAlgebraProblem() {
+            // For simplicity, we'll create an x + b = c problem
+            const x = Math.floor(Math.random() * 10) + 1;
+            const b = Math.floor(Math.random() * 10) + 1;
+            const c = x + b;
+            
+            const algebraProblem = document.querySelector('.algebra-problem');
+            const problemStatement = algebraProblem.querySelectorAll('p')[0]; // First p element
+            const problemStatementEn = algebraProblem.querySelectorAll('p')[1]; // Second p element
+            
+            problemStatement.innerHTML = `ถ้า x + ${b} = ${c}, x มีค่าเท่าไหร่?`;
+            problemStatementEn.innerHTML = `If x + ${b} = ${c}, what is the value of x?`;
+            
+            // Generate choices (1 correct, 3 wrong)
+            const choices = [x];
+            while (choices.length < 4) {
+                const wrongAnswer = x + Math.floor(Math.random() * 5) - 2;
+                if (wrongAnswer !== x && !choices.includes(wrongAnswer) && wrongAnswer > 0) {
+                    choices.push(wrongAnswer);
+                }
+            }
+            
+            // Shuffle choices
+            for (let i = choices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [choices[i], choices[j]] = [choices[j], choices[i]];
+            }
+            
+            // Update choice buttons
+            const choiceButtons = algebraProblem.querySelectorAll('.algebra-btn');
+            choiceButtons.forEach((button, index) => {
+                button.textContent = choices[index];
+                button.setAttribute('data-value', choices[index]);
+                button.classList.remove('correct', 'incorrect');
+            });
+            
+            // Clear feedback
+            const feedback = document.getElementById('algebra-feedback-1');
+            feedback.className = 'feedback';
+            feedback.innerHTML = '';
+            
+            // Update event listeners
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const value = parseInt(e.target.getAttribute('data-value'));
+                    const algebraFeedback = document.getElementById('algebra-feedback-1');
+                    
+                    // Remove any previous result classes
+                    choiceButtons.forEach(btn => {
+                        btn.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    const correct = value === x;
+                    button.classList.add(correct ? 'correct' : 'incorrect');
+                    
+                    const feedbackText = correct ? 
+                        { th: `ถูกต้อง! ถ้า x + ${b} = ${c}, เราลบทั้งสองด้านด้วย ${b} เพื่อหาค่า x: x = ${x}`, 
+                          en: `Correct! If x + ${b} = ${c}, we subtract ${b} from both sides to find x: x = ${x}` } : 
+                        { th: `ไม่ถูกต้อง ลองอีกครั้ง! เราต้องลบ ${b} ออกจากทั้งสองด้านของสมการ: x + ${b} - ${b} = ${c} - ${b}, ดังนั้น x = ${x}`, 
+                          en: `Incorrect. Try again! We need to subtract ${b} from both sides: x + ${b} - ${b} = ${c} - ${b}, so x = ${x}` };
+                    
+                    algebraFeedback.innerHTML = `
+                        <span class="th">${feedbackText.th}</span>
+                        <span class="en">${feedbackText.en}</span>
+                    `;
+                    algebraFeedback.className = `feedback ${correct ? 'correct' : 'incorrect'}`;
+                    
+                    // Apply current language setting
+                    if (thBtn.classList.contains('active')) {
+                        algebraFeedback.querySelector('.th').style.display = 'block';
+                        algebraFeedback.querySelector('.en').style.display = 'none';
+                    } else {
+                        algebraFeedback.querySelector('.th').style.display = 'none';
+                        algebraFeedback.querySelector('.en').style.display = 'block';
+                    }
+                });
+            });
+            
+            return x; // Return the correct answer for reference
+        }
+    </script>
+</body>
+</html>
