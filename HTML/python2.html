@@ -1,3 +1,4 @@
+<!-- Updated: 20260203140741 - FORCE REFRESH -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -163,6 +164,7 @@
             margin: 30px 0 15px 0;
         }
 
+        /* Cache buster: 20260203140741 */
         .code-example {
             background: var(--code-bg);
             color: #ABB2BF;
@@ -543,7 +545,7 @@ student = {
 <span class="function">print</span>(student.get(<span class="string">"age"</span>))  <span class="comment"># 20</span>
 
 <span class="comment"># เพิ่มหรือแก้ไขข้อมูล</span>
-student[<span class="string">"email"</span>] = <span class="string">"somchai@email.com"</span>
+student[<span class="string">"email"</span>] = <span class="string">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c7f63616f646d654c69616d6560226f6361">[email&#160;protected]</a>"</span>
 student[<span class="string">"age"</span>] = <span class="number">21</span>
 
 <span class="comment"># ลบข้อมูล</span>
@@ -1119,7 +1121,7 @@ my_list = [<span class="number">1</span>, <span class="number">2</span>, <span c
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // List demo
         let fruitsList = [];
         
@@ -1264,12 +1266,4 @@ print(f"คะแนน ${score} ได้เกรด: {result}")
 
         // Enter key support
         document.getElementById('listInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') addToList();
-        });
-        
-        document.getElementById('scoreInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') calculateGrade();
-        });
-    </script>
-</body>
-</html>
+            if (e.key ==
