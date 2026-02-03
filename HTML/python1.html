@@ -189,6 +189,9 @@
             overflow-x: auto;
             position: relative;
             border-left: 4px solid var(--secondary);
+            white-space: pre;
+            line-height: 1.6;
+            tab-size: 4;
         }
 
         .code-example::before {
@@ -454,8 +457,7 @@
                 <h3>การแสดงผลข้อความ (Print)</h3>
                 <p>ใน Python เราใช้ <code style="background: var(--code-bg); color: #C678DD; padding: 2px 8px; border-radius: 4px;">print()</code> เพื่อแสดงข้อความบนหน้าจอ:</p>
                 
-                <div class="code-example">
-<span class="comment"># นี่คือการแสดงข้อความ</span>
+                <div class="code-example"><span class="comment"># นี่คือการแสดงข้อความ</span>
 <span class="function">print</span>(<span class="string">"สวัสดีครับ"</span>)
 <span class="function">print</span>(<span class="string">"ฉันกำลังเรียน Python"</span>)
 
@@ -473,8 +475,7 @@
                 <h3>ตัวแปร (Variables)</h3>
                 <p>ตัวแปรคือที่เก็บข้อมูล เราใช้เครื่องหมาย <code>=</code> เพื่อกำหนดค่า:</p>
                 
-                <div class="code-example">
-<span class="comment"># สร้างตัวแปร</span>
+                <div class="code-example"><span class="comment"># สร้างตัวแปร</span>
 name = <span class="string">"สมชาย"</span>
 age = <span class="number">25</span>
 height = <span class="number">175.5</span>
@@ -489,8 +490,7 @@ height = <span class="number">175.5</span>
                 <h3>การคำนวณ</h3>
                 <p>Python สามารถคำนวณเลขได้:</p>
                 
-                <div class="code-example">
-<span class="comment"># การบวก ลบ คูณ หาร</span>
+                <div class="code-example"><span class="comment"># การบวก ลบ คูณ หาร</span>
 result = <span class="number">10</span> + <span class="number">5</span>
 <span class="function">print</span>(result)  <span class="comment"># 15</span>
 
@@ -588,8 +588,7 @@ average = <span class="number">50</span> / <span class="number">2</span>
                 <li>การสร้างคลาส (class)</li>
             </ul>
 
-            <div class="code-example">
-<span class="comment"># ต้องมี : หลัง if</span>
+            <div class="code-example"><span class="comment"># ต้องมี : หลัง if</span>
 <span class="keyword">if</span> age > <span class="number">18</span><span style="color: #E76F51; font-weight: bold;">:</span>
     <span class="function">print</span>(<span class="string">"เป็นผู้ใหญ่"</span>)
 
@@ -609,8 +608,7 @@ average = <span class="number">50</span> / <span class="number">2</span>
                 <strong>⚠️ สำคัญมาก:</strong> โค้ดที่อยู่ภายในบล็อก (หลัง :) ต้องเยื้องเข้าไป มิฉะนั้นจะเกิด Error
             </div>
 
-            <div class="code-example">
-<span class="comment"># ✅ ถูกต้อง - มีการเยื้อง (indent)</span>
+            <div class="code-example"><span class="comment"># ✅ ถูกต้อง - มีการเยื้อง (indent)</span>
 <span class="keyword">def</span> <span class="function">calculate</span>():
     result = <span class="number">10</span> + <span class="number">5</span>    <span class="comment"># เยื้องเข้าไป</span>
     <span class="function">print</span>(result)        <span class="comment"># เยื้องเข้าไปเท่ากัน</span>
@@ -636,8 +634,7 @@ average = <span class="number">50</span> / <span class="number">2</span>
             <h2><span class="icon">💻</span>ตัวอย่างโค้ดสำหรับฝึกหัด</h2>
             
             <h3>ตัวอย่างที่ 1: สร้างลิสต์และแสดงผล</h3>
-            <div class="code-example">
-<span class="comment"># สร้างลิสต์ของผลไม้</span>
+            <div class="code-example"><span class="comment"># สร้างลิสต์ของผลไม้</span>
 fruits = [<span class="string">"แอปเปิ้ล"</span>, <span class="string">"กล้วย"</span>, <span class="string">"ส้ม"</span>, <span class="string">"มะม่วง"</span>]
 
 <span class="comment"># แสดงผลไม้ทั้งหมด</span>
@@ -651,8 +648,7 @@ fruits.append(<span class="string">"ทุเรียน"</span>)
             </div>
 
             <h3>ตัวอย่างที่ 2: ใช้ Dictionary เก็บข้อมูล</h3>
-            <div class="code-example">
-<span class="comment"># สร้างข้อมูลนักเรียน</span>
+            <div class="code-example"><span class="comment"># สร้างข้อมูลนักเรียน</span>
 student = {
     <span class="string">"name"</span>: <span class="string">"สมหญิง"</span>,
     <span class="string">"age"</span>: <span class="number">20</span>,
@@ -668,8 +664,7 @@ student = {
             </div>
 
             <h3>ตัวอย่างที่ 3: สร้างฟังก์ชันคำนวณ</h3>
-            <div class="code-example">
-<span class="comment"># สร้างฟังก์ชันคำนวณพื้นที่สี่เหลี่ยม</span>
+            <div class="code-example"><span class="comment"># สร้างฟังก์ชันคำนวณพื้นที่สี่เหลี่ยม</span>
 <span class="keyword">def</span> <span class="function">calculate_area</span>(width, height):
     area = width * height
     <span class="keyword">return</span> area
