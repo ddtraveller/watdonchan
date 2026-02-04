@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Alphabet for Thai Learners | เรียนตัวอักษรภาษาอังกฤษ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+Thai:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #FEC260;
+            --accent: #4ECDC4;
+            --dark: #2C3E50;
+            --light: #FFF5E6;
+            --success: #95E1D3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: white;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: 'Noto Sans Thai', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--light);
+            font-weight: 400;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .intro-card h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 8px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 4px;
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .letter-card {
+            background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .letter-card:hover {
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.3);
+            border-color: var(--primary);
+        }
+
+        .letter-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .letter-card:active {
+            transform: translateY(-4px) scale(0.98);
+        }
+
+        .letter {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Space Mono', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phonetic {
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-top: 8px;
+            font-family: 'Space Mono', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sound-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .sound-card {
+            background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
+            border-radius: 20px;
+            padding: 25px;
+            border-left: 6px solid var(--accent);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .sound-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.2);
+        }
+
+        .sound-card h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sound-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .sound-card p {
+            line-height: 1.7;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .thai-text {
+            font-family: 'Noto Sans Thai', sans-serif;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .example-btn {
+            background: linear-gradient(135deg, var(--primary), #ff8fab);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .example-btn:active {
+            transform: translateY(0);
+        }
+
+        .example-btn::before {
+            content: '🔊';
+            font-size: 1.1rem;
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, var(--success) 0%, #b5f8eb 100%);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .practice-section h3 {
+            color: var(--dark);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .practice-word {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .word-btn {
+            background: white;
+            border: 3px solid var(--primary);
+            padding: 20px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .word-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .vowel-section {
+            margin-top: 40px;
+        }
+
+        .vowel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .vowel-card {
+            background: linear-gradient(135deg, #fff5e6 0%, #fff 100%);
+            border-radius: 18px;
+            padding: 25px;
+            border: 3px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .vowel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(254, 194, 96, 0.3);
+        }
+
+        .vowel-card h4 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #fff5e6, #ffe8cc);
+            border-left: 6px solid var(--secondary);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .tip-box strong {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .alphabet-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .section {
+                padding: 25px;
+            }
+
+            .intro-card {
+                padding: 25px;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+            font-size: 1.1rem;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 English Alphabet</h1>
+            <p class="subtitle">เรียนรู้ตัวอักษรและเสียงภาษาอังกฤษสำหรับคนไทย</p>
+        </header>
+
+        <div class="intro-card">
+            <h2>Welcome! ยินดีต้อนรับ! 🌟</h2>
+            <p>
+                The English alphabet has 26 letters, but makes many more sounds than Thai! 
+                <span class="thai-text">ภาษาอังกฤษมี 26 ตัวอักษร แต่มีเสียงมากกว่าภาษาไทย</span>
+            </p>
+            <p>
+                Some English sounds don't exist in Thai, which can make them tricky to pronounce. 
+                This page will help you understand and practice these sounds! Click on any letter or button to hear it spoken.
+            </p>
+            <div class="tip-box">
+                <strong>💡 Tip:</strong> Make sure your device sound is on! Click any letter or word to hear it pronounced.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>The 26 Letters | ตัวอักษร 26 ตัว</h2>
+            <p>Click on each letter to hear its name and common sound:</p>
+            <div class="alphabet-grid" id="alphabetGrid"></div>
+        </div>
+
+        <div class="section">
+            <h2>Tricky Sounds for Thai Speakers | เสียงที่ยากสำหรับคนไทย</h2>
+            <div class="sound-comparison" id="difficultSounds"></div>
+        </div>
+
+        <div class="section vowel-section">
+            <h2>English Vowels | สระภาษาอังกฤษ</h2>
+            <p>English has 5 vowel letters (A, E, I, O, U) but many more vowel sounds! 
+                <span class="thai-text">ภาษาอังกฤษมีสระ 5 ตัว แต่มีเสียงสระมากกว่านั้น</span>
+            </p>
+            <div class="vowel-grid" id="vowelGrid"></div>
+        </div>
+
+        <div class="practice-section">
+            <h3>🎯 Practice Words | คำศัพท์ฝึกหัด</h3>
+            <p>Click on these words to hear how they sound:</p>
+            <div class="word-grid" id="practiceWords"></div>
+        </div>
+
+        <div class="footer">
+            <p>Keep practicing! Remember: listening and repeating is the key to mastering English sounds 🎵</p>
+            <p class="thai-text">ฝึกฝนบ่อยๆ นะคะ! การฟังและออกเสียงตามเป็นกุญแจสำคัญในการเรียนรู้เสียงภาษาอังกฤษ</p>
+        </div>
+    </div>
+
+    <script>
+        // Speech synthesis setup
+        const synth = window.speechSynthesis;
+        let voices = [];
+
+        function loadVoices() {
+            voices = synth.getVoices();
+        }
+
+        // Load voices
+        loadVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        function speak(text, rate = 0.8) {
+            // Cancel any ongoing speech
+            synth.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Try to find an English voice
+            const enVoice = voices.find(voice => voice.lang.startsWith('en'));
+            if (enVoice) {
+                utterance.voice = enVoice;
+            }
+            
+            utterance.rate = rate;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+            
+            synth.speak(utterance);
+        }
+
+        // Alphabet data
+        const alphabet = [
+            { letter: 'A', phonetic: '/eɪ/', sound: 'ay' },
+            { letter: 'B', phonetic: '/biː/', sound: 'bee' },
+            { letter: 'C', phonetic: '/siː/', sound: 'see' },
+            { letter: 'D', phonetic: '/diː/', sound: 'dee' },
+            { letter: 'E', phonetic: '/iː/', sound: 'ee' },
+            { letter: 'F', phonetic: '/ɛf/', sound: 'eff' },
+            { letter: 'G', phonetic: '/dʒiː/', sound: 'jee' },
+            { letter: 'H', phonetic: '/eɪtʃ/', sound: 'aych' },
+            { letter: 'I', phonetic: '/aɪ/', sound: 'eye' },
+            { letter: 'J', phonetic: '/dʒeɪ/', sound: 'jay' },
+            { letter: 'K', phonetic: '/keɪ/', sound: 'kay' },
+            { letter: 'L', phonetic: '/ɛl/', sound: 'ell' },
+            { letter: 'M', phonetic: '/ɛm/', sound: 'emm' },
+            { letter: 'N', phonetic: '/ɛn/', sound: 'enn' },
+            { letter: 'O', phonetic: '/oʊ/', sound: 'oh' },
+            { letter: 'P', phonetic: '/piː/', sound: 'pee' },
+            { letter: 'Q', phonetic: '/kjuː/', sound: 'cue' },
+            { letter: 'R', phonetic: '/ɑːr/', sound: 'are' },
+            { letter: 'S', phonetic: '/ɛs/', sound: 'ess' },
+            { letter: 'T', phonetic: '/tiː/', sound: 'tee' },
+            { letter: 'U', phonetic: '/juː/', sound: 'you' },
+            { letter: 'V', phonetic: '/viː/', sound: 'vee' },
+            { letter: 'W', phonetic: '/ˈdʌbəl.juː/', sound: 'double you' },
+            { letter: 'X', phonetic: '/ɛks/', sound: 'ex' },
+            { letter: 'Y', phonetic: '/waɪ/', sound: 'why' },
+            { letter: 'Z', phonetic: '/ziː/', sound: 'zee' }
+        ];
+
+        // Difficult sounds for Thai speakers
+        const difficultSounds = [
+            {
+                title: 'TH Sound',
+                icon: '👅',
+                thai: 'เสียง "ธ" และ "ท"',
+                description: 'English has TWO "th" sounds that don\'t exist in Thai:',
+                examples: [
+                    { word: 'think', thai: '(voiced, เสียงไม่สั่น) - ท' },
+                    { word: 'this', thai: '(voiceless, เสียงสั่น) - ธ' },
+                    { word: 'three', thai: 'สาม' },
+                    { word: 'mother', thai: 'แม่' }
+                ],
+                tip: 'Put your tongue between your teeth! ใส่ลิ้นระหว่างฟัน'
+            },
+            {
+                title: 'V Sound',
+                icon: '🦷',
+                thai: 'เสียง "ว" ที่ต่างกับไทย',
+                description: 'In Thai, you might say "w" (ว) but English "v" uses teeth on lower lip!',
+                examples: [
+                    { word: 'very', thai: 'มาก' },
+                    { word: 'voice', thai: 'เสียง' },
+                    { word: 'video', thai: 'วิดีโอ' },
+                    { word: 'love', thai: 'รัก' }
+                ],
+                tip: 'Touch upper teeth to lower lip: V not W! แตะฟันบนกับริมฝีปากล่าง'
+            },
+            {
+                title: 'R vs L',
+                icon: '👄',
+                thai: 'เสียง "ร" และ "ล"',
+                description: 'These are VERY different in English! In Thai, they sound similar.',
+                examples: [
+                    { word: 'right', thai: 'ขวา (R - tongue curls back)' },
+                    { word: 'light', thai: 'แสงสว่าง (L - tongue touches roof)' },
+                    { word: 'red', thai: 'สีแดง' },
+                    { word: 'led', thai: 'นำ (อดีต)' }
+                ],
+                tip: 'R: curl tongue back. L: tongue touches behind teeth. อาร์: ม้วนลิ้น, แอล: แตะลิ้นหลังฟัน'
+            },
+            {
+                title: 'Z Sound',
+                icon: '🐝',
+                thai: 'เสียง "ซ" (เสียงสั่น)',
+                description: 'Like a buzzing bee! Not "s" (ส). Your voice box vibrates.',
+                examples: [
+                    { word: 'zoo', thai: 'สวนสัตว์' },
+                    { word: 'zero', thai: 'ศูนย์' },
+                    { word: 'amazing', thai: 'น่าทึ่ง' },
+                    { word: 'zipper', thai: 'ซิป' }
+                ],
+                tip: 'Make your throat buzz like a bee! สั่นกล่องเสียง เหมือนผึ้งบินน'
+            },
+            {
+                title: 'Final Consonants',
+                icon: '🎯',
+                thai: 'พยัญชนะท้ายคำ',
+                description: 'English words can end with many consonant sounds, clearly pronounced!',
+                examples: [
+                    { word: 'good', thai: 'ดี (ต้องออกเสียง d ชัดเจน)' },
+                    { word: 'map', thai: 'แผนที่ (ออกเสียง p ท้ายคำ)' },
+                    { word: 'big', thai: 'ใหญ่ (ออกเสียง g)' },
+                    { word: 'test', thai: 'ทดสอบ (ออกเสียง st)' }
+                ],
+                tip: 'Don\'t drop final sounds! Pronounce them clearly. ออกเสียงท้ายคำให้ชัด'
+            },
+            {
+                title: 'Short vs Long Vowels',
+                icon: '⏱️',
+                thai: 'สระสั้น-สระยาว',
+                description: 'Vowel length changes meaning in English!',
+                examples: [
+                    { word: 'ship', thai: 'เรือ (สระสั้น)' },
+                    { word: 'sheep', thai: 'แกะ (สระยาว)' },
+                    { word: 'bit', thai: 'เล็กน้อย (สั้น)' },
+                    { word: 'beat', thai: 'ตี (ยาว)' }
+                ],
+                tip: 'Listen carefully to vowel length! ฟังความยาวของสระให้ชัด'
+            }
+        ];
+
+        // Vowel information
+        const vowels = [
+            {
+                letter: 'A',
+                sounds: [
+                    { sound: 'cake /eɪ/', thai: 'เค้ก' },
+                    { sound: 'cat /æ/', thai: 'แมว' },
+                    { sound: 'father /ɑː/', thai: 'พ่อ' }
+                ]
+            },
+            {
+                letter: 'E',
+                sounds: [
+                    { sound: 'be /iː/', thai: 'เป็น' },
+                    { sound: 'bed /ɛ/', thai: 'เตียง' },
+                    { sound: 'teacher /ə/', thai: 'ครู (schwa)' }
+                ]
+            },
+            {
+                letter: 'I',
+                sounds: [
+                    { sound: 'ice /aɪ/', thai: 'น้ำแข็ง' },
+                    { sound: 'sit /ɪ/', thai: 'นั่ง' }
+                ]
+            },
+            {
+                letter: 'O',
+                sounds: [
+                    { sound: 'go /oʊ/', thai: 'ไป' },
+                    { sound: 'hot /ɑː/', thai: 'ร้อน' },
+                    { sound: 'to /uː/', thai: 'ถึง' }
+                ]
+            },
+            {
+                letter: 'U',
+                sounds: [
+                    { sound: 'use /juː/', thai: 'ใช้' },
+                    { sound: 'cup /ʌ/', thai: 'ถ้วย' },
+                    { sound: 'put /ʊ/', thai: 'วาง' }
+                ]
+            }
+        ];
+
+        // Practice words
+        const practiceWords = [
+            { word: 'Hello', thai: 'สวัสดี' },
+            { word: 'Thank you', thai: 'ขอบคุณ' },
+            { word: 'Goodbye', thai: 'ลาก่อน' },
+            { word: 'Beautiful', thai: 'สวยงาม' },
+            { word: 'Thailand', thai: 'ประเทศไทย' },
+            { word: 'Friend', thai: 'เพื่อน' },
+            { word: 'Water', thai: 'น้ำ' },
+            { word: 'Happy', thai: 'มีความสุข' }
+        ];
+
+        // Render alphabet
+        const alphabetGrid = document.getElementById('alphabetGrid');
+        alphabet.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'letter-card';
+            card.style.animationDelay = `${index * 0.03}s`;
+            card.innerHTML = `
+                <div class="letter">${item.letter}</div>
+                <div class="phonetic">${item.phonetic}</div>
+            `;
+            card.addEventListener('click', () => {
+                speak(item.letter);
+                card.classList.add('pulse');
+                setTimeout(() => card.classList.remove('pulse'), 600);
+            });
+            alphabetGrid.appendChild(card);
+        });
+
+        // Render difficult sounds
+        const difficultSoundsDiv = document.getElementById('difficultSounds');
+        difficultSounds.forEach((sound, index) => {
+            const card = document.createElement('div');
+            card.className = 'sound-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            const examplesHTML = sound.examples.map(ex => 
+                `<button class="example-btn" onclick="speak('${ex.word}', 0.7)">${ex.word}</button>`
+            ).join('');
+            
+            card.innerHTML = `
+                <h3><span class="sound-icon">${sound.icon}</span>${sound.title}</h3>
+                <p class="thai-text">${sound.thai}</p>
+                <p>${sound.description}</p>
+                <div>${examplesHTML}</div>
+                <p style="margin-top: 15px; font-style: italic; color: #666;">💡 ${sound.tip}</p>
+            `;
+            difficultSoundsDiv.appendChild(card);
+        });
+
+        // Render vowels
+        const vowelGrid = document.getElementById('vowelGrid');
+        vowels.forEach(vowel => {
+            const card = document.createElement('div');
+            card.className = 'vowel-card';
+            
+            const soundsHTML = vowel.sounds.map(s => 
+                `<button class="example-btn" onclick="speak('${s.sound.split(' ')[0]}', 0.7)">${s.sound}</button>`
+            ).join('');
+            
+            card.innerHTML = `
+                <h4>Letter ${vowel.letter}</h4>
+                <div>${soundsHTML}</div>
+            `;
+            vowelGrid.appendChild(card);
+        });
+
+        // Render practice words
+        const practiceWordsDiv = document.getElementById('practiceWords');
+        practiceWords.forEach(item => {
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.innerHTML = `
+                <div style="font-size: 1.3rem; margin-bottom: 5px;">${item.word}</div>
+                <div class="thai-text" style="font-size: 0.9rem;">${item.thai}</div>
+            `;
+            btn.addEventListener('click', () => speak(item.word, 0.7));
+            practiceWordsDiv.appendChild(btn);
+        });
+    </script>
+</body>
+</html>
