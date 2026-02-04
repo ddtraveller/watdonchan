@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming Tutorial - การเขียนโปรแกรม Python</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --secondary: #F39C12;
+            --success: #27AE60;
+            --error: #E74C3C;
+            --dark: #2C3E50;
+            --light: #ECF0F1;
+            --code-bg: #282C34;
+            --text-light: #7F8C8D;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #357ABD 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            font-size: 2em;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary);
+            font-weight: 700;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .bilingual {
+            margin: 20px 0;
+        }
+        
+        .thai {
+            color: var(--dark);
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .english {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 0.95em;
+            padding-left: 20px;
+            border-left: 3px solid var(--light);
+        }
+        
+        .code-example {
+            background: var(--code-bg);
+            color: #ABB2BF;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95em;
+            margin: 20px 0;
+            overflow-x: auto;
+            position: relative;
+            border-left: 4px solid var(--secondary);
+            white-space: pre;
+            line-height: 1.6;
+            tab-size: 4;
+        }
+        
+        .code-example::before {
+            content: "Python";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.75em;
+            color: var(--text-light);
+            opacity: 0.5;
+        }
+        
+        .keyword { color: #C678DD; }
+        .string { color: #98C379; }
+        .number { color: #D19A66; }
+        .function { color: #61AFEF; }
+        .comment { color: #5C6370; font-style: italic; }
+        .class-name { color: #E5C07B; }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #E6FFF0 0%, #CCFFE0 100%);
+            border-left: 5px solid var(--success);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .error-box {
+            background: linear-gradient(135deg, #FFF0F0 0%, #FFE0E0 100%);
+            border-left: 5px solid var(--error);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .step {
+            background: var(--light);
+            padding: 15px 25px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .vocab-term {
+            background: #E8F4F8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 40px;
+        }
+        
+        li {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐍 Python Programming Tutorial</h1>
+            <p class="subtitle">การเขียนโปรแกรม Python สำหรับคนไทย<br>From Simple Scripts to Advanced Generators</p>
+        </header>
+        
+        <div class="content">
+            <h2>บทนำ (Introduction)</h2>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    ในบทเรียนนี้ เราจะเรียนรู้วิธีการพัฒนาโค้ด Python ตั้งแต่สคริปต์ง่ายๆ ไปจนถึงการใช้ Generator ใน Class 
+                    เราจะสร้างโปรแกรมอ่านไฟล์ที่พัฒนาขึ้นทีละขั้นตอน เพื่อให้เข้าใจหลักการเขียนโค้ดที่ดีและยืดหยุ่น
+                </p>
+                <p class="english">
+                    In this tutorial, we'll learn how to develop Python code from simple scripts to using Generators in Classes. 
+                    We'll build a file reader program that evolves step by step to understand good and flexible coding principles.
+                </p>
+            </div>
+
+            <h2>Step 1: สคริปต์พื้นฐาน (Basic Script)</h2>
+            
+            <div class="step">📝 ขั้นตอนที่ 1: เขียนโค้ดที่ทำงานจากบนลงล่าง (Top to Bottom)</div>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    เริ่มต้นด้วยสคริปต์ง่ายๆ ที่อ่านไฟล์และแสดงผล ไม่มีการจัดระเบียบโครงสร้าง
+                </p>
+                <p class="english">
+                    Let's start with a simple script that reads a file and displays output, without any structural organization.
+                </p>
+            </div>
+
+            <div class="code-example"><span class="comment"># simple_reader.py</span>
+<span class="comment"># อ่านไฟล์ data.txt และแสดงแต่ละบรรทัด</span>
+<span class="comment"># Read data.txt file and display each line</span>
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'data.txt'</span>, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> file:
+    <span class="keyword">for</span> line <span class="keyword">in</span> file:
+        <span class="function">print</span>(line.strip())
+</div>
+
+            <div class="error-box">
+                <h3>❌ ปัญหา (Problems)</h3>
+                <ul>
+                    <li><strong>ไม่สามารถนำกลับมาใช้ใหม่ได้</strong> (Not reusable) - ต้องคัดลอกโค้ดทุกครั้ง</li>
+                    <li><strong>ชื่อไฟล์ฮาร์ดโค้ด</strong> (Hardcoded filename) - เปลี่ยนไฟล์ไม่ได้</li>
+                    <li><strong>ไม่มี error handling</strong> - ถ้าไฟล์ไม่มีจะเกิด error ทันที</li>
+                    <li><strong>ยากต่อการทดสอบ</strong> (Hard to test) - ไม่สามารถ import ไปใช้ที่อื่นได้</li>
+                </ul>
+            </div>
+
+            <h2>Step 2: เพิ่ม Entry Point</h2>
+            
+            <div class="step">📝 ขั้นตอนที่ 2: ใช้ <span class="vocab-term">if __name__ == "__main__":</span></div>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    เพิ่มส่วน entry point เพื่อให้โค้ดของเราสามารถ import ไปใช้ในไฟล์อื่นได้ โดยไม่ทำงานอotomatically
+                </p>
+                <p class="english">
+                    Add an entry point so our code can be imported into other files without running automatically.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>📚 คำศัพท์สำคัญ (Key Vocabulary)</h3>
+                <p><strong><span class="vocab-term">__name__</span></strong> = ชื่อของ module (module name)</p>
+                <p><strong><span class="vocab-term">__main__</span></strong> = ค่าของ __name__ เมื่อไฟล์ถูกรันโดยตรง (value when file is run directly)</p>
+                <p><strong>Entry Point</strong> = จุดเริ่มต้นของโปรแกรม (program starting point)</p>
+            </div>
+
+            <div class="code-example"><span class="comment"># reader_with_entry.py</span>
+<span class="comment"># เพิ่ม entry point เพื่อให้สามารถ import ได้</span>
+<span class="comment"># Add entry point to make it importable</span>
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">'data.txt'</span>, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> file:
+    <span class="keyword">for</span> line <span class="keyword">in</span> file:
+        <span class="function">print</span>(line.strip())
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># โค้ดนี้จะทำงานเฉพาะเมื่อรันไฟล์โดยตรง</span>
+    <span class="comment"># This code runs only when file is executed directly</span>
+    <span class="function">print</span>(<span class="string">"โปรแกรมทำงานเสร็จสิ้น (Program completed)"</span>)
+</div>
+
+            <div class="success-box">
+                <h3>✅ ประโยชน์ (Benefits)</h3>
+                <ul>
+                    <li><strong>สามารถ import ได้</strong> - ใช้โค้ดในไฟล์อื่นได้โดยไม่รันทันที</li>
+                    <li><strong>แยก testing ได้</strong> - เขียน test ได้ง่ายขึ้น</li>
+                    <li><strong>โครงสร้างชัดเจน</strong> - รู้ว่าส่วนไหนคือจุดเริ่มต้น</li>
+                </ul>
+            </div>
+
+            <h2>Step 3: สร้าง Function</h2>
+            
+            <div class="step">📝 ขั้นตอนที่ 3: ห่อหุ้มโค้ดด้วย <span class="vocab-term">function</span></div>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    ย้ายโค้ดเข้าไปใน function เพื่อให้สามารถเรียกใช้ซ้ำได้ และรับพารามิเตอร์ชื่อไฟล์
+                </p>
+                <p class="english">
+                    Move code into a function to make it reusable and accept filename as a parameter.
+                </p>
+            </div>
+
+            <div class="code-example"><span class="comment"># reader_with_function.py</span>
+<span class="comment"># ใช้ function เพื่อให้สามารถเรียกใช้ซ้ำได้</span>
+<span class="comment"># Use function to make code reusable</span>
+
+<span class="keyword">def</span> <span class="function">read_file</span>(filename):
+    <span class="string">"""
+    อ่านไฟล์และแสดงผลแต่ละบรรทัด
+    Read file and display each line
+    
+    Parameters (พารามิเตอร์):
+        filename (str): ชื่อไฟล์ที่ต้องการอ่าน (file name to read)
+    """</span>
+    <span class="keyword">try</span>:
+        <span class="keyword">with</span> <span class="function">open</span>(filename, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> file:
+            <span class="keyword">for</span> line <span class="keyword">in</span> file:
+                <span class="function">print</span>(line.strip())
+    <span class="keyword">except</span> <span class="class-name">FileNotFoundError</span>:
+        <span class="function">print</span>(<span class="string">f"ไม่พบไฟล์: <span class="keyword">{</span>filename<span class="keyword">}</span> (File not found)"</span>)
+    <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+        <span class="function">print</span>(<span class="string">f"เกิดข้อผิดพลาด (Error occurred): <span class="keyword">{</span>e<span class="keyword">}</span>"</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># เรียกใช้ function กับไฟล์ต่างๆ</span>
+    <span class="comment"># Call function with different files</span>
+    <span class="function">read_file</span>(<span class="string">'data.txt'</span>)
+    <span class="function">read_file</span>(<span class="string">'config.txt'</span>)
+</div>
+
+            <div class="success-box">
+                <h3>✅ ข้อดี (Advantages)</h3>
+                <ul>
+                    <li><strong>Reusable</strong> - เรียกใช้ได้หลายครั้งโดยไม่ต้องเขียนโค้ดซ้ำ</li>
+                    <li><strong>Flexible</strong> - รับชื่อไฟล์เป็น parameter ได้</li>
+                    <li><strong>Error Handling</strong> - จัดการข้อผิดพลาดได้</li>
+                    <li><strong>Documented</strong> - มี docstring อธิบายการใช้งาน</li>
+                </ul>
+            </div>
+
+            <h2>Step 4: จัดระเบียบด้วย Class</h2>
+            
+            <div class="step">📝 ขั้นตอนที่ 4: สร้าง <span class="vocab-term">Class</span> พร้อม <span class="vocab-term">__init__</span></div>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    สร้าง Class เพื่อเก็บข้อมูลและพฤติกรรมที่เกี่ยวข้องไว้ด้วยกัน โดยใช้ __init__ ตั้งค่าเริ่มต้น
+                </p>
+                <p class="english">
+                    Create a Class to group related data and behavior together, using __init__ for initialization.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>📚 คำศัพท์ OOP (Object-Oriented Programming)</h3>
+                <p><strong><span class="vocab-term">Class</span></strong> = แม่แบบสำหรับสร้าง object (blueprint for creating objects)</p>
+                <p><strong><span class="vocab-term">__init__</span></strong> = Constructor - ฟังก์ชันที่รันเมื่อสร้าง object ใหม่</p>
+                <p><strong><span class="vocab-term">self</span></strong> = อ้างอิงถึง instance ปัจจุบัน (reference to current instance)</p>
+                <p><strong><span class="vocab-term">Method</span></strong> = ฟังก์ชันภายใน class (function inside a class)</p>
+            </div>
+
+            <div class="code-example"><span class="comment"># reader_with_class.py</span>
+<span class="comment"># ใช้ Class เพื่อจัดระเบียบโค้ดและเก็บ state</span>
+<span class="comment"># Use Class to organize code and maintain state</span>
+
+<span class="keyword">class</span> <span class="class-name">FileReader</span>:
+    <span class="string">"""
+    คลาสสำหรับอ่านไฟล์ข้อความ
+    Class for reading text files
+    """</span>
+    
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, filename, encoding=<span class="string">'utf-8'</span>):
+        <span class="string">"""
+        สร้าง FileReader object ใหม่
+        Initialize a new FileReader object
+        
+        Parameters:
+            filename (str): ชื่อไฟล์ (file name)
+            encoding (str): การเข้ารหัสไฟล์ (file encoding)
+        """</span>
+        self.filename = filename
+        self.encoding = encoding
+        self.lines_read = <span class="number">0</span>  <span class="comment"># นับจำนวนบรรทัดที่อ่าน (count lines read)</span>
+    
+    <span class="keyword">def</span> <span class="function">read_and_print</span>(self):
+        <span class="string">"""อ่านไฟล์และแสดงผล (Read and display file)"""</span>
+        <span class="keyword">try</span>:
+            <span class="keyword">with</span> <span class="function">open</span>(self.filename, <span class="string">'r'</span>, encoding=self.encoding) <span class="keyword">as</span> file:
+                <span class="keyword">for</span> line <span class="keyword">in</span> file:
+                    <span class="function">print</span>(line.strip())
+                    self.lines_read += <span class="number">1</span>
+            <span class="function">print</span>(<span class="string">f"\nอ่านทั้งหมด <span class="keyword">{</span>self.lines_read<span class="keyword">}</span> บรรทัด (Read <span class="keyword">{</span>self.lines_read<span class="keyword">}</span> lines)"</span>)
+        <span class="keyword">except</span> <span class="class-name">FileNotFoundError</span>:
+            <span class="function">print</span>(<span class="string">f"ไม่พบไฟล์: <span class="keyword">{</span>self.filename<span class="keyword">}</span>"</span>)
+        <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+            <span class="function">print</span>(<span class="string">f"เกิดข้อผิดพลาด: <span class="keyword">{</span>e<span class="keyword">}</span>"</span>)
+    
+    <span class="keyword">def</span> <span class="function">get_stats</span>(self):
+        <span class="string">"""คืนค่าสถิติการอ่านไฟล์ (Return file reading statistics)"""</span>
+        <span class="keyword">return</span> {
+            <span class="string">'filename'</span>: self.filename,
+            <span class="string">'lines_read'</span>: self.lines_read,
+            <span class="string">'encoding'</span>: self.encoding
+        }
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># สร้าง object และใช้งาน (Create object and use it)</span>
+    reader = <span class="class-name">FileReader</span>(<span class="string">'data.txt'</span>)
+    reader.read_and_print()
+    
+    <span class="comment"># ดูสถิติ (View statistics)</span>
+    stats = reader.get_stats()
+    <span class="function">print</span>(<span class="string">f"\nสถิติ (Statistics): <span class="keyword">{</span>stats<span class="keyword">}</span>"</span>)
+</div>
+
+            <div class="success-box">
+                <h3>✅ ทำไมต้องใช้ Class? (Why Use Classes?)</h3>
+                <ul>
+                    <li><strong>Encapsulation</strong> - รวมข้อมูลและฟังก์ชันที่เกี่ยวข้องไว้ด้วยกัน</li>
+                    <li><strong>State Management</strong> - เก็บสถานะของ object (เช่น lines_read)</li>
+                    <li><strong>Reusability</strong> - สร้าง object หลายตัวได้ แต่ละตัวมี state ของตัวเอง</li>
+                    <li><strong>Organization</strong> - โค้ดมีโครงสร้างชัดเจน อ่านง่าย บำรุงรักษาง่าย</li>
+                    <li><strong>Extensibility</strong> - ขยายความสามารถได้ง่ายผ่าน inheritance</li>
+                </ul>
+            </div>
+
+            <h2>Step 5: Generator Function - พลังที่แท้จริง</h2>
+            
+            <div class="step">📝 ขั้นตอนที่ 5: ใช้ <span class="vocab-term">Generator</span> สำหรับ Memory Efficiency</div>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    Generator ช่วยให้เราอ่านไฟล์ขนาดใหญ่ได้โดยไม่ต้องโหลดทั้งหมดเข้า memory พร้อมกัน 
+                    ใช้คำสั่ง <span class="vocab-term">yield</span> แทน <span class="vocab-term">return</span>
+                </p>
+                <p class="english">
+                    Generators allow us to read large files without loading everything into memory at once.
+                    Use <span class="vocab-term">yield</span> instead of <span class="vocab-term">return</span>.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>📚 Generator คืออะไร? (What is a Generator?)</h3>
+                <p><strong><span class="vocab-term">Generator</span></strong> = ฟังก์ชันพิเศษที่ใช้ yield เพื่อคืนค่าทีละตัว (special function that uses yield to return values one at a time)</p>
+                <p><strong><span class="vocab-term">yield</span></strong> = คืนค่าแล้วหยุดชั่วคราว รอเรียกใช้ครั้งถัดไป (return value and pause, waiting for next call)</p>
+                <p><strong><span class="vocab-term">Lazy Evaluation</span></strong> = ประมวลผลเมื่อต้องการใช้จริง ไม่ใช่ทั้งหมดตั้งแต่แรก (process when needed, not all at once)</p>
+            </div>
+
+            <div class="code-example"><span class="comment"># reader_with_generator.py</span>
+<span class="comment"># ใช้ Generator เพื่อประหยัด memory และรองรับไฟล์ขนาดใหญ่</span>
+<span class="comment"># Use Generator for memory efficiency and large file support</span>
+
+<span class="keyword">class</span> <span class="class-name">FileReader</span>:
+    <span class="string">"""
+    คลาสสำหรับอ่านไฟล์แบบ memory-efficient
+    Class for memory-efficient file reading
+    """</span>
+    
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, filename, encoding=<span class="string">'utf-8'</span>, chunk_size=<span class="number">1024</span>):
+        <span class="string">"""
+        Initialize FileReader
+        
+        Parameters:
+            filename (str): ชื่อไฟล์ (file name)
+            encoding (str): การเข้ารหัส (encoding)
+            chunk_size (int): ขนาดข้อมูลที่อ่านครั้งละชิ้น (bytes per chunk)
+        """</span>
+        self.filename = filename
+        self.encoding = encoding
+        self.chunk_size = chunk_size
+        self.total_lines = <span class="number">0</span>
+        self.total_bytes = <span class="number">0</span>
+    
+    <span class="keyword">def</span> <span class="function">read_lines</span>(self):
+        <span class="string">"""
+        Generator ที่คืนค่าแต่ละบรรทัดทีละบรรทัด
+        Generator that yields one line at a time
+        
+        Yields:
+            str: บรรทัดของไฟล์ (line from file)
+        """</span>
+        <span class="keyword">try</span>:
+            <span class="keyword">with</span> <span class="function">open</span>(self.filename, <span class="string">'r'</span>, encoding=self.encoding) <span class="keyword">as</span> file:
+                <span class="keyword">for</span> line <span class="keyword">in</span> file:
+                    self.total_lines += <span class="number">1</span>
+                    self.total_bytes += <span class="function">len</span>(line.encode(self.encoding))
+                    <span class="keyword">yield</span> line.strip()  <span class="comment"># คืนค่าทีละบรรทัด (yield one line)</span>
+        <span class="keyword">except</span> <span class="class-name">FileNotFoundError</span>:
+            <span class="keyword">yield</span> <span class="string">f"ERROR: ไม่พบไฟล์ <span class="keyword">{</span>self.filename<span class="keyword">}</span>"</span>
+        <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+            <span class="keyword">yield</span> <span class="string">f"ERROR: <span class="keyword">{</span>e<span class="keyword">}</span>"</span>
+    
+    <span class="keyword">def</span> <span class="function">read_chunks</span>(self):
+        <span class="string">"""
+        Generator ที่อ่านไฟล์ทีละชิ้นตามขนาดที่กำหนด
+        Generator that reads file in fixed-size chunks
+        
+        Yields:
+            str: ชิ้นส่วนของไฟล์ (chunk of file)
+        """</span>
+        <span class="keyword">try</span>:
+            <span class="keyword">with</span> <span class="function">open</span>(self.filename, <span class="string">'r'</span>, encoding=self.encoding) <span class="keyword">as</span> file:
+                <span class="keyword">while</span> <span class="class-name">True</span>:
+                    chunk = file.read(self.chunk_size)
+                    <span class="keyword">if</span> <span class="keyword">not</span> chunk:
+                        <span class="keyword">break</span>
+                    self.total_bytes += <span class="function">len</span>(chunk.encode(self.encoding))
+                    <span class="keyword">yield</span> chunk
+        <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+            <span class="keyword">yield</span> <span class="string">f"ERROR: <span class="keyword">{</span>e<span class="keyword">}</span>"</span>
+    
+    <span class="keyword">def</span> <span class="function">filter_lines</span>(self, keyword):
+        <span class="string">"""
+        Generator ที่กรองเฉพาะบรรทัดที่มีคำที่ต้องการ
+        Generator that filters lines containing a keyword
+        
+        Parameters:
+            keyword (str): คำที่ต้องการค้นหา (keyword to search)
+            
+        Yields:
+            str: บรรทัดที่ตรงเงื่อนไข (matching line)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> self.read_lines():
+            <span class="keyword">if</span> keyword.lower() <span class="keyword">in</span> line.lower():
+                <span class="keyword">yield</span> line
+    
+    <span class="keyword">def</span> <span class="function">get_stats</span>(self):
+        <span class="string">"""คืนค่าสถิติ (Return statistics)"""</span>
+        <span class="keyword">return</span> {
+            <span class="string">'filename'</span>: self.filename,
+            <span class="string">'total_lines'</span>: self.total_lines,
+            <span class="string">'total_bytes'</span>: self.total_bytes,
+            <span class="string">'encoding'</span>: self.encoding
+        }
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># ตัวอย่างที่ 1: อ่านทีละบรรทัด (Example 1: Read line by line)</span>
+    <span class="function">print</span>(<span class="string">"=== อ่านทีละบรรทัด (Reading Line by Line) ==="</span>)
+    reader = <span class="class-name">FileReader</span>(<span class="string">'data.txt'</span>)
+    
+    <span class="keyword">for</span> line <span class="keyword">in</span> reader.read_lines():
+        <span class="function">print</span>(line)
+        <span class="keyword">if</span> reader.total_lines >= <span class="number">5</span>:  <span class="comment"># จำกัดแสดงแค่ 5 บรรทัด</span>
+            <span class="keyword">break</span>
+    
+    <span class="function">print</span>(<span class="string">f"\nสถิติ: <span class="keyword">{</span>reader.get_stats()<span class="keyword">}</span>"</span>)
+    
+    <span class="comment"># ตัวอย่างที่ 2: กรองข้อมูล (Example 2: Filter data)</span>
+    <span class="function">print</span>(<span class="string">"\n=== กรองบรรทัดที่มีคำว่า 'python' ==="</span>)
+    reader2 = <span class="class-name">FileReader</span>(<span class="string">'data.txt'</span>)
+    
+    <span class="keyword">for</span> line <span class="keyword">in</span> reader2.filter_lines(<span class="string">'python'</span>):
+        <span class="function">print</span>(<span class="string">f"พบ: <span class="keyword">{</span>line<span class="keyword">}</span>"</span>)
+    
+    <span class="comment"># ตัวอย่างที่ 3: อ่านแบบ chunks (Example 3: Read in chunks)</span>
+    <span class="function">print</span>(<span class="string">"\n=== อ่านทีละ chunk ==="</span>)
+    reader3 = <span class="class-name">FileReader</span>(<span class="string">'data.txt'</span>, chunk_size=<span class="number">50</span>)
+    
+    <span class="keyword">for</span> i, chunk <span class="keyword">in</span> <span class="function">enumerate</span>(reader3.read_chunks(), <span class="number">1</span>):
+        <span class="function">print</span>(<span class="string">f"Chunk <span class="keyword">{</span>i<span class="keyword">}</span>: <span class="keyword">{</span>chunk[:<span class="number">50</span>]<span class="keyword">}</span>..."</span>)
+        <span class="keyword">if</span> i >= <span class="number">3</span>:
+            <span class="keyword">break</span>
+</div>
+
+            <h2>เปรียบเทียบ: Normal Function vs Generator</h2>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    มาดูความแตกต่างระหว่างการใช้ function ธรรมดากับ generator อย่างละเอียด และทำไม generator จึงทรงพลังกว่า
+                </p>
+                <p class="english">
+                    Let's compare in detail the difference between using a normal function and a generator, and why generators are more powerful.
+                </p>
+            </div>
+
+            <h3>🔴 ปัญหาของ Normal Function (The Problem with Normal Functions)</h3>
+
+            <div class="code-example"><span class="comment"># ❌ Normal Function - โหลดทั้งหมดเข้า memory ทันที!</span>
+<span class="comment"># ❌ Normal Function - Loads EVERYTHING into memory immediately!</span>
+
+<span class="keyword">def</span> <span class="function">read_all_lines</span>(filename):
+    <span class="keyword">with</span> <span class="function">open</span>(filename, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+        lines = file.readlines()  <span class="comment"># 💥 โหลดทั้งไฟล์เข้า RAM ทันที!</span>
+    <span class="keyword">return</span> lines  <span class="comment"># 💥 คืนค่าเป็น list ทั้งหมด!</span>
+
+<span class="comment"># สถานการณ์ที่ 1: ไฟล์ขนาด 1 GB</span>
+<span class="comment"># Scenario 1: 1 GB file</span>
+all_lines = <span class="function">read_all_lines</span>(<span class="string">'log_file_1gb.txt'</span>)  
+<span class="comment"># 💀 ใช้แรม ~1 GB สำหรับเก็บ list ทั้งหมด!</span>
+<span class="comment"># 💀 Uses ~1 GB RAM to store the entire list!</span>
+
+<span class="keyword">for</span> line <span class="keyword">in</span> all_lines:
+    <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line:
+        <span class="function">print</span>(line)
+        <span class="keyword">break</span>  <span class="comment"># 😱 แค่หา 1 บรรทัดแรก แต่โหลดทั้งไฟล์!</span>
+                <span class="comment"># 😱 Only need first match, but loaded ENTIRE file!</span>
+
+<span class="comment"># สถานการณ์ที่ 2: การคัดลอก list</span>
+<span class="comment"># Scenario 2: List copying</span>
+filtered_lines = [line <span class="keyword">for</span> line <span class="keyword">in</span> all_lines <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line]
+<span class="comment"># 💀 ตอนนี้ใช้แรม ~2 GB! (all_lines + filtered_lines)</span>
+<span class="comment"># 💀 Now using ~2 GB RAM! (all_lines + filtered_lines)</span>
+
+processed_lines = [line.upper() <span class="keyword">for</span> line <span class="keyword">in</span> filtered_lines]
+<span class="comment"># 💀 ตอนนี้ใช้แรม ~3 GB! (all_lines + filtered + processed)</span>
+<span class="comment"># 💀 Now using ~3 GB RAM! (all + filtered + processed)</span>
+</div>
+
+            <div class="error-box">
+                <h3>💀 ปัญหาร้ายแรงของ Normal Function</h3>
+                <h4>1️⃣ Memory Explosion (หน่วยความจำระเบิด)</h4>
+                <div class="bilingual">
+                    <p class="thai">
+                        <strong>ตัวอย่างจริง:</strong> ไฟล์ log ขนาด 10 ล้านบรรทัด (1 GB)
+                    </p>
+                    <p class="english">
+                        <strong>Real example:</strong> A 10 million line log file (1 GB)
+                    </p>
+                </div>
+                <ul>
+                    <li><code>file.readlines()</code> โหลดทั้งหมด = <strong>1 GB RAM</strong></li>
+                    <li>ถ้าคุณคัดลอก list = อีก <strong>+1 GB RAM</strong></li>
+                    <li>ถ้าคุณทำ list comprehension = อีก <strong>+1 GB RAM</strong></li>
+                    <li><strong>ผลลัพธ์: ใช้แรม 3 GB สำหรับงานที่ควรใช้แค่ไม่กี่ MB!</strong></li>
+                </ul>
+
+                <h4>2️⃣ List Copying Problem (ปัญหาการคัดลอก List)</h4>
+                <div class="bilingual">
+                    <p class="thai">
+                        ใน Python เมื่อคุณสร้าง list ใหม่จาก list เดิม มันจะ<strong>คัดลอกข้อมูล</strong>ไม่ใช่แค่อ้างอิง
+                    </p>
+                    <p class="english">
+                        In Python, when you create a new list from an existing list, it <strong>copies the data</strong>, not just references it.
+                    </p>
+                </div>
+                <div class="code-example"><span class="comment"># การคัดลอก list ทำให้แรมพุ่ง!</span>
+original = <span class="function">read_all_lines</span>(<span class="string">'big_file.txt'</span>)     <span class="comment"># 1 GB</span>
+copy1 = [line <span class="keyword">for</span> line <span class="keyword">in</span> original]         <span class="comment"># +1 GB = 2 GB total</span>
+copy2 = [line.strip() <span class="keyword">for</span> line <span class="keyword">in</span> copy1]    <span class="comment"># +1 GB = 3 GB total</span>
+copy3 = [line.lower() <span class="keyword">for</span> line <span class="keyword">in</span> copy2]    <span class="comment"># +1 GB = 4 GB total!</span></div>
+
+                <h4>3️⃣ Waiting Time (เวลารอที่สูญเปล่า)</h4>
+                <ul>
+                    <li>ต้องรอให้โหลดทั้งไฟล์เสร็จก่อนถึงจะเริ่มประมวลผล</li>
+                    <li><em>Must wait for entire file to load before processing can begin</em></li>
+                    <li>ถ้าคุณต้องการแค่ 10 บรรทัดแรก ก็ต้องรอโหลด 10 ล้านบรรทัดเสร็จ!</li>
+                    <li><em>If you only need first 10 lines, still must wait for all 10 million to load!</em></li>
+                </ul>
+
+                <h4>4️⃣ Memory Error (โปรแกรมล่ม)</h4>
+                <div class="code-example"><span class="comment"># ถ้าไฟล์ใหญ่เกินไป...</span>
+<span class="keyword">try</span>:
+    lines = <span class="function">read_all_lines</span>(<span class="string">'massive_10gb_file.txt'</span>)
+<span class="keyword">except</span> <span class="class-name">MemoryError</span>:
+    <span class="function">print</span>(<span class="string">"💀 MemoryError: ไม่มีแรมพอ! (Not enough RAM!)"</span>)
+    <span class="comment"># โปรแกรมล่ม! ทำงานไม่ได้เลย!</span>
+    <span class="comment"># Program crashes! Can't work at all!</span></div>
+            </div>
+
+            <h3>🟢 พลังของ Generator (The Power of Generators)</h3>
+
+            <div class="code-example"><span class="comment"># ✅ Generator Function - ประมวลผลทีละชิ้น แบบฉลาด!</span>
+<span class="comment"># ✅ Generator Function - Processes one piece at a time, smartly!</span>
+
+<span class="keyword">def</span> <span class="function">read_lines_generator</span>(filename):
+    <span class="keyword">with</span> <span class="function">open</span>(filename, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+        <span class="keyword">for</span> line <span class="keyword">in</span> file:
+            <span class="keyword">yield</span> line  <span class="comment"># ✨ คืนค่าทีละบรรทัด ไม่เก็บทั้งหมด!</span>
+                          <span class="comment"># ✨ Yields one line, doesn't store all!</span>
+
+<span class="comment"># สถานการณ์ที่ 1: ไฟล์ขนาด 1 GB</span>
+<span class="comment"># Scenario 1: 1 GB file</span>
+<span class="keyword">for</span> line <span class="keyword">in</span> <span class="function">read_lines_generator</span>(<span class="string">'log_file_1gb.txt'</span>):
+    <span class="comment"># 😊 ใช้แรมเพียง ~100 bytes ต่อบรรทัด!</span>
+    <span class="comment"># 😊 Uses only ~100 bytes per line!</span>
+    <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line:
+        <span class="function">print</span>(line)
+        <span class="keyword">break</span>  <span class="comment"># ✨ หยุดทันที! ไม่อ่านบรรทัดที่เหลือ!</span>
+                <span class="comment"># ✨ Stops immediately! Doesn't read remaining lines!</span>
+
+<span class="comment"># สถานการณ์ที่ 2: Chaining ไม่มีการคัดลอก!</span>
+<span class="comment"># Scenario 2: Chaining without copying!</span>
+<span class="keyword">def</span> <span class="function">filter_errors</span>(lines):
+    <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+        <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line:
+            <span class="keyword">yield</span> line  <span class="comment"># ไม่คัดลอก! แค่ส่งต่อ!</span>
+
+<span class="keyword">def</span> <span class="function">to_uppercase</span>(lines):
+    <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+        <span class="keyword">yield</span> line.upper()  <span class="comment"># ไม่คัดลอก! แค่แปลงทีละบรรทัด!</span>
+
+<span class="comment"># 😊 ใช้แรมแค่ ~100 bytes ตลอด ไม่ว่าไฟล์จะใหญ่แค่ไหน!</span>
+<span class="comment"># 😊 Uses only ~100 bytes throughout, regardless of file size!</span>
+<span class="keyword">for</span> line <span class="keyword">in</span> <span class="function">to_uppercase</span>(<span class="function">filter_errors</span>(<span class="function">read_lines_generator</span>(<span class="string">'huge_file.txt'</span>))):
+    <span class="function">print</span>(line)
+</div>
+
+            <div class="success-box">
+                <h3>✨ ทำไม Generator ถึงทรงพลังกว่า</h3>
+                
+                <h4>1️⃣ Constant Memory Usage (ใช้แรมคงที่)</h4>
+                <div class="bilingual">
+                    <p class="thai">
+                        <strong>Normal Function:</strong> แรมที่ใช้ = ขนาดของไฟล์ทั้งหมด<br>
+                        <strong>Generator:</strong> แรมที่ใช้ = ขนาดของ 1 บรรทัด (ประมาณ 100 bytes)
+                    </p>
+                    <p class="english">
+                        <strong>Normal Function:</strong> Memory used = entire file size<br>
+                        <strong>Generator:</strong> Memory used = size of 1 line (~100 bytes)
+                    </p>
+                </div>
+                
+                <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                    <tr style="background: #2C3E50; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">File Size</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Normal Function RAM</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Generator RAM</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">1 MB</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">~1 MB</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">~100 bytes</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;">100 MB</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">~100 MB</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">~100 bytes</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">1 GB</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">~1 GB 💀</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">~100 bytes ✨</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;">10 GB</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">MemoryError 💀💀💀</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">~100 bytes ✨✨✨</td>
+                    </tr>
+                </table>
+
+                <h4>2️⃣ No List Copying (ไม่มีการคัดลอก List)</h4>
+                <div class="bilingual">
+                    <p class="thai">
+                        Generator ไม่คัดลอกข้อมูล มันแค่ <strong>"ส่งต่อ"</strong> ข้อมูลไปยัง generator ถัดไป
+                    </p>
+                    <p class="english">
+                        Generators don't copy data, they just <strong>"pass along"</strong> data to the next generator.
+                    </p>
+                </div>
+                <div class="code-example"><span class="comment"># Generator Pipeline - ไม่คัดลอก!</span>
+gen1 = <span class="function">read_lines_generator</span>(<span class="string">'big.txt'</span>)    <span class="comment"># ~100 bytes</span>
+gen2 = <span class="function">filter_errors</span>(gen1)                <span class="comment"># ~100 bytes (same line!)</span>
+gen3 = <span class="function">to_uppercase</span>(gen2)                 <span class="comment"># ~100 bytes (same line!)</span>
+
+<span class="comment"># Total RAM: ~100 bytes ตลอด!</span>
+<span class="comment"># Total RAM: ~100 bytes throughout!</span></div>
+
+                <h4>3️⃣ Lazy Evaluation (ประมวลผลแบบขี้เกียจ)</h4>
+                <ul>
+                    <li><strong>Normal Function:</strong> ต้องอ่านทั้งไฟล์เสร็จก่อน ถึงจะเริ่มทำงาน</li>
+                    <li><strong>Generator:</strong> เริ่มทำงานทันที อ่านเฉพาะเมื่อจำเป็น</li>
+                </ul>
+                <div class="code-example"><span class="comment"># ถ้าต้องการ 5 บรรทัดแรกที่มี 'ERROR'</span>
+
+<span class="comment"># ❌ Normal Function: อ่านทั้งไฟล์ 10 ล้านบรรทัด!</span>
+all_lines = <span class="function">read_all_lines</span>(<span class="string">'huge.txt'</span>)  <span class="comment"># รอ 30 วินาที...</span>
+count = <span class="number">0</span>
+<span class="keyword">for</span> line <span class="keyword">in</span> all_lines:
+    <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line:
+        <span class="function">print</span>(line)
+        count += <span class="number">1</span>
+        <span class="keyword">if</span> count >= <span class="number">5</span>:
+            <span class="keyword">break</span>  <span class="comment"># หา 5 บรรทัดแล้ว แต่อ่านไปแล้ว 10 ล้านบรรทัด!</span>
+
+<span class="comment"># ✅ Generator: อ่านเฉพาะที่จำเป็น!</span>
+count = <span class="number">0</span>
+<span class="keyword">for</span> line <span class="keyword">in</span> <span class="function">read_lines_generator</span>(<span class="string">'huge.txt'</span>):  <span class="comment"># เริ่มทันที!</span>
+    <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line:
+        <span class="function">print</span>(line)
+        count += <span class="number">1</span>
+        <span class="keyword">if</span> count >= <span class="number">5</span>:
+            <span class="keyword">break</span>  <span class="comment"># อ่านแค่ ~1000 บรรทัดเท่านั้น! (ถ้าเจอ ERROR ทุก 200 บรรทัด)</span></div>
+
+                <h4>4️⃣ Infinite Sequences (ลำดับไม่สิ้นสุด)</h4>
+                <div class="bilingual">
+                    <p class="thai">
+                        Generator สามารถสร้างข้อมูลไม่สิ้นสุดได้ ซึ่ง Normal Function ทำไม่ได้เลย!
+                    </p>
+                    <p class="english">
+                        Generators can create infinite sequences, which Normal Functions simply cannot do!
+                    </p>
+                </div>
+                <div class="code-example"><span class="comment"># ❌ Normal Function: ไม่สามารถทำได้!</span>
+<span class="keyword">def</span> <span class="function">infinite_numbers</span>():
+    numbers = []
+    i = <span class="number">0</span>
+    <span class="keyword">while</span> <span class="class-name">True</span>:
+        numbers.append(i)  <span class="comment"># 💀 จะกินแรมไปเรื่อยๆ จนโปรแกรมล่ม!</span>
+        i += <span class="number">1</span>
+    <span class="keyword">return</span> numbers  <span class="comment"># ไม่มีวันถึงบรรทัดนี้!</span>
+
+<span class="comment"># ✅ Generator: ทำได้ง่ายๆ!</span>
+<span class="keyword">def</span> <span class="function">infinite_numbers_gen</span>():
+    i = <span class="number">0</span>
+    <span class="keyword">while</span> <span class="class-name">True</span>:
+        <span class="keyword">yield</span> i  <span class="comment"># ✨ ใช้แรมแค่ int เดียว!</span>
+        i += <span class="number">1</span>
+
+<span class="comment"># ใช้งานได้ปกติ!</span>
+<span class="keyword">for</span> num <span class="keyword">in</span> <span class="function">infinite_numbers_gen</span>():
+    <span class="function">print</span>(num)
+    <span class="keyword">if</span> num >= <span class="number">100</span>:
+        <span class="keyword">break</span>  <span class="comment"># หยุดเมื่อต้องการ</span></div>
+
+                <h4>5️⃣ Pipeline Composition (ประกอบ Pipeline ได้)</h4>
+                <div class="bilingual">
+                    <p class="thai">
+                        Generator สามารถเชื่อมต่อกันได้โดยไม่ต้องคัดลอกข้อมูล ทำให้สร้าง pipeline ที่ซับซ้อนได้ง่าย
+                    </p>
+                    <p class="english">
+                        Generators can be chained without copying data, making it easy to build complex pipelines.
+                    </p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>📊 สรุปเปรียบเทียบ (Summary Comparison)</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                    <tr style="background: #2C3E50; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">คุณสมบัติ (Feature)</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Normal Function</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Generator</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Memory Usage</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">❌ ใช้เท่ากับขนาดไฟล์</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">✅ ใช้แค่ 1 item</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>List Copying</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">❌ คัดลอกทุกครั้ง</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">✅ ไม่คัดลอก</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Start Time</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">❌ รอโหลดทั้งไฟล์</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">✅ เริ่มทันที</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Large Files</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">❌ MemoryError</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">✅ ทำงานได้</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Infinite Data</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">❌ ทำไม่ได้</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">✅ ทำได้</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Pipeline</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #E74C3C;">❌ ยาก แรมพุ่ง</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: #27AE60;">✅ ง่าย ไม่กินแรม</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="success-box">
+                <h3>✅ ทำไม Generator ดีกว่า? (Why Are Generators Better?)</h3>
+                <ol>
+                    <li>
+                        <strong>Memory Efficient (ประหยัดหน่วยความจำ)</strong><br>
+                        ไม่โหลดข้อมูลทั้งหมดเข้า RAM พร้อมกัน - เหมาะสำหรับไฟล์ขนาดใหญ่<br>
+                        <em>Doesn't load all data into RAM at once - perfect for large files</em>
+                    </li>
+                    <li>
+                        <strong>Lazy Evaluation (ประมวลผลแบบขี้เกียจ)</strong><br>
+                        ประมวลผลเมื่อต้องการใช้จริง ไม่เสียเวลาประมวลผลข้อมูลที่ไม่ได้ใช้<br>
+                        <em>Processes only when needed - doesn't waste time on unused data</em>
+                    </li>
+                    <li>
+                        <strong>Pipeline Processing (ประมวลผลแบบสายพาน)</strong><br>
+                        เชื่อมต่อ generator หลายตัวเข้าด้วยกันได้ เช่น อ่าน → กรอง → แปลง<br>
+                        <em>Can chain multiple generators together - e.g., read → filter → transform</em>
+                    </li>
+                    <li>
+                        <strong>Infinite Sequences (ลำดับไม่มีที่สิ้นสุด)</strong><br>
+                        สามารถสร้างข้อมูลไม่สิ้นสุดได้ เช่น stream ข้อมูล real-time<br>
+                        <em>Can create infinite sequences - e.g., real-time data streams</em>
+                    </li>
+                    <li>
+                        <strong>Better Performance (ประสิทธิภาพดีกว่า)</strong><br>
+                        เริ่มส่งผลลัพธ์ได้ทันที ไม่ต้องรอประมวลผลทั้งหมดเสร็จก่อน<br>
+                        <em>Starts yielding results immediately - no need to wait for all processing</em>
+                    </li>
+                </ol>
+            </div>
+
+            <h2>พลังของ Generator Chaining</h2>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    Generator สามารถเชื่อมต่อกันเป็นลูกโซ่ได้ (Chaining) ทำให้เราสามารถสร้าง data pipeline ที่ประมวลผลข้อมูลทีละขั้นตอนได้อย่างมีประสิทธิภาพ 
+                    แต่ละ generator ทำหน้าที่เพียงอย่างเดียว ทำให้โค้ดอ่านง่าย บำรุงรักษาง่าย และทดสอบง่าย
+                </p>
+                <p class="english">
+                    Generators can be chained together, allowing us to create efficient data pipelines that process data step by step.
+                    Each generator has a single responsibility, making code readable, maintainable, and testable.
+                </p>
+            </div>
+
+            <h3>🔗 ตัวอย่าง: Generator Pipeline แบบสมบูรณ์</h3>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    เราจะสร้าง pipeline ที่มี 3 ขั้นตอน: <strong>อ่าน → กรอง → แปลง</strong>
+                </p>
+                <p class="english">
+                    We'll create a 3-stage pipeline: <strong>Read → Filter → Transform</strong>
+                </p>
+            </div>
+
+            <div class="code-example"><span class="comment"># generator_pipeline.py</span>
+<span class="comment"># สาธิตการเชื่อมต่อ generators เข้าด้วยกัน</span>
+<span class="comment"># Demonstrating generator chaining</span>
+
+<span class="keyword">class</span> <span class="class-name">GeneratorPipeline</span>:
+    <span class="string">"""
+    คลาสที่แสดงการใช้ generator chaining
+    Class demonstrating generator chaining
+    """</span>
+    
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, filename):
+        self.filename = filename
+        self.stats = {
+            <span class="string">'lines_read'</span>: <span class="number">0</span>,
+            <span class="string">'lines_filtered'</span>: <span class="number">0</span>,
+            <span class="string">'lines_transformed'</span>: <span class="number">0</span>
+        }
+    
+    <span class="comment"># ========================================</span>
+    <span class="comment"># ขั้นที่ 1: READER GENERATOR</span>
+    <span class="comment"># Step 1: READER GENERATOR</span>
+    <span class="comment"># ========================================</span>
+    <span class="keyword">def</span> <span class="function">read_lines</span>(self):
+        <span class="string">"""
+        Generator ที่อ่านไฟล์ทีละบรรทัด
+        Generator that reads file line by line
+        
+        Yields:
+            str: บรรทัดจากไฟล์ (line from file)
+        """</span>
+        <span class="keyword">try</span>:
+            <span class="keyword">with</span> <span class="function">open</span>(self.filename, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> file:
+                <span class="keyword">for</span> line <span class="keyword">in</span> file:
+                    self.stats[<span class="string">'lines_read'</span>] += <span class="number">1</span>
+                    <span class="keyword">yield</span> line.strip()
+        <span class="keyword">except</span> <span class="class-name">FileNotFoundError</span>:
+            <span class="function">print</span>(<span class="string">f"ไม่พบไฟล์: <span class="keyword">{</span>self.filename<span class="keyword">}</span>"</span>)
+    
+    <span class="comment"># ========================================</span>
+    <span class="comment"># ขั้นที่ 2: FILTER GENERATORS</span>
+    <span class="comment"># Step 2: FILTER GENERATORS</span>
+    <span class="comment"># ========================================</span>
+    <span class="keyword">def</span> <span class="function">filter_non_empty</span>(self, lines):
+        <span class="string">"""
+        กรองเฉพาะบรรทัดที่ไม่ว่าง
+        Filter out empty lines
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            
+        Yields:
+            str: บรรทัดที่ไม่ว่าง (non-empty line)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            <span class="keyword">if</span> line:  <span class="comment"># ถ้าบรรทัดไม่ว่าง (if line is not empty)</span>
+                <span class="keyword">yield</span> line
+    
+    <span class="keyword">def</span> <span class="function">filter_by_keyword</span>(self, lines, keyword):
+        <span class="string">"""
+        กรองเฉพาะบรรทัดที่มีคำที่ระบุ
+        Filter lines containing specific keyword
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            keyword (str): คำที่ต้องการค้นหา (keyword to search)
+            
+        Yields:
+            str: บรรทัดที่มีคำที่ระบุ (line containing keyword)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            <span class="keyword">if</span> keyword.lower() <span class="keyword">in</span> line.lower():
+                self.stats[<span class="string">'lines_filtered'</span>] += <span class="number">1</span>
+                <span class="keyword">yield</span> line
+    
+    <span class="keyword">def</span> <span class="function">filter_by_length</span>(self, lines, min_length=<span class="number">10</span>):
+        <span class="string">"""
+        กรองเฉพาะบรรทัดที่มีความยาวขั้นต่ำ
+        Filter lines with minimum length
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            min_length (int): ความยาวขั้นต่ำ (minimum length)
+            
+        Yields:
+            str: บรรทัดที่ยาวพอ (line with sufficient length)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            <span class="keyword">if</span> <span class="function">len</span>(line) >= min_length:
+                <span class="keyword">yield</span> line
+    
+    <span class="comment"># ========================================</span>
+    <span class="comment"># ขั้นที่ 3: TRANSFORM GENERATORS</span>
+    <span class="comment"># Step 3: TRANSFORM GENERATORS</span>
+    <span class="comment"># ========================================</span>
+    <span class="keyword">def</span> <span class="function">to_uppercase</span>(self, lines):
+        <span class="string">"""
+        แปลงเป็นตัวพิมพ์ใหญ่
+        Transform to uppercase
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            
+        Yields:
+            str: บรรทัดที่เป็นตัวพิมพ์ใหญ่ (uppercase line)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            <span class="keyword">yield</span> line.upper()
+    
+    <span class="keyword">def</span> <span class="function">add_line_numbers</span>(self, lines):
+        <span class="string">"""
+        เพิ่มเลขบรรทัดข้างหน้า
+        Add line numbers
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            
+        Yields:
+            str: บรรทัดพร้อมเลขหน้า (numbered line)
+        """</span>
+        <span class="keyword">for</span> i, line <span class="keyword">in</span> <span class="function">enumerate</span>(lines, <span class="number">1</span>):
+            <span class="keyword">yield</span> <span class="string">f"<span class="keyword">{</span>i<span class="keyword">}</span>. <span class="keyword">{</span>line<span class="keyword">}</span>"</span>
+    
+    <span class="keyword">def</span> <span class="function">extract_words</span>(self, lines):
+        <span class="string">"""
+        แปลงบรรทัดเป็น dictionary ที่มีข้อมูลเชิงลึก
+        Transform lines into detailed dictionary
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            
+        Yields:
+            dict: ข้อมูลบรรทัดแบบละเอียด (detailed line info)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            words = line.split()
+            self.stats[<span class="string">'lines_transformed'</span>] += <span class="number">1</span>
+            <span class="keyword">yield</span> {
+                <span class="string">'text'</span>: line,
+                <span class="string">'word_count'</span>: <span class="function">len</span>(words),
+                <span class="string">'char_count'</span>: <span class="function">len</span>(line),
+                <span class="string">'words'</span>: words,
+                <span class="string">'first_word'</span>: words[<span class="number">0</span>] <span class="keyword">if</span> words <span class="keyword">else</span> <span class="string">''</span>
+            }
+    
+    <span class="keyword">def</span> <span class="function">highlight_keyword</span>(self, lines, keyword):
+        <span class="string">"""
+        เน้นคำที่ค้นหาด้วย *** ***
+        Highlight keyword with *** ***
+        
+        Parameters:
+            lines: generator ของบรรทัด (generator of lines)
+            keyword (str): คำที่ต้องการเน้น (keyword to highlight)
+            
+        Yields:
+            str: บรรทัดที่มีการเน้นคำ (line with highlighted keyword)
+        """</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            highlighted = line.replace(
+                keyword, 
+                <span class="string">f"***<span class="keyword">{</span>keyword<span class="keyword">}</span>***"</span>
+            )
+            <span class="keyword">yield</span> highlighted
+
+
+<span class="comment"># ========================================</span>
+<span class="comment"># ตัวอย่างการใช้งาน: CHAINING GENERATORS</span>
+<span class="comment"># Usage Examples: CHAINING GENERATORS</span>
+<span class="comment"># ========================================</span>
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    
+    <span class="comment"># สร้างไฟล์ตัวอย่างสำหรับทดสอบ</span>
+    <span class="comment"># Create sample file for testing</span>
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">'sample_data.txt'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:
+        f.write(<span class="string">"""Python is a powerful programming language
+It is easy to learn and use
+Python supports object-oriented programming
+You can create generators in Python
+
+Generators are memory efficient
+They use yield instead of return
+Python generators are amazing tools"""</span>)
+    
+    pipeline = <span class="class-name">GeneratorPipeline</span>(<span class="string">'sample_data.txt'</span>)
+    
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">80</span>)
+    <span class="function">print</span>(<span class="string">"ตัวอย่างที่ 1: อ่าน → กรองคำว่า 'Python' → เพิ่มเลขบรรทัด"</span>)
+    <span class="function">print</span>(<span class="string">"Example 1: Read → Filter 'Python' → Add line numbers"</span>)
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">80</span>)
+    
+    <span class="comment"># 🔗 Chain: read → filter by keyword → add line numbers</span>
+    result1 = pipeline.add_line_numbers(
+        pipeline.filter_by_keyword(
+            pipeline.read_lines(),
+            <span class="string">'Python'</span>
+        )
+    )
+    
+    <span class="keyword">for</span> line <span class="keyword">in</span> result1:
+        <span class="function">print</span>(line)
+    
+    <span class="function">print</span>(<span class="string">f"\n📊 สถิติ: <span class="keyword">{</span>pipeline.stats<span class="keyword">}</span>\n"</span>)
+    
+    
+    <span class="comment"># รีเซ็ตสถิติ (Reset stats)</span>
+    pipeline.stats = {<span class="string">'lines_read'</span>: <span class="number">0</span>, <span class="string">'lines_filtered'</span>: <span class="number">0</span>, <span class="string">'lines_transformed'</span>: <span class="number">0</span>}
+    
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">80</span>)
+    <span class="function">print</span>(<span class="string">"ตัวอย่างที่ 2: อ่าน → กรองบรรทัดยาว → เน้นคำ → ตัวพิมพ์ใหญ่"</span>)
+    <span class="function">print</span>(<span class="string">"Example 2: Read → Filter long lines → Highlight word → Uppercase"</span>)
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">80</span>)
+    
+    <span class="comment"># 🔗 Chain: read → filter empty → filter length → highlight → uppercase</span>
+    result2 = pipeline.to_uppercase(
+        pipeline.highlight_keyword(
+            pipeline.filter_by_length(
+                pipeline.filter_non_empty(
+                    pipeline.read_lines()
+                ),
+                min_length=<span class="number">30</span>
+            ),
+            <span class="string">'generator'</span>
+        )
+    )
+    
+    <span class="keyword">for</span> line <span class="keyword">in</span> result2:
+        <span class="function">print</span>(line)
+    
+    <span class="function">print</span>(<span class="string">f"\n📊 สถิติ: <span class="keyword">{</span>pipeline.stats<span class="keyword">}</span>\n"</span>)
+    
+    
+    <span class="comment"># รีเซ็ตสถิติ (Reset stats)</span>
+    pipeline.stats = {<span class="string">'lines_read'</span>: <span class="number">0</span>, <span class="string">'lines_filtered'</span>: <span class="number">0</span>, <span class="string">'lines_transformed'</span>: <span class="number">0</span>}
+    
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">80</span>)
+    <span class="function">print</span>(<span class="string">"ตัวอย่างที่ 3: อ่าน → กรองคำว่า 'Python' → แปลงเป็น dictionary"</span>)
+    <span class="function">print</span>(<span class="string">"Example 3: Read → Filter 'Python' → Transform to dictionary"</span>)
+    <span class="function">print</span>(<span class="string">"="</span> * <span class="number">80</span>)
+    
+    <span class="comment"># 🔗 Chain: read → filter → extract detailed info</span>
+    result3 = pipeline.extract_words(
+        pipeline.filter_by_keyword(
+            pipeline.read_lines(),
+            <span class="string">'Python'</span>
+        )
+    )
+    
+    <span class="keyword">for</span> data <span class="keyword">in</span> result3:
+        <span class="function">print</span>(<span class="string">f"📝 Text: <span class="keyword">{</span>data[<span class="string">'text'</span>]<span class="keyword">}</span>"</span>)
+        <span class="function">print</span>(<span class="string">f"   📊 Words: <span class="keyword">{</span>data[<span class="string">'word_count'</span>]<span class="keyword">}</span>, Chars: <span class="keyword">{</span>data[<span class="string">'char_count'</span>]<span class="keyword">}</span>, First: '<span class="keyword">{</span>data[<span class="string">'first_word'</span>]<span class="keyword">}</span>'"</span>)
+        <span class="function">print</span>()
+    
+    <span class="function">print</span>(<span class="string">f"📊 สถิติสุดท้าย (Final stats): <span class="keyword">{</span>pipeline.stats<span class="keyword">}</span>"</span>)
+</div>
+
+            <div class="highlight-box">
+                <h3>🎯 ผลลัพธ์ที่คาดหวัง (Expected Output)</h3>
+                <pre style="background: white; padding: 15px; border-radius: 5px; overflow-x: auto;">================================================================================
+ตัวอย่างที่ 1: อ่าน → กรองคำว่า 'Python' → เพิ่มเลขบรรทัด
+Example 1: Read → Filter 'Python' → Add line numbers
+================================================================================
+1. Python is a powerful programming language
+2. Python supports object-oriented programming
+3. You can create generators in Python
+4. Python generators are amazing tools
+
+📊 สถิติ: {'lines_read': 7, 'lines_filtered': 4, 'lines_transformed': 0}
+
+================================================================================
+ตัวอย่างที่ 2: อ่าน → กรองบรรทัดยาว → เน้นคำ → ตัวพิมพ์ใหญ่
+Example 2: Read → Filter long lines → Highlight word → Uppercase
+================================================================================
+PYTHON IS A POWERFUL PROGRAMMING LANGUAGE
+PYTHON SUPPORTS OBJECT-ORIENTED PROGRAMMING
+YOU CAN CREATE ***GENERATOR***S IN PYTHON
+PYTHON ***GENERATOR***S ARE AMAZING TOOLS
+
+📊 สถิติ: {'lines_read': 7, 'lines_filtered': 0, 'lines_transformed': 0}
+
+================================================================================
+ตัวอย่างที่ 3: อ่าน → กรองคำว่า 'Python' → แปลงเป็น dictionary
+Example 3: Read → Filter 'Python' → Transform to dictionary
+================================================================================
+📝 Text: Python is a powerful programming language
+   📊 Words: 6, Chars: 42, First: 'Python'
+
+📝 Text: Python supports object-oriented programming
+   📊 Words: 4, Chars: 42, First: 'Python'
+
+📝 Text: You can create generators in Python
+   📊 Words: 6, Chars: 35, First: 'You'
+
+📝 Text: Python generators are amazing tools
+   📊 Words: 5, Chars: 34, First: 'Python'
+
+📊 สถิติสุดท้าย (Final stats): {'lines_read': 7, 'lines_filtered': 4, 'lines_transformed': 4}</pre>
+            </div>
+
+            <h3>💡 ทำไม Chaining ถึงทรงพลัง? (Why is Chaining Powerful?)</h3>
+            
+            <div class="success-box">
+                <ol>
+                    <li>
+                        <strong>Single Responsibility (หน้าที่เดียว)</strong><br>
+                        แต่ละ generator ทำแค่สิ่งเดียว ทำให้ง่ายต่อการเข้าใจและทดสอบ<br>
+                        <em>Each generator does one thing well, making it easy to understand and test</em>
+                    </li>
+                    <li>
+                        <strong>Composability (ประกอบกันได้)</strong><br>
+                        สามารถนำ generators มาผสมกันได้หลายแบบ ไม่ต้องเขียนโค้ดใหม่<br>
+                        <em>Can mix and match generators in different ways without rewriting code</em>
+                    </li>
+                    <li>
+                        <strong>Memory Efficient (ประหยัดหน่วยความจำ)</strong><br>
+                        ประมวลผลทีละชิ้น ไม่โหลดข้อมูลทั้งหมดเข้า memory<br>
+                        <em>Processes one item at a time, doesn't load all data into memory</em>
+                    </li>
+                    <li>
+                        <strong>Lazy Execution (ทำงานเมื่อจำเป็น)</strong><br>
+                        ถ้าเรา break ออกจาก loop เร็ว ก็ไม่ต้องประมวลผลข้อมูลที่เหลือ<br>
+                        <em>If you break early from the loop, remaining data isn't processed</em>
+                    </li>
+                    <li>
+                        <strong>Easy to Debug (ดีบักง่าย)</strong><br>
+                        สามารถทดสอบแต่ละขั้นตอนแยกกันได้<br>
+                        <em>Can test each stage independently</em>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="code-example"><span class="comment"># 💡 เทคนิคการเขียน: สร้าง helper function สำหรับ chaining</span>
+<span class="comment"># Writing Technique: Create helper function for chaining</span>
+
+<span class="keyword">def</span> <span class="function">create_pipeline</span>(filename, keyword, min_length=<span class="number">0</span>):
+    <span class="string">"""
+    สร้าง pipeline ที่ใช้งานบ่อยๆ ให้สั้นลง
+    Create commonly-used pipeline in shorter form
+    """</span>
+    pipeline = <span class="class-name">GeneratorPipeline</span>(filename)
+    
+    <span class="comment"># เชื่อมต่อ generators เข้าด้วยกัน</span>
+    <span class="comment"># Chain generators together</span>
+    result = pipeline.read_lines()
+    result = pipeline.filter_non_empty(result)
+    
+    <span class="keyword">if</span> min_length > <span class="number">0</span>:
+        result = pipeline.filter_by_length(result, min_length)
+    
+    <span class="keyword">if</span> keyword:
+        result = pipeline.filter_by_keyword(result, keyword)
+    
+    result = pipeline.extract_words(result)
+    
+    <span class="keyword">return</span> result
+
+<span class="comment"># ใช้งาน (Usage)</span>
+<span class="keyword">for</span> data <span class="keyword">in</span> <span class="function">create_pipeline</span>(<span class="string">'sample_data.txt'</span>, <span class="string">'Python'</span>, min_length=<span class="number">30</span>):
+    <span class="function">print</span>(<span class="string">f"<span class="keyword">{</span>data[<span class="string">'text'</span>]<span class="keyword">}</span> - <span class="keyword">{</span>data[<span class="string">'word_count'</span>]<span class="keyword">}</span> words"</span>)
+</div>
+
+            <h2>ตัวอย่างการใช้งานจริง (Real-World Use Cases)</h2>
+            
+            <div class="bilingual">
+                <p class="thai">
+                    ตัวอย่างการประยุกต์ใช้ Generator Pipeline ในงานจริง
+                </p>
+                <p class="english">
+                    Real-world applications of Generator Pipeline
+                </p>
+            </div>
+
+            <div class="code-example"><span class="comment"># ตัวอย่าง: Log File Analysis</span>
+<span class="comment"># วิเคราะห์ไฟล์ log ขนาดใหญ่หา error messages</span>
+<span class="comment"># Analyze large log files for error messages</span>
+
+<span class="keyword">class</span> <span class="class-name">LogAnalyzer</span>(<span class="class-name">GeneratorPipeline</span>):
+    <span class="keyword">def</span> <span class="function">filter_errors</span>(self, lines):
+        <span class="string">"""กรองเฉพาะบรรทัดที่มี ERROR"""</span>
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            <span class="keyword">if</span> <span class="string">'ERROR'</span> <span class="keyword">in</span> line <span class="keyword">or</span> <span class="string">'CRITICAL'</span> <span class="keyword">in</span> line:
+                <span class="keyword">yield</span> line
+    
+    <span class="keyword">def</span> <span class="function">parse_log_entry</span>(self, lines):
+        <span class="string">"""แปลง log entry เป็น structured data"""</span>
+        <span class="keyword">import</span> re
+        <span class="keyword">for</span> line <span class="keyword">in</span> lines:
+            <span class="comment"># สมมติว่า format: [2024-01-01 10:30:45] ERROR: message</span>
+            match = re.match(<span class="string">r'\[(.+?)\] (\w+): (.+)'</span>, line)
+            <span class="keyword">if</span> match:
+                <span class="keyword">yield</span> {
+                    <span class="string">'timestamp'</span>: match.group(<span class="number">1</span>),
+                    <span class="string">'level'</span>: match.group(<span class="number">2</span>),
+                    <span class="string">'message'</span>: match.group(<span class="number">3</span>)
+                }
+
+<span class="comment"># ใช้งาน: อ่าน → กรอง errors → แปลง → วิเคราะห์</span>
+<span class="comment"># Usage: read → filter errors → parse → analyze</span>
+analyzer = <span class="class-name">LogAnalyzer</span>(<span class="string">'app.log'</span>)
+
+errors = analyzer.parse_log_entry(
+    analyzer.filter_errors(
+        analyzer.read_lines()
+    )
+)
+
+error_count = {}
+<span class="keyword">for</span> entry <span class="keyword">in</span> errors:
+    msg = entry[<span class="string">'message'</span>]
+    error_count[msg] = error_count.get(msg, <span class="number">0</span>) + <span class="number">1</span>
+
+<span class="function">print</span>(<span class="string">"Top Errors:"</span>)
+<span class="keyword">for</span> error, count <span class="keyword">in</span> <span class="function">sorted</span>(error_count.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="class-name">True</span>)[:<span class="number">5</span>]:
+    <span class="function">print</span>(<span class="string">f"  <span class="keyword">{</span>count<span class="keyword">}</span>x: <span class="keyword">{</span>error<span class="keyword">}</span>"</span>)
+</div>
+
+            <h2>สรุป (Summary)</h2>
+            
+            <div class="highlight-box">
+                <h3>🎯 เส้นทางการพัฒนา (Development Path)</h3>
+                <ol>
+                    <li><strong>Simple Script</strong> - เริ่มต้นง่ายๆ แต่ไม่ยืดหยุ่น</li>
+                    <li><strong>+ Entry Point</strong> - สามารถ import ได้</li>
+                    <li><strong>+ Function</strong> - ใช้ซ้ำได้ มี error handling</li>
+                    <li><strong>+ Class</strong> - จัดระเบียบดี เก็บ state ได้</li>
+                    <li><strong>+ Generator</strong> - ประหยัด memory รองรับไฟล์ใหญ่</li>
+                </ol>
+            </div>
+
+            <div class="success-box">
+                <h3>💡 ข้อแนะนำสำหรับการเขียนโค้ดที่ดี (Best Practices)</h3>
+                <ul>
+                    <li>เริ่มต้นจากง่ายไปซับซ้อน - จัดระเบียบเมื่อจำเป็น<br><em>Start simple, organize when necessary</em></li>
+                    <li>ใช้ <span class="vocab-term">if __name__ == "__main__":</span> เสมอในไฟล์ที่ต้องการ import<br><em>Always use entry point in importable files</em></li>
+                    <li>เขียน docstring อธิบายฟังก์ชันและ class<br><em>Write docstrings to explain functions and classes</em></li>
+                    <li>ใช้ generator เมื่อต้องการจัดการข้อมูลจำนวนมาก<br><em>Use generators for handling large amounts of data</em></li>
+                    <li>จัดการข้อผิดพลาดด้วย try-except<br><em>Handle errors with try-except blocks</em></li>
+                    <li>ตั้งชื่อตัวแปรและฟังก์ชันให้สื่อความหมาย<br><em>Use meaningful variable and function names</em></li>
+                </ul>
+            </div>
+
+            <div class="error-box">
+                <h3>⚠️ สิ่งที่ควรหลีกเลี่ยง (Common Mistakes to Avoid)</h3>
+                <ul>
+                    <li>ไม่ใช้ entry point ทำให้ import แล้วโค้ดรันทันที<br><em>Not using entry point causes code to run on import</em></li>
+                    <li>โหลดไฟล์ใหญ่ทั้งหมดเข้า memory<br><em>Loading large files entirely into memory</em></li>
+                    <li>ไม่จัดการข้อผิดพลาด (error handling)<br><em>Not handling errors properly</em></li>
+                    <li>hardcode ค่าต่างๆ แทนที่จะใช้ parameter<br><em>Hardcoding values instead of using parameters</em></li>
+                    <li>ไม่เขียน docstring หรือ comment<br><em>Not writing docstrings or comments</em></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <footer>
+            <p>🐍 Python Programming Tutorial for Thai Learners</p>
+            <p>Created with ❤️ for learning | สร้างด้วยความรักในการเรียนรู้</p>
+            <p>© 2026 - Learn Python the Right Way | เรียนรู้ Python อย่างถูกวิธี</p>
+        </footer>
+    </div>
+</body>
+</html>
