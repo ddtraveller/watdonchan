@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming สำหรับคนไทย - AI Search Report System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --secondary: #F59E0B;
+            --success: #10B981;
+            --error: #EF4444;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --code-bg: #282C34;
+            --text-light: #6B7280;
+            --bg-light: #F9FAFB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+            line-height: 1.8;
+            color: #1F2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            font-weight: 700;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #374151;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .vocab {
+            display: inline-block;
+            background: #FEF3C7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400E;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .code-example {
+            background: var(--code-bg);
+            color: #ABB2BF;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95em;
+            margin: 20px 0;
+            overflow-x: auto;
+            position: relative;
+            border-left: 4px solid var(--secondary);
+            white-space: pre;
+            line-height: 1.6;
+            tab-size: 4;
+        }
+        
+        .code-example::before {
+            content: "Python";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.75em;
+            color: var(--text-light);
+            opacity: 0.5;
+        }
+        
+        .keyword { color: #C678DD; }
+        .string { color: #98C379; }
+        .number { color: #D19A66; }
+        .function { color: #61AFEF; }
+        .comment { color: #5C6370; font-style: italic; }
+        .class-name { color: #E5C07B; }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #E6FFF0 0%, #CCFFE0 100%);
+            border-left: 5px solid var(--success);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .error-box {
+            background: linear-gradient(135deg, #FFF0F0 0%, #FFE0E0 100%);
+            border-left: 5px solid var(--error);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            border-left: 5px solid var(--warning);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%);
+            border-left: 5px solid var(--info);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 40px;
+        }
+        
+        li {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+        
+        .output-demo {
+            background: #F3F4F6;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #E5E7EB;
+        }
+        
+        footer {
+            background: #1F2937;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐍 Python Programming Tutorial</h1>
+            <p>สร้างระบบรายงานอัตโนมัติด้วย AI และ Web Search</p>
+            <div style="margin-top: 20px;">
+                <span class="badge">สำหรับผู้เริ่มต้น</span>
+                <span class="badge">ภาษาไทย 80%</span>
+                <span class="badge">Free APIs</span>
+            </div>
+        </header>
+        
+        <div class="content">
+            <h2>📚 เกี่ยวกับโปรเจกต์นี้</h2>
+            <p>
+                ในบทเรียนนี้ เราจะเรียนรู้การสร้างโปรแกรม Python ที่สามารถ:
+            </p>
+            <ul>
+                <li>รับ <span class="vocab">prompt</span> (คำสั่งหรือคำถาม) จากผู้ใช้</li>
+                <li>ค้นหาข้อมูลจากอินเทอร์เน็ตโดยใช้ <span class="vocab">Web Search API</span></li>
+                <li>ส่งข้อมูลที่ค้นหาได้ไปให้ <span class="vocab">AI</span> ประมวลผล</li>
+                <li>สร้าง <span class="vocab">report</span> (รายงาน) พร้อม <span class="vocab">references</span> (อ้างอิง)</li>
+                <li>สร้าง <span class="vocab">chart</span> (กราฟ) จากข้อมูลที่ได้</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>🎯 คำศัพท์ Programming ที่ต้องรู้</h3>
+                <ul>
+                    <li><span class="vocab">API</span> (Application Programming Interface) = ช่องทางสื่อสารระหว่างโปรแกรม</li>
+                    <li><span class="vocab">Request</span> = การขอข้อมูล</li>
+                    <li><span class="vocab">Response</span> = การตอบกลับข้อมูล</li>
+                    <li><span class="vocab">JSON</span> = รูปแบบการจัดเก็บข้อมูล</li>
+                    <li><span class="vocab">Import</span> = การนำเข้า library หรือ module</li>
+                    <li><span class="vocab">Function</span> = ฟังก์ชัน คือชุดคำสั่งที่ทำงานเฉพาะ</li>
+                </ul>
+            </div>
+
+            <h2>🔧 เตรียมความพร้อม (Setup)</h2>
+            
+            <h3>ติดตั้ง Libraries ที่จำเป็น</h3>
+            <p>เราจะใช้ <span class="vocab">libraries</span> (ห้องสมุดโค้ด) ดังนี้:</p>
+
+            <div class="code-example"><span class="comment"># ติดตั้งผ่าน terminal/command prompt</span>
+pip <span class="function">install</span> requests matplotlib anthropic duckduckgo-search</div>
+
+            <div class="info-box">
+                <h3>📦 Library แต่ละตัวทำอะไร?</h3>
+                <ul>
+                    <li><span class="vocab">requests</span> - ใช้สำหรับส่ง HTTP requests</li>
+                    <li><span class="vocab">matplotlib</span> - ใช้สร้าง charts และกราฟ</li>
+                    <li><span class="vocab">anthropic</span> - ใช้เชื่อมต่อกับ Claude AI</li>
+                    <li><span class="vocab">duckduckgo-search</span> - ใช้ค้นหาข้อมูลจากเว็บฟรี</li>
+                </ul>
+            </div>
+
+            <h2>💻 เริ่มเขียนโค้ด (Let's Code!)</h2>
+
+            <h3><span class="step-number">1</span> นำเข้า Libraries</h3>
+            <p>ขั้นแรก เราต้อง <span class="vocab">import</span> (นำเข้า) libraries ที่จะใช้:</p>
+
+            <div class="code-example"><span class="keyword">import</span> json
+<span class="keyword">import</span> requests
+<span class="keyword">from</span> duckduckgo_search <span class="keyword">import</span> <span class="class-name">DDGS</span>
+<span class="keyword">from</span> anthropic <span class="keyword">import</span> <span class="class-name">Anthropic</span>
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="keyword">from</span> collections <span class="keyword">import</span> <span class="class-name">Counter</span>
+<span class="keyword">import</span> re
+
+<span class="comment"># ตั้งค่า API client</span>
+client = <span class="class-name">Anthropic</span>(api_key=<span class="string">"your-api-key-here"</span>)</div>
+
+            <h3><span class="step-number">2</span> สร้าง Function สำหรับค้นหาข้อมูล</h3>
+            <p>เราจะสร้าง <span class="vocab">function</span> ที่รับ <span class="vocab">query</span> (คำค้นหา) แล้วคืนค่าผลการค้นหา:</p>
+
+            <div class="code-example"><span class="keyword">def</span> <span class="function">search_web</span>(query, max_results=<span class="number">5</span>):
+    <span class="string">"""
+    ค้นหาข้อมูลจากเว็บโดยใช้ DuckDuckGo
+    
+    Parameters:
+        query (str): คำที่ต้องการค้นหา
+        max_results (int): จำนวนผลลัพธ์สูงสุด
+    
+    Returns:
+        list: รายการผลการค้นหา
+    """</span>
+    <span class="keyword">try</span>:
+        <span class="comment"># สร้าง search instance</span>
+        ddgs = <span class="class-name">DDGS</span>()
+        
+        <span class="comment"># ทำการค้นหา</span>
+        results = []
+        <span class="keyword">for</span> result <span class="keyword">in</span> ddgs.<span class="function">text</span>(query, max_results=max_results):
+            results.<span class="function">append</span>({
+                <span class="string">'title'</span>: result[<span class="string">'title'</span>],
+                <span class="string">'body'</span>: result[<span class="string">'body'</span>],
+                <span class="string">'url'</span>: result[<span class="string">'href'</span>]
+            })
+        
+        <span class="keyword">return</span> results
+    
+    <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+        <span class="function">print</span>(<span class="string">f"เกิดข้อผิดพลาดในการค้นหา: {e}"</span>)
+        <span class="keyword">return</span> []</div>
+
+            <div class="success-box">
+                <h3>✅ เข้าใจโค้ดส่วนนี้</h3>
+                <p><strong>def search_web(query, max_results=5):</strong></p>
+                <ul>
+                    <li><span class="vocab">def</span> = ประกาศว่าจะสร้าง function</li>
+                    <li><span class="vocab">search_web</span> = ชื่อ function</li>
+                    <li><span class="vocab">query, max_results</span> = parameters (ตัวแปรที่รับเข้ามา)</li>
+                    <li><span class="vocab">try...except</span> = จัดการกับ error ที่อาจเกิดขึ้น</li>
+                </ul>
+            </div>
+
+            <h3><span class="step-number">3</span> สร้าง Function สำหรับส่งข้อมูลให้ AI</h3>
+            <p>ตอนนี้เราจะสร้าง function ที่ส่งข้อมูลจากการค้นหาไปให้ <span class="vocab">AI</span> วิเคราะห์และสร้างรายงาน:</p>
+
+            <div class="code-example"><span class="keyword">def</span> <span class="function">generate_report_with_ai</span>(prompt, search_results):
+    <span class="string">"""
+    ใช้ AI สร้างรายงานจากผลการค้นหา
+    
+    Parameters:
+        prompt (str): คำถามหรือหัวข้อที่ต้องการ
+        search_results (list): ผลการค้นหาจากเว็บ
+    
+    Returns:
+        str: รายงานที่ AI สร้างขึ้น
+    """</span>
+    <span class="comment"># เตรียมข้อมูลจากการค้นหา</span>
+    search_context = <span class="string">"\n\n"</span>.<span class="function">join</span>([
+        <span class="string">f"แหล่งที่ {i+1}: {r['title']}\nURL: {r['url']}\n{r['body']}"</span>
+        <span class="keyword">for</span> i, r <span class="keyword">in</span> <span class="function">enumerate</span>(search_results)
+    ])
+    
+    <span class="comment"># สร้าง prompt สำหรับ AI</span>
+    ai_prompt = <span class="string">f"""โปรดวิเคราะห์ข้อมูลต่อไปนี้และสร้างรายงานเกี่ยวกับ: {prompt}
+
+ข้อมูลจากการค้นหา:
+{search_context}
+
+โปรดสร้างรายงานที่:
+1. สรุปข้อมูลหลักอย่างชัดเจน
+2. อ้างอิงแหล่งที่มาในรายงาน
+3. เขียนเป็นภาษาไทยที่เข้าใจง่าย
+4. มีความยาวประมาณ 300-400 คำ"""</span>
+    
+    <span class="comment"># เรียกใช้ AI</span>
+    <span class="keyword">try</span>:
+        message = client.messages.<span class="function">create</span>(
+            model=<span class="string">"claude-sonnet-4-20250514"</span>,
+            max_tokens=<span class="number">2000</span>,
+            messages=[
+                {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: ai_prompt}
+            ]
+        )
+        <span class="keyword">return</span> message.content[<span class="number">0</span>].text
+    
+    <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"เกิดข้อผิดพลาดในการสร้างรายงาน: {e}"</span></div>
+
+            <div class="warning-box">
+                <h3>⚠️ สำคัญ!</h3>
+                <p>คุณต้องมี <span class="vocab">API key</span> จาก Anthropic เพื่อใช้ Claude AI</p>
+                <p>สมัครได้ที่: <strong>https://console.anthropic.com/</strong></p>
+                <p>มี free tier ให้ใช้งานทดลอง!</p>
+            </div>
+
+            <h3><span class="step-number">4</span> สร้างกราฟจากข้อมูล</h3>
+            <p>เราจะวิเคราะห์คำที่ปรากฏบ่อยในผลการค้นหา แล้วสร้างเป็น <span class="vocab">bar chart</span> (กราฟแท่ง):</p>
+
+            <div class="code-example"><span class="keyword">def</span> <span class="function">create_chart</span>(search_results, output_file=<span class="string">"chart.png"</span>):
+    <span class="string">"""
+    สร้างกราฟแสดงคำที่พบบ่อยในผลการค้นหา
+    
+    Parameters:
+        search_results (list): ผลการค้นหา
+        output_file (str): ชื่อไฟล์ที่จะบันทึก
+    """</span>
+    <span class="comment"># รวมข้อความทั้งหมด</span>
+    all_text = <span class="string">" "</span>.<span class="function">join</span>([
+        r[<span class="string">'title'</span>] + <span class="string">" "</span> + r[<span class="string">'body'</span>] 
+        <span class="keyword">for</span> r <span class="keyword">in</span> search_results
+    ])
+    
+    <span class="comment"># แยกคำและกรองเฉพาะคำที่มีความหมาย</span>
+    words = re.<span class="function">findall</span>(<span class="string">r'\b[a-zA-Zก-๙]{4,}\b'</span>, all_text.<span class="function">lower</span>())
+    
+    <span class="comment"># นับความถี่ของคำ</span>
+    word_freq = <span class="class-name">Counter</span>(words)
+    
+    <span class="comment"># เอา 10 คำที่พบบ่อยที่สุด</span>
+    top_words = word_freq.<span class="function">most_common</span>(<span class="number">10</span>)
+    
+    <span class="comment"># สร้างกราฟ</span>
+    words_list = [word <span class="keyword">for</span> word, count <span class="keyword">in</span> top_words]
+    counts_list = [count <span class="keyword">for</span> word, count <span class="keyword">in</span> top_words]
+    
+    plt.<span class="function">figure</span>(figsize=(<span class="number">12</span>, <span class="number">6</span>))
+    plt.<span class="function">bar</span>(words_list, counts_list, color=<span class="string">'#667eea'</span>)
+    plt.<span class="function">title</span>(<span class="string">'คำที่พบบ่อยในผลการค้นหา (Top 10)'</span>, 
+             fontsize=<span class="number">16</span>, fontweight=<span class="string">'bold'</span>, pad=<span class="number">20</span>)
+    plt.<span class="function">xlabel</span>(<span class="string">'คำ'</span>, fontsize=<span class="number">12</span>)
+    plt.<span class="function">ylabel</span>(<span class="string">'ความถี่'</span>, fontsize=<span class="number">12</span>)
+    plt.<span class="function">xticks</span>(rotation=<span class="number">45</span>, ha=<span class="string">'right'</span>)
+    plt.<span class="function">tight_layout</span>()
+    
+    <span class="comment"># บันทึกกราฟ</span>
+    plt.<span class="function">savefig</span>(output_file, dpi=<span class="number">300</span>, bbox_inches=<span class="string">'tight'</span>)
+    plt.<span class="function">close</span>()
+    
+    <span class="function">print</span>(<span class="string">f"✅ บันทึกกราฟที่: {output_file}"</span>)
+    <span class="keyword">return</span> top_words</div>
+
+            <div class="info-box">
+                <h3>📊 เกี่ยวกับการสร้างกราฟ</h3>
+                <p><span class="vocab">matplotlib</span> เป็น library ยอดนิยมสำหรับสร้างกราฟใน Python</p>
+                <ul>
+                    <li><span class="vocab">plt.figure()</span> = สร้างพื้นที่สำหรับกราฟ</li>
+                    <li><span class="vocab">plt.bar()</span> = สร้างกราฟแท่ง</li>
+                    <li><span class="vocab">plt.savefig()</span> = บันทึกเป็นไฟล์รูปภาพ</li>
+                </ul>
+            </div>
+
+            <h3><span class="step-number">5</span> รวม Function ทั้งหมดเข้าด้วยกัน</h3>
+            <p>ตอนนี้เรามาสร้าง <span class="vocab">main function</span> ที่เรียกใช้ทุกอย่าง:</p>
+
+            <div class="code-example"><span class="keyword">def</span> <span class="function">main</span>():
+    <span class="string">"""
+    Main function ที่รวมทุกขั้นตอนเข้าด้วยกัน
+    """</span>
+    <span class="function">print</span>(<span class="string">"="</span>*<span class="number">60</span>)
+    <span class="function">print</span>(<span class="string">"🤖 ระบบสร้างรายงานอัตโนมัติด้วย AI"</span>)
+    <span class="function">print</span>(<span class="string">"="</span>*<span class="number">60</span>)
+    
+    <span class="comment"># รับ input จากผู้ใช้</span>
+    user_prompt = <span class="function">input</span>(<span class="string">"\n💭 ใส่หัวข้อที่ต้องการค้นหา: "</span>)
+    
+    <span class="function">print</span>(<span class="string">f"\n🔍 กำลังค้นหาข้อมูลเกี่ยวกับ: {user_prompt}..."</span>)
+    
+    <span class="comment"># ขั้นตอนที่ 1: ค้นหาข้อมูล</span>
+    search_results = <span class="function">search_web</span>(user_prompt, max_results=<span class="number">5</span>)
+    
+    <span class="keyword">if</span> <span class="keyword">not</span> search_results:
+        <span class="function">print</span>(<span class="string">"❌ ไม่พบผลการค้นหา"</span>)
+        <span class="keyword">return</span>
+    
+    <span class="function">print</span>(<span class="string">f"✅ พบผลการค้นหา {len(search_results)} รายการ"</span>)
+    
+    <span class="comment"># ขั้นตอนที่ 2: สร้างกราฟ</span>
+    <span class="function">print</span>(<span class="string">"\n📊 กำลังสร้างกราฟ..."</span>)
+    top_words = <span class="function">create_chart</span>(search_results)
+    
+    <span class="comment"># ขั้นตอนที่ 3: ให้ AI สร้างรายงาน</span>
+    <span class="function">print</span>(<span class="string">"\n🤖 กำลังให้ AI สร้างรายงาน..."</span>)
+    report = <span class="function">generate_report_with_ai</span>(user_prompt, search_results)
+    
+    <span class="comment"># บันทึกรายงาน</span>
+    report_file = <span class="string">"report.txt"</span>
+    <span class="keyword">with</span> <span class="function">open</span>(report_file, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:
+        f.<span class="function">write</span>(<span class="string">f"รายงานเรื่อง: {user_prompt}\n"</span>)
+        f.<span class="function">write</span>(<span class="string">"="</span>*<span class="number">60</span> + <span class="string">"\n\n"</span>)
+        f.<span class="function">write</span>(report)
+        f.<span class="function">write</span>(<span class="string">"\n\n"</span> + <span class="string">"="</span>*<span class="number">60</span> + <span class="string">"\n"</span>)
+        f.<span class="function">write</span>(<span class="string">"\nแหล่งอ้างอิง:\n"</span>)
+        <span class="keyword">for</span> i, result <span class="keyword">in</span> <span class="function">enumerate</span>(search_results, <span class="number">1</span>):
+            f.<span class="function">write</span>(<span class="string">f"{i}. {result['title']}\n"</span>)
+            f.<span class="function">write</span>(<span class="string">f"   {result['url']}\n\n"</span>)
+    
+    <span class="comment"># แสดงผลลัพธ์</span>
+    <span class="function">print</span>(<span class="string">"\n"</span> + <span class="string">"="</span>*<span class="number">60</span>)
+    <span class="function">print</span>(<span class="string">"✅ สำเร็จ! ผลลัพธ์:"</span>)
+    <span class="function">print</span>(<span class="string">"="</span>*<span class="number">60</span>)
+    <span class="function">print</span>(<span class="string">f"📄 รายงาน: {report_file}"</span>)
+    <span class="function">print</span>(<span class="string">f"📊 กราฟ: chart.png"</span>)
+    <span class="function">print</span>(<span class="string">"\n📝 ตัวอย่างรายงาน:"</span>)
+    <span class="function">print</span>(<span class="string">"-"</span>*<span class="number">60</span>)
+    <span class="function">print</span>(report[:<span class="number">500</span>] + <span class="string">"..."</span>)
+    <span class="function">print</span>(<span class="string">"-"</span>*<span class="number">60</span>)
+
+<span class="comment"># รันโปรแกรม</span>
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="function">main</span>()</div>
+
+            <h2>🎯 โค้ดเต็ม (Complete Code)</h2>
+            <p>นี่คือโค้ดทั้งหมดที่พร้อมใช้งาน บันทึกเป็นไฟล์ <span class="vocab">ai_report_generator.py</span>:</p>
+
+            <div class="code-example"><span class="comment">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+AI Report Generator with Web Search
+ระบบสร้างรายงานอัตโนมัติด้วย AI และการค้นหาเว็บ
+"""</span>
+
+<span class="keyword">import</span> json
+<span class="keyword">import</span> re
+<span class="keyword">from</span> collections <span class="keyword">import</span> <span class="class-name">Counter</span>
+<span class="keyword">from</span> duckduckgo_search <span class="keyword">import</span> <span class="class-name">DDGS</span>
+<span class="keyword">from</span> anthropic <span class="keyword">import</span> <span class="class-name">Anthropic</span>
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+
+<span class="comment"># ใส่ API key ของคุณที่นี่</span>
+API_KEY = <span class="string">"your-api-key-here"</span>
+client = <span class="class-name">Anthropic</span>(api_key=API_KEY)
+
+
+<span class="keyword">def</span> <span class="function">search_web</span>(query, max_results=<span class="number">5</span>):
+    <span class="keyword">try</span>:
+        ddgs = <span class="class-name">DDGS</span>()
+        results = []
+        <span class="keyword">for</span> result <span class="keyword">in</span> ddgs.<span class="function">text</span>(query, max_results=max_results):
+            results.<span class="function">append</span>({
+                <span class="string">'title'</span>: result[<span class="string">'title'</span>],
+                <span class="string">'body'</span>: result[<span class="string">'body'</span>],
+                <span class="string">'url'</span>: result[<span class="string">'href'</span>]
+            })
+        <span class="keyword">return</span> results
+    <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+        <span class="function">print</span>(<span class="string">f"Error: {e}"</span>)
+        <span class="keyword">return</span> []
+
+
+<span class="keyword">def</span> <span class="function">generate_report_with_ai</span>(prompt, search_results):
+    search_context = <span class="string">"\n\n"</span>.<span class="function">join</span>([
+        <span class="string">f"แหล่งที่ {i+1}: {r['title']}\nURL: {r['url']}\n{r['body']}"</span>
+        <span class="keyword">for</span> i, r <span class="keyword">in</span> <span class="function">enumerate</span>(search_results)
+    ])
+    
+    ai_prompt = <span class="string">f"""โปรดวิเคราะห์ข้อมูลและสร้างรายงานเกี่ยวกับ: {prompt}
+
+ข้อมูล:
+{search_context}
+
+สร้างรายงานที่สรุปชัดเจน อ้างอิงแหล่งที่มา และเขียนเป็นภาษาไทย"""</span>
+    
+    <span class="keyword">try</span>:
+        message = client.messages.<span class="function">create</span>(
+            model=<span class="string">"claude-sonnet-4-20250514"</span>,
+            max_tokens=<span class="number">2000</span>,
+            messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: ai_prompt}]
+        )
+        <span class="keyword">return</span> message.content[<span class="number">0</span>].text
+    <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> e:
+        <span class="keyword">return</span> <span class="string">f"Error: {e}"</span>
+
+
+<span class="keyword">def</span> <span class="function">create_chart</span>(search_results, output_file=<span class="string">"chart.png"</span>):
+    all_text = <span class="string">" "</span>.<span class="function">join</span>([r[<span class="string">'title'</span>] + <span class="string">" "</span> + r[<span class="string">'body'</span>] <span class="keyword">for</span> r <span class="keyword">in</span> search_results])
+    words = re.<span class="function">findall</span>(<span class="string">r'\b[a-zA-Zก-๙]{4,}\b'</span>, all_text.<span class="function">lower</span>())
+    word_freq = <span class="class-name">Counter</span>(words)
+    top_words = word_freq.<span class="function">most_common</span>(<span class="number">10</span>)
+    
+    words_list = [word <span class="keyword">for</span> word, count <span class="keyword">in</span> top_words]
+    counts_list = [count <span class="keyword">for</span> word, count <span class="keyword">in</span> top_words]
+    
+    plt.<span class="function">figure</span>(figsize=(<span class="number">12</span>, <span class="number">6</span>))
+    plt.<span class="function">bar</span>(words_list, counts_list, color=<span class="string">'#667eea'</span>)
+    plt.<span class="function">title</span>(<span class="string">'คำที่พบบ่อยในผลการค้นหา (Top 10)'</span>, fontsize=<span class="number">16</span>, pad=<span class="number">20</span>)
+    plt.<span class="function">xlabel</span>(<span class="string">'คำ'</span>, fontsize=<span class="number">12</span>)
+    plt.<span class="function">ylabel</span>(<span class="string">'ความถี่'</span>, fontsize=<span class="number">12</span>)
+    plt.<span class="function">xticks</span>(rotation=<span class="number">45</span>, ha=<span class="string">'right'</span>)
+    plt.<span class="function">tight_layout</span>()
+    plt.<span class="function">savefig</span>(output_file, dpi=<span class="number">300</span>)
+    plt.<span class="function">close</span>()
+    <span class="function">print</span>(<span class="string">f"✅ Chart saved: {output_file}"</span>)
+    <span class="keyword">return</span> top_words
+
+
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="function">print</span>(<span class="string">"="</span>*<span class="number">60</span>)
+    <span class="function">print</span>(<span class="string">"🤖 AI Report Generator"</span>)
+    <span class="function">print</span>(<span class="string">"="</span>*<span class="number">60</span>)
+    
+    user_prompt = <span class="function">input</span>(<span class="string">"\n💭 ใส่หัวข้อ: "</span>)
+    <span class="function">print</span>(<span class="string">f"\n🔍 กำลังค้นหา: {user_prompt}..."</span>)
+    
+    search_results = <span class="function">search_web</span>(user_prompt, max_results=<span class="number">5</span>)
+    <span class="keyword">if</span> <span class="keyword">not</span> search_results:
+        <span class="function">print</span>(<span class="string">"❌ ไม่พบผลการค้นหา"</span>)
+        <span class="keyword">return</span>
+    
+    <span class="function">print</span>(<span class="string">f"✅ พบ {len(search_results)} รายการ"</span>)
+    <span class="function">print</span>(<span class="string">"\n📊 สร้างกราฟ..."</span>)
+    <span class="function">create_chart</span>(search_results)
+    
+    <span class="function">print</span>(<span class="string">"\n🤖 AI กำลังสร้างรายงาน..."</span>)
+    report = <span class="function">generate_report_with_ai</span>(user_prompt, search_results)
+    
+    <span class="keyword">with</span> <span class="function">open</span>(<span class="string">"report.txt"</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:
+        f.<span class="function">write</span>(<span class="string">f"รายงาน: {user_prompt}\n{'='*60}\n\n"</span>)
+        f.<span class="function">write</span>(report)
+        f.<span class="function">write</span>(<span class="string">"\n\nแหล่งอ้างอิง:\n"</span>)
+        <span class="keyword">for</span> i, r <span class="keyword">in</span> <span class="function">enumerate</span>(search_results, <span class="number">1</span>):
+            f.<span class="function">write</span>(<span class="string">f"{i}. {r['title']} - {r['url']}\n"</span>)
+    
+    <span class="function">print</span>(<span class="string">"\n✅ สำเร็จ!"</span>)
+    <span class="function">print</span>(<span class="string">"📄 report.txt | 📊 chart.png"</span>)
+
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="function">main</span>()</div>
+
+            <h2>🚀 วิธีใช้งาน (How to Use)</h2>
+
+            <div class="success-box">
+                <h3>ขั้นตอนการใช้งาน</h3>
+                <ol>
+                    <li>บันทึกโค้ดเป็นไฟล์ <span class="vocab">ai_report_generator.py</span></li>
+                    <li>แก้ไข <span class="vocab">API_KEY</span> ใส่ API key ของคุณ</li>
+                    <li>เปิด terminal/command prompt</li>
+                    <li>รันคำสั่ง: <span class="vocab">python ai_report_generator.py</span></li>
+                    <li>ใส่หัวข้อที่ต้องการค้นหา เช่น "Python programming trends 2025"</li>
+                    <li>รอสักครู่ โปรแกรมจะสร้างไฟล์:
+                        <ul>
+                            <li><span class="vocab">report.txt</span> = รายงานจาก AI</li>
+                            <li><span class="vocab">chart.png</span> = กราฟแสดงข้อมูล</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <h2>📊 ตัวอย่างผลลัพธ์ (Example Output)</h2>
+
+            <div class="output-demo">
+                <h3>💭 Input:</h3>
+                <code>Python machine learning libraries</code>
+                
+                <h3 style="margin-top: 20px;">📄 Report (ตัวอย่าง):</h3>
+                <p style="background: white; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                    <strong>รายงานเกี่ยวกับ Python Machine Learning Libraries</strong><br><br>
+                    Python เป็นภาษาโปรแกรมมิ่งที่ได้รับความนิยมสูงสุดในด้าน Machine Learning โดยมี libraries หลักๆ ที่นักพัฒนาใช้งานกันอย่างแพร่หลาย ได้แก่ TensorFlow, PyTorch, scikit-learn และ Keras...<br><br>
+                    <em>[รายงานต่อ...]</em>
+                </p>
+
+                <h3 style="margin-top: 20px;">📊 Chart:</h3>
+                <p><em>[กราฟแท่งแสดงคำที่พบบ่อย เช่น: python, machine, learning, data, model, etc.]</em></p>
+            </div>
+
+            <h2>🎓 สิ่งที่ได้เรียนรู้ (What You Learned)</h2>
+
+            <div class="highlight-box">
+                <h3>เราได้เรียนรู้:</h3>
+                <ul>
+                    <li>การใช้ <span class="vocab">APIs</span> เพื่อเชื่อมต่อกับ external services</li>
+                    <li>การทำ <span class="vocab">web search</span> ด้วย DuckDuckGo</li>
+                    <li>การเชื่อมต่อกับ <span class="vocab">Claude AI</span> ผ่าน Anthropic API</li>
+                    <li>การสร้าง <span class="vocab">charts</span> ด้วย matplotlib</li>
+                    <li>การจัดการ <span class="vocab">data</span> และ <span class="vocab">text processing</span></li>
+                    <li>การเขียน <span class="vocab">functions</span> และโครงสร้างโปรแกรม</li>
+                    <li>การจัดการ <span class="vocab">errors</span> ด้วย try-except</li>
+                    <li>การอ่านเขียนไฟล์ (<span class="vocab">file I/O</span>)</li>
+                </ul>
+            </div>
+
+            <h2>🔥 ไอเดียพัฒนาต่อ (Enhancement Ideas)</h2>
+
+            <div class="info-box">
+                <h3>คุณสามารถพัฒนาโปรแกรมนี้ต่อได้โดย:</h3>
+                <ol>
+                    <li>เพิ่มการสร้าง <span class="vocab">PDF report</span> ที่สวยงาม</li>
+                    <li>ทำ <span class="vocab">web interface</span> ด้วย Flask หรือ Streamlit</li>
+                    <li>เพิ่มกราฟประเภทอื่นๆ เช่น <span class="vocab">pie chart</span>, <span class="vocab">line graph</span></li>
+                    <li>บันทึกข้อมูลลง <span class="vocab">database</span> เช่น SQLite</li>
+                    <li>เพิ่ม <span class="vocab">sentiment analysis</span> วิเคราะห์อารมณ์</li>
+                    <li>ทำ <span class="vocab">email notification</span> เมื่อรายงานเสร็จ</li>
+                    <li>เพิ่มการ <span class="vocab">export</span> เป็น Word, Excel</li>
+                    <li>ทำ <span class="vocab">scheduled reports</span> รายงานอัตโนมัติตามเวลา</li>
+                </ol>
+            </div>
+
+            <h2>⚡ Tips สำหรับผู้เริ่มต้น</h2>
+
+            <div class="warning-box">
+                <h3>💡 คำแนะนำ:</h3>
+                <ul>
+                    <li><strong>อ่านเอกสาร (Documentation):</strong> อ่าน docs ของแต่ละ library จะช่วยให้เข้าใจการใช้งาน</li>
+                    <li><strong>ทดสอบทีละส่วน:</strong> ทดสอบแต่ละ function แยกก่อน ค่อยรวมกัน</li>
+                    <li><strong>จัดการ Error:</strong> ใช้ try-except เสมอเมื่อเชื่อมต่อ API</li>
+                    <li><strong>Code Comments:</strong> เขียน comments ภาษาไทยได้ ช่วยให้จำได้</li>
+                    <li><strong>Version Control:</strong> ใช้ Git เพื่อติดตามการเปลี่ยนแปลง</li>
+                </ul>
+            </div>
+
+            <h2>📚 แหล่งเรียนรู้เพิ่มเติม (Resources)</h2>
+
+            <div class="info-box">
+                <h3>เว็บไซต์แนะนำ:</h3>
+                <ul>
+                    <li>🌐 <strong>Python Official:</strong> python.org</li>
+                    <li>🤖 <strong>Anthropic Docs:</strong> docs.anthropic.com</li>
+                    <li>📊 <strong>Matplotlib:</strong> matplotlib.org</li>
+                    <li>🔍 <strong>DuckDuckGo Search:</strong> github.com/deedy5/duckduckgo_search</li>
+                    <li>📖 <strong>Real Python:</strong> realpython.com (มีคอร์สภาษาไทย)</li>
+                    <li>💬 <strong>Thai Dev Community:</strong> facebook.com/groups/thaidev</li>
+                </ul>
+            </div>
+
+            <h2>❓ คำถามที่พบบ่อย (FAQ)</h2>
+
+            <div class="highlight-box">
+                <h3><strong>Q: ต้องเสียเงินในการใช้ API หรือไม่?</strong></h3>
+                <p><strong>A:</strong> Anthropic มี free tier ให้ทดลองใช้ DuckDuckGo search ฟรี matplotlib ฟรี</p>
+
+                <h3 style="margin-top: 15px;"><strong>Q: โค้ดทำงานช้า ทำยังไง?</strong></h3>
+                <p><strong>A:</strong> ลดจำนวน search results หรือใช้ async/await สำหรับ parallel processing</p>
+
+                <h3 style="margin-top: 15px;"><strong>Q: จะเปลี่ยนกราฟเป็นภาษาอื่นได้ไหม?</strong></h3>
+                <p><strong>A:</strong> ได้! แค่แก้ไขข้อความใน plt.title(), plt.xlabel(), plt.ylabel()</p>
+
+                <h3 style="margin-top: 15px;"><strong>Q: Error "Module not found" แก้ยังไง?</strong></h3>
+                <p><strong>A:</strong> ติดตั้ง library ด้วย pip install [library-name]</p>
+            </div>
+
+            <div class="success-box" style="margin-top: 40px; text-align: center;">
+                <h2>🎉 ยินดีด้วย!</h2>
+                <p style="font-size: 1.2em;">
+                    คุณได้เรียนรู้การสร้างระบบ AI-powered report generator แล้ว!<br>
+                    ลองนำไปประยุกต์ใช้กับงานของคุณได้เลย
+                </p>
+                <p style="margin-top: 20px;">
+                    <strong>Happy Coding! 🚀</strong>
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Python Programming Tutorial for Thai Learners</strong></p>
+            <p>สร้างด้วย ❤️ เพื่อคนไทยที่อยากเรียน Python</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                © 2025 | Educational Purpose Only
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
