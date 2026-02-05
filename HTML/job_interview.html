@@ -536,84 +536,9 @@
             box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
         }
 
-        .matching-game {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-            margin-top: 25px;
-        }
-
-        .matching-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .matching-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
-            padding: 22px;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 4px solid transparent;
-            font-size: 1.15em;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .matching-item:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .matching-item.selected {
-            border-color: var(--accent);
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(219, 39, 119, 0.25) 100%);
-        }
-
-        .matching-item.matched {
-            border-color: var(--success);
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.35) 0%, rgba(22, 163, 74, 0.35) 100%);
-            pointer-events: none;
-        }
-
-        .timer {
-            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(219, 39, 119, 0.2) 100%);
-            padding: 18px 30px;
-            border-radius: 14px;
-            font-size: 1.7em;
-            font-weight: 800;
-            color: var(--accent);
-            text-align: center;
-            margin-bottom: 25px;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .feedback {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(22, 163, 74, 0.25) 100%);
-            padding: 25px;
-            border-radius: 14px;
-            text-align: center;
-            font-size: 1.3em;
-            font-weight: 700;
-            color: var(--success);
-            margin-top: 25px;
-            display: none;
-            border: 3px solid var(--success);
-        }
-
-        .feedback.show {
-            display: block;
-            animation: slideDown 0.4s ease;
-        }
-
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.2em;
-            }
-
-            .matching-game {
-                grid-template-columns: 1fr;
             }
 
             .tabs {
@@ -672,9 +597,6 @@
             </button>
             <button class="tab-btn" onclick="switchTab('vocabulary')">
                 📚 Vocabulary | คำศัพท์
-            </button>
-            <button class="tab-btn" onclick="switchTab('games')">
-                🎮 Matching Game | เกมจับคู่
             </button>
         </div>
 
@@ -756,19 +678,6 @@
                 </div>
             </div>
         </div>
-
-        <div id="games" class="tab-content">
-            <div class="vocab-card">
-                <h2 class="intro-title">🎯 Matching Game | เกมจับคู่</h2>
-                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light); font-size: 1.1em;">Match English words with Thai translations | จับคู่คำอังกฤษกับคำแปลภาษาไทย</p>
-                <div class="timer" id="gameTimer">⏱️ Time: 0:00</div>
-                <div class="matching-game" id="matchingGame"></div>
-                <div class="feedback" id="gameFeedback"></div>
-                <div class="game-controls">
-                    <button class="game-btn" onclick="startMatchingGame()">🎮 New Game | เกมใหม่</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -836,10 +745,6 @@
 
         // Game state
         let points = 0;
-        let selectedFirst = null;
-        let matchedPairs = 0;
-        let gameStartTime = 0;
-        let timerInterval = null;
 
         // Text-to-speech function
         function speak(text, lang) {
@@ -878,7 +783,7 @@
         // Update statistics
         function updateStats() {
             document.getElementById('points').textContent = points;
-            const progress = (points / 500) * 100; // Max 500 points from vocab and games
+            const progress = (points / 300) * 100; // Max 300 points from vocab (28 * 5 = 140) and intro (20) + buffer
             document.getElementById('progress').style.width = `${Math.min(progress, 100)}%`;
         }
 
@@ -963,94 +868,6 @@
             document.querySelectorAll('.vocab-item').forEach(card => {
                 card.classList.remove('flipped', 'correct');
             });
-        }
-
-        // Start matching game
-        function startMatchingGame() {
-            const gameVocab = vocabulary.slice(0, 6).sort(() => Math.random() - 0.5);
-            const englishWords = gameVocab.map(v => v.en).sort(() => Math.random() - 0.5);
-            const thaiWords = gameVocab.map(v => v.th).sort(() => Math.random() - 0.5);
-            
-            const container = document.getElementById('matchingGame');
-            container.innerHTML = `
-                <div class="matching-column">
-                    ${englishWords.map((word, i) => `
-                        <div class="matching-item" onclick="selectMatch('en', '${word}', ${i})" id="en-${i}">
-                            ${word}
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="matching-column">
-                    ${thaiWords.map((word, i) => `
-                        <div class="matching-item" onclick="selectMatch('th', '${word}', ${i})" id="th-${i}">
-                            ${word}
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            
-            selectedFirst = null;
-            matchedPairs = 0;
-            gameStartTime = Date.now();
-            document.getElementById('gameFeedback').classList.remove('show');
-            
-            if (timerInterval) clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-
-        // Update game timer
-        function updateTimer() {
-            const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
-            const minutes = Math.floor(elapsed / 60);
-            const seconds = elapsed % 60;
-            document.getElementById('gameTimer').textContent = `⏱️ Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        // Select match
-        function selectMatch(type, word, index) {
-            const element = document.getElementById(`${type}-${index}`);
-            
-            if (element.classList.contains('matched')) return;
-            
-            if (!selectedFirst) {
-                selectedFirst = { type, word, index, element };
-                element.classList.add('selected');
-            } else {
-                if (selectedFirst.type === type) {
-                    selectedFirst.element.classList.remove('selected');
-                    selectedFirst = { type, word, index, element };
-                    element.classList.add('selected');
-                    return;
-                }
-                
-                const match = vocabulary.find(v => 
-                    (v.en === selectedFirst.word && v.th === word) ||
-                    (v.th === selectedFirst.word && v.en === word)
-                );
-                
-                if (match) {
-                    element.classList.add('matched');
-                    selectedFirst.element.classList.add('matched');
-                    matchedPairs++;
-                    points += 15;
-                    updateStats();
-                    
-                    if (matchedPairs === 6) {
-                        clearInterval(timerInterval);
-                        const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
-                        document.getElementById('gameFeedback').textContent = 
-                            `🎉 Great job! Completed in ${elapsed} seconds! | เยี่ยมมาก! เสร็จใน ${elapsed} วินาที!`;
-                        document.getElementById('gameFeedback').classList.add('show');
-                    }
-                } else {
-                    setTimeout(() => {
-                        element.classList.remove('selected');
-                        selectedFirst.element.classList.remove('selected');
-                    }, 500);
-                }
-                
-                selectedFirst = null;
-            }
         }
 
         // Initialize page
