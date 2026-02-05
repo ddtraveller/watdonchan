@@ -1069,12 +1069,14 @@
             card.classList.toggle('flipped');
             
             if (card.classList.contains('flipped')) {
-                speak(vocabulary[index].th, 'th');
+                speak(vocabulary[index].en, 'en');
                 setTimeout(() => {
                     card.classList.add('correct');
                     points += 5;
                     updateStats();
                 }, 100);
+            } else {
+                speak(vocabulary[index].en, 'en');
             }
         }
 
