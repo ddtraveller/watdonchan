@@ -293,12 +293,10 @@
             margin-bottom: 18px;
             border: 3px solid transparent;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .answer-option:hover {
             border-color: var(--primary);
-            transform: translateX(5px);
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
         }
 
@@ -603,8 +601,8 @@
         <div id="interview" class="tab-content active">
             <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); padding: 25px; border-radius: 20px; margin-bottom: 25px; border: 3px dashed var(--primary); text-align: center;">
                 <h3 style="color: var(--primary-dark); margin-bottom: 10px; font-weight: 800;">📝 Interview Practice Instructions | คำแนะนำการฝึกสัมภาษณ์</h3>
-                <p style="color: var(--text-light); font-size: 1.05em;">Click the speaker button to hear each question in English. Practice answering out loud. Some questions show preferred answers.</p>
-                <p style="color: var(--text-light); font-size: 1.05em; font-family: 'Noto Sans Thai', sans-serif; margin-top: 5px;">คลิกปุ่มลำโพงเพื่อฟังคำถามแต่ละข้อเป็นภาษาอังกฤษ ฝึกตอบออกเสียง คำถามบางข้อแสดงคำตอบที่แนะนำ</p>
+                <p style="color: var(--text-light); font-size: 1.05em;">Click the speaker button to hear each question in English. Each question has a short answer and a full answer. Practice saying the answers out loud. Some questions show preferred answers.</p>
+                <p style="color: var(--text-light); font-size: 1.05em; font-family: 'Noto Sans Thai', sans-serif; margin-top: 5px;">คลิกปุ่มลำโพงเพื่อฟังคำถามแต่ละข้อเป็นภาษาอังกฤษ แต่ละคำถามมีคำตอบสั้นและคำตอบเต็ม ฝึกพูดคำตอบออกเสียง คำถามบางข้อแสดงคำตอบที่แนะนำ</p>
             </div>
             <div id="questions-container"></div>
         </div>
@@ -683,32 +681,188 @@
     <script>
         // Interview questions data
         const questions = [
-            { en: "Please introduce yourself and tell us about your experience.", th: "กรุณาแนะนำตัวเองและบอกเราเกี่ยวกับประสบการณ์ของคุณ", preferred: null },
-            { en: "Why do you want to work in Israel?", th: "ทำไมคุณถึงอยากทำงานในอิสราเอล?", preferred: "I want a stable income to support my family and my future." },
-            { en: "Why should we hire you?", th: "ทำไมเราควรจ้างคุณ?", preferred: "Because I am hardworking, honest, and ready to work." },
-            { en: "Can you work hard and work 10-12 hours a day?", th: "คุณสามารถทำงานหนักและทำงาน 10-12 ชั่วโมงต่อวันได้ไหม?", preferred: null },
-            { en: "Can you move to another place if the employer asks?", th: "คุณสามารถย้ายไปที่อื่นได้ไหมถ้านายจ้างขอ?", preferred: null },
-            { en: "Can you work continuously for 5 years?", th: "คุณสามารถทำงานต่อเนื่อง 5 ปีได้ไหม?", preferred: null },
-            { en: "How will you contact your family?", th: "คุณจะติดต่อครอบครัวอย่างไร?", preferred: null },
-            { en: "Who will take care of your children?", th: "ใครจะดูแลลูกของคุณ?", preferred: null },
-            { en: "On a scale of 1 to 10, how would you rate working in Israel?", th: "ในระดับ 1 ถึง 10 คุณจะให้คะแนนการทำงานในอิสราเอลเท่าไหร่?", preferred: null },
-            { en: "Do you have any message for the employer?", th: "คุณมีข้อความอะไรสำหรับนายจ้างไหม?", preferred: null },
-            { en: "Can you drive a car or motorcycle?", th: "คุณขับรถยนต์หรือมอเตอร์ไซค์เป็นไหม?", preferred: null },
-            { en: "Do you have a driver's license?", th: "คุณมีใบขับขี่ไหม?", preferred: null },
-            { en: "How many kilometers did you travel to get here?", th: "คุณเดินทางมาที่นี่กี่กิโลเมตร?", preferred: null },
-            { en: "What color are your eyes?", th: "ตาของคุณสีอะไร?", preferred: null },
-            { en: "What color shirt are you wearing?", th: "คุณใส่เสื้อสีอะไร?", preferred: null },
-            { en: "How old is your child?", th: "ลูกของคุณอายุเท่าไหร่?", preferred: null },
-            { en: "Can you stand for long periods of time while working?", th: "คุณสามารถยืนเป็นเวลานานขณะทำงานได้ไหม?", preferred: null },
-            { en: "Can you lift heavy objects?", th: "คุณสามารถยกของหนักได้ไหม?", preferred: null },
-            { en: "What are your thoughts on the job you're applying for?", th: "คุณคิดอย่างไรเกี่ยวกับงานที่คุณสมัคร?", preferred: null },
-            { en: "Where do you work now?", th: "คุณทำงานที่ไหนตอนนี้?", preferred: null },
-            { en: "What do you do for work now?", th: "คุณทำงานอะไรตอนนี้?", preferred: null },
-            { en: "How many days a week do you work?", th: "คุณทำงานกี่วันต่อสัปดาห์?", preferred: null },
-            { en: "Can you share a room with a friend?", th: "คุณสามารถแชร์ห้องกับเพื่อนได้ไหม?", preferred: null },
-            { en: "How many years of experience do you have?", th: "คุณมีประสบการณ์กี่ปี?", preferred: null },
-            { en: "Do you know anyone who works in Israel?", th: "คุณรู้จักใครที่ทำงานในอิสราเอลไหม?", preferred: null },
-            { en: "Can you take the bus to work?", th: "คุณสามารถนั่งรถบัสไปทำงานได้ไหม?", preferred: null }
+            { 
+                en: "Please introduce yourself and tell us about your experience.", 
+                th: "กรุณาแนะนำตัวเองและบอกเราเกี่ยวกับประสบการณ์ของคุณ", 
+                preferred: null,
+                shortAnswer: "My name is [name]. I am from Thailand. I have experience in cleaning.",
+                fullAnswer: "My name is [name]. I am [age] years old and I am from Thailand. I have experience in house cleaning and office cleaning. I am hardworking, reliable, and always on time."
+            },
+            { 
+                en: "Why do you want to work in Israel?", 
+                th: "ทำไมคุณถึงอยากทำงานในอิสราเอล?", 
+                preferred: "I want a stable income to support my family and my future.",
+                shortAnswer: "I want stable income.",
+                fullAnswer: "I want a stable income to support my family and my future. This is a good opportunity for me."
+            },
+            { 
+                en: "Why should we hire you?", 
+                th: "ทำไมเราควรจ้างคุณ?", 
+                preferred: "Because I am hardworking, honest, and ready to work.",
+                shortAnswer: "I am hardworking and honest.",
+                fullAnswer: "Because I am hardworking, honest, and ready to work. I will do my best every day."
+            },
+            { 
+                en: "Can you work hard and work 10-12 hours a day?", 
+                th: "คุณสามารถทำงานหนักและทำงาน 10-12 ชั่วโมงต่อวันได้ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can work hard for 10-12 hours a day. I am strong and healthy."
+            },
+            { 
+                en: "Can you move to another place if the employer asks?", 
+                th: "คุณสามารถย้ายไปที่อื่นได้ไหมถ้านายจ้างขอ?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can move to another place if needed. I am flexible and ready to go wherever is required."
+            },
+            { 
+                en: "Can you work continuously for 5 years?", 
+                th: "คุณสามารถทำงานต่อเนื่อง 5 ปีได้ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can work continuously for 5 years. I want a stable long-term job."
+            },
+            { 
+                en: "How will you contact your family?", 
+                th: "คุณจะติดต่อครอบครัวอย่างไร?", 
+                preferred: null,
+                shortAnswer: "By phone or video call.",
+                fullAnswer: "I will contact my family by phone, video call, or messaging apps like WhatsApp or Line."
+            },
+            { 
+                en: "Who will take care of your children?", 
+                th: "ใครจะดูแลลูกของคุณ?", 
+                preferred: null,
+                shortAnswer: "My parents and family.",
+                fullAnswer: "My parents and family will take care of my children while I am working. They are happy to help."
+            },
+            { 
+                en: "On a scale of 1 to 10, how would you rate working in Israel?", 
+                th: "ในระดับ 1 ถึง 10 คุณจะให้คะแนนการทำงานในอิสราเอลเท่าไหร่?", 
+                preferred: null,
+                shortAnswer: "9 or 10.",
+                fullAnswer: "I would rate it 9 or 10 because it is a very good opportunity for me and my family."
+            },
+            { 
+                en: "Do you have any message for the employer?", 
+                th: "คุณมีข้อความอะไรสำหรับนายจ้างไหม?", 
+                preferred: null,
+                shortAnswer: "I will work hard for you.",
+                fullAnswer: "I want to thank you for this opportunity. I promise to work hard, be honest, and do my best every day."
+            },
+            { 
+                en: "Can you drive a car or motorcycle?", 
+                th: "คุณขับรถยนต์หรือมอเตอร์ไซค์เป็นไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can drive a motorcycle. I can also learn to drive a car if needed."
+            },
+            { 
+                en: "Do you have a driver's license?", 
+                th: "คุณมีใบขับขี่ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I have one.",
+                fullAnswer: "Yes, I have a driver's license from Thailand."
+            },
+            { 
+                en: "How many kilometers did you travel to get here?", 
+                th: "คุณเดินทางมาที่นี่กี่กิโลเมตร?", 
+                preferred: null,
+                shortAnswer: "[Number] kilometers.",
+                fullAnswer: "I traveled approximately [number] kilometers to get here today."
+            },
+            { 
+                en: "What color are your eyes?", 
+                th: "ตาของคุณสีอะไร?", 
+                preferred: null,
+                shortAnswer: "Brown.",
+                fullAnswer: "My eyes are brown."
+            },
+            { 
+                en: "What color shirt are you wearing?", 
+                th: "คุณใส่เสื้อสีอะไร?", 
+                preferred: null,
+                shortAnswer: "[Color].",
+                fullAnswer: "I am wearing a [color] shirt today."
+            },
+            { 
+                en: "How old is your child?", 
+                th: "ลูกของคุณอายุเท่าไหร่?", 
+                preferred: null,
+                shortAnswer: "[Age] years old.",
+                fullAnswer: "My child is [age] years old."
+            },
+            { 
+                en: "Can you stand for long periods of time while working?", 
+                th: "คุณสามารถยืนเป็นเวลานานขณะทำงานได้ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can stand for long periods of time while working. I am used to it and I am strong."
+            },
+            { 
+                en: "Can you lift heavy objects?", 
+                th: "คุณสามารถยกของหนักได้ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can lift heavy objects. I am strong and healthy."
+            },
+            { 
+                en: "What are your thoughts on the job you're applying for?", 
+                th: "คุณคิดอย่างไรเกี่ยวกับงานที่คุณสมัคร?", 
+                preferred: null,
+                shortAnswer: "I think it is a good opportunity.",
+                fullAnswer: "I think this is a very good opportunity for me. I am excited to work hard and learn new things."
+            },
+            { 
+                en: "Where do you work now?", 
+                th: "คุณทำงานที่ไหนตอนนี้?", 
+                preferred: null,
+                shortAnswer: "I work in [place].",
+                fullAnswer: "I currently work in [city/area] doing cleaning work."
+            },
+            { 
+                en: "What do you do for work now?", 
+                th: "คุณทำงานอะไรตอนนี้?", 
+                preferred: null,
+                shortAnswer: "I do cleaning work.",
+                fullAnswer: "I do cleaning work in houses and offices. I have experience with all types of cleaning."
+            },
+            { 
+                en: "How many days a week do you work?", 
+                th: "คุณทำงานกี่วันต่อสัปดาห์?", 
+                preferred: null,
+                shortAnswer: "[Number] days.",
+                fullAnswer: "I work [number] days per week. I can work more days if needed."
+            },
+            { 
+                en: "Can you share a room with a friend?", 
+                th: "คุณสามารถแชร์ห้องกับเพื่อนได้ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can share a room with a friend. I am easy to live with and respectful."
+            },
+            { 
+                en: "How many years of experience do you have?", 
+                th: "คุณมีประสบการณ์กี่ปี?", 
+                preferred: null,
+                shortAnswer: "[Number] years.",
+                fullAnswer: "I have [number] years of experience in cleaning work."
+            },
+            { 
+                en: "Do you know anyone who works in Israel?", 
+                th: "คุณรู้จักใครที่ทำงานในอิสราเอลไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I know someone.",
+                fullAnswer: "Yes, I know someone who works there and they say it is a good opportunity."
+            },
+            { 
+                en: "Can you take the bus to work?", 
+                th: "คุณสามารถนั่งรถบัสไปทำงานได้ไหม?", 
+                preferred: null,
+                shortAnswer: "Yes, I can.",
+                fullAnswer: "Yes, I can take the bus to work. I am comfortable using public transportation."
+            }
         ];
 
         // Vocabulary data
@@ -773,9 +927,28 @@
                     ${q.preferred ? `
                         <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%); padding: 20px; border-radius: 14px; margin-top: 15px; border: 2px solid var(--success);">
                             <div style="font-weight: 700; color: var(--success); margin-bottom: 8px; font-size: 0.9em;">💡 PREFERRED ANSWER | คำตอบที่แนะนำ</div>
-                            <div style="font-size: 1.1em; font-weight: 500; color: var(--text-dark);">${q.preferred}</div>
+                            <div style="font-size: 1.1em; font-weight: 500; color: var(--text-dark); margin-bottom: 12px;">${q.preferred}</div>
+                            <button class="small-btn" onclick="speak('${q.preferred.replace(/'/g, "\\'")}', 'en')">
+                                🔊 Listen to Answer
+                            </button>
                         </div>
                     ` : ''}
+                    <div style="margin-top: 20px;">
+                        <div class="answer-option">
+                            <span class="answer-label">Short Answer | คำตอบสั้น</span>
+                            <div class="answer-text">${q.shortAnswer}</div>
+                            <button class="small-btn" onclick="speak('${q.shortAnswer.replace(/'/g, "\\'")}', 'en')" style="margin-top: 10px;">
+                                🔊 Listen
+                            </button>
+                        </div>
+                        <div class="answer-option">
+                            <span class="answer-label">Full Answer | คำตอบเต็ม</span>
+                            <div class="answer-text">${q.fullAnswer}</div>
+                            <button class="small-btn" onclick="speak('${q.fullAnswer.replace(/'/g, "\\'")}', 'en')" style="margin-top: 10px;">
+                                🔊 Listen
+                            </button>
+                        </div>
+                    </div>
                 </div>
             `).join('');
         }
