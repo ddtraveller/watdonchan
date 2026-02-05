@@ -520,44 +520,6 @@
             transform: translateY(-2px);
         }
 
-        .achievement-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: linear-gradient(135deg, var(--secondary) 0%, #d97706 100%);
-            padding: 50px;
-            border-radius: 28px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
-            z-index: 1000;
-            text-align: center;
-            border: 5px solid white;
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .achievement-popup.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .achievement-icon {
-            font-size: 5.5em;
-            margin-bottom: 20px;
-            animation: bounce 0.6s ease infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .achievement-text {
-            font-size: 2em;
-            font-weight: 900;
-            color: white;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
         .progress-bar {
             background: rgba(255, 255, 255, 0.35);
             height: 14px;
@@ -686,12 +648,12 @@
                 <div class="stat-label">Points | คะแนน</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="completed">0/20</div>
-                <div class="stat-label">Completed | ทำเสร็จ</div>
+                <div class="stat-number" id="questionCount">26</div>
+                <div class="stat-label">Interview Questions | คำถามสัมภาษณ์</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="streak">0🔥</div>
-                <div class="stat-label">Streak | ต่อเนื่อง</div>
+                <div class="stat-number" id="vocabCount">28</div>
+                <div class="stat-label">Vocabulary Words | คำศัพท์</div>
             </div>
             <div class="stat-card">
                 <div class="progress-bar">
@@ -717,6 +679,11 @@
         </div>
 
         <div id="interview" class="tab-content active">
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); padding: 25px; border-radius: 20px; margin-bottom: 25px; border: 3px dashed var(--primary); text-align: center;">
+                <h3 style="color: var(--primary-dark); margin-bottom: 10px; font-weight: 800;">📝 Interview Practice Instructions | คำแนะนำการฝึกสัมภาษณ์</h3>
+                <p style="color: var(--text-light); font-size: 1.05em;">Click the speaker button to hear each question in English. Practice answering out loud. Some questions show preferred answers.</p>
+                <p style="color: var(--text-light); font-size: 1.05em; font-family: 'Noto Sans Thai', sans-serif; margin-top: 5px;">คลิกปุ่มลำโพงเพื่อฟังคำถามแต่ละข้อเป็นภาษาอังกฤษ ฝึกตอบออกเสียง คำถามบางข้อแสดงคำตอบที่แนะนำ</p>
+            </div>
             <div id="questions-container"></div>
         </div>
 
@@ -748,30 +715,30 @@
                 <div class="intro-exercise">
                     <h3 style="margin-bottom: 15px; font-size: 1.2em; font-weight: 700;">Step 3: Useful Phrases | ประโยคที่มีประโยชน์</h3>
                     <div class="practice-area">
-                        <div class="answer-option" onclick="speak('I have experience in house cleaning', 'en')">
+                        <div class="answer-option">
                             <div class="answer-text">I have experience in house cleaning</div>
                             <div class="answer-thai">ฉันมีประสบการณ์ทำความสะอาดบ้าน</div>
-                            <button class="small-btn">🔊 Listen | ฟัง</button>
+                            <button class="small-btn" onclick="speak('I have experience in house cleaning', 'en')">🔊 Listen</button>
                         </div>
-                        <div class="answer-option" onclick="speak('I am a hard worker and reliable', 'en')">
+                        <div class="answer-option">
                             <div class="answer-text">I am a hard worker and reliable</div>
                             <div class="answer-thai">ฉันทำงานหนักและเชื่อถือได้</div>
-                            <button class="small-btn">🔊 Listen | ฟัง</button>
+                            <button class="small-btn" onclick="speak('I am a hard worker and reliable', 'en')">🔊 Listen</button>
                         </div>
-                        <div class="answer-option" onclick="speak('I can start immediately', 'en')">
+                        <div class="answer-option">
                             <div class="answer-text">I can start immediately</div>
                             <div class="answer-thai">ฉันสามารถเริ่มได้ทันที</div>
-                            <button class="small-btn">🔊 Listen | ฟัง</button>
+                            <button class="small-btn" onclick="speak('I can start immediately', 'en')">🔊 Listen</button>
                         </div>
-                        <div class="answer-option" onclick="speak('I am learning English', 'en')">
+                        <div class="answer-option">
                             <div class="answer-text">I am learning English</div>
                             <div class="answer-thai">ฉันกำลังเรียนภาษาอังกฤษ</div>
-                            <button class="small-btn">🔊 Listen | ฟัง</button>
+                            <button class="small-btn" onclick="speak('I am learning English', 'en')">🔊 Listen</button>
                         </div>
-                        <div class="answer-option" onclick="speak('I am very detail-oriented', 'en')">
+                        <div class="answer-option">
                             <div class="answer-text">I am very detail-oriented</div>
                             <div class="answer-thai">ฉันใส่ใจในรายละเอียด</div>
-                            <button class="small-btn">🔊 Listen | ฟัง</button>
+                            <button class="small-btn" onclick="speak('I am very detail-oriented', 'en')">🔊 Listen</button>
                         </div>
                     </div>
                 </div>
@@ -804,194 +771,35 @@
         </div>
     </div>
 
-    <div class="achievement-popup" id="achievementPopup">
-        <div class="achievement-icon">🏆</div>
-        <div class="achievement-text" id="achievementText"></div>
-    </div>
-
     <script>
         // Interview questions data
         const questions = [
-            {
-                en: "Tell me about yourself",
-                th: "บอกฉันเกี่ยวกับตัวคุณ",
-                answers: [
-                    { en: "My name is... I am from Thailand", th: "ชื่อ...ฉันมาจากไทย", type: "Very Short" },
-                    { en: "My name is... I am from Thailand and I have experience in cleaning", th: "ชื่อ...ฉันมาจากไทยและมีประสบการณ์ทำความสะอาด", type: "Short" },
-                    { en: "My name is... I am from Thailand and I have been here for one year. I have experience cleaning houses and offices. I am a hard worker and very reliable.", th: "ชื่อ...ฉันมาจากไทยและอยู่ที่นี่ได้หนึ่งปีแล้ว มีประสบการณ์ทำความสะอาดทั้งบ้านและสำนักงาน ฉันทำงานหนักและเชื่อถือได้", type: "Average" }
-                ]
-            },
-            {
-                en: "Why do you want to work with us?",
-                th: "ทำไมคุณถึงอยากทำงานกับเรา?",
-                answers: [
-                    { en: "I need a job", th: "ฉันต้องการงาน", type: "Very Short" },
-                    { en: "I heard good things about this company", th: "ฉันได้ยินเรื่องดีๆเกี่ยวกับบริษัท", type: "Short" },
-                    { en: "I heard good things about your company and I like organized work. I want to be part of a professional team.", th: "ฉันได้ยินเรื่องดีๆเกี่ยวกับบริษัทของคุณและฉันชอบงานที่เป็นระเบียบ อยากเป็นส่วนหนึ่งของทีมมืออาชีพ", type: "Average" }
-                ]
-            },
-            {
-                en: "What experience do you have in cleaning?",
-                th: "คุณมีประสบการณ์อะไรในการทำความสะอาด?",
-                answers: [
-                    { en: "I have experience", th: "ฉันมีประสบการณ์", type: "Very Short" },
-                    { en: "I worked in house cleaning for two years", th: "ทำความสะอาดบ้านมา 2 ปี", type: "Short" },
-                    { en: "I worked in private house cleaning for two years and office cleaning for one year. I know all cleaning products and how to use cleaning machines.", th: "ทำความสะอาดบ้าน 2 ปี และสำนักงาน 1 ปี รู้จักผลิตภัณฑ์ทำความสะอาดและใช้เครื่องทำความสะอาดเป็น", type: "Average" }
-                ]
-            },
-            {
-                en: "When can you start?",
-                th: "คุณสามารถเริ่มงานเมื่อไหร่?",
-                answers: [
-                    { en: "Tomorrow", th: "พรุ่งนี้", type: "Very Short" },
-                    { en: "I can start immediately", th: "ฉันเริ่มได้ทันที", type: "Short" },
-                    { en: "I can start immediately, tomorrow or whenever is convenient for you. I am available every day.", th: "ฉันสามารถเริ่มได้ทันที พรุ่งนี้หรือเมื่อสะดวก พร้อมทุกวัน", type: "Average" }
-                ]
-            },
-            {
-                en: "Which days can you work?",
-                th: "คุณสามารถทำงานวันไหนได้บ้าง?",
-                answers: [
-                    { en: "Every day", th: "ทุกวัน", type: "Very Short" },
-                    { en: "I can work Sunday to Friday", th: "ฉันทำงานได้วันอาทิตย์ถึงศุกร์", type: "Short" },
-                    { en: "I am very flexible. I can work Sunday to Friday, and Saturday if needed. I prefer to work full time.", th: "ฉันยืดหยุ่นมาก ทำงานได้อาทิตย์ถึงศุกร์ และวันเสาร์ถ้าจำเป็น อยากทำงานเต็มเวลา", type: "Average" }
-                ]
-            },
-            {
-                en: "What hours can you work?",
-                th: "คุณสามารถทำงานช่วงเวลาไหน?",
-                answers: [
-                    { en: "Flexible", th: "ยืดหยุ่น", type: "Very Short" },
-                    { en: "I can work mornings and afternoons", th: "ทำงานได้ช่วงเช้าและบ่าย", type: "Short" },
-                    { en: "I can work from 6 AM to 6 PM. I can also work different shifts as needed.", th: "ทำงานได้ตั้งแต่ 6 โมงเช้าถึง 6 โมงเย็น และสามารถทำงานกะต่างๆตามต้องการ", type: "Average" }
-                ]
-            },
-            {
-                en: "Do you have transportation?",
-                th: "คุณมีพาหนะไหม?",
-                answers: [
-                    { en: "No", th: "ไม่มี", type: "Very Short" },
-                    { en: "I don't have a car but I can use public transportation", th: "ไม่มีรถแต่เดินทางด้วยรถสาธารณะได้", type: "Short" },
-                    { en: "I don't have a private car, but I have a bicycle and I can use public transportation. I always arrive on time.", th: "ไม่มีรถส่วนตัวแต่มีจักรยานและใช้รถสาธารณะได้ มาตรงเวลาเสมอ", type: "Average" }
-                ]
-            },
-            {
-                en: "What are your strengths?",
-                th: "จุดแข็งของคุณคืออะไร?",
-                answers: [
-                    { en: "I am hardworking", th: "ฉันขยัน", type: "Very Short" },
-                    { en: "I work hard and I am detail-oriented", th: "ฉันทำงานหนักและละเอียดรอบคอบ", type: "Short" },
-                    { en: "I work very hard and I am detail-oriented. I am reliable and always on time. People say their homes look perfect after I clean.", th: "ฉันทำงานหนักและใส่ใจรายละเอียด เชื่อถือได้และมาตรงเวลา คนบอกว่าบ้านดูสมบูรณ์แบบหลังจากฉันทำความสะอาด", type: "Average" }
-                ]
-            },
-            {
-                en: "What are your weaknesses?",
-                th: "จุดอ่อนของคุณคืออะไร?",
-                answers: [
-                    { en: "I am learning English", th: "ฉันกำลังเรียนอังกฤษ", type: "Very Short" },
-                    { en: "My English is not perfect but I am learning", th: "ภาษาอังกฤษยังไม่สมบูรณ์แต่กำลังเรียน", type: "Short" },
-                    { en: "My English is not perfect yet, but I study every day and I understand basic instructions. I am good at my work and use translation when needed.", th: "ภาษาอังกฤษยังไม่สมบูรณ์แต่เรียนทุกวันและเข้าใจคำสั่งพื้นฐาน เก่งในงานและใช้แปลภาษาเมื่อจำเป็น", type: "Average" }
-                ]
-            },
-            {
-                en: "What salary do you expect?",
-                th: "คุณคาดหวังเงินเดือนเท่าไหร่?",
-                answers: [
-                    { en: "Fair salary", th: "เงินเดือนที่ยุติธรรม", type: "Very Short" },
-                    { en: "I expect reasonable salary according to the market", th: "คาดหวังเงินเดือนที่เหมาะสมตามตลาด", type: "Short" },
-                    { en: "I expect fair salary according to the market. I know the minimum wage is... I am flexible and open to discuss.", th: "คาดหวังเงินเดือนที่ยุติธรรมตามตลาด รู้ว่าค่าแรงขั้นต่ำคือ... ยืดหยุ่นและพร้อมเจรจา", type: "Average" }
-                ]
-            },
-            {
-                en: "Do you have any questions?",
-                th: "คุณมีคำถามไหม?",
-                answers: [
-                    { en: "Yes, what are the working hours?", th: "มี เวลาทำงานเท่าไหร่?", type: "Very Short" },
-                    { en: "Yes, what are the hours and when can I start?", th: "มี เวลาทำงานและเริ่มเมื่อไหร่?", type: "Short" },
-                    { en: "Yes, I have a few questions. What are the exact working hours? When can I start? Is there training at the beginning?", th: "มี มีกี่คำถาม เวลาทำงานที่แน่นอนคืออะไร? เริ่มเมื่อไหร่? มีการฝึกอบรมไหม?", type: "Average" }
-                ]
-            },
-            {
-                en: "Do you have experience with cleaning products?",
-                th: "คุณมีประสบการณ์กับผลิตภัณฑ์ทำความสะอาดไหม?",
-                answers: [
-                    { en: "Yes, I have experience", th: "มี มีประสบการณ์", type: "Very Short" },
-                    { en: "Yes, I know most cleaning products", th: "มี รู้จักผลิตภัณฑ์ส่วนใหญ่", type: "Short" },
-                    { en: "Yes, I have a lot of experience with different cleaning products. I know which product is suitable for each surface and I work carefully.", th: "มี มีประสบการณ์มากกับผลิตภัณฑ์ต่างๆ รู้ว่าผลิตภัณฑ์ไหนเหมาะกับพื้นผิวใดและทำงานอย่างระมัดระวัง", type: "Average" }
-                ]
-            },
-            {
-                en: "Can you use cleaning machines?",
-                th: "คุณรู้วิธีใช้เครื่องทำความสะอาดไหม?",
-                answers: [
-                    { en: "Yes", th: "รู้", type: "Very Short" },
-                    { en: "Yes, I can use vacuum cleaners and mops", th: "รู้ ใช้เครื่องดูดฝุ่นและเครื่องถูพื้นเป็น", type: "Short" },
-                    { en: "Yes, I am experienced with regular and heavy vacuum cleaners, electric mops and carpet cleaning machines. I can learn new machines quickly.", th: "รู้ มีประสบการณ์กับเครื่องดูดฝุ่นทั่วไปและแรง เครื่องถูพื้นไฟฟ้า และเครื่องทำความสะอาดพรม เรียนรู้เครื่องใหม่ได้เร็ว", type: "Average" }
-                ]
-            },
-            {
-                en: "Can you work independently?",
-                th: "คุณทำงานคนเดียวได้ไหม?",
-                answers: [
-                    { en: "Yes", th: "ได้", type: "Very Short" },
-                    { en: "Yes, I can work independently", th: "ได้ ทำงานอิสระได้", type: "Short" },
-                    { en: "Yes, I am very independent and can work alone without supervision. I know what to do and I finish the work on time.", th: "ได้ เป็นอิสระมากและทำงานคนเดียวโดยไม่ต้องควบคุมได้ รู้ว่าต้องทำอะไรและทำเสร็จตรงเวลา", type: "Average" }
-                ]
-            },
-            {
-                en: "Can you work in a team?",
-                th: "คุณทำงานเป็นทีมได้ไหม?",
-                answers: [
-                    { en: "Yes", th: "ได้", type: "Very Short" },
-                    { en: "Yes, I like working in a team", th: "ได้ ชอบทำงานเป็นทีม", type: "Short" },
-                    { en: "Yes, I like working in a team. I listen to others, help when needed and contribute to a good atmosphere.", th: "ได้ ชอบทำงานเป็นทีม ฟังคนอื่น ช่วยเหลือเมื่อจำเป็น และสร้างบรรยากาศดี", type: "Average" }
-                ]
-            },
-            {
-                en: "What would you do if you found something broken?",
-                th: "คุณจะทำอย่างไรถ้าเจอของแตก?",
-                answers: [
-                    { en: "I would report it", th: "จะรายงาน", type: "Very Short" },
-                    { en: "I would report it immediately to the employer", th: "จะรายงานนายจ้างทันที", type: "Short" },
-                    { en: "I would report it immediately to the employer and not touch it. I would take a photo and explain exactly what happened.", th: "จะรายงานนายจ้างทันทีและไม่แตะ จะถ่ายรูปและบอกว่าเกิดอะไรขึ้นแน่ชัด", type: "Average" }
-                ]
-            },
-            {
-                en: "Do you smoke?",
-                th: "คุณสูบบุหรี่ไหม?",
-                answers: [
-                    { en: "No", th: "ไม่", type: "Very Short" },
-                    { en: "No, I don't smoke", th: "ไม่ ไม่สูบบุหรี่", type: "Short" },
-                    { en: "No, I don't smoke at all. I take care of my health and maintain a clean environment at work.", th: "ไม่ ไม่สูบเลย ดูแลสุขภาพและบรรยากาศที่สะอาดในที่ทำงาน", type: "Average" }
-                ]
-            },
-            {
-                en: "Why did you leave your previous job?",
-                th: "ทำไมถึงออกจากงานเดิม?",
-                answers: [
-                    { en: "I wanted a change", th: "อยากเปลี่ยนงาน", type: "Very Short" },
-                    { en: "I wanted a new and better opportunity", th: "อยากได้โอกาสใหม่ที่ดีกว่า", type: "Short" },
-                    { en: "I wanted to advance and find a place with more opportunities. The previous job was good, but I am looking for something more stable.", th: "อยากก้าวหน้าและหาที่ที่มีโอกาสมากกว่า งานเดิมดีแต่กำลังหาที่มั่นคงกว่า", type: "Average" }
-                ]
-            },
-            {
-                en: "Do you have references?",
-                th: "คุณมีจดหมายรับรองไหม?",
-                answers: [
-                    { en: "Yes", th: "มี", type: "Very Short" },
-                    { en: "Yes, I have references from previous employers", th: "มี มีจดหมายจากนายจ้างเก่า", type: "Short" },
-                    { en: "Yes, I have excellent references from previous employers. They can confirm that I am a reliable and professional worker.", th: "มี มีจดหมายรับรองดีเยี่ยมจากนายจ้างเก่า พวกเขาสามารถยืนยันว่าฉันเป็นพนักงานที่เชื่อถือได้และมืออาชีพ", type: "Average" }
-                ]
-            },
-            {
-                en: "How would you respond to an unhappy customer?",
-                th: "คุณจะตอบสนองอย่างไรกับลูกค้าที่ไม่พอใจ?",
-                answers: [
-                    { en: "I would fix it", th: "จะแก้ไข", type: "Very Short" },
-                    { en: "I would listen and fix the problem immediately", th: "จะฟังและแก้ไขปัญหาทันที", type: "Short" },
-                    { en: "I would listen to the problem patiently, apologize if necessary and fix it immediately. I want the customer to be completely satisfied.", th: "จะฟังปัญหาอย่างอดทน ขอโทษถ้าจำเป็น และแก้ไขทันที อยากให้ลูกค้าพอใจอย่างสมบูรณ์", type: "Average" }
-                ]
-            }
+            { en: "Please introduce yourself and tell us about your experience.", th: "กรุณาแนะนำตัวเองและบอกเราเกี่ยวกับประสบการณ์ของคุณ", preferred: null },
+            { en: "Why do you want to work in Israel?", th: "ทำไมคุณถึงอยากทำงานในอิสราเอล?", preferred: "I want a stable income to support my family and my future." },
+            { en: "Why should we hire you?", th: "ทำไมเราควรจ้างคุณ?", preferred: "Because I am hardworking, honest, and ready to work." },
+            { en: "Can you work hard and work 10-12 hours a day?", th: "คุณสามารถทำงานหนักและทำงาน 10-12 ชั่วโมงต่อวันได้ไหม?", preferred: null },
+            { en: "Can you move to another place if the employer asks?", th: "คุณสามารถย้ายไปที่อื่นได้ไหมถ้านายจ้างขอ?", preferred: null },
+            { en: "Can you work continuously for 5 years?", th: "คุณสามารถทำงานต่อเนื่อง 5 ปีได้ไหม?", preferred: null },
+            { en: "How will you contact your family?", th: "คุณจะติดต่อครอบครัวอย่างไร?", preferred: null },
+            { en: "Who will take care of your children?", th: "ใครจะดูแลลูกของคุณ?", preferred: null },
+            { en: "On a scale of 1 to 10, how would you rate working in Israel?", th: "ในระดับ 1 ถึง 10 คุณจะให้คะแนนการทำงานในอิสราเอลเท่าไหร่?", preferred: null },
+            { en: "Do you have any message for the employer?", th: "คุณมีข้อความอะไรสำหรับนายจ้างไหม?", preferred: null },
+            { en: "Can you drive a car or motorcycle?", th: "คุณขับรถยนต์หรือมอเตอร์ไซค์เป็นไหม?", preferred: null },
+            { en: "Do you have a driver's license?", th: "คุณมีใบขับขี่ไหม?", preferred: null },
+            { en: "How many kilometers did you travel to get here?", th: "คุณเดินทางมาที่นี่กี่กิโลเมตร?", preferred: null },
+            { en: "What color are your eyes?", th: "ตาของคุณสีอะไร?", preferred: null },
+            { en: "What color shirt are you wearing?", th: "คุณใส่เสื้อสีอะไร?", preferred: null },
+            { en: "How old is your child?", th: "ลูกของคุณอายุเท่าไหร่?", preferred: null },
+            { en: "Can you stand for long periods of time while working?", th: "คุณสามารถยืนเป็นเวลานานขณะทำงานได้ไหม?", preferred: null },
+            { en: "Can you lift heavy objects?", th: "คุณสามารถยกของหนักได้ไหม?", preferred: null },
+            { en: "What are your thoughts on the job you're applying for?", th: "คุณคิดอย่างไรเกี่ยวกับงานที่คุณสมัคร?", preferred: null },
+            { en: "Where do you work now?", th: "คุณทำงานที่ไหนตอนนี้?", preferred: null },
+            { en: "What do you do for work now?", th: "คุณทำงานอะไรตอนนี้?", preferred: null },
+            { en: "How many days a week do you work?", th: "คุณทำงานกี่วันต่อสัปดาห์?", preferred: null },
+            { en: "Can you share a room with a friend?", th: "คุณสามารถแชร์ห้องกับเพื่อนได้ไหม?", preferred: null },
+            { en: "How many years of experience do you have?", th: "คุณมีประสบการณ์กี่ปี?", preferred: null },
+            { en: "Do you know anyone who works in Israel?", th: "คุณรู้จักใครที่ทำงานในอิสราเอลไหม?", preferred: null },
+            { en: "Can you take the bus to work?", th: "คุณสามารถนั่งรถบัสไปทำงานได้ไหม?", preferred: null }
         ];
 
         // Vocabulary data
@@ -1028,8 +836,6 @@
 
         // Game state
         let points = 0;
-        let completedQuestions = 0;
-        let streak = 0;
         let selectedFirst = null;
         let matchedPairs = 0;
         let gameStartTime = 0;
@@ -1053,60 +859,27 @@
                 <div class="question-card">
                     <div class="question-header">
                         <div class="question-number">${index + 1}</div>
-                        <button class="play-btn" onclick="speak('${q.en}', 'en')">
+                        <button class="play-btn" onclick="speak('${q.en.replace(/'/g, "\\'")}', 'en')">
                             🔊 Listen to Question
                         </button>
                     </div>
                     <div class="question-text">${q.en}</div>
                     <div class="question-thai">${q.th}</div>
-                    <div class="answers">
-                        ${q.answers.map((a, i) => `
-                            <div class="answer-option" onclick="markComplete(${index})">
-                                <span class="answer-label">${a.type}</span>
-                                <div class="answer-text">${a.en}</div>
-                                <div class="answer-thai">${a.th}</div>
-                                <div class="btn-group">
-                                    <button class="small-btn" onclick="event.stopPropagation(); speak('${a.en.replace(/'/g, "\\'")}', 'en')">
-                                        🔊 Listen in English
-                                    </button>
-                                    <button class="small-btn" onclick="event.stopPropagation(); speak('${a.th}', 'th')">
-                                        🔊 ฟังภาษาไทย
-                                    </button>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
+                    ${q.preferred ? `
+                        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%); padding: 20px; border-radius: 14px; margin-top: 15px; border: 2px solid var(--success);">
+                            <div style="font-weight: 700; color: var(--success); margin-bottom: 8px; font-size: 0.9em;">💡 PREFERRED ANSWER | คำตอบที่แนะนำ</div>
+                            <div style="font-size: 1.1em; font-weight: 500; color: var(--text-dark);">${q.preferred}</div>
+                        </div>
+                    ` : ''}
                 </div>
             `).join('');
-        }
-
-        // Mark question as complete
-        function markComplete(index) {
-            completedQuestions++;
-            points += 10;
-            streak++;
-            updateStats();
-            
-            if (streak === 5) showAchievement('🎯 5 in a row! | ต่อเนื่อง 5 ครั้ง!');
-            if (streak === 10) showAchievement('🔥 10 in a row! Amazing! | ติดต่อกัน 10 ครั้ง! เจ๋ง!');
-            if (completedQuestions === 20) showAchievement('🏆 All questions complete! | ทำคำถามครบทุกข้อ!');
         }
 
         // Update statistics
         function updateStats() {
             document.getElementById('points').textContent = points;
-            document.getElementById('completed').textContent = `${completedQuestions}/20`;
-            document.getElementById('streak').textContent = `${streak}🔥`;
-            const progress = (completedQuestions / 20) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
-        }
-
-        // Show achievement popup
-        function showAchievement(text) {
-            const popup = document.getElementById('achievementPopup');
-            document.getElementById('achievementText').textContent = text;
-            popup.classList.add('show');
-            setTimeout(() => popup.classList.remove('show'), 3000);
+            const progress = (points / 500) * 100; // Max 500 points from vocab and games
+            document.getElementById('progress').style.width = `${Math.min(progress, 100)}%`;
         }
 
         // Switch tabs
@@ -1136,21 +909,15 @@
                     <h3 style="margin-bottom: 15px; color: var(--primary); font-weight: 700;">Your Self-Introduction | การแนะนำตัวของคุณ</h3>
                     <div class="answer-text" style="font-size: 1.4em; margin-bottom: 12px;">${intro}</div>
                     <div class="answer-thai" style="font-size: 1.2em; margin-bottom: 20px;">${introTh}</div>
-                    <div class="btn-group">
-                        <button class="play-btn" onclick="speak('${intro}', 'en')">
-                            🔊 Listen in English | ฟังภาษาอังกฤษ
-                        </button>
-                        <button class="play-btn" onclick="speak('${introTh}', 'th')">
-                            🔊 Listen in Thai | ฟังภาษาไทย
-                        </button>
-                    </div>
+                    <button class="play-btn" onclick="speak('${intro}', 'en')">
+                        🔊 Listen in English
+                    </button>
                     <p style="margin-top: 25px; color: var(--text-light); font-weight: 600;">💡 Practice this many times! | ฝึกหลายๆครั้ง!</p>
                 </div>
             `;
             
             points += 20;
             updateStats();
-            showAchievement('🎉 Introduction created! | สร้างการแนะนำตัวแล้ว!');
         }
 
         // Initialize vocabulary cards
@@ -1189,7 +956,6 @@
                     <div class="vocab-thai">${v.th}</div>
                 </div>
             `).join('');
-            showAchievement('🔄 Cards shuffled! | สับการ์ดใหม่!');
         }
 
         // Reset vocabulary
@@ -1197,7 +963,6 @@
             document.querySelectorAll('.vocab-item').forEach(card => {
                 card.classList.remove('flipped', 'correct');
             });
-            showAchievement('🔁 Reset complete! | เริ่มใหม่!');
         }
 
         // Start matching game
@@ -1276,7 +1041,6 @@
                         document.getElementById('gameFeedback').textContent = 
                             `🎉 Great job! Completed in ${elapsed} seconds! | เยี่ยมมาก! เสร็จใน ${elapsed} วินาที!`;
                         document.getElementById('gameFeedback').classList.add('show');
-                        showAchievement('🏆 You won the game! | ชนะเกม!');
                     }
                 } else {
                     setTimeout(() => {
@@ -1293,6 +1057,9 @@
         window.onload = function() {
             initQuestions();
             initVocab();
+            // Update counts
+            document.getElementById('questionCount').textContent = questions.length;
+            document.getElementById('vocabCount').textContent = vocabulary.length;
         };
     </script>
 </body>
