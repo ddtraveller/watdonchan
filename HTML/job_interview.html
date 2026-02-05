@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Interview Practice - Cleaning Job in Israel | แบบฝึกหัดสัมภาษณ์งาน</title>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Noto+Sans+Thai:wght@300;400;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Cleaning Job Interview Practice | ฝึกสัมภาษณ์งานทำความสะอาด</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600;700&family=Outfit:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,22 +13,22 @@
         }
 
         :root {
-            --primary: #4ECDC4;
-            --primary-dark: #3BA8A0;
-            --secondary: #FFD93D;
-            --accent: #FF6B9D;
-            --success: #6BCF7F;
-            --bg-main: #F8F9FA;
-            --bg-card: #FFFFFF;
-            --text-dark: #2C3E50;
-            --text-light: #6C757D;
-            --border: #E9ECEF;
-            --shadow: rgba(0, 0, 0, 0.08);
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #f59e0b;
+            --accent: #ec4899;
+            --success: #22c55e;
+            --bg-main: #f0fdf4;
+            --bg-card: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: 'Heebo', 'Noto Sans Thai', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Outfit', 'Noto Sans Thai', sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             min-height: 100vh;
             color: var(--text-dark);
             padding: 20px;
@@ -44,9 +44,9 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 217, 61, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
@@ -59,14 +59,14 @@
         }
 
         .header {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
             backdrop-filter: blur(10px);
-            padding: 30px;
+            padding: 40px;
             border-radius: 24px;
             text-align: center;
             margin-bottom: 30px;
             box-shadow: 0 20px 60px var(--shadow);
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.8);
             animation: slideDown 0.6s ease-out;
         }
 
@@ -82,22 +82,27 @@
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
-            font-family: 'Quicksand', 'Heebo', sans-serif;
-            letter-spacing: -1px;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -2px;
         }
 
         .subtitle {
             color: var(--text-light);
-            font-size: 1.2em;
-            font-weight: 300;
+            font-size: 1.3em;
+            font-weight: 400;
             font-family: 'Noto Sans Thai', sans-serif;
+        }
+
+        .flag {
+            font-size: 2em;
+            margin: 0 10px;
         }
 
         .stats-bar {
@@ -120,13 +125,13 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 16px;
+            padding: 25px;
+            border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px var(--shadow);
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
         }
 
@@ -136,21 +141,22 @@
         }
 
         .stat-number {
-            font-size: 2.5em;
+            font-size: 2.8em;
             font-weight: 900;
             color: var(--primary);
-            font-family: 'Quicksand', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .stat-label {
             color: var(--text-light);
-            font-size: 0.9em;
-            margin-top: 5px;
+            font-size: 0.95em;
+            margin-top: 8px;
+            font-weight: 500;
         }
 
         .tabs {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 30px;
             flex-wrap: wrap;
             animation: fadeIn 0.6s ease-out 0.3s both;
@@ -158,19 +164,19 @@
 
         .tab-btn {
             flex: 1;
-            min-width: 150px;
-            padding: 18px 24px;
+            min-width: 160px;
+            padding: 20px 28px;
             border: none;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             color: var(--text-dark);
             font-size: 1.1em;
             font-weight: 600;
-            border-radius: 16px;
+            border-radius: 18px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Heebo', sans-serif;
-            border: 2px solid transparent;
+            font-family: 'Outfit', sans-serif;
+            border: 3px solid transparent;
         }
 
         .tab-btn:hover {
@@ -181,8 +187,8 @@
         .tab-btn.active {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
         }
 
         .tab-content {
@@ -195,13 +201,13 @@
         }
 
         .question-card, .exercise-card, .vocab-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            padding: 35px;
+            border-radius: 24px;
+            margin-bottom: 25px;
             box-shadow: 0 15px 40px var(--shadow);
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
         }
 
@@ -213,58 +219,63 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--border);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .question-number {
-            background: linear-gradient(135deg, var(--accent) 0%, #FF8FAB 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, #db2777 100%);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.3em;
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            font-size: 1.5em;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .question-text {
-            font-size: 1.4em;
-            font-weight: 600;
+            font-size: 1.6em;
+            font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .question-thai {
             color: var(--text-light);
-            font-size: 0.95em;
+            font-size: 1.1em;
             font-family: 'Noto Sans Thai', sans-serif;
-            font-style: italic;
+            font-weight: 500;
         }
 
         .play-btn {
-            background: linear-gradient(135deg, var(--secondary) 0%, #FFC947 100%);
+            background: linear-gradient(135deg, var(--secondary) 0%, #d97706 100%);
             border: none;
-            color: var(--text-dark);
-            padding: 12px 24px;
-            border-radius: 12px;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1em;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 217, 61, 0.3);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .play-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 217, 61, 0.5);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.6);
         }
 
         .play-btn:active {
@@ -272,64 +283,70 @@
         }
 
         .answers {
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .answer-option {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 15px;
-            border: 2px solid transparent;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+            border: 3px solid transparent;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .answer-option:hover {
             border-color: var(--primary);
-            transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.2);
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
         }
 
         .answer-label {
             display: inline-block;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-bottom: 10px;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .answer-text {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 8px;
+            font-size: 1.2em;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-dark);
         }
 
         .answer-thai {
             color: var(--text-light);
-            font-size: 0.9em;
+            font-size: 1em;
             font-family: 'Noto Sans Thai', sans-serif;
+            font-weight: 500;
         }
 
         .btn-group {
             display: flex;
-            gap: 10px;
-            margin-top: 12px;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
         }
 
         .small-btn {
             background: white;
-            border: 2px solid var(--primary);
+            border: 3px solid var(--primary);
             color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 600;
+            font-size: 0.95em;
+            font-weight: 700;
             transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
         }
 
         .small-btn:hover {
@@ -339,44 +356,68 @@
         }
 
         .intro-exercise {
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(78, 205, 196, 0.05) 100%);
-            padding: 25px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            border: 2px dashed var(--primary);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 3px dashed var(--primary);
         }
 
         .intro-title {
-            font-size: 1.3em;
-            font-weight: 700;
+            font-size: 1.5em;
+            font-weight: 800;
             color: var(--primary-dark);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .practice-area {
             background: white;
-            padding: 20px;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 20px;
+            border: 2px solid var(--border);
+        }
+
+        .practice-area input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid var(--border);
             border-radius: 12px;
-            margin-top: 15px;
+            font-size: 1.1em;
+            margin-bottom: 18px;
+            font-family: 'Outfit', 'Noto Sans Thai', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .practice-area input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
         }
 
         .vocab-game {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 25px;
         }
 
         .vocab-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.9) 100%);
-            padding: 20px;
-            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 3px solid transparent;
+            border: 4px solid transparent;
             position: relative;
             overflow: hidden;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .vocab-item::before {
@@ -393,82 +434,90 @@
         }
 
         .vocab-item:hover::before {
-            opacity: 0.1;
+            opacity: 0.12;
         }
 
         .vocab-item:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-8px) scale(1.03);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.35);
         }
 
         .vocab-item.flipped {
-            background: linear-gradient(135deg, var(--secondary) 0%, #FFC947 100%);
+            background: linear-gradient(135deg, var(--secondary) 0%, #d97706 100%);
             border-color: var(--secondary);
         }
 
         .vocab-item.correct {
-            background: linear-gradient(135deg, var(--success) 0%, #5BB96B 100%);
+            background: linear-gradient(135deg, var(--success) 0%, #16a34a 100%);
             border-color: var(--success);
             animation: celebrate 0.6s ease;
         }
 
         @keyframes celebrate {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1) rotate(5deg); }
-            75% { transform: scale(1.1) rotate(-5deg); }
+            25% { transform: scale(1.15) rotate(8deg); }
+            75% { transform: scale(1.15) rotate(-8deg); }
         }
 
-        .vocab-hebrew {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .vocab-english {
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 12px;
             color: var(--text-dark);
             position: relative;
             z-index: 1;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .vocab-item.flipped .vocab-english {
+            color: white;
         }
 
         .vocab-thai {
-            font-size: 1.1em;
+            font-size: 1.3em;
             color: var(--text-light);
             font-family: 'Noto Sans Thai', sans-serif;
             display: none;
             position: relative;
             z-index: 1;
+            font-weight: 600;
         }
 
         .vocab-item.flipped .vocab-thai {
             display: block;
+            color: white;
         }
 
         .game-controls {
             display: flex;
-            gap: 15px;
+            gap: 18px;
             justify-content: center;
-            margin-top: 25px;
+            margin-top: 30px;
             flex-wrap: wrap;
         }
 
         .game-btn {
-            background: linear-gradient(135deg, var(--accent) 0%, #FF8FAB 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, #db2777 100%);
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 12px;
-            font-size: 1.1em;
-            font-weight: 600;
+            padding: 18px 36px;
+            border-radius: 14px;
+            font-size: 1.15em;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+            font-family: 'Outfit', sans-serif;
         }
 
         .game-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.6);
         }
 
         .game-btn:active {
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
         .achievement-popup {
@@ -476,14 +525,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            background: linear-gradient(135deg, #FFD93D 0%, #FFC947 100%);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--secondary) 0%, #d97706 100%);
+            padding: 50px;
+            border-radius: 28px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
             z-index: 1000;
             text-align: center;
-            border: 4px solid white;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 5px solid white;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .achievement-popup.show {
@@ -491,102 +540,104 @@
         }
 
         .achievement-icon {
-            font-size: 5em;
-            margin-bottom: 15px;
+            font-size: 5.5em;
+            margin-bottom: 20px;
             animation: bounce 0.6s ease infinite;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
         .achievement-text {
-            font-size: 1.8em;
+            font-size: 2em;
             font-weight: 900;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .progress-bar {
-            background: rgba(255, 255, 255, 0.3);
-            height: 12px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.35);
+            height: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .progress-fill {
             background: linear-gradient(90deg, var(--success) 0%, var(--primary) 100%);
             height: 100%;
-            border-radius: 10px;
-            transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 0 10px rgba(107, 207, 127, 0.5);
+            border-radius: 12px;
+            transition: width 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
         }
 
         .matching-game {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 35px;
+            margin-top: 25px;
         }
 
         .matching-column {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
 
         .matching-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.9) 100%);
-            padding: 18px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
+            padding: 22px;
+            border-radius: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 3px solid transparent;
-            font-size: 1.1em;
-            font-weight: 500;
+            border: 4px solid transparent;
+            font-size: 1.15em;
+            font-weight: 600;
             text-align: center;
         }
 
         .matching-item:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .matching-item.selected {
             border-color: var(--accent);
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(255, 143, 171, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(219, 39, 119, 0.25) 100%);
         }
 
         .matching-item.matched {
             border-color: var(--success);
-            background: linear-gradient(135deg, rgba(107, 207, 127, 0.3) 0%, rgba(91, 185, 107, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.35) 0%, rgba(22, 163, 74, 0.35) 100%);
             pointer-events: none;
         }
 
         .timer {
-            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(255, 143, 171, 0.2) 100%);
-            padding: 15px 25px;
-            border-radius: 12px;
-            font-size: 1.5em;
-            font-weight: 700;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(219, 39, 119, 0.2) 100%);
+            padding: 18px 30px;
+            border-radius: 14px;
+            font-size: 1.7em;
+            font-weight: 800;
             color: var(--accent);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .feedback {
-            background: linear-gradient(135deg, rgba(107, 207, 127, 0.2) 0%, rgba(91, 185, 107, 0.2) 100%);
-            padding: 20px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(22, 163, 74, 0.25) 100%);
+            padding: 25px;
+            border-radius: 14px;
             text-align: center;
-            font-size: 1.2em;
-            font-weight: 600;
+            font-size: 1.3em;
+            font-weight: 700;
             color: var(--success);
-            margin-top: 20px;
+            margin-top: 25px;
             display: none;
-            border: 2px solid var(--success);
+            border: 3px solid var(--success);
         }
 
         .feedback.show {
@@ -596,7 +647,7 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2em;
+                font-size: 2.2em;
             }
 
             .matching-game {
@@ -610,19 +661,23 @@
             .tab-btn {
                 width: 100%;
             }
-        }
 
-        .emoji {
-            display: inline-block;
-            font-size: 1.2em;
+            .question-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧹 Job Interview Practice</h1>
-            <p class="subtitle">แบบฝึกหัดสำหรับการสัมภาษณ์งานทำความสะอาดในอิสราเอล</p>
+            <h1>🧹 Interview Practice</h1>
+            <p class="subtitle">
+                <span class="flag">🇹🇭</span>
+                แบบฝึกหัดสำหรับการสัมภาษณ์งานทำความสะอาดในอิสราเอล
+                <span class="flag">🇮🇱</span>
+            </p>
         </div>
 
         <div class="stats-bar">
@@ -632,7 +687,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="completed">0/20</div>
-                <div class="stat-label">Completed | ทำเสร็จแล้ว</div>
+                <div class="stat-label">Completed | ทำเสร็จ</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="streak">0🔥</div>
@@ -648,16 +703,16 @@
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('interview')">
-                🎤 Interview | สัมภาษณ์
+                🎤 Interview Questions | คำถามสัมภาษณ์
             </button>
             <button class="tab-btn" onclick="switchTab('introduction')">
-                👋 Introduction | แนะนำตัว
+                👋 Self Introduction | แนะนำตัวเอง
             </button>
             <button class="tab-btn" onclick="switchTab('vocabulary')">
                 📚 Vocabulary | คำศัพท์
             </button>
             <button class="tab-btn" onclick="switchTab('games')">
-                🎮 Games | เกม
+                🎮 Matching Game | เกมจับคู่
             </button>
         </div>
 
@@ -670,14 +725,14 @@
                 <h2 class="intro-title">🎯 Practice Self-Introduction | ฝึกแนะนำตัวเอง</h2>
                 
                 <div class="intro-exercise">
-                    <h3 style="margin-bottom: 15px;">Step 1: Your Basic Information | ข้อมูลพื้นฐานของคุณ</h3>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2em; font-weight: 700;">Step 1: Your Basic Information | ข้อมูลพื้นฐานของคุณ</h3>
                     <div class="practice-area">
-                        <p style="margin-bottom: 10px;"><strong>My name is...</strong> ชื่อของฉันคือ...</p>
-                        <input type="text" id="userName" placeholder="Enter your name | ใส่ชื่อของคุณ" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 1.1em; margin-bottom: 15px;">
+                        <p style="margin-bottom: 10px; font-weight: 600;"><strong>My name is...</strong> ชื่อของฉันคือ...</p>
+                        <input type="text" id="userName" placeholder="Enter your name | ใส่ชื่อของคุณ">
                         
-                        <p style="margin-bottom: 10px;"><strong>I am from Thailand</strong> ฉันมาจากประเทศไทย</p>
-                        <p style="margin-bottom: 10px;"><strong>I am... years old</strong> อายุของฉัน...</p>
-                        <input type="number" id="userAge" placeholder="Age | อายุ" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 1.1em; margin-bottom: 15px;">
+                        <p style="margin-bottom: 10px; font-weight: 600;"><strong>I am from Thailand</strong> ฉันมาจากประเทศไทย</p>
+                        <p style="margin-bottom: 10px; font-weight: 600;"><strong>I am... years old</strong> อายุของฉัน...</p>
+                        <input type="number" id="userAge" placeholder="Your age | อายุ">
                         
                         <button class="game-btn" onclick="generateIntro()">
                             Generate Introduction | สร้างการแนะนำตัว ✨
@@ -686,12 +741,12 @@
                 </div>
 
                 <div class="intro-exercise">
-                    <h3 style="margin-bottom: 15px;">Step 2: Try It Yourself | ลองพูดเอง</h3>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2em; font-weight: 700;">Step 2: Practice Speaking | ลองพูดเอง</h3>
                     <div class="practice-area" id="introResult"></div>
                 </div>
 
                 <div class="intro-exercise">
-                    <h3 style="margin-bottom: 15px;">Step 3: Useful Phrases | ประโยคที่มีประโยชน์</h3>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2em; font-weight: 700;">Step 3: Useful Phrases | ประโยคที่มีประโยชน์</h3>
                     <div class="practice-area">
                         <div class="answer-option" onclick="speak('I have experience in house cleaning', 'en')">
                             <div class="answer-text">I have experience in house cleaning</div>
@@ -713,6 +768,11 @@
                             <div class="answer-thai">ฉันกำลังเรียนภาษาอังกฤษ</div>
                             <button class="small-btn">🔊 Listen | ฟัง</button>
                         </div>
+                        <div class="answer-option" onclick="speak('I am very detail-oriented', 'en')">
+                            <div class="answer-text">I am very detail-oriented</div>
+                            <div class="answer-thai">ฉันใส่ใจในรายละเอียด</div>
+                            <button class="small-btn">🔊 Listen | ฟัง</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -721,7 +781,7 @@
         <div id="vocabulary" class="tab-content">
             <div class="vocab-card">
                 <h2 class="intro-title">📖 Cleaning Vocabulary | คำศัพท์เกี่ยวกับการทำความสะอาด</h2>
-                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light);">Click on the card to see translation | คลิกการ์ดเพื่อดูคำแปล</p>
+                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light); font-size: 1.1em;">Click the card to see the translation | คลิกการ์ดเพื่อดูคำแปล</p>
                 <div class="vocab-game" id="vocabCards"></div>
                 <div class="game-controls">
                     <button class="game-btn" onclick="shuffleVocab()">🔄 Shuffle | สับเปลี่ยน</button>
@@ -733,7 +793,7 @@
         <div id="games" class="tab-content">
             <div class="vocab-card">
                 <h2 class="intro-title">🎯 Matching Game | เกมจับคู่</h2>
-                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light);">Match English words with Thai translations | จับคู่คำอังกฤษกับคำแปลภาษาไทย</p>
+                <p style="text-align: center; margin-bottom: 20px; color: var(--text-light); font-size: 1.1em;">Match English words with Thai translations | จับคู่คำอังกฤษกับคำแปลภาษาไทย</p>
                 <div class="timer" id="gameTimer">⏱️ Time: 0:00</div>
                 <div class="matching-game" id="matchingGame"></div>
                 <div class="feedback" id="gameFeedback"></div>
@@ -756,9 +816,9 @@
                 en: "Tell me about yourself",
                 th: "บอกฉันเกี่ยวกับตัวคุณ",
                 answers: [
-                    { en: "My name is... I'm from Thailand", th: "ชื่อ...ฉันมาจากไทย", type: "Very Short" },
-                    { en: "My name is... I'm from Thailand and I have cleaning experience", th: "ชื่อ...ฉันมาจากไทยและมีประสบการณ์ทำความสะอาด", type: "Short" },
-                    { en: "My name is... I'm from Thailand and I've been here for one year. I have experience cleaning houses and offices. I'm a hard worker and reliable.", th: "ชื่อ...ฉันมาจากไทยและอยู่ที่นี่ได้หนึ่งปีแล้ว มีประสบการณ์ทำความสะอาดทั้งบ้านและสำนักงาน ฉันทำงานหนักและเชื่อถือได้", type: "Average" }
+                    { en: "My name is... I am from Thailand", th: "ชื่อ...ฉันมาจากไทย", type: "Very Short" },
+                    { en: "My name is... I am from Thailand and I have experience in cleaning", th: "ชื่อ...ฉันมาจากไทยและมีประสบการณ์ทำความสะอาด", type: "Short" },
+                    { en: "My name is... I am from Thailand and I have been here for one year. I have experience cleaning houses and offices. I am a hard worker and very reliable.", th: "ชื่อ...ฉันมาจากไทยและอยู่ที่นี่ได้หนึ่งปีแล้ว มีประสบการณ์ทำความสะอาดทั้งบ้านและสำนักงาน ฉันทำงานหนักและเชื่อถือได้", type: "Average" }
                 ]
             },
             {
@@ -766,17 +826,17 @@
                 th: "ทำไมคุณถึงอยากทำงานกับเรา?",
                 answers: [
                     { en: "I need a job", th: "ฉันต้องการงาน", type: "Very Short" },
-                    { en: "I heard good things about your company", th: "ฉันได้ยินเรื่องดีๆเกี่ยวกับบริษัท", type: "Short" },
+                    { en: "I heard good things about this company", th: "ฉันได้ยินเรื่องดีๆเกี่ยวกับบริษัท", type: "Short" },
                     { en: "I heard good things about your company and I like organized work. I want to be part of a professional team.", th: "ฉันได้ยินเรื่องดีๆเกี่ยวกับบริษัทของคุณและฉันชอบงานที่เป็นระเบียบ อยากเป็นส่วนหนึ่งของทีมมืออาชีพ", type: "Average" }
                 ]
             },
             {
-                en: "What cleaning experience do you have?",
+                en: "What experience do you have in cleaning?",
                 th: "คุณมีประสบการณ์อะไรในการทำความสะอาด?",
                 answers: [
                     { en: "I have experience", th: "ฉันมีประสบการณ์", type: "Very Short" },
                     { en: "I worked in house cleaning for two years", th: "ทำความสะอาดบ้านมา 2 ปี", type: "Short" },
-                    { en: "I worked cleaning private homes for two years and offices for one year. I know all cleaning products and can use cleaning machines.", th: "ทำความสะอาดบ้าน 2 ปี และสำนักงาน 1 ปี รู้จักผลิตภัณฑ์ทำความสะอาดและใช้เครื่องทำความสะอาดเป็น", type: "Average" }
+                    { en: "I worked in private house cleaning for two years and office cleaning for one year. I know all cleaning products and how to use cleaning machines.", th: "ทำความสะอาดบ้าน 2 ปี และสำนักงาน 1 ปี รู้จักผลิตภัณฑ์ทำความสะอาดและใช้เครื่องทำความสะอาดเป็น", type: "Average" }
                 ]
             },
             {
@@ -785,7 +845,7 @@
                 answers: [
                     { en: "Tomorrow", th: "พรุ่งนี้", type: "Very Short" },
                     { en: "I can start immediately", th: "ฉันเริ่มได้ทันที", type: "Short" },
-                    { en: "I can start immediately, tomorrow or whenever is convenient for you. I'm available every day.", th: "ฉันสามารถเริ่มได้ทันที พรุ่งนี้หรือเมื่อสะดวก พร้อมทุกวัน", type: "Average" }
+                    { en: "I can start immediately, tomorrow or whenever is convenient for you. I am available every day.", th: "ฉันสามารถเริ่มได้ทันที พรุ่งนี้หรือเมื่อสะดวก พร้อมทุกวัน", type: "Average" }
                 ]
             },
             {
@@ -793,8 +853,8 @@
                 th: "คุณสามารถทำงานวันไหนได้บ้าง?",
                 answers: [
                     { en: "Every day", th: "ทุกวัน", type: "Very Short" },
-                    { en: "I can work Monday to Friday", th: "ฉันทำงานได้วันจันทร์ถึงศุกร์", type: "Short" },
-                    { en: "I'm very flexible. I can work Monday to Friday, and Saturday if needed. I prefer to work full-time.", th: "ฉันยืดหยุ่นมาก ทำงานได้จันทร์ถึงศุกร์ และวันเสาร์ถ้าจำเป็น อยากทำงานเต็มเวลา", type: "Average" }
+                    { en: "I can work Sunday to Friday", th: "ฉันทำงานได้วันอาทิตย์ถึงศุกร์", type: "Short" },
+                    { en: "I am very flexible. I can work Sunday to Friday, and Saturday if needed. I prefer to work full time.", th: "ฉันยืดหยุ่นมาก ทำงานได้อาทิตย์ถึงศุกร์ และวันเสาร์ถ้าจำเป็น อยากทำงานเต็มเวลา", type: "Average" }
                 ]
             },
             {
@@ -802,44 +862,44 @@
                 th: "คุณสามารถทำงานช่วงเวลาไหน?",
                 answers: [
                     { en: "Flexible", th: "ยืดหยุ่น", type: "Very Short" },
-                    { en: "I can work morning and afternoon", th: "ทำงานได้ช่วงเช้าและบ่าย", type: "Short" },
+                    { en: "I can work mornings and afternoons", th: "ทำงานได้ช่วงเช้าและบ่าย", type: "Short" },
                     { en: "I can work from 6 AM to 6 PM. I can also work different shifts as needed.", th: "ทำงานได้ตั้งแต่ 6 โมงเช้าถึง 6 โมงเย็น และสามารถทำงานกะต่างๆตามต้องการ", type: "Average" }
                 ]
             },
             {
-                en: "Do you have a car?",
-                th: "คุณมีรถไหม?",
+                en: "Do you have transportation?",
+                th: "คุณมีพาหนะไหม?",
                 answers: [
                     { en: "No", th: "ไม่มี", type: "Very Short" },
-                    { en: "I don't have a car but I can use public transport", th: "ไม่มีรถแต่เดินทางด้วยรถสาธารณะได้", type: "Short" },
-                    { en: "I don't have a private car, but I have a bicycle and can use public transport. I always arrive on time.", th: "ไม่มีรถส่วนตัวแต่มีจักรยานและใช้รถสาธารณะได้ มาตรงเวลาเสมอ", type: "Average" }
+                    { en: "I don't have a car but I can use public transportation", th: "ไม่มีรถแต่เดินทางด้วยรถสาธารณะได้", type: "Short" },
+                    { en: "I don't have a private car, but I have a bicycle and I can use public transportation. I always arrive on time.", th: "ไม่มีรถส่วนตัวแต่มีจักรยานและใช้รถสาธารณะได้ มาตรงเวลาเสมอ", type: "Average" }
                 ]
             },
             {
                 en: "What are your strengths?",
                 th: "จุดแข็งของคุณคืออะไร?",
                 answers: [
-                    { en: "I'm hardworking", th: "ฉันขยัน", type: "Very Short" },
-                    { en: "I work hard and pay attention to details", th: "ฉันทำงานหนักและละเอียดรอบคอบ", type: "Short" },
-                    { en: "I work very hard and pay attention to details. I'm reliable and always on time. People say their homes look perfect after I clean.", th: "ฉันทำงานหนักและใส่ใจรายละเอียด เชื่อถือได้และมาตรงเวลา คนบอกว่าบ้านดูสมบูรณ์แบบหลังจากฉันทำความสะอาด", type: "Average" }
+                    { en: "I am hardworking", th: "ฉันขยัน", type: "Very Short" },
+                    { en: "I work hard and I am detail-oriented", th: "ฉันทำงานหนักและละเอียดรอบคอบ", type: "Short" },
+                    { en: "I work very hard and I am detail-oriented. I am reliable and always on time. People say their homes look perfect after I clean.", th: "ฉันทำงานหนักและใส่ใจรายละเอียด เชื่อถือได้และมาตรงเวลา คนบอกว่าบ้านดูสมบูรณ์แบบหลังจากฉันทำความสะอาด", type: "Average" }
                 ]
             },
             {
                 en: "What are your weaknesses?",
                 th: "จุดอ่อนของคุณคืออะไร?",
                 answers: [
-                    { en: "I'm learning English", th: "ฉันกำลังเรียนอังกฤษ", type: "Very Short" },
-                    { en: "My English isn't perfect but I'm learning", th: "ภาษาอังกฤษยังไม่สมบูรณ์แต่กำลังเรียน", type: "Short" },
-                    { en: "My English is still not perfect, but I study every day and understand basic instructions. I'm good at the work and use translation when needed.", th: "ภาษาอังกฤษยังไม่สมบูรณ์แต่เรียนทุกวันและเข้าใจคำสั่งพื้นฐาน เก่งในงานและใช้แปลภาษาเมื่อจำเป็น", type: "Average" }
+                    { en: "I am learning English", th: "ฉันกำลังเรียนอังกฤษ", type: "Very Short" },
+                    { en: "My English is not perfect but I am learning", th: "ภาษาอังกฤษยังไม่สมบูรณ์แต่กำลังเรียน", type: "Short" },
+                    { en: "My English is not perfect yet, but I study every day and I understand basic instructions. I am good at my work and use translation when needed.", th: "ภาษาอังกฤษยังไม่สมบูรณ์แต่เรียนทุกวันและเข้าใจคำสั่งพื้นฐาน เก่งในงานและใช้แปลภาษาเมื่อจำเป็น", type: "Average" }
                 ]
             },
             {
-                en: "How much do you expect to earn?",
+                en: "What salary do you expect?",
                 th: "คุณคาดหวังเงินเดือนเท่าไหร่?",
                 answers: [
                     { en: "Fair salary", th: "เงินเดือนที่ยุติธรรม", type: "Very Short" },
-                    { en: "I expect a reasonable market salary", th: "คาดหวังเงินเดือนที่เหมาะสมตามตลาด", type: "Short" },
-                    { en: "I expect a fair market salary. I know the minimum wage is... I'm flexible and open to discussion.", th: "คาดหวังเงินเดือนที่ยุติธรรมตามตลาด รู้ว่าค่าแรงขั้นต่ำคือ... ยืดหยุ่นและพร้อมเจรจา", type: "Average" }
+                    { en: "I expect reasonable salary according to the market", th: "คาดหวังเงินเดือนที่เหมาะสมตามตลาด", type: "Short" },
+                    { en: "I expect fair salary according to the market. I know the minimum wage is... I am flexible and open to discuss.", th: "คาดหวังเงินเดือนที่ยุติธรรมตามตลาด รู้ว่าค่าแรงขั้นต่ำคือ... ยืดหยุ่นและพร้อมเจรจา", type: "Average" }
                 ]
             },
             {
@@ -857,7 +917,7 @@
                 answers: [
                     { en: "Yes, I have experience", th: "มี มีประสบการณ์", type: "Very Short" },
                     { en: "Yes, I know most cleaning products", th: "มี รู้จักผลิตภัณฑ์ส่วนใหญ่", type: "Short" },
-                    { en: "Yes, I have extensive experience with different cleaning products. I know which product suits each surface and work carefully.", th: "มี มีประสบการณ์มากกับผลิตภัณฑ์ต่างๆ รู้ว่าผลิตภัณฑ์ไหนเหมาะกับพื้นผิวใดและทำงานอย่างระมัดระวัง", type: "Average" }
+                    { en: "Yes, I have a lot of experience with different cleaning products. I know which product is suitable for each surface and I work carefully.", th: "มี มีประสบการณ์มากกับผลิตภัณฑ์ต่างๆ รู้ว่าผลิตภัณฑ์ไหนเหมาะกับพื้นผิวใดและทำงานอย่างระมัดระวัง", type: "Average" }
                 ]
             },
             {
@@ -865,17 +925,17 @@
                 th: "คุณรู้วิธีใช้เครื่องทำความสะอาดไหม?",
                 answers: [
                     { en: "Yes", th: "รู้", type: "Very Short" },
-                    { en: "Yes, I can use vacuums and floor mops", th: "รู้ ใช้เครื่องดูดฝุ่นและเครื่องถูพื้นเป็น", type: "Short" },
-                    { en: "Yes, I'm experienced with regular and industrial vacuums, electric floor mops and carpet cleaners. I can learn new machines quickly.", th: "รู้ มีประสบการณ์กับเครื่องดูดฝุ่นทั่วไปและแรง เครื่องถูพื้นไฟฟ้า และเครื่องทำความสะอาดพรม เรียนรู้เครื่องใหม่ได้เร็ว", type: "Average" }
+                    { en: "Yes, I can use vacuum cleaners and mops", th: "รู้ ใช้เครื่องดูดฝุ่นและเครื่องถูพื้นเป็น", type: "Short" },
+                    { en: "Yes, I am experienced with regular and heavy vacuum cleaners, electric mops and carpet cleaning machines. I can learn new machines quickly.", th: "รู้ มีประสบการณ์กับเครื่องดูดฝุ่นทั่วไปและแรง เครื่องถูพื้นไฟฟ้า และเครื่องทำความสะอาดพรม เรียนรู้เครื่องใหม่ได้เร็ว", type: "Average" }
                 ]
             },
             {
-                en: "Can you work alone?",
+                en: "Can you work independently?",
                 th: "คุณทำงานคนเดียวได้ไหม?",
                 answers: [
                     { en: "Yes", th: "ได้", type: "Very Short" },
                     { en: "Yes, I can work independently", th: "ได้ ทำงานอิสระได้", type: "Short" },
-                    { en: "Yes, I'm very independent and can work alone without supervision. I know what to do and finish work on time.", th: "ได้ เป็นอิสระมากและทำงานคนเดียวโดยไม่ต้องควบคุมได้ รู้ว่าต้องทำอะไรและทำเสร็จตรงเวลา", type: "Average" }
+                    { en: "Yes, I am very independent and can work alone without supervision. I know what to do and I finish the work on time.", th: "ได้ เป็นอิสระมากและทำงานคนเดียวโดยไม่ต้องควบคุมได้ รู้ว่าต้องทำอะไรและทำเสร็จตรงเวลา", type: "Average" }
                 ]
             },
             {
@@ -891,9 +951,9 @@
                 en: "What would you do if you found something broken?",
                 th: "คุณจะทำอย่างไรถ้าเจอของแตก?",
                 answers: [
-                    { en: "I'd report it", th: "จะรายงาน", type: "Very Short" },
-                    { en: "I'd report it to my employer immediately", th: "จะรายงานนายจ้างทันที", type: "Short" },
-                    { en: "I'd report it to my employer immediately and not touch it. I'd take a photo and explain exactly what happened.", th: "จะรายงานนายจ้างทันทีและไม่แตะ จะถ่ายรูปและบอกว่าเกิดอะไรขึ้นแน่ชัด", type: "Average" }
+                    { en: "I would report it", th: "จะรายงาน", type: "Very Short" },
+                    { en: "I would report it immediately to the employer", th: "จะรายงานนายจ้างทันที", type: "Short" },
+                    { en: "I would report it immediately to the employer and not touch it. I would take a photo and explain exactly what happened.", th: "จะรายงานนายจ้างทันทีและไม่แตะ จะถ่ายรูปและบอกว่าเกิดอะไรขึ้นแน่ชัด", type: "Average" }
                 ]
             },
             {
@@ -902,7 +962,7 @@
                 answers: [
                     { en: "No", th: "ไม่", type: "Very Short" },
                     { en: "No, I don't smoke", th: "ไม่ ไม่สูบบุหรี่", type: "Short" },
-                    { en: "No, I don't smoke at all. I take care of my health and maintain a clean atmosphere at work.", th: "ไม่ ไม่สูบเลย ดูแลสุขภาพและบรรยากาศที่สะอาดในที่ทำงาน", type: "Average" }
+                    { en: "No, I don't smoke at all. I take care of my health and maintain a clean environment at work.", th: "ไม่ ไม่สูบเลย ดูแลสุขภาพและบรรยากาศที่สะอาดในที่ทำงาน", type: "Average" }
                 ]
             },
             {
@@ -911,7 +971,7 @@
                 answers: [
                     { en: "I wanted a change", th: "อยากเปลี่ยนงาน", type: "Very Short" },
                     { en: "I wanted a new and better opportunity", th: "อยากได้โอกาสใหม่ที่ดีกว่า", type: "Short" },
-                    { en: "I wanted to advance and find a place with more opportunities. The previous job was good, but I'm looking for something more stable.", th: "อยากก้าวหน้าและหาที่ที่มีโอกาสมากกว่า งานเดิมดีแต่กำลังหาที่มั่นคงกว่า", type: "Average" }
+                    { en: "I wanted to advance and find a place with more opportunities. The previous job was good, but I am looking for something more stable.", th: "อยากก้าวหน้าและหาที่ที่มีโอกาสมากกว่า งานเดิมดีแต่กำลังหาที่มั่นคงกว่า", type: "Average" }
                 ]
             },
             {
@@ -920,16 +980,16 @@
                 answers: [
                     { en: "Yes", th: "มี", type: "Very Short" },
                     { en: "Yes, I have references from previous employers", th: "มี มีจดหมายจากนายจ้างเก่า", type: "Short" },
-                    { en: "Yes, I have excellent references from previous employers. They can confirm I'm a reliable and professional worker.", th: "มี มีจดหมายรับรองดีเยี่ยมจากนายจ้างเก่า พวกเขาสามารถยืนยันว่าฉันเป็นพนักงานที่เชื่อถือได้และมืออาชีพ", type: "Average" }
+                    { en: "Yes, I have excellent references from previous employers. They can confirm that I am a reliable and professional worker.", th: "มี มีจดหมายรับรองดีเยี่ยมจากนายจ้างเก่า พวกเขาสามารถยืนยันว่าฉันเป็นพนักงานที่เชื่อถือได้และมืออาชีพ", type: "Average" }
                 ]
             },
             {
-                en: "How would you handle an unhappy customer?",
+                en: "How would you respond to an unhappy customer?",
                 th: "คุณจะตอบสนองอย่างไรกับลูกค้าที่ไม่พอใจ?",
                 answers: [
-                    { en: "I'd fix it", th: "จะแก้ไข", type: "Very Short" },
-                    { en: "I'd listen and fix the problem immediately", th: "จะฟังและแก้ไขปัญหาทันที", type: "Short" },
-                    { en: "I'd listen to the problem patiently, apologize if needed and fix it immediately. I want the customer to be completely satisfied.", th: "จะฟังปัญหาอย่างอดทน ขอโทษถ้าจำเป็น และแก้ไขทันที อยากให้ลูกค้าพอใจอย่างสมบูรณ์", type: "Average" }
+                    { en: "I would fix it", th: "จะแก้ไข", type: "Very Short" },
+                    { en: "I would listen and fix the problem immediately", th: "จะฟังและแก้ไขปัญหาทันที", type: "Short" },
+                    { en: "I would listen to the problem patiently, apologize if necessary and fix it immediately. I want the customer to be completely satisfied.", th: "จะฟังปัญหาอย่างอดทน ขอโทษถ้าจำเป็น และแก้ไขทันที อยากให้ลูกค้าพอใจอย่างสมบูรณ์", type: "Average" }
                 ]
             }
         ];
@@ -952,18 +1012,18 @@
             { en: "Kitchen", th: "ครัว" },
             { en: "Bedroom", th: "ห้องนอน" },
             { en: "Living room", th: "ห้องนั่งเล่น" },
-            { en: "Trash", th: "ขยะ" },
-            { en: "Bin", th: "ถังขยะ" },
+            { en: "Garbage", th: "ขยะ" },
+            { en: "Trash can", th: "ถังขยะ" },
             { en: "Clean", th: "สะอาด" },
             { en: "Dirty", th: "สกปรก" },
             { en: "To clean", th: "ทำความสะอาด" },
             { en: "To wash", th: "ล้าง" },
             { en: "To vacuum", th: "ดูด" },
             { en: "To sweep", th: "กวาด" },
-            { en: "Window", th: "หน้าต่าง" },
+            { en: "To wipe", th: "เช็ด" },
+            { en: "To scrub", th: "ขัด" },
             { en: "Dust", th: "ฝุ่น" },
-            { en: "Sponge", th: "ฟองน้ำ" },
-            { en: "Spray", th: "สเปรย์" }
+            { en: "Sponge", th: "ฟองน้ำ" }
         ];
 
         // Game state
@@ -981,7 +1041,7 @@
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = lang === 'en' ? 'en-US' : 'th-TH';
-                utterance.rate = 0.8;
+                utterance.rate = 0.85;
                 window.speechSynthesis.speak(utterance);
             }
         }
@@ -1006,11 +1066,11 @@
                                 <div class="answer-text">${a.en}</div>
                                 <div class="answer-thai">${a.th}</div>
                                 <div class="btn-group">
-                                    <button class="small-btn" onclick="event.stopPropagation(); speak('${a.en}', 'en')">
-                                        🔊 Listen | ฟัง
+                                    <button class="small-btn" onclick="event.stopPropagation(); speak('${a.en.replace(/'/g, "\\'")}', 'en')">
+                                        🔊 Listen in English
                                     </button>
                                     <button class="small-btn" onclick="event.stopPropagation(); speak('${a.th}', 'th')">
-                                        🔊 Thai | ภาษาไทย
+                                        🔊 ฟังภาษาไทย
                                     </button>
                                 </div>
                             </div>
@@ -1029,7 +1089,7 @@
             
             if (streak === 5) showAchievement('🎯 5 in a row! | ต่อเนื่อง 5 ครั้ง!');
             if (streak === 10) showAchievement('🔥 10 in a row! Amazing! | ติดต่อกัน 10 ครั้ง! เจ๋ง!');
-            if (completedQuestions === 20) showAchievement('🏆 Completed all questions! | ทำคำถามครบทุกข้อ!');
+            if (completedQuestions === 20) showAchievement('🏆 All questions complete! | ทำคำถามครบทุกข้อ!');
         }
 
         // Update statistics
@@ -1063,7 +1123,7 @@
             const age = document.getElementById('userAge').value;
             
             if (!name || !age) {
-                alert('Please fill all fields | กรุณากรอกข้อมูลให้ครบ');
+                alert('Please fill in all fields | กรุณากรอกข้อมูลให้ครบ');
                 return;
             }
 
@@ -1073,9 +1133,9 @@
             const result = document.getElementById('introResult');
             result.innerHTML = `
                 <div class="answer-option">
-                    <h3 style="margin-bottom: 15px; color: var(--primary);">Your Introduction | การแนะนำตัวของคุณ</h3>
-                    <div class="answer-text" style="font-size: 1.3em; margin-bottom: 10px;">${intro}</div>
-                    <div class="answer-thai" style="font-size: 1.1em; margin-bottom: 15px;">${introTh}</div>
+                    <h3 style="margin-bottom: 15px; color: var(--primary); font-weight: 700;">Your Self-Introduction | การแนะนำตัวของคุณ</h3>
+                    <div class="answer-text" style="font-size: 1.4em; margin-bottom: 12px;">${intro}</div>
+                    <div class="answer-thai" style="font-size: 1.2em; margin-bottom: 20px;">${introTh}</div>
                     <div class="btn-group">
                         <button class="play-btn" onclick="speak('${intro}', 'en')">
                             🔊 Listen in English | ฟังภาษาอังกฤษ
@@ -1084,13 +1144,13 @@
                             🔊 Listen in Thai | ฟังภาษาไทย
                         </button>
                     </div>
-                    <p style="margin-top: 20px; color: var(--text-light);">💡 Practice this many times! | ฝึกหลายๆครั้ง!</p>
+                    <p style="margin-top: 25px; color: var(--text-light); font-weight: 600;">💡 Practice this many times! | ฝึกหลายๆครั้ง!</p>
                 </div>
             `;
             
             points += 20;
             updateStats();
-            showAchievement('🎉 Created introduction! | สร้างการแนะนำตัวแล้ว!');
+            showAchievement('🎉 Introduction created! | สร้างการแนะนำตัวแล้ว!');
         }
 
         // Initialize vocabulary cards
@@ -1098,7 +1158,7 @@
             const container = document.getElementById('vocabCards');
             container.innerHTML = vocabulary.map((v, i) => `
                 <div class="vocab-item" onclick="flipCard(${i})" id="vocab-${i}">
-                    <div class="vocab-hebrew">${v.en}</div>
+                    <div class="vocab-english">${v.en}</div>
                     <div class="vocab-thai">${v.th}</div>
                 </div>
             `).join('');
@@ -1125,11 +1185,11 @@
             const container = document.getElementById('vocabCards');
             container.innerHTML = shuffled.map((v, i) => `
                 <div class="vocab-item" onclick="flipCard(${vocabulary.indexOf(v)})" id="vocab-${vocabulary.indexOf(v)}">
-                    <div class="vocab-hebrew">${v.en}</div>
+                    <div class="vocab-english">${v.en}</div>
                     <div class="vocab-thai">${v.th}</div>
                 </div>
             `).join('');
-            showAchievement('🔄 Shuffled the cards! | สับการ์ดใหม่!');
+            showAchievement('🔄 Cards shuffled! | สับการ์ดใหม่!');
         }
 
         // Reset vocabulary
@@ -1137,7 +1197,7 @@
             document.querySelectorAll('.vocab-item').forEach(card => {
                 card.classList.remove('flipped', 'correct');
             });
-            showAchievement('🔁 Starting over! | เริ่มใหม่!');
+            showAchievement('🔁 Reset complete! | เริ่มใหม่!');
         }
 
         // Start matching game
@@ -1214,7 +1274,7 @@
                         clearInterval(timerInterval);
                         const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
                         document.getElementById('gameFeedback').textContent = 
-                            `🎉 Well done! Finished in ${elapsed} seconds! | เยี่ยมมาก! เสร็จใน ${elapsed} วินาที!`;
+                            `🎉 Great job! Completed in ${elapsed} seconds! | เยี่ยมมาก! เสร็จใน ${elapsed} วินาที!`;
                         document.getElementById('gameFeedback').classList.add('show');
                         showAchievement('🏆 You won the game! | ชนะเกม!');
                     }
