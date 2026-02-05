@@ -1,12 +1,10 @@
 name: Deploy to S3
-
 on:
   push:
     branches:
       - main  # or master, depending on your default branch name
     paths:
       - 'HTML/**'  # Only trigger on changes to HTML directory
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,14 +12,35 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
-
-      - name: Sync content directory to S3
+      
+      - name: Sync content directory to S3 with cache control
         run: |
-          aws s3 sync HTML/ s3://watdonchan/ --delete --exclude "icons/*" --exclude "audio/*" --exclude "images/*" --exclude "pdf/*"
+          aws s3 sync HTML/ s3://watdonchan/ \
+            --delete \
+            --exclude "icons/*" \
+            --exclude "audio/*" \
+            --exclude "images/*" \
+            --exclude "pdf/*" \
+            --cache-control "max-age=0, no-cache, no-store, must-revalidate"
+      
+      - name: Get CloudFront Distribution ID
+        id: get-distribution
+        run: |
+          DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?Origins.Items[?contains(DomainName, 'watdonchan')]].Id" \
+            --output text | head -n1)
+          echo "distribution_id=$DISTRIBUTION_ID" >> $GITHUB_OUTPUT
+          echo "Found CloudFront Distribution ID: $DISTRIBUTION_ID"
+      
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ steps.get-distribution.outputs.distribution_id }} \
+            --paths "/*"
