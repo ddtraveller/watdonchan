@@ -492,10 +492,16 @@
                 category: "ข้อมูลส่วนตัว / Personal Information",
                 questions: [
                     {
+                        q: "Hello, How are you?",
+                        qThai: "สวัสดี คุณสบายดีไหม",
+                        a: "I am fine, How are you? / I'm fine. How are you?",
+                        aThai: "ฉันสบายดี คุณเป็นอย่างไร"
+                    },
+                    {
                         q: "Can you speak English? Do you speak English?",
                         qThai: "คุณสามารถพูดภาษาอังกฤษได้ไหม?",
-                        a: "Yes, I do speak English. / Yes, I speak a little bit of English.",
-                        aThai: "ได้ ฉันพูดภาษาอังกฤษได้ / ได้ ฉันพูดภาษาอังกฤษนิดหน่อย"
+                        a: "Yes, I do speak English. / Yes, I speak a little bit of English. / No, I don't.",
+                        aThai: "ได้ ฉันพูดภาษาอังกฤษได้ / ได้ ฉันพูดภาษาอังกฤษนิดหน่อย / ไม่ได้ ฉันไม่ได้เลย"
                     },
                     {
                         q: "What is your name?",
@@ -511,27 +517,45 @@
                     },
                     {
                         q: "How old are you?",
-                        qThai: "อายุเท่าไหร่",
-                        a: "I am [X] years old.",
-                        aThai: "ฉันอายุ [X] ปี"
+                        qThai: "อายุเท่าไหร่ / คุณอายุเท่าไหร่",
+                        a: "I am [X] years old. / I am 35 years old.",
+                        aThai: "ฉันอายุ [X] ปี / ฉันอายุ 35 ปี"
                     },
                     {
-                        q: "What is your marital status? Are you married?",
-                        qThai: "สถานภาพของคุณ (โสด แต่งงาน หย่าร้าง หม้าย)",
+                        q: "What is your marital status? Are you married or single?",
+                        qThai: "สถานภาพของคุณ (โสด แต่งงาน หย่าร้าง หม้าย) / คุณแต่งงานแล้วหรือโสด",
                         a: "I am Single. / I am Married. / I am Divorced. / I am a Widow.",
                         aThai: "ฉันโสด / ฉันแต่งงานแล้ว / ฉันหย่าร้าง / ฉันเป็นแม่หม้าย"
                     },
                     {
                         q: "How many children do you have? Do you have any children?",
-                        qThai: "มีลูกกี่คน",
-                        a: "I have [X] boy/girl. / I don't have any children.",
-                        aThai: "ฉันมีลูก [X] คน เด็กชาย/เด็กหญิง / ฉันไม่มีลูก"
+                        qThai: "มีลูกกี่คน / คุณมีลูกไหม",
+                        a: "I have 2 children. / I have [X] boy/girl. / I don't have any children.",
+                        aThai: "ฉันมีลูก 2 คน / ฉันมีลูก [X] คน เด็กชาย/เด็กหญิง / ฉันไม่มีลูก"
                     },
                     {
                         q: "What are the age of your children? How old are your children?",
-                        qThai: "ลูกคุณอายุเท่าไหร่",
+                        qThai: "ลูกคุณอายุเท่าไหร่ / ถ้ามี อายุเท่าไหร่",
                         a: "My son/daughter is [X] years old. / They are [X], [Y], and [Z] years old.",
                         aThai: "ลูกชาย/ลูกสาวของฉันอายุ [X] ปี / พวกเขาอายุ [X], [Y] และ [Z] ปี"
+                    },
+                    {
+                        q: "What color are your eyes?",
+                        qThai: "ตาคุณสีอะไร",
+                        a: "My eyes are brown/black/blue.",
+                        aThai: "ตาของฉันสีน้ำตาล/ดำ/ฟ้า"
+                    },
+                    {
+                        q: "What color shirt are you wearing?",
+                        qThai: "คุณใส่เสื้อสีอะไร",
+                        a: "I'm wearing a [color] shirt.",
+                        aThai: "ฉันใส่เสื้อสี [สี]"
+                    },
+                    {
+                        q: "Can you tell me about yourself?",
+                        qThai: "บอกเกี่ยวกับตัวคุณเองหน่อย",
+                        a: "My name is [Name]. I am from Thailand. I have experience in cleaning and housekeeping. I am hardworking and reliable.",
+                        aThai: "ชื่อของฉันคือ [ชื่อ] ฉันมาจากประเทศไทย ฉันมีประสบการณ์ในงานทำความสะอาดและงานแม่บ้าน ฉันขยันและน่าเชื่อถือ"
                     }
                 ]
             },
@@ -541,14 +565,14 @@
                 category: "ประสบการณ์การทำงาน / Work Experience",
                 questions: [
                     {
-                        q: "What is your work experience?",
-                        qThai: "ประสบการณ์การทำงานของคุณมีอะไรบ้าง",
+                        q: "What is your work experience? What is your job experience?",
+                        qThai: "ประสบการณ์การทำงานของคุณมีอะไรบ้าง / คุณมีประสบการณ์ของคุณมีอะไรบ้าง",
                         a: "I worked at [workplace] for [X] years. I have 5 years of experience in a food factory as a production worker.",
                         aThai: "ฉันทำงานที่ [สถานที่] เป็นเวลา [X] ปี / ฉันมีประสบการณ์ทำงานในโรงงานอาหาร 5 ปีในตำแหน่งพนักงานผลิต"
                     },
                     {
                         q: "What was your last place of work? Where are you currently working?",
-                        qThai: "งานที่ทำล่าสุดของคุณทำงานที่ไหน",
+                        qThai: "งานที่ทำล่าสุดของคุณทำงานที่ไหน / งานที่ทำล่าสุด คืองานอะไร",
                         a: "I was working at [workplace] for [X] years.",
                         aThai: "ฉันทำงานที่ [สถานที่] เป็นเวลา [X] ปี"
                     },
@@ -560,7 +584,7 @@
                     },
                     {
                         q: "Why did you leave your last job?",
-                        qThai: "ทำไมคุณถึงออกจากงานล่าสุด",
+                        qThai: "ทำไมคุณถึงออกจากงานล่าสุด / ทำไมถึงเลิกออกจากงานล่าสุด",
                         a: "I left because [reason].",
                         aThai: "ฉันออกเพราะ [เหตุผล]"
                     },
@@ -569,6 +593,24 @@
                         qThai: "คุณมีประสบการณ์ทำความสะอาดไหม",
                         a: "Yes, I have [X] years of experience in cleaning. I have worked in hotels, homes, and offices.",
                         aThai: "มี ฉันมีประสบการณ์ [X] ปีในงานทำความสะอาด ฉันเคยทำงานในโรงแรม บ้าน และสำนักงาน"
+                    },
+                    {
+                        q: "What kind of cleaning work have you done?",
+                        qThai: "คุณเคยทำงานทำความสะอาดแบบไหนบ้าง",
+                        a: "I have cleaned bedrooms, bathrooms, kitchens, and living rooms. I can vacuum, mop floors, and clean windows.",
+                        aThai: "ฉันเคยทำความสะอาดห้องนอน ห้องน้ำ ครัว และห้องนั่งเล่น ฉันสามารถดูดฝุ่น ถูพื้น และเช็ดหน้าต่างได้"
+                    },
+                    {
+                        q: "Have you worked abroad before?",
+                        qThai: "คุณเคยทำงานต่างประเทศมาก่อนไหม",
+                        a: "No, this will be my first time working abroad. I am excited for this opportunity. / Yes, I worked in [country] before.",
+                        aThai: "ไม่เคย นี่จะเป็นครั้งแรกที่ฉันทำงานต่างประเทศ ฉันตื่นเต้นกับโอกาสนี้ / เคย ฉันเคยทำงานใน [ประเทศ] มาก่อน"
+                    },
+                    {
+                        q: "How would your previous employer describe you?",
+                        qThai: "นายจ้างเก่าของคุณจะอธิบายคุณอย่างไร",
+                        a: "They would say I am reliable, hardworking, and always willing to help.",
+                        aThai: "เขาจะบอกว่าฉันเชื่อถือได้ ขยัน และยินดีช่วยเหลือเสมอ"
                     }
                 ]
             },
@@ -579,31 +621,31 @@
                 questions: [
                     {
                         q: "Do you know how to operate a Forklift?",
-                        qThai: "คุณรู้วิธีการใช้ฟอล์คลิฟท์ไหม",
+                        qThai: "คุณรู้วิธีการใช้ฟอล์คลิฟท์ไหม / คุณรู้วิธีการใช้ฟอล์คลิฟท์ใน",
                         a: "Yes, I have [X] years experience. / I have a certificate. / No, I don't.",
                         aThai: "ได้ ผมมีประสบการณ์ [X] ปี / ใช่ ฉันมีใบเซอร์ / ไม่ได้ ฉันไม่สามารถขับฟอล์คลิฟท์ได้"
                     },
                     {
                         q: "Do you know how to carve a chicken?",
-                        qThai: "คุณรู้วิธีสับแหละไก่ในบ่อนไหม",
+                        qThai: "คุณรู้วิธีสับแหละไก่ในบ่อนไหม / คุณรู้วิธีสับแหละไก่ใหม่ครับ",
                         a: "Yes, I know how to carve a chicken. / No, I don't know how.",
                         aThai: "ได้ ฉันรู้วิธีสับไก่ / ไม่ได้ ฉันไม่รู้วิธีสับแหละไก่ไม่เป็น"
                     },
                     {
                         q: "Do you know how to fillet a fish?",
-                        qThai: "คุณรู้วิธีสับแหละปลาไหม",
+                        qThai: "คุณรู้วิธีสับแหละปลาไหม / คุณรู้วิธีสับแหละปลาใหม่",
                         a: "Yes, I know how to fillet a fish. / No, I don't know how.",
                         aThai: "ได้ ฉันรู้วิธีฟิสเลท์ / ไม่ได้ ฉันไม่รู้วิธีสับแหละปลาไม่เป็น"
                     },
                     {
                         q: "Can you drive a car or a motorcycle?",
                         qThai: "คุณขับรถยนต์หรือรถจักรยานยนต์ได้ไหม",
-                        a: "Yes, I can drive a car/motorcycle.",
-                        aThai: "ได้ ฉันขับรถยนต์/รถจักรยานยนต์ได้"
+                        a: "Yes, I can drive a car/motorcycle. / No, I cannot drive.",
+                        aThai: "ได้ ฉันขับรถยนต์/รถจักรยานยนต์ได้ / ไม่ได้ ฉันขับรถไม่ได้"
                     },
                     {
                         q: "Do you have a driver's license?",
-                        qThai: "คุณมีใบขับขี่ไหม",
+                        qThai: "คุณมีใบขับขี่ไหม / คุณมีใบขับขี่รถไหม",
                         a: "Yes, I have a driver's license. / No, I don't have a driver's license.",
                         aThai: "มี ฉันมีใบขับขี่ / ไม่มี ฉันไม่มีใบขับขี่"
                     },
@@ -618,6 +660,79 @@
                         qThai: "คุณสามารถยืนทำงานเป็นเวลานานได้หรือไม่",
                         a: "Yes, I can stand for long periods while working.",
                         aThai: "ได้ ฉันสามารถยืนทำงานเป็นเวลานานได้"
+                    },
+                    {
+                        q: "Do you have any special skills?",
+                        qThai: "คุณมีทักษะพิเศษอะไรไหม",
+                        a: "I am good at organizing, ironing clothes, and I can also do basic cooking.",
+                        aThai: "ฉันเก่งในการจัดระเบียบ รีดผ้า และฉันสามารถทำอาหารพื้นฐานได้ด้วย"
+                    },
+                    {
+                        q: "Can you work independently?",
+                        qThai: "คุณทำงานคนเดียวได้ไหม",
+                        a: "Yes, I can work independently. I am self-motivated and responsible.",
+                        aThai: "ได้ ฉันทำงานคนเดียวได้ ฉันมีแรงจูงใจในตัวเองและมีความรับผิดชอบ"
+                    },
+                    {
+                        q: "Are you a team player?",
+                        qThai: "คุณเป็นคนทำงานเป็นทีมไหม",
+                        a: "Yes, I work well with others and can also work independently when needed.",
+                        aThai: "เป็น ฉันทำงานร่วมกับผู้อื่นได้ดีและสามารถทำงานคนเดียวได้เมื่อจำเป็น"
+                    }
+                ]
+            },
+            
+            // Cleaning Skills
+            {
+                category: "ทักษะการทำความสะอาด / Cleaning Skills",
+                questions: [
+                    {
+                        q: "What cleaning products are you familiar with?",
+                        qThai: "คุณคุ้นเคยกับผลิตภัณฑ์ทำความสะอาดอะไรบ้าง",
+                        a: "I am familiar with all-purpose cleaners, glass cleaners, disinfectants, and floor cleaners.",
+                        aThai: "ฉันคุ้นเคยกับน้ำยาอเนกประสงค์ น้ำยาเช็ดกระจก น้ำยาฆ่าเชื้อ และน้ำยาทำความสะอาดพื้น"
+                    },
+                    {
+                        q: "Can you use cleaning equipment?",
+                        qThai: "คุณใช้อุปกรณ์ทำความสะอาดเป็นไหม",
+                        a: "Yes, I can use vacuum cleaners, mops, brooms, and other cleaning equipment.",
+                        aThai: "เป็น ฉันใช้เครื่องดูดฝุ่น ไม้ถูพื้น ไม้กวาด และอุปกรณ์ทำความสะอาดอื่นๆ ได้"
+                    },
+                    {
+                        q: "How do you clean a bathroom?",
+                        qThai: "คุณทำความสะอาดห้องน้ำอย่างไร",
+                        a: "I clean the toilet, sink, shower, mirror, and floor. I use disinfectant and make sure everything is dry.",
+                        aThai: "ฉันทำความสะอาดส้วม อ่างล้างหน้า ฝักบัว กระจก และพื้น ฉันใช้น้ำยาฆ่าเชื้อและทำให้แน่ใจว่าทุกอย่างแห้ง"
+                    },
+                    {
+                        q: "How do you prioritize your cleaning tasks?",
+                        qThai: "คุณจัดลำดับความสำคัญของงานทำความสะอาดอย่างไร",
+                        a: "I start with the most important areas first, like bathrooms and kitchens, then move to other rooms.",
+                        aThai: "ฉันเริ่มจากพื้นที่สำคัญที่สุดก่อน เช่น ห้องน้ำและครัว แล้วค่อยไปห้องอื่นๆ"
+                    },
+                    {
+                        q: "How many rooms can you clean per day?",
+                        qThai: "คุณทำความสะอาดห้องได้กี่ห้องต่อวัน",
+                        a: "I can clean 5-8 rooms per day, depending on the size and condition of the rooms.",
+                        aThai: "ฉันสามารถทำความสะอาดได้ 5-8 ห้องต่อวัน ขึ้นอยู่กับขนาดและสภาพของห้อง"
+                    },
+                    {
+                        q: "How do you ensure quality in your work?",
+                        qThai: "คุณทำอย่างไรเพื่อให้แน่ใจว่างานมีคุณภาพ",
+                        a: "I always double-check my work and pay attention to details. I take pride in doing a thorough job.",
+                        aThai: "ฉันเช็คงานอีกครั้งเสมอและใส่ใจในรายละเอียด ฉันภูมิใจที่ทำงานอย่างละเอียดถี่ถ้วน"
+                    },
+                    {
+                        q: "What makes you a good cleaner?",
+                        qThai: "อะไรทำให้คุณเป็นคนทำความสะอาดที่ดี",
+                        a: "I am thorough, efficient, and take pride in my work. I always ensure everything is spotless.",
+                        aThai: "ฉันละเอียดถี่ถ้วน มีประสิทธิภาพ และภูมิใจในงานของฉัน ฉันทำให้แน่ใจว่าทุกอย่างสะอาดเอี่ยม"
+                    },
+                    {
+                        q: "What safety precautions do you take?",
+                        qThai: "คุณใช้มาตรการความปลอดภัยอะไรบ้าง",
+                        a: "I wear gloves when using chemicals, read product labels, and keep the area well-ventilated.",
+                        aThai: "ฉันใส่ถุงมือเมื่อใช้สารเคมี อ่านฉลากผลิตภัณฑ์ และรักษาพื้นที่ให้มีอากาศถ่ายเทดี"
                     }
                 ]
             },
@@ -703,168 +818,40 @@
                     {
                         q: "Where do you work right now?",
                         qThai: "ตอนนี้คุณทำงานที่ไหนค่ะ",
-                        a: "I currently work at [workplace].",
-                        aThai: "ปัจจุบันฉันทำงานที่ [สถานที่]"
+                        a: "I currently work at [workplace]. / I am currently not working.",
+                        aThai: "ปัจจุบันฉันทำงานที่ [สถานที่] / ปัจจุบันฉันไม่ได้ทำงาน"
                     },
                     {
                         q: "What do you do for work now?",
                         qThai: "ตอนนี้คุณทำงานอะไรอยู่",
-                        a: "I work as a [job title].",
-                        aThai: "ฉันทำงานเป็น [ตำแหน่ง]"
+                        a: "I work as a [job title]. / I am a cleaner/housekeeper.",
+                        aThai: "ฉันทำงานเป็น [ตำแหน่ง] / ฉันเป็นคนทำความสะอาด/แม่บ้าน"
                     },
                     {
                         q: "How many days a week do you work?",
                         qThai: "คุณทำงานกี่วันต่อสัปดาห์",
-                        a: "I work [X] days per week.",
-                        aThai: "ฉันทำงาน [X] วันต่อสัปดาห์"
+                        a: "I work [X] days per week. / I work 6 days a week.",
+                        aThai: "ฉันทำงาน [X] วันต่อสัปดาห์ / ฉันทำงาน 6 วันต่อสัปดาห์"
                     },
                     {
                         q: "How many hours a day do you work?",
                         qThai: "คุณทำงานวันละกี่ชั่วโมง",
-                        a: "I work [X] hours per day.",
-                        aThai: "ฉันทำงาน [X] ชั่วโมงต่อวัน"
+                        a: "I work [X] hours per day. / I work 8-10 hours per day.",
+                        aThai: "ฉันทำงาน [X] ชั่วโมงต่อวัน / ฉันทำงาน 8-10 ชั่วโมงต่อวัน"
+                    },
+                    {
+                        q: "What is your typical daily routine?",
+                        qThai: "กิจวัตรประจำวันของคุณเป็นอย่างไร",
+                        a: "I wake up early, have breakfast, and start work. I clean rooms, take a lunch break, and continue until finished.",
+                        aThai: "ฉันตื่นแต่เช้า กินข้าวเช้า และเริ่มทำงาน ฉันทำความสะอาดห้อง พักกลางวัน และทำต่อจนเสร็จ"
                     }
                 ]
             },
             
-            // About Israel
+            // Work Attitude and Personality
             {
-                category: "เกี่ยวกับการทำงานในอิสราเอล / About Working in Israel",
+                category: "ทัศนคติและบุคลิกภาพในการทำงาน / Work Attitude",
                 questions: [
-                    {
-                        q: "How long do you plan to stay in the country?",
-                        qThai: "คุณคิดว่าจะอยู่นานแค่ไหน",
-                        a: "I plan to work for at least 2-3 years or as long as my contract allows.",
-                        aThai: "ฉันวางแผนจะทำงานอย่างน้อย 2-3 ปี หรือนานเท่าที่สัญญาอนุญาต"
-                    },
-                    {
-                        q: "Why are you interested in coming to work in Israel?",
-                        qThai: "ทำไมคุณถึงสนใจที่จะมาทำงานในประเทศอิสราเอล",
-                        a: "I want to gain international experience and support my family. I have heard Israel offers good opportunities for workers.",
-                        aThai: "ฉันต้องการประสบการณ์ทำงานต่างประเทศและหาเลี้ยงครอบครัว ฉันได้ยินว่าอิสราเอลมีโอกาสดีสำหรับคนงาน"
-                    },
-                    {
-                        q: "Does the family know that you are going to work in Israel?",
-                        qThai: "ครอบครัวรู้หรือไม่ว่าจะไปทำงานที่อิสราเอล",
-                        a: "Yes, my family knows and supports my decision.",
-                        aThai: "ใช่ ครอบครัวของฉันรู้และสนับสนุนการตัดสินใจของฉัน"
-                    },
-                    {
-                        q: "How do they feel about it?",
-                        qThai: "ตอนนี้คุณมีความรู้สึกยังไง",
-                        a: "They are supportive and happy for this opportunity.",
-                        aThai: "พวกเขาให้การสนับสนุนและมีความสุขกับโอกาสนี้"
-                    },
-                    {
-                        q: "Do you want to learn the Hebrew language?",
-                        qThai: "คุณเต็มใจที่จะเรียนภาษาฮีบรูไหม",
-                        a: "Yes, I do. I am willing to learn Hebrew.",
-                        aThai: "ใช่ ฉันเต็มใจเรียนภาษาฮีบรู"
-                    },
-                    {
-                        q: "Do you speak any Hebrew?",
-                        qThai: "คุณพูดภาษาฮีบรูได้บ้างไหม",
-                        a: "I know basic Hebrew phrases. I am willing to learn more while working.",
-                        aThai: "ฉันรู้วลีภาษาฮีบรูพื้นฐาน ฉันยินดีเรียนรู้เพิ่มเติมระหว่างทำงาน"
-                    },
-                    {
-                        q: "Is it okay for you or your family to go to Israel for 5 years?",
-                        qThai: "คุณหรือครอบครัวของคุณโอเคกับการไปอิสราเอล 5 ปีไหม",
-                        a: "Yes, it's okay.",
-                        aThai: "โอเค ฉันยินดี"
-                    },
-                    {
-                        q: "Do you know how much the hourly wage is in Israel?",
-                        qThai: "คุณรู้ไหมว่าค่าแรงรายชั่วโมงในอิสราเอลอยู่ที่เท่าไร",
-                        a: "Yes, I have researched the average wages in Israel.",
-                        aThai: "รู้ ฉันได้ศึกษาค่าจ้างเฉลี่ยในอิสราเอล"
-                    },
-                    {
-                        q: "How many years is your employment contract?",
-                        qThai: "สัญญาจ้างงานของคุณมีระยะเวลากี่ปี",
-                        a: "My contract is for [X] years.",
-                        aThai: "สัญญาของฉันเป็นระยะเวลา [X] ปี"
-                    },
-                    {
-                        q: "Do you know anyone who works in Israel?",
-                        qThai: "คุณรู้จักใครที่ทำงานในอิสราเอลบ้างไหม",
-                        a: "Yes, I know [name] who works in Israel. / No, I don't know anyone yet.",
-                        aThai: "ใช่ ฉันรู้จัก [ชื่อ] ที่ทำงานในอิสราเอล / ไม่ ฉันยังไม่รู้จักใครเลย"
-                    },
-                    {
-                        q: "Can you take the bus to work?",
-                        qThai: "คุณสามารถนั่งรถประจำทางไปทำงานได้ไหม",
-                        a: "Yes, I can take the bus to work.",
-                        aThai: "ได้ ฉันสามารถนั่งรถประจำทางไปทำงานได้"
-                    },
-                    {
-                        q: "What do you know about Israeli culture?",
-                        qThai: "คุณรู้อะไรเกี่ยวกับวัฒนธรรมอิสราเอลบ้าง",
-                        a: "I know Israel has diverse culture and people respect Shabbat. I am willing to learn and adapt.",
-                        aThai: "ฉันรู้ว่าอิสราเอลมีวัฒนธรรมที่หลากหลายและผู้คนเคารพวันสับบาโต ฉันยินดีเรียนรู้และปรับตัว"
-                    }
-                ]
-            },
-            
-            // Accommodation and Living
-            {
-                category: "ที่พักและการใช้ชีวิต / Accommodation",
-                questions: [
-                    {
-                        q: "Can you share a room with a friend?",
-                        qThai: "คุณสามารถนอนห้องเดียวกับเพื่อนได้ไหม",
-                        a: "Yes, I can share a room with friends.",
-                        aThai: "ได้ ฉันสามารถนอนห้องเดียวกับเพื่อนได้"
-                    },
-                    {
-                        q: "Who will take care of your child?",
-                        qThai: "ใครจะดูแลลูกของคุณ",
-                        a: "My [family member] will take care of my child.",
-                        aThai: "[สมาชิกในครอบครัว] ของฉันจะดูแลลูกของฉัน"
-                    }
-                ]
-            },
-            
-            // General Questions
-            {
-                category: "คำถามทั่วไป / General Questions",
-                questions: [
-                    {
-                        q: "How many kilometers did you travel to get here?",
-                        qThai: "คุณเดินทางมาที่นี่เป็นระยะทางกี่กิโลเมตร",
-                        a: "I traveled approximately [X] kilometers.",
-                        aThai: "ฉันเดินทางประมาณ [X] กิโลเมตร"
-                    },
-                    {
-                        q: "What color are your eyes?",
-                        qThai: "ตาคุณสีอะไร",
-                        a: "My eyes are [color].",
-                        aThai: "ตาของฉันสี [สี]"
-                    },
-                    {
-                        q: "What color shirt are you wearing?",
-                        qThai: "คุณใส่เสื้อสีอะไร",
-                        a: "I'm wearing a [color] shirt.",
-                        aThai: "ฉันใส่เสื้อสี [สี]"
-                    },
-                    {
-                        q: "How old is your child?",
-                        qThai: "ลูกคุณอายุเท่าไหร่",
-                        a: "My child is [X] years old.",
-                        aThai: "ลูกของฉันอายุ [X] ปี"
-                    },
-                    {
-                        q: "What are your thoughts on the job you're applying for?",
-                        qThai: "คุณมีความคิดเห็นอย่างไรเกี่ยวกับงานที่คุณกำลังสมัคร",
-                        a: "I am very interested and excited about this opportunity. I believe I can contribute well.",
-                        aThai: "ฉันสนใจและตื่นเต้นมากกับโอกาสนี้ ฉันเชื่อว่าฉันสามารถมีส่วนร่วมได้ดี"
-                    },
-                    {
-                        q: "Can you tell me about yourself?",
-                        qThai: "บอกเกี่ยวกับตัวคุณเองหน่อย",
-                        a: "My name is [Name]. I am from Thailand. I have experience in cleaning and housekeeping. I am hardworking and reliable.",
-                        aThai: "ชื่อของฉันคือ [ชื่อ] ฉันมาจากประเทศไทย ฉันมีประสบการณ์ในงานทำความสะอาดและงานแม่บ้าน ฉันขยันและน่าเชื่อถือ"
-                    },
                     {
                         q: "What are your strengths?",
                         qThai: "จุดแข็งของคุณคืออะไร",
@@ -878,16 +865,259 @@
                         aThai: "ฉันยังเรียนภาษาฮีบรูอยู่ แต่ฉันกำลังเรียนเพื่อพัฒนา ฉันเรียนรู้ไว"
                     },
                     {
+                        q: "Can you work under pressure?",
+                        qThai: "คุณทำงานภายใต้ความกดดันได้ไหม",
+                        a: "Yes, I can work under pressure and meet deadlines. I stay calm and focused.",
+                        aThai: "ได้ ฉันทำงานภายใต้ความกดดันและทำตามกำหนดเวลาได้ ฉันสงบและมีสมาธิ"
+                    },
+                    {
+                        q: "How do you handle difficult situations?",
+                        qThai: "คุณรับมือกับสถานการณ์ยากๆ อย่างไร",
+                        a: "I stay calm and try to find solutions. I communicate with my supervisor if I need help.",
+                        aThai: "ฉันสงบและพยายามหาทางแก้ไข ฉันสื่อสารกับหัวหน้างานถ้าต้องการความช่วยเหลือ"
+                    },
+                    {
+                        q: "How do you handle stress?",
+                        qThai: "คุณจัดการกับความเครียดอย่างไร",
+                        a: "I take deep breaths and focus on solving the problem step by step.",
+                        aThai: "ฉันหายใจเข้าลึกๆ และมุ่งเน้นไปที่การแก้ปัญหาทีละขั้นตอน"
+                    },
+                    {
+                        q: "How do you handle customer complaints?",
+                        qThai: "คุณจัดการกับข้อร้องเรียนของลูกค้าอย่างไร",
+                        a: "I listen carefully and apologize. Then I fix the problem immediately to ensure customer satisfaction.",
+                        aThai: "ฉันฟังอย่างตั้งใจและขอโทษ แล้วฉันแก้ไขปัญหาทันทีเพื่อให้ลูกค้าพอใจ"
+                    },
+                    {
+                        q: "What would you do if you broke something?",
+                        qThai: "คุณจะทำอย่างไรถ้าทำของแตก",
+                        a: "I would immediately inform my employer and take responsibility. I would offer to replace it.",
+                        aThai: "ฉันจะแจ้งนายจ้างทันทีและรับผิดชอบ ฉันจะเสนอที่จะเปลี่ยนใหม่ให้"
+                    },
+                    {
+                        q: "Are you punctual?",
+                        qThai: "คุณตรงต่อเวลาไหม",
+                        a: "Yes, I am always on time. Being punctual is very important to me.",
+                        aThai: "ตรงเวลา ฉันตรงเวลาเสมอ การตรงต่อเวลาสำคัญมากสำหรับฉัน"
+                    },
+                    {
+                        q: "Can you work without supervision?",
+                        qThai: "คุณทำงานได้โดยไม่มีคนดูแลไหม",
+                        a: "Yes, I am self-disciplined and can work without constant supervision.",
+                        aThai: "ได้ ฉันมีวินัยในตัวเองและสามารถทำงานโดยไม่ต้องมีคนคอยดูแลตลอดเวลา"
+                    },
+                    {
+                        q: "Are you comfortable working alone?",
+                        qThai: "คุณสบายใจที่จะทำงานคนเดียวไหม",
+                        a: "Yes, I am comfortable working alone. I am responsible and can manage my time well.",
+                        aThai: "สบายใจ ฉันสบายใจที่จะทำงานคนเดียว ฉันมีความรับผิดชอบและจัดการเวลาได้ดี"
+                    },
+                    {
+                        q: "Can you handle repetitive tasks?",
+                        qThai: "คุณรับมือกับงานซ้ำๆ ได้ไหม",
+                        a: "Yes, I understand cleaning involves repetitive work. I stay focused and maintain quality.",
+                        aThai: "ได้ ฉันเข้าใจว่างานทำความสะอาดเกี่ยวข้องกับงานซ้ำๆ ฉันรักษาสมาธิและคุณภาพ"
+                    },
+                    {
+                        q: "How do you stay organized?",
+                        qThai: "คุณจัดระเบียบงานอย่างไร",
+                        a: "I make a schedule and checklist for my tasks. I prioritize important work first.",
+                        aThai: "ฉันทำตารางเวลาและรายการตรวจสอบสำหรับงาน ฉันให้ความสำคัญกับงานสำคัญก่อน"
+                    },
+                    {
+                        q: "Are you willing to learn new cleaning techniques?",
+                        qThai: "คุณยินดีเรียนรู้เทคนิคการทำความสะอาดใหม่ๆ ไหม",
+                        a: "Yes, I am always eager to learn new methods and improve my skills.",
+                        aThai: "ยินดี ฉันกระตือรือร้นที่จะเรียนรู้วิธีการใหม่ๆ และพัฒนาทักษะของฉันเสมอ"
+                    }
+                ]
+            },
+            
+            // Motivation and Goals
+            {
+                category: "แรงจูงใจและเป้าหมาย / Motivation",
+                questions: [
+                    {
+                        q: "Why do you want to work in Israel?",
+                        qThai: "ทำไมคุณถึงอยากทำงานในอิสราเอล",
+                        a: "I want to gain international experience and support my family. I have heard Israel offers good opportunities for workers.",
+                        aThai: "ฉันต้องการประสบการณ์ทำงานต่างประเทศและหาเลี้ยงครอบครัว ฉันได้ยินว่าอิสราเอลมีโอกาสดีสำหรับคนงาน"
+                    },
+                    {
+                        q: "What motivates you to do this job?",
+                        qThai: "อะไรเป็นแรงจูงใจให้คุณทำงานนี้",
+                        a: "I want to support my family and gain valuable work experience abroad.",
+                        aThai: "ฉันต้องการหาเลี้ยงครอบครัวและได้รับประสบการณ์การทำงานที่มีค่าในต่างประเทศ"
+                    },
+                    {
                         q: "Why should we hire you?",
                         qThai: "ทำไมเราควรจ้างคุณ",
                         a: "I am experienced, hardworking, and reliable. I will do my best to meet your expectations.",
                         aThai: "ฉันมีประสบการณ์ ขยัน และน่าเชื่อถือ ฉันจะทำให้ดีที่สุดเพื่อตอบสนองความคาดหวังของคุณ"
                     },
                     {
+                        q: "What do you expect from your employer?",
+                        qThai: "คุณคาดหวังอะไรจากนายจ้าง",
+                        a: "I expect fair treatment, clear instructions, and timely payment.",
+                        aThai: "ฉันคาดหวังการปฏิบัติที่ยุติธรรม คำสั่งที่ชัดเจน และการจ่ายเงินตรงเวลา"
+                    },
+                    {
+                        q: "What is your expected salary?",
+                        qThai: "คุณคาดหวังเงินเดือนเท่าไหร่",
+                        a: "I expect a fair salary based on Israeli standards for cleaning workers, around [amount] per month.",
+                        aThai: "ฉันคาดหวังเงินเดือนที่ยุติธรรมตามมาตรฐานอิสราเอลสำหรับงานทำความสะอาด ประมาณ [จำนวน] ต่อเดือน"
+                    },
+                    {
+                        q: "Can you start immediately?",
+                        qThai: "คุณเริ่มงานได้ทันทีไหม",
+                        a: "Yes, I can start immediately after receiving my work visa.",
+                        aThai: "ได้ ฉันสามารถเริ่มงานได้ทันทีหลังจากได้รับวีซ่าทำงาน"
+                    },
+                    {
+                        q: "What are your hobbies?",
+                        qThai: "งานอดิเรกของคุณคืออะไร",
+                        a: "I enjoy cooking, reading, and spending time with my family.",
+                        aThai: "ฉันชอบทำอาหาร อ่านหนังสือ และใช้เวลากับครอบครัว"
+                    },
+                    {
+                        q: "What are your thoughts on the job you're applying for?",
+                        qThai: "คุณมีความคิดเห็นอย่างไรเกี่ยวกับงานที่คุณกำลังสมัคร",
+                        a: "I am very interested and excited about this opportunity. I believe I can contribute well and learn new skills.",
+                        aThai: "ฉันสนใจและตื่นเต้นมากกับโอกาสนี้ ฉันเชื่อว่าฉันสามารถมีส่วนร่วมได้ดีและเรียนรู้ทักษะใหม่"
+                    }
+                ]
+            },
+            
+            // About Israel
+            {
+                category: "เกี่ยวกับการทำงานในอิสราเอล / About Working in Israel",
+                questions: [
+                    {
+                        q: "Why are you interested in coming to work in Israel?",
+                        qThai: "ทำไมคุณถึงสนใจที่จะมาทำงานในประเทศอิสราเอล",
+                        a: "I want to gain international experience, support my family, and learn about new culture. I have heard Israel offers good opportunities.",
+                        aThai: "ฉันต้องการประสบการณ์ระหว่างประเทศ หาเลี้ยงครอบครัว และเรียนรู้วัฒนธรรมใหม่ ฉันได้ยินว่าอิสราเอลมีโอกาสที่ดี"
+                    },
+                    {
+                        q: "How long do you plan to stay in the country?",
+                        qThai: "คุณคิดว่าจะอยู่นานแค่ไหน",
+                        a: "I plan to work for at least 2-3 years or as long as my contract allows.",
+                        aThai: "ฉันวางแผนจะทำงานอย่างน้อย 2-3 ปี หรือนานเท่าที่สัญญาอนุญาต"
+                    },
+                    {
+                        q: "Does the family know that you are going to work in Israel?",
+                        qThai: "ครอบครัวรู้หรือไม่ว่าจะไปทำงานที่อิสราเอล",
+                        a: "Yes, my family knows and supports my decision to work in Israel.",
+                        aThai: "ใช่ ครอบครัวของฉันรู้และสนับสนุนการตัดสินใจของฉันที่จะไปทำงานที่อิสราเอล"
+                    },
+                    {
+                        q: "How do they feel about it?",
+                        qThai: "ตอนนี้คุณมีความรู้สึกยังไง",
+                        a: "They are supportive and happy for this opportunity. They understand it will help our family.",
+                        aThai: "พวกเขาให้การสนับสนุนและมีความสุขกับโอกาสนี้ พวกเขาเข้าใจว่านี่จะช่วยครอบครัวเรา"
+                    },
+                    {
+                        q: "Is it okay for you or your family to go to Israel for 5 years?",
+                        qThai: "คุณหรือครอบครัวของคุณโอเคกับการไปอิสราเอล 5 ปีไหม / เอ็นทีโอเคคับครอบครัวของคุณให้โอเคไป Israel 5 ปีไหม",
+                        a: "Yes, it's okay. My family supports this decision.",
+                        aThai: "โอเค ฉันยินดี ครอบครัวของฉันสนับสนุนการตัดสินใจนี้"
+                    },
+                    {
+                        q: "Do you want to learn the Hebrew language?",
+                        qThai: "คุณเต็มใจที่จะเรียนภาษาฮีบรูไหม",
+                        a: "Yes, I do. I am willing to learn Hebrew to communicate better.",
+                        aThai: "ใช่ ฉันเต็มใจเรียนภาษาฮีบรู เพื่อสื่อสารได้ดีขึ้น"
+                    },
+                    {
+                        q: "Do you speak any Hebrew?",
+                        qThai: "คุณพูดภาษาฮีบรูได้บ้างไหม",
+                        a: "I know basic Hebrew phrases like Shalom, Toda, Boker Tov. I am willing to learn more while working.",
+                        aThai: "ฉันรู้วลีภาษาฮีบรูพื้นฐาน เช่น ชาลอม โทดา โบเกอร์ โทฟ ฉันยินดีเรียนรู้เพิ่มเติมระหว่างทำงาน"
+                    },
+                    {
+                        q: "What do you know about Israeli culture?",
+                        qThai: "คุณรู้อะไรเกี่ยวกับวัฒนธรรมอิสราเอลบ้าง",
+                        a: "I know Israel has diverse culture, people respect Shabbat from Friday evening to Saturday evening. I am willing to learn and adapt.",
+                        aThai: "ฉันรู้ว่าอิสราเอลมีวัฒนธรรมที่หลากหลาย ผู้คนเคารพวันสับบาโตตั้งแต่เย็นวันศุกร์ถึงเย็นวันเสาร์ ฉันยินดีเรียนรู้และปรับตัว"
+                    },
+                    {
+                        q: "Do you know how much the hourly wage is in Israel?",
+                        qThai: "คุณรู้ไหมว่าค่าแรงรายชั่วโมงในอิสราเอลอยู่ที่เท่าไร",
+                        a: "Yes, I have researched the average wages in Israel for cleaning workers.",
+                        aThai: "รู้ ฉันได้ศึกษาค่าจ้างเฉลี่ยในอิสราเอลสำหรับคนงานทำความสะอาด"
+                    },
+                    {
+                        q: "How many years is your employment contract?",
+                        qThai: "สัญญาจ้างงานของคุณมีระยะเวลากี่ปี",
+                        a: "My contract is for [X] years with possibility to extend.",
+                        aThai: "สัญญาของฉันเป็นระยะเวลา [X] ปี โดยมีความเป็นไปได้ที่จะขยายต่อ"
+                    },
+                    {
+                        q: "Can you share a room with a friend?",
+                        qThai: "คุณสามารถนอนห้องเดียวกับเพื่อนได้ไหม",
+                        a: "Yes, I can share a room with friends. I am easy to get along with.",
+                        aThai: "ได้ ฉันสามารถนอนห้องเดียวกับเพื่อนได้ ฉันเข้ากับคนอื่นได้ง่าย"
+                    },
+                    {
+                        q: "Do you know anyone who works in Israel?",
+                        qThai: "คุณรู้จักใครที่ทำงานในอิสราเอลบ้างไหม",
+                        a: "Yes, I know [name] who works in Israel. / No, I don't know anyone yet, but I am ready to make new friends.",
+                        aThai: "ใช่ ฉันรู้จัก [ชื่อ] ที่ทำงานในอิสราเอล / ไม่ ฉันยังไม่รู้จักใครเลย แต่ฉันพร้อมที่จะหาเพื่อนใหม่"
+                    },
+                    {
+                        q: "Can you take the bus to work?",
+                        qThai: "คุณสามารถนั่งรถประจำทางไปทำงานได้ไหม",
+                        a: "Yes, I can take the bus to work. I am comfortable with public transportation.",
+                        aThai: "ได้ ฉันสามารถนั่งรถประจำทางไปทำงานได้ ฉันคุ้นเคยกับการเดินทางสาธารณะ"
+                    },
+                    {
+                        q: "How many kilometers did you travel to get here?",
+                        qThai: "คุณเดินทางมาที่นี่เป็นระยะทางกี่กิโลเมตร",
+                        a: "I traveled approximately [X] kilometers from my hometown.",
+                        aThai: "ฉันเดินทางประมาณ [X] กิโลเมตรจากบ้านเกิดของฉัน"
+                    },
+                    {
+                        q: "Who will take care of your child?",
+                        qThai: "ใครจะดูแลลูกของคุณ",
+                        a: "My mother/father/sister/brother will take care of my child while I work abroad.",
+                        aThai: "แม่/พ่อ/พี่สาว/น้องชาย ของฉันจะดูแลลูกของฉันขณะที่ฉันทำงานต่างประเทศ"
+                    },
+                    {
+                        q: "How do you handle homesickness?",
+                        qThai: "คุณจัดการกับความคิดถึงบ้านอย่างไร",
+                        a: "I stay in touch with my family through video calls. I also make friends with other workers and stay busy with work.",
+                        aThai: "ฉันติดต่อกับครอบครัวผ่านวิดีโอคอล ฉันก็สร้างมิตรภาพกับคนงานคนอื่นและทำงานให้ยุ่ง"
+                    },
+                    {
+                        q: "Have you been to Israel before?",
+                        qThai: "คุณเคยไปอิสราเอลมาก่อนไหม",
+                        a: "No, this will be my first time in Israel. I am excited to experience it.",
+                        aThai: "ไม่เคย นี่จะเป็นครั้งแรกที่ฉันไปอิสราเอล ฉันตื่นเต้นที่จะได้ประสบการณ์"
+                    }
+                ]
+            },
+            
+            // General Questions
+            {
+                category: "คำถามทั่วไป / General Questions",
+                questions: [
+                    {
+                        q: "Can you follow instructions in English?",
+                        qThai: "คุณทำตามคำสั่งภาษาอังกฤษได้ไหม",
+                        a: "Yes, I can understand and follow instructions in English very well.",
+                        aThai: "ได้ ฉันเข้าใจและทำตามคำสั่งภาษาอังกฤษได้ดี"
+                    },
+                    {
+                        q: "Are you comfortable working in someone's home?",
+                        qThai: "คุณสบายใจที่จะทำงานในบ้านของใครบางคนไหม",
+                        a: "Yes, I am comfortable working in private homes. I respect people's privacy and property.",
+                        aThai: "สบายใจ ฉันสบายใจที่จะทำงานในบ้านส่วนตัว ฉันเคารพความเป็นส่วนตัวและทรัพย์สินของผู้อื่น"
+                    },
+                    {
                         q: "Do you have any questions for us?",
                         qThai: "คุณมีคำถามอะไรสำหรับเราไหม",
-                        a: "Yes, what are the working hours? Is accommodation provided? When can I start?",
-                        aThai: "มี เวลาทำงานคือเท่าไหร่ มีที่พักให้ไหม ฉันสามารถเริ่มงานได้เมื่อไหร่"
+                        a: "Yes, what are the working hours? Is accommodation provided? When can I start? What are my exact responsibilities?",
+                        aThai: "มี เวลาทำงานคือเท่าไหร่ มีที่พักให้ไหม ฉันสามารถเริ่มงานได้เมื่อไหร่ ความรับผิดชอบของฉันคืออะไรบ้าง"
                     }
                 ]
             }
