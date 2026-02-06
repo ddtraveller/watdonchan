@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เรียนภาษาอังกฤษสำหรับงานทำความสะอาด - English for Cleaning Jobs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background: #f5f5f5;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        .nav-tab:hover {
+            background: #e0e0e0;
+        }
+        
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grammar-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .grammar-card h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .grammar-card p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .example {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .example strong {
+            color: #667eea;
+        }
+        
+        .interview-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .interview-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .question, .answer {
+            margin: 10px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .question {
+            border-left: 4px solid #667eea;
+        }
+        
+        .answer {
+            border-left: 4px solid #28a745;
+        }
+        
+        .english {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .thai {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .audio-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .audio-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .activity {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .activity h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .question-block {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option-btn {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: left;
+            transition: all 0.3s;
+        }
+        
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .option-btn.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .score-board {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .reset-btn:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav-tab {
+                padding: 15px 10px;
+                font-size: 0.9em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 เรียนภาษาอังกฤษสำหรับงานทำความสะอาด</h1>
+            <p>English Learning for Cleaning Jobs in Israel</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection(0)">📚 Grammar<br>ไวยากรณ์</button>
+            <button class="nav-tab" onclick="showSection(1)">💼 Interview<br>สัมภาษณ์</button>
+            <button class="nav-tab" onclick="showSection(2)">🧹 Practice<br>ฝึกฝน</button>
+        </div>
+        
+        <div class="content">
+            <!-- Section 1: Grammar -->
+            <div class="section active" id="section-0">
+                <h2 style="color: #667eea; margin-bottom: 30px;">การใช้ I can, I do, และ I have</h2>
+                
+                <div class="grammar-card">
+                    <h3>1. I can (ฉันสามารถ)</h3>
+                    <p><strong>ความหมาย:</strong> ใช้เมื่อต้องการบอกว่าเรามีความสามารถหรือทักษะในการทำอะไรบางอย่าง</p>
+                    <p><strong>โครงสร้าง:</strong> I can + กริยาช่อง 1 (ไม่ต้องเติม s/es)</p>
+                    <p><strong>เมื่อใช้:</strong></p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>บอกทักษะที่มี (Skills)</li>
+                        <li>บอกสิ่งที่ทำได้ (Abilities)</li>
+                        <li>ขออนุญาต (Permission)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <strong>ตัวอย่าง:</strong><br>
+                        ✓ I can speak English. (ฉันพูดภาษาอังกฤษได้)<br>
+                        ✓ I can clean windows. (ฉันเช็ดหน้าต่างเป็น)<br>
+                        ✓ I can work on weekends. (ฉันทำงานวันเสาร์-อาทิตย์ได้)<br>
+                        ✓ I can start immediately. (ฉันเริ่มงานได้ทันที)
+                    </div>
+                    
+                    <div class="example">
+                        <strong>ประโยคปฏิเสธ (Negative):</strong><br>
+                        ✗ I cannot (can't) work at night. (ฉันทำงานกลางคืนไม่ได้)<br>
+                        ✗ I can't lift heavy objects. (ฉันยกของหนักไม่ได้)
+                    </div>
+                    
+                    <div class="example">
+                        <strong>ประโยคคำถาม (Question):</strong><br>
+                        ? Can you work overtime? (คุณทำงานล่วงเวลาได้ไหม)<br>
+                        ? Can you clean five rooms per day? (คุณทำความสะอาดห้องได้ 5 ห้องต่อวันไหม)
+                    </div>
+                </div>
+                
+                <div class="grammar-card">
+                    <h3>2. I do (ฉันทำ)</h3>
+                    <p><strong>ความหมาย:</strong> ใช้เมื่อต้องการบอกว่าเราทำอะไรเป็นประจำหรือเป็นนิสัย</p>
+                    <p><strong>โครงสร้าง:</strong> I do + สิ่งที่ทำ / I + กริยาช่อง 1</p>
+                    <p><strong>เมื่อใช้:</strong></p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>บอกงานประจำ (Regular tasks)</li>
+                        <li>บอกความรับผิดชอบ (Responsibilities)</li>
+                        <li>บอกกิจวัตร (Routines)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <strong>ตัวอย่าง:</strong><br>
+                        ✓ I do housework every day. (ฉันทำงานบ้านทุกวัน)<br>
+                        ✓ I clean rooms. (ฉันทำความสะอาดห้อง)<br>
+                        ✓ I wash dishes. (ฉันล้างจาน)<br>
+                        ✓ I vacuum the floor. (ฉันดูดฝุ่นพื้น)<br>
+                        ✓ I do laundry. (ฉันซักผ้า)
+                    </div>
+                    
+                    <div class="example">
+                        <strong>ประโยคปฏิเสธ (Negative):</strong><br>
+                        ✗ I don't smoke. (ฉันไม่สูบบุหรี่)<br>
+                        ✗ I don't work on Sundays. (ฉันไม่ทำงานวันอาทิตย์)
+                    </div>
+                    
+                    <div class="example">
+                        <strong>ประโยคคำถาม (Question):</strong><br>
+                        ? Do you clean bathrooms? (คุณทำความสะอาดห้องน้ำไหม)<br>
+                        ? What do you do? (คุณทำงานอะไร)
+                    </div>
+                </div>
+                
+                <div class="grammar-card">
+                    <h3>3. I have (ฉันมี)</h3>
+                    <p><strong>ความหมาย:</strong> ใช้เมื่อต้องการบอกว่าเรามีอะไรหรือมีประสบการณ์อะไร</p>
+                    <p><strong>โครงสร้าง:</strong> I have + สิ่งของ/ประสบการณ์</p>
+                    <p><strong>เมื่อใช้:</strong></p>
+                    <ul style="margin-left: 30px; margin-top: 10px;">
+                        <li>บอกการครอบครอง (Possession)</li>
+                        <li>บอกประสบการณ์ (Experience)</li>
+                        <li>บอกความสัมพันธ์ (Relationships)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <strong>ตัวอย่าง:</strong><br>
+                        ✓ I have experience in cleaning. (ฉันมีประสบการณ์ทำความสะอาด)<br>
+                        ✓ I have two children. (ฉันมีลูก 2 คน)<br>
+                        ✓ I have a passport. (ฉันมีพาสปอร์ต)<br>
+                        ✓ I have worked in hotels. (ฉันเคยทำงานในโรงแรม)<br>
+                        ✓ I have five years of experience. (ฉันมีประสบการณ์ 5 ปี)
+                    </div>
+                    
+                    <div class="example">
+                        <strong>ประโยคปฏิเสธ (Negative):</strong><br>
+                        ✗ I don't have a driving license. (ฉันไม่มีใบขับขี่)<br>
+                        ✗ I haven't worked abroad before. (ฉันไม่เคยทำงานต่างประเทศมาก่อน)
+                    </div>
+                    
+                    <div class="example">
+                        <strong>ประโยคคำถาม (Question):</strong><br>
+                        ? Do you have experience? (คุณมีประสบการณ์ไหม)<br>
+                        ? Have you worked in Israel before? (คุณเคยทำงานในอิสราเอลมาก่อนไหม)
+                    </div>
+                </div>
+                
+                <div class="grammar-card" style="background: #e8f4fd; border-left-color: #28a745;">
+                    <h3>🎯 เปรียบเทียบทั้ง 3 แบบ</h3>
+                    <div class="example">
+                        <strong>I can clean:</strong> ฉันทำความสะอาดเป็น (มีความสามารถ)<br>
+                        <strong>I do clean / I clean:</strong> ฉันทำความสะอาด (ทำเป็นประจำ)<br>
+                        <strong>I have cleaned:</strong> ฉันเคยทำความสะอาดมาแล้ว (มีประสบการณ์)<br>
+                        <strong>I have experience:</strong> ฉันมีประสบการณ์
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Interview Questions -->
+            <div class="section" id="section-1">
+                <h2 style="color: #667eea; margin-bottom: 30px;">50 คำถามสัมภาษณ์งานทำความสะอาดในอิสราเอล</h2>
+                <p style="margin-bottom: 30px; font-size: 1.1em;">กดปุ่ม 🔊 เพื่อฟังเสียงภาษาอังกฤษ</p>
+                
+                <div id="interview-questions"></div>
+            </div>
+            
+            <!-- Section 3: Practice Activities -->
+            <div class="section" id="section-3">
+                <h2 style="color: #667eea; margin-bottom: 30px;">ฝึกฝนคำศัพท์งานทำความสะอาด</h2>
+                
+                <div class="score-board">
+                    <span id="score">คะแนน: 0/20</span>
+                </div>
+                
+                <div class="activity">
+                    <h3>📝 เลือกคำที่ถูกต้องเพื่อเติมในประโยค</h3>
+                    <p style="margin-bottom: 20px; color: #666;">Choose the correct word to complete each sentence</p>
+                    
+                    <div id="practice-questions"></div>
+                    
+                    <button class="reset-btn" onclick="resetQuiz()">🔄 เริ่มใหม่ / Reset Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Interview Questions Data
+        const interviewQuestions = [
+            {
+                q: "Can you tell me about yourself?",
+                qThai: "บอกเกี่ยวกับตัวคุณเองหน่อย",
+                a: "My name is [Name]. I am from Thailand. I have experience in cleaning and housekeeping. I am hardworking and reliable.",
+                aThai: "ชื่อของฉันคือ [ชื่อ] ฉันมาจากประเทศไทย ฉันมีประสบการณ์ในงานทำความสะอาดและงานแม่บ้าน ฉันขยันและน่าเชื่อถือ"
+            },
+            {
+                q: "Do you have any cleaning experience?",
+                qThai: "คุณมีประสบการณ์ทำความสะอาดไหม",
+                a: "Yes, I have [X] years of experience in cleaning. I have worked in hotels, homes, and offices.",
+                aThai: "มี ฉันมีประสบการณ์ [X] ปีในงานทำความสะอาด ฉันเคยทำงานในโรงแรม บ้าน และสำนักงาน"
+            },
+            {
+                q: "What kind of cleaning work have you done?",
+                qThai: "คุณเคยทำงานทำความสะอาดแบบไหนบ้าง",
+                a: "I have cleaned bedrooms, bathrooms, kitchens, and living rooms. I can vacuum, mop floors, and clean windows.",
+                aThai: "ฉันเคยทำความสะอาดห้องนอน ห้องน้ำ ครัว และห้องนั่งเล่น ฉันสามารถดูดฝุ่น ถูพื้น และเช็ดหน้าต่างได้"
+            },
+            {
+                q: "Why do you want to work in Israel?",
+                qThai: "ทำไมคุณถึงอยากทำงานในอิสราเอล",
+                a: "I want to gain international experience and support my family. I have heard Israel offers good opportunities for workers.",
+                aThai: "ฉันต้องการประสบการณ์ทำงานต่างประเทศและหาเลี้ยงครอบครัว ฉันได้ยินว่าอิสราเอลมีโอกาสดีสำหรับคนงาน"
+            },
+            {
+                q: "Can you work independently?",
+                qThai: "คุณทำงานคนเดียวได้ไหม",
+                a: "Yes, I can work independently. I am self-motivated and responsible.",
+                aThai: "ได้ ฉันทำงานคนเดียวได้ ฉันมีแรงจูงใจในตัวเองและมีความรับผิดชอบ"
+            },
+            {
+                q: "Are you comfortable working in someone's home?",
+                qThai: "คุณสบายใจที่จะทำงานในบ้านของใครบางคนไหม",
+                a: "Yes, I am comfortable working in private homes. I respect people's privacy and property.",
+                aThai: "สบายใจ ฉันสบายใจที่จะทำงานในบ้านส่วนตัว ฉันเคารพความเป็นส่วนตัวและทรัพย์สินของผู้อื่น"
+            },
+            {
+                q: "What are your strengths?",
+                qThai: "จุดแข็งของคุณคืออะไร",
+                a: "I am hardworking, punctual, and pay attention to details. I always finish my work on time.",
+                aThai: "ฉันขยัน ตรงเวลา และใส่ใจในรายละเอียด ฉันทำงานเสร็จตรงเวลาเสมอ"
+            },
+            {
+                q: "What are your weaknesses?",
+                qThai: "จุดอ่อนของคุณคืออะไร",
+                a: "I am still learning Hebrew, but I am taking classes to improve. I am a quick learner.",
+                aThai: "ฉันยังเรียนภาษาฮีบรูอยู่ แต่ฉันกำลังเรียนเพื่อพัฒนา ฉันเรียนรู้ไว"
+            },
+            {
+                q: "Can you work under pressure?",
+                qThai: "คุณทำงานภายใต้ความกดดันได้ไหม",
+                a: "Yes, I can work under pressure and meet deadlines. I stay calm and focused.",
+                aThai: "ได้ ฉันทำงานภายใต้ความกดดันและทำตามกำหนดเวลาได้ ฉันสงบและมีสมาธิ"
+            },
+            {
+                q: "Are you available to work on weekends?",
+                qThai: "คุณว่างทำงานวันเสาร์-อาทิตย์ไหม",
+                a: "Yes, I am flexible with my schedule and can work on weekends if needed.",
+                aThai: "ว่าง ฉันมีความยืดหยุ่นกับตารางเวลาและสามารถทำงานวันเสาร์-อาทิตย์ได้ถ้าจำเป็น"
+            },
+            {
+                q: "How do you handle difficult situations?",
+                qThai: "คุณรับมือกับสถานการณ์ยากๆ อย่างไร",
+                a: "I stay calm and try to find solutions. I communicate with my supervisor if I need help.",
+                aThai: "ฉันสงบและพยายามหาทางแก้ไข ฉันสื่อสารกับหัวหน้างานถ้าต้องการความช่วยเหลือ"
+            },
+            {
+                q: "Do you have any health problems?",
+                qThai: "คุณมีปัญหาสุขภาพไหม",
+                a: "No, I am in good health and physically fit for cleaning work.",
+                aThai: "ไม่มี ฉันมีสุขภาพดีและร่างกายแข็งแรงพอสำหรับงานทำความสะอาด"
+            },
+            {
+                q: "Can you lift heavy objects?",
+                qThai: "คุณยกของหนักได้ไหม",
+                a: "Yes, I can lift and carry heavy objects safely. I know how to lift properly.",
+                aThai: "ได้ ฉันสามารถยกและหิ้วของหนักได้อย่างปลอดภัย ฉันรู้วิธียกที่ถูกต้อง"
+            },
+            {
+                q: "What cleaning products are you familiar with?",
+                qThai: "คุณคุ้นเคยกับผลิตภัณฑ์ทำความสะอาดอะไรบ้าง",
+                a: "I am familiar with all-purpose cleaners, glass cleaners, disinfectants, and floor cleaners.",
+                aThai: "ฉันคุ้นเคยกับน้ำยาอเนกประสงค์ น้ำยาเช็ดกระจก น้ำยาฆ่าเชื้อ และน้ำยาทำความสะอาดพื้น"
+            },
+            {
+                q: "How do you prioritize your cleaning tasks?",
+                qThai: "คุณจัดลำดับความสำคัญของงานทำความสะอาดอย่างไร",
+                a: "I start with the most important areas first, like bathrooms and kitchens, then move to other rooms.",
+                aThai: "ฉันเริ่มจากพื้นที่สำคัญที่สุดก่อน เช่น ห้องน้ำและครัว แล้วค่อยไปห้องอื่นๆ"
+            },
+            {
+                q: "Can you use cleaning equipment?",
+                qThai: "คุณใช้อุปกรณ์ทำความสะอาดเป็นไหม",
+                a: "Yes, I can use vacuum cleaners, mops, brooms, and other cleaning equipment.",
+                aThai: "เป็น ฉันใช้เครื่องดูดฝุ่น ไม้ถูพื้น ไม้กวาด และอุปกรณ์ทำความสะอาดอื่นๆ ได้"
+            },
+            {
+                q: "Are you allergic to any cleaning products?",
+                qThai: "คุณแพ้ผลิตภัณฑ์ทำความสะอาดไหม",
+                a: "No, I am not allergic to any cleaning products. I can work with all types of cleaners.",
+                aThai: "ไม่แพ้ ฉันไม่แพ้ผลิตภัณฑ์ทำความสะอาด ฉันทำงานกับน้ำยาทุกชนิดได้"
+            },
+            {
+                q: "How many rooms can you clean per day?",
+                qThai: "คุณทำความสะอาดห้องได้กี่ห้องต่อวัน",
+                a: "I can clean 5-8 rooms per day, depending on the size and condition of the rooms.",
+                aThai: "ฉันสามารถทำความสะอาดได้ 5-8 ห้องต่อวัน ขึ้นอยู่กับขนาดและสภาพของห้อง"
+            },
+            {
+                q: "Do you have any questions for us?",
+                qThai: "คุณมีคำถามอะไรสำหรับเราไหม",
+                a: "Yes, what are the working hours? Is accommodation provided? When can I start?",
+                aThai: "มี เวลาทำงานคือเท่าไหร่ มีที่พักให้ไหม ฉันสามารถเริ่มงานได้เมื่อไหร่"
+            },
+            {
+                q: "Can you work overtime if needed?",
+                qThai: "คุณทำงานล่วงเวลาได้ไหมถ้าจำเป็น",
+                a: "Yes, I can work overtime when necessary. I am flexible with my schedule.",
+                aThai: "ได้ ฉันทำงานล่วงเวลาได้เมื่อจำเป็น ฉันมีความยืดหยุ่นกับตารางเวลา"
+            },
+            {
+                q: "How do you ensure quality in your work?",
+                qThai: "คุณทำอย่างไรเพื่อให้แน่ใจว่างานมีคุณภาพ",
+                a: "I always double-check my work and pay attention to details. I take pride in doing a thorough job.",
+                aThai: "ฉันเช็คงานอีกครั้งเสมอและใส่ใจในรายละเอียด ฉันภูมิใจที่ทำงานอย่างละเอียดถี่ถ้วน"
+            },
+            {
+                q: "Are you comfortable working alone?",
+                qThai: "คุณสบายใจที่จะทำงานคนเดียวไหม",
+                a: "Yes, I am comfortable working alone. I am responsible and can manage my time well.",
+                aThai: "สบายใจ ฉันสบายใจที่จะทำงานคนเดียว ฉันมีความรับผิดชอบและจัดการเวลาได้ดี"
+            },
+            {
+                q: "How do you handle customer complaints?",
+                qThai: "คุณจัดการกับข้อร้องเรียนของลูกค้าอย่างไร",
+                a: "I listen carefully and apologize. Then I fix the problem immediately to ensure customer satisfaction.",
+                aThai: "ฉันฟังอย่างตั้งใจและขอโทษ แล้วฉันแก้ไขปัญหาทันทีเพื่อให้ลูกค้าพอใจ"
+            },
+            {
+                q: "What is your expected salary?",
+                qThai: "คุณคาดหวังเงินเดือนเท่าไหร่",
+                a: "I expect a fair salary based on Israeli standards for cleaning workers, around [amount] per month.",
+                aThai: "ฉันคาดหวังเงินเดือนที่ยุติธรรมตามมาตรฐานอิสราเอลสำหรับงานทำความสะอาด ประมาณ [จำนวน] ต่อเดือน"
+            },
+            {
+                q: "Can you start immediately?",
+                qThai: "คุณเริ่มงานได้ทันทีไหม",
+                a: "Yes, I can start immediately after receiving my work visa.",
+                aThai: "ได้ ฉันสามารถเริ่มงานได้ทันทีหลังจากได้รับวีซ่าทำงาน"
+            },
+            {
+                q: "How long do you plan to work in Israel?",
+                qThai: "คุณวางแผนจะทำงานในอิสราเอลนานแค่ไหน",
+                a: "I plan to work for at least 2-3 years or as long as my contract allows.",
+                aThai: "ฉันวางแผนจะทำงานอย่างน้อย 2-3 ปี หรือนานเท่าที่สัญญาอนุญาต"
+            },
+            {
+                q: "Do you speak any Hebrew?",
+                qThai: "คุณพูดภาษาฮีบรูได้บ้างไหม",
+                a: "I know basic Hebrew phrases. I am willing to learn more while working.",
+                aThai: "ฉันรู้วลีภาษาฮีบรูพื้นฐาน ฉันยินดีเรียนรู้เพิ่มเติมระหว่างทำงาน"
+            },
+            {
+                q: "What motivates you to do this job?",
+                qThai: "อะไรเป็นแรงจูงใจให้คุณทำงานนี้",
+                a: "I want to support my family and gain valuable work experience abroad.",
+                aThai: "ฉันต้องการหาเลี้ยงครอบครัวและได้รับประสบการณ์การทำงานที่มีคค่าในต่างประเทศ"
+            },
+            {
+                q: "Are you a team player?",
+                qThai: "คุณเป็นคนทำงานเป็นทีมไหม",
+                a: "Yes, I work well with others and can also work independently when needed.",
+                aThai: "เป็น ฉันทำงานร่วมกับผู้อื่นได้ดีและสามารถทำงานคนเดียวได้เมื่อจำเป็น"
+            },
+            {
+                q: "How do you stay organized?",
+                qThai: "คุณจัดระเบียบงานอย่างไร",
+                a: "I make a schedule and checklist for my tasks. I prioritize important work first.",
+                aThai: "ฉันทำตารางเวลาและรายการตรวจสอบสำหรับงาน ฉันให้ความสำคัญกับงานสำคัญก่อน"
+            },
+            {
+                q: "Have you worked abroad before?",
+                qThai: "คุณเคยทำงานต่างประเทศมาก่อนไหม",
+                a: "No, this will be my first time working abroad. I am excited for this opportunity.",
+                aThai: "ไม่เคย นี่จะเป็นครั้งแรกที่ฉันทำงานต่างประเทศ ฉันตื่นเต้นกับโอกาสนี้"
+            },
+            {
+                q: "What do you know about Israeli culture?",
+                qThai: "คุณรู้อะไรเกี่ยวกับวัฒนธรรมอิสราเอลบ้าง",
+                a: "I know Israel has diverse culture and people respect Shabbat. I am willing to learn and adapt.",
+                aThai: "ฉันรู้ว่าอิสราเอลมีวัฒนธรรมที่หลากหลายและผู้คนเคารพวันสับบาโต ฉันยินดีเรียนรู้และปรับตัว"
+            },
+            {
+                q: "Do you have any special skills?",
+                qThai: "คุณมีทักษะพิเศษอะไรไหม",
+                a: "I am good at organizing, ironing clothes, and I can also do basic cooking.",
+                aThai: "ฉันเก่งในการจัดระเบียบ รีดผ้า และฉันสามารถทำอาหารพื้นฐานได้ด้วย"
+            },
+            {
+                q: "How do you handle stress?",
+                qThai: "คุณจัดการกับความเครียดอย่างไร",
+                a: "I take deep breaths and focus on solving the problem step by step.",
+                aThai: "ฉันหายใจเข้าลึกๆ และมุ่งเน้นไปที่การแก้ปัญหาทีละขั้นตอน"
+            },
+            {
+                q: "What would you do if you broke something?",
+                qThai: "คุณจะทำอย่างไรถ้าทำของแตก",
+                a: "I would immediately inform my employer and take responsibility. I would offer to replace it.",
+                aThai: "ฉันจะแจ้งนายจ้างทันทีและรับผิดชอบ ฉันจะเสนอที่จะเปลี่ยนใหม่ให้"
+            },
+            {
+                q: "Can you follow instructions in English?",
+                qThai: "คุณทำตามคำสั่งภาษาอังกฤษได้ไหม",
+                a: "Yes, I can understand and follow instructions in English very well.",
+                aThai: "ได้ ฉันเข้าใจและทำตามคำสั่งภาษาอังกฤษได้ดี"
+            },
+            {
+                q: "Are you punctual?",
+                qThai: "คุณตรงต่อเวลาไหม",
+                a: "Yes, I am always on time. Being punctual is very important to me.",
+                aThai: "ตรงเวลา ฉันตรงเวลาเสมอ การตรงต่อเวลาสำคัญมากสำหรับฉัน"
+            },
+            {
+                q: "How do you clean a bathroom?",
+                qThai: "คุณทำความสะอาดห้องน้ำอย่างไร",
+                a: "I clean the toilet, sink, shower, mirror, and floor. I use disinfectant and make sure everything is dry.",
+                aThai: "ฉันทำความสะอาดส้วม อ่างล้างหน้า ฝักบัว กระจก และพื้น ฉันใช้น้ำยาฆ่าเชื้อและทำให้แน่ใจว่าทุกอย่างแห้ง"
+            },
+            {
+                q: "What is your typical daily routine?",
+                qThai: "กิจวัตรประจำวันของคุณเป็นอย่างไร",
+                a: "I wake up early, have breakfast, and start work. I clean rooms, take a lunch break, and continue until finished.",
+                aThai: "ฉันตื่นแต่เช้า กินข้าวเช้า และเริ่มทำงาน ฉันทำความสะอาดห้อง พักกลางวัน และทำต่อจนเสร็จ"
+            },
+            {
+                q: "Can you work without supervision?",
+                qThai: "คุณทำงานได้โดยไม่มีคนดูแลไหม",
+                a: "Yes, I am self-disciplined and can work without constant supervision.",
+                aThai: "ได้ ฉันมีวินัยในตัวเองและสามารถทำงานโดยไม่ต้องมีคนคอยดูแลตลอดเวลา"
+            },
+            {
+                q: "What safety precautions do you take?",
+                qThai: "คุณใช้มาตรการความปลอดภัยอะไรบ้าง",
+                a: "I wear gloves when using chemicals, read product labels, and keep the area well-ventilated.",
+                aThai: "ฉันใส่ถุงมือเมื่อใช้สารเคมี อ่านฉลากผลิตภัณฑ์ และรักษาพื้นที่ให้มีอากาศถ่ายเทดี"
+            },
+            {
+                q: "How do you handle homesickness?",
+                qThai: "คุณจัดการกับความคิดถึงบ้านอย่างไร",
+                a: "I stay in touch with my family through video calls. I also make friends with other workers.",
+                aThai: "ฉันติดต่อกับครอบครัวผ่านวิดีโอคอล ฉันก็สร้างมิตรภาพกับคนงานคนอื่นด้วย"
+            },
+            {
+                q: "Are you willing to learn new cleaning techniques?",
+                qThai: "คุณยินดีเรียนรู้เทคนิคการทำความสะอาดใหม่ๆ ไหม",
+                a: "Yes, I am always eager to learn new methods and improve my skills.",
+                aThai: "ยินดี ฉันกระตือรือร้นที่จะเรียนรู้วิธีการใหม่ๆ และพัฒนาทักษะของฉันเสมอ"
+            },
+            {
+                q: "What makes you a good cleaner?",
+                qThai: "อะไรทำให้คุณเป็นคนทำความสะอาดที่ดี",
+                a: "I am thorough, efficient, and take pride in my work. I always ensure everything is spotless.",
+                aThai: "ฉันละเอียดถี่ถ้วน มีประสิทธิภาพ และภูมิใจในงานของฉัน ฉันทำให้แน่ใจว่าทุกอย่างสะอาดเอี่ยม"
+            },
+            {
+                q: "Can you handle repetitive tasks?",
+                qThai: "คุณรับมือกับงานซ้ำๆ ได้ไหม",
+                a: "Yes, I understand cleaning involves repetitive work. I stay focused and maintain quality.",
+                aThai: "ได้ ฉันเข้าใจว่างานทำความสะอาดเกี่ยวข้องกับงานซ้ำๆ ฉันรักษาสมาธิและคุณภาพ"
+            },
+            {
+                q: "What are your hobbies?",
+                qThai: "งานอดิเรกของคุณคืออะไร",
+                a: "I enjoy cooking, reading, and spending time with my family.",
+                aThai: "ฉันชอบทำอาหาร อ่านหนังสือ และใช้เวลากับครอบครัว"
+            },
+            {
+                q: "How would your previous employer describe you?",
+                qThai: "นายจ้างเก่าของคุณจะอธิบายคุณอย่างไร",
+                a: "They would say I am reliable, hardworking, and always willing to help.",
+                aThai: "เขาจะบอกว่าฉันเชื่อถือได้ ขยัน และยินดีช่วยเหลือเสมอ"
+            },
+            {
+                q: "What do you expect from your employer?",
+                qThai: "คุณคาดหวังอะไรจากนายจ้าง",
+                a: "I expect fair treatment, clear instructions, and timely payment.",
+                aThai: "ฉันคาดหวังการปฏิบัติที่ยุติธรรม คำสั่งที่ชัดเจน และการจ่ายเงินตรงเวลา"
+            },
+            {
+                q: "Why should we hire you?",
+                qThai: "ทำไมเราควรจ้างคุณ",
+                a: "I am experienced, hardworking, and reliable. I will do my best to meet your expectations.",
+                aThai: "ฉันมีประสบการณ์ ขยัน และน่าเชื่อถือ ฉันจะทำให้ดีที่สุดเพื่อตอบสนองความคาดหวังของคุณ"
+            }
+        ];
+        
+        // Practice Questions Data
+        const practiceQuestions = [
+            {
+                question: "I need to _____ the floor every day.",
+                options: ["mop", "brush", "wash", "wipe"],
+                correct: 0,
+                thai: "ฉันต้อง___พื้นทุกวัน"
+            },
+            {
+                question: "Please _____ the dust from the furniture.",
+                options: ["clean", "remove", "wipe", "take"],
+                correct: 1,
+                thai: "กรุณา___ฝุ่นออกจากเฟอร์นิเจอร์"
+            },
+            {
+                question: "I use a _____ to clean the carpet.",
+                options: ["broom", "mop", "vacuum", "duster"],
+                correct: 2,
+                thai: "ฉันใช้___ทำความสะอาดพรม"
+            },
+            {
+                question: "The bathroom needs to be _____.",
+                options: ["disinfected", "painted", "decorated", "arranged"],
+                correct: 0,
+                thai: "ห้องน้ำต้องถูก___"
+            },
+            {
+                question: "Can you _____ the windows please?",
+                options: ["open", "close", "clean", "break"],
+                correct: 2,
+                thai: "คุณช่วย___หน้าต่างได้ไหม"
+            },
+            {
+                question: "I need to _____ the trash.",
+                options: ["throw", "empty", "clean", "wash"],
+                correct: 1,
+                thai: "ฉันต้อง___ถังขยะ"
+            },
+            {
+                question: "Use this _____ to clean the mirrors.",
+                options: ["water", "soap", "spray", "towel"],
+                correct: 2,
+                thai: "ใช้___นี้ทำความสะอาดกระจก"
+            },
+            {
+                question: "Please _____ the bed sheets.",
+                options: ["make", "change", "clean", "wash"],
+                correct: 1,
+                thai: "กรุณา___ผ้าปูที่นอน"
+            },
+            {
+                question: "I will _____ the dishes after dinner.",
+                options: ["clean", "wash", "dry", "put"],
+                correct: 1,
+                thai: "ฉันจะ___จานหลังอาหารเย็น"
+            },
+            {
+                question: "The _____ needs to be scrubbed clean.",
+                options: ["wall", "toilet", "door", "ceiling"],
+                correct: 1,
+                thai: "___ต้องขัดให้สะอาด"
+            },
+            {
+                question: "Don't forget to _____ the furniture.",
+                options: ["dust", "brush", "sweep", "mop"],
+                correct: 0,
+                thai: "อย่าลืม___เฟอร์นิเจอร์"
+            },
+            {
+                question: "I use a _____ to sweep the floor.",
+                options: ["mop", "broom", "vacuum", "cloth"],
+                correct: 1,
+                thai: "ฉันใช้___กวาดพื้น"
+            },
+            {
+                question: "The kitchen counter needs to be _____.",
+                options: ["wiped", "swept", "mopped", "dusted"],
+                correct: 0,
+                thai: "เคาน์เตอร์ครัวต้องถูก___"
+            },
+            {
+                question: "Please _____ the laundry.",
+                options: ["make", "do", "clean", "wash"],
+                correct: 1,
+                thai: "กรุณา___ซักผ้า"
+            },
+            {
+                question: "I need to _____ the bathroom sink.",
+                options: ["clean", "scrub", "wash", "wipe"],
+                correct: 1,
+                thai: "ฉันต้อง___อ่างล้างหน้า"
+            },
+            {
+                question: "Use _____ to clean the toilet.",
+                options: ["soap", "water", "bleach", "oil"],
+                correct: 2,
+                thai: "ใช้___ทำความสะอาดส้วม"
+            },
+            {
+                question: "The rooms must be _____ by 2 PM.",
+                options: ["cleaning", "cleaned", "clean", "to clean"],
+                correct: 1,
+                thai: "ห้องต้อง___ภายในบ่าย 2 โมง"
+            },
+            {
+                question: "I _____ the living room yesterday.",
+                options: ["clean", "cleaned", "cleaning", "cleans"],
+                correct: 1,
+                thai: "ฉัน___ห้องนั่งเล่นเมื่อวาน"
+            },
+            {
+                question: "Please put the cleaning _____ away.",
+                options: ["things", "stuff", "supplies", "items"],
+                correct: 2,
+                thai: "กรุณาเก็บ___ทำความสะอาด"
+            },
+            {
+                question: "The floor is _____. Be careful!",
+                options: ["dry", "clean", "wet", "dirty"],
+                correct: 2,
+                thai: "พื้น___ ระวังนะ!"
+            }
+        ];
+        
+        let score = 0;
+        let answeredQuestions = new Set();
+        
+        // Show section function
+        function showSection(index) {
+            const sections = document.querySelectorAll('.section');
+            const tabs = document.querySelectorAll('.nav-tab');
+            
+            sections.forEach(section => section.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            sections[index].classList.add('active');
+            tabs[index].classList.add('active');
+        }
+        
+        // Text-to-Speech function
+        function speak(text, lang = 'en-US') {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                utterance.pitch = 1;
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech.');
+            }
+        }
+        
+        // Load interview questions
+        function loadInterviewQuestions() {
+            const container = document.getElementById('interview-questions');
+            
+            interviewQuestions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'interview-item';
+                div.innerHTML = `
+                    <h4>Question ${index + 1}</h4>
+                    <div class="question">
+                        <div class="english">${item.q}</div>
+                        <div class="thai">${item.qThai}</div>
+                        <button class="audio-btn" onclick="speak('${item.q.replace(/'/g, "\\'")}')">🔊 Listen</button>
+                    </div>
+                    <div class="answer">
+                        <div class="english"><strong>Answer:</strong> ${item.a}</div>
+                        <div class="thai"><strong>คำตอบ:</strong> ${item.aThai}</div>
+                        <button class="audio-btn" onclick="speak('${item.a.replace(/'/g, "\\'")}')">🔊 Listen</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        // Load practice questions
+        function loadPracticeQuestions() {
+            const container = document.getElementById('practice-questions');
+            
+            practiceQuestions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'question-block';
+                div.id = `question-${index}`;
+                
+                const optionsHTML = item.options.map((option, optIndex) => 
+                    `<button class="option-btn" onclick="checkAnswer(${index}, ${optIndex})">${option}</button>`
+                ).join('');
+                
+                div.innerHTML = `
+                    <div class="question-text">
+                        ${index + 1}. ${item.question}<br>
+                        <small style="color: #666;">${item.thai}</small>
+                    </div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                    <div class="feedback" id="feedback-${index}" style="display: none;"></div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+        
+        // Check answer
+        function checkAnswer(questionIndex, selectedOption) {
+            if (answeredQuestions.has(questionIndex)) {
+                return; // Already answered
+            }
+            
+            const question = practiceQuestions[questionIndex];
+            const questionBlock = document.getElementById(`question-${questionIndex}`);
+            const options = questionBlock.querySelectorAll('.option-btn');
+            const feedback = document.getElementById(`feedback-${questionIndex}`);
+            
+            // Disable all options
+            options.forEach(btn => btn.style.pointerEvents = 'none');
+            
+            // Mark the selected option
+            if (selectedOption === question.correct) {
+                options[selectedOption].classList.add('correct');
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '✓ ถูกต้อง! Correct!';
+                score++;
+                answeredQuestions.add(questionIndex);
+            } else {
+                options[selectedOption].classList.add('incorrect');
+                options[question.correct].classList.add('correct');
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `✗ ไม่ถูกต้อง! The correct answer is: ${question.options[question.correct]}`;
+            }
+            
+            feedback.style.display = 'block';
+            updateScore();
+        }
+        
+        // Update score
+        function updateScore() {
+            document.getElementById('score').textContent = `คะแนน: ${score}/${practiceQuestions.length}`;
+        }
+        
+        // Reset quiz
+        function resetQuiz() {
+            score = 0;
+            answeredQuestions.clear();
+            updateScore();
+            
+            practiceQuestions.forEach((_, index) => {
+                const questionBlock = document.getElementById(`question-${index}`);
+                const options = questionBlock.querySelectorAll('.option-btn');
+                const feedback = document.getElementById(`feedback-${index}`);
+                
+                options.forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                    btn.style.pointerEvents = 'auto';
+                });
+                
+                feedback.style.display = 'none';
+            });
+        }
+        
+        // Initialize on page load
+        window.onload = function() {
+            loadInterviewQuestions();
+            loadPracticeQuestions();
+        };
+    </script>
+</body>
+</html>
