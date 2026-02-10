@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Conversation & Job Interview Guide - คู่มือการสนทนาและสัมภาษณ์งาน</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .thai-instruction {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .thai-instruction h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .thai-instruction p {
+            color: #856404;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .phrase-list {
+            margin-bottom: 30px;
+        }
+
+        .phrase-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .phrase-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .phrase-text {
+            flex: 1;
+        }
+
+        .english {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .thai {
+            color: #666;
+            font-size: 1em;
+        }
+
+        .audio-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .audio-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .audio-btn:active {
+            transform: translateY(0);
+        }
+
+        .interactive-section {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .interactive-section h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question p {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1565c0;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f5f5ff;
+        }
+
+        .quiz-option.correct {
+            background: #c8e6c9;
+            border-color: #4caf50;
+        }
+
+        .quiz-option.incorrect {
+            background: #ffcdd2;
+            border-color: #f44336;
+        }
+
+        .input-practice {
+            margin-top: 15px;
+        }
+
+        .input-practice input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .check-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover {
+            background: #1976d2;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .quote-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .quote-section blockquote {
+            font-size: 1.5em;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .quote-section .thai-quote {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .subsection {
+            margin-top: 30px;
+        }
+
+        .subsection h4 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            line-height: 1.8;
+        }
+
+        .info-card p {
+            margin-bottom: 15px;
+        }
+
+        .info-card strong {
+            color: #667eea;
+        }
+
+        .info-card ul {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-card ul li {
+            margin-bottom: 8px;
+        }
+
+        .important-info {
+            border-left: 5px solid #f44336;
+            background: #ffebee;
+        }
+
+        .important-note {
+            color: #f44336;
+            background: #fff3e0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .hebrew-display {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .hebrew-letter-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 10px;
+        }
+
+        .hebrew-letter {
+            font-size: 6em;
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hebrew-name {
+            font-size: 1.8em;
+            color: #ff6f00;
+            font-weight: bold;
+        }
+
+        .hebrew-meanings {
+            margin: 20px 0;
+        }
+
+        .meaning-thai, .meaning-english {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .meaning-thai-translation {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .hebrew-navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .phrase-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .audio-btn {
+                margin-top: 10px;
+                width: 100%;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .hebrew-letter {
+                font-size: 4em;
+            }
+
+            .hebrew-name {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>English Conversation & Job Interview Guide</h1>
+            <p>คู่มือการสนทนาภาษาอังกฤษและการสัมภาษณ์งาน</p>
+        </header>
+
+        <div class="content">
+            <!-- Section 1: Recognizing Questions -->
+            <div class="section">
+                <h2 class="section-title">1. Recognizing Questions - การรู้จักคำถาม</h2>
+                
+                <div class="thai-instruction">
+                    <h3>คำแนะนำ (Instructions)</h3>
+                    <p>คำถามในภาษาอังกฤษมักเริ่มต้นด้วยคำถาม (Question Words) เช่น Who, What, Where, When, Why, How หรือใช้กริยาช่วย (Auxiliary Verbs) เช่น Do, Does, Did, Is, Are, Can, Will อยู่หน้าประโยค การฟังคำเหล่านี้จะช่วยให้คุณรู้ว่าเป็นคำถามและสามารถตอบได้อย่างถูกต้อง</p>
+                </div>
+
+                <div class="phrase-list">
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">What is your name?</div>
+                            <div class="thai">คุณชื่ออะไร?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('What is your name?')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">Where are you from?</div>
+                            <div class="thai">คุณมาจากไหน?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('Where are you from?')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">How are you today?</div>
+                            <div class="thai">วันนี้คุณเป็นอย่างไรบ้าง?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('How are you today?')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">Do you speak English?</div>
+                            <div class="thai">คุณพูดภาษาอังกฤษได้ไหม?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('Do you speak English?')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">Can you help me?</div>
+                            <div class="thai">คุณช่วยฉันได้ไหม?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('Can you help me?')">🔊 Play</button>
+                    </div>
+                </div>
+
+                <div class="interactive-section">
+                    <h3>🎯 Practice: Identify the Question Word</h3>
+                    <div class="quiz-question">
+                        <p>"_____ do you live?" - Select the correct question word:</p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">What</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">Where</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">Who</div>
+                        </div>
+                    </div>
+
+                    <div class="input-practice">
+                        <p><strong>Type your answer:</strong> "_____ is your favorite food?" (Use: What)</p>
+                        <input type="text" id="q1-input" placeholder="Type the complete question here">
+                        <button class="check-btn" onclick="checkInput('q1-input', 'What is your favorite food')">Check Answer</button>
+                        <div id="q1-feedback" class="feedback"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Basic Conversation -->
+            <div class="section">
+                <h2 class="section-title">2. Basic Conversation - การสนทนาพื้นฐาน</h2>
+                
+                <div class="thai-instruction">
+                    <h3>คำแนะนำ (Instructions)</h3>
+                    <p>การสนทนาพื้นฐานเริ่มต้นด้วยการทักทายและแนะนำตัว จากนั้นอาจพูดคุยเกี่ยวกับสภาพอากาศ งาน หงมีความสนใจ หรือสอบถามข้อมูลทั่วไป การเรียนรู้วลีที่ใช้บ่อยจะช่วยให้คุณมั่นใจในการสนทนามากขึ้น</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Greetings - การทักทาย</h4>
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Hello! Nice to meet you.</div>
+                                <div class="thai">สวัสดี! ยินดีที่ได้รู้จัก</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Hello! Nice to meet you.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Good morning! How are you?</div>
+                                <div class="thai">สวัสดีตอนเช้า! คุณสบายดีไหม?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Good morning! How are you?')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I'm fine, thank you. And you?</div>
+                                <div class="thai">ฉันสบายดี ขอบคุณ แล้วคุณล่ะ?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I am fine, thank you. And you?')">🔊 Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h4>Introducing Yourself - การแนะนำตัว</h4>
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">My name is Sarah.</div>
+                                <div class="thai">ชื่อของฉันคือซาร่าห์</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('My name is Sarah.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I'm from Thailand.</div>
+                                <div class="thai">ฉันมาจากประเทศไทย</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I am from Thailand.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I work as a teacher.</div>
+                                <div class="thai">ฉันทำงานเป็นครู</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I work as a teacher.')">🔊 Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-section">
+                    <h3>🎯 Practice: Complete the Conversation</h3>
+                    <div class="input-practice">
+                        <p><strong>Person A:</strong> "Hello! What's your name?"</p>
+                        <p><strong>Your turn:</strong> Introduce yourself (use "My name is...")</p>
+                        <input type="text" id="q2-input" placeholder="Type your introduction">
+                        <button class="check-btn" onclick="checkIntroduction('q2-input')">Check Answer</button>
+                        <div id="q2-feedback" class="feedback"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Job Interview Basics -->
+            <div class="section">
+                <h2 class="section-title">3. Job Interview Basics - พื้นฐานการสัมภาษณ์งาน</h2>
+                
+                <div class="thai-instruction">
+                    <h3>คำแนะนำ (Instructions)</h3>
+                    <p>การสัมภาษณ์งานเป็นการสนทนาที่สำคัญมาก คุณควรเตรียมตัวโดยการฝึกตอบคำถามที่ถามบ่อย เช่น เกี่ยวกับตัวคุณเอง ประสบการณ์การทำงาน จุดแข็ง จุดอ่อน และเหตุผลที่สนใจตำแหน่งงาน พูดอย่างมั่นใจและชัดเจน</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Common Interview Questions - คำถามที่ถูกถามบ่อย</h4>
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Tell me about yourself.</div>
+                                <div class="thai">เล่าเกี่ยวกับตัวคุณหน่อย</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Tell me about yourself.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Why do you want this job?</div>
+                                <div class="thai">ทำไมคุณถึงต้องการงานนี้?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Why do you want this job?')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">What are your strengths?</div>
+                                <div class="thai">จุดแข็งของคุณคืออะไร?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('What are your strengths?')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Do you have any questions for us?</div>
+                                <div class="thai">คุณมีคำถามอะไรสำหรับเราไหม?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Do you have any questions for us?')">🔊 Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h4>Sample Responses - ตัวอย่างคำตอบ</h4>
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I have five years of experience in marketing.</div>
+                                <div class="thai">ฉันมีประสบการณ์ด้านการตลาดมาห้าปี</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I have five years of experience in marketing.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I'm a hard worker and a quick learner.</div>
+                                <div class="thai">ฉันเป็นคนทำงานหนักและเรียนรู้เร็ว</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I am a hard worker and a quick learner.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I'm very interested in this opportunity.</div>
+                                <div class="thai">ฉันสนใจโอกาสนี้มาก</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I am very interested in this opportunity.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Thank you for your time today.</div>
+                                <div class="thai">ขอบคุณสำหรับเวลาของคุณวันนี้</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Thank you for your time today.')">🔊 Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-section">
+                    <h3>🎯 Practice: Match the Question with the Best Response</h3>
+                    <div class="quiz-question">
+                        <p>"What are your strengths?" - Which response is most appropriate?</p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">I like pizza.</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">I'm organized and detail-oriented.</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">I don't know.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Polite Expressions -->
+            <div class="section">
+                <h2 class="section-title">4. Polite Expressions - การแสดงความสุภาพ</h2>
+                
+                <div class="thai-instruction">
+                    <h3>คำแนะนำ (Instructions)</h3>
+                    <p>การใช้ภาษาที่สุภาพเป็นสิ่งสำคัญในการสนทนา โดยเฉพาะในสถานการณ์ทางการ เช่น การสัมภาษณ์งาน คำว่า "Please", "Thank you", "Excuse me" และ "I'm sorry" เป็นคำพื้นฐานที่ควรใช้บ่อยๆ</p>
+                </div>
+
+                <div class="phrase-list">
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">Could you please repeat that?</div>
+                            <div class="thai">คุณช่วยพูดอีกครั้งได้ไหม?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('Could you please repeat that?')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">I'm sorry, I don't understand.</div>
+                            <div class="thai">ขอโทษค่ะ/ครับ ฉันไม่เข้าใจ</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('I am sorry, I do not understand.')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">Excuse me, may I ask a question?</div>
+                            <div class="thai">ขอโทษครับ/ค่ะ ขอถามคำถามได้ไหม?</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('Excuse me, may I ask a question?')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">Thank you very much for your help.</div>
+                            <div class="thai">ขอบคุณมากสำหรับความช่วยเหลือของคุณ</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('Thank you very much for your help.')">🔊 Play</button>
+                    </div>
+
+                    <div class="phrase-item">
+                        <div class="phrase-text">
+                            <div class="english">It was nice talking to you.</div>
+                            <div class="thai">ยินดีที่ได้คุยกับคุณ</div>
+                        </div>
+                        <button class="audio-btn" onclick="speak('It was nice talking to you.')">🔊 Play</button>
+                    </div>
+                </div>
+
+                <div class="interactive-section">
+                    <h3>🎯 Practice: Choose the Polite Response</h3>
+                    <div class="quiz-question">
+                        <p>Someone helps you with directions. What should you say?</p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">Okay, bye.</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, true)">Thank you very much!</div>
+                            <div class="quiz-option" onclick="checkAnswer(this, false)">Whatever.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Hebrew Alphabet -->
+            <div class="section">
+                <h2 class="section-title">5. Hebrew Alphabet - อักษรฮีบรู</h2>
+                
+                <div class="thai-instruction">
+                    <h3>เกี่ยวกับอักษรฮีบรู (About the Hebrew Alphabet)</h3>
+                    <p>อักษรฮีบรูเป็นอักษรโบราณที่มีอายุมากกว่า 3,000 ปี ใช้ในการเขียนภาษาฮีบรูซึ่งเป็นภาษาศักดิ์สิทธิ์ อักษรฮีบรูมี 22 ตัว และแต่ละตัวอักษรมีความหมายเชิงสัญลักษณ์และจิตวิญญาณที่ลึกซึ้ง อักษรแต่ละตัวไม่ได้เป็นเพียงเสียงเท่านั้น แต่ยังเป็นภาพและแนวคิดที่สื่อถึงความหมายทางจิตวิญญาณ การเรียนรู้อักษรฮีบรูจะช่วยให้เข้าใจถึงรากฐานของภาษาและวัฒนธรรมโบราณ</p>
+                </div>
+
+                <div class="interactive-section" style="background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); border-left: 4px solid #ff6f00;">
+                    <h3 style="color: #e65100;">🔤 Explore Hebrew Letters - สำรวจอักษรฮีบรู</h3>
+                    
+                    <div class="hebrew-display">
+                        <div class="hebrew-letter-container">
+                            <div class="hebrew-letter" id="hebrew-letter">א</div>
+                            <div class="hebrew-name" id="hebrew-name">Aleph</div>
+                        </div>
+
+                        <div class="hebrew-meanings">
+                            <div class="meaning-thai">
+                                <h4 style="color: #e65100; margin-bottom: 10px;">ความหมาย (Meanings in Thai):</h4>
+                                <p id="thai-meaning" style="font-size: 1.1em; line-height: 1.8;"></p>
+                            </div>
+
+                            <div class="meaning-english">
+                                <h4 style="color: #1565c0; margin-bottom: 10px; margin-top: 20px;">Spiritual Meaning:</h4>
+                                <p id="english-meaning" style="font-size: 1.1em; line-height: 1.8; color: #333;"></p>
+                                <button class="audio-btn" style="margin-top: 15px;" onclick="speakHebrewMeaning()">
+                                    🔊 Play Spiritual Meaning
+                                </button>
+                            </div>
+
+                            <div class="meaning-thai-translation" style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
+                                <p style="color: #666; font-style: italic;" id="thai-translation"></p>
+                            </div>
+                        </div>
+
+                        <div class="hebrew-navigation">
+                            <button class="check-btn" style="background: #ff6f00; margin-top: 20px; font-size: 1.1em; padding: 15px 30px;" onclick="nextHebrewLetter()">
+                                Next Letter ➡️ ตัวอักษรถัดไป
+                            </button>
+                            <div style="margin-top: 10px; color: #666;">
+                                <span id="letter-progress">Letter 1 of 10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Israel Facts -->
+            <div class="section">
+                <h2 class="section-title">6. About Israel - เกี่ยวกับประเทศอิสราเอล</h2>
+                
+                <div class="thai-instruction">
+                    <h3>ข้อมูลทั่วไป (General Information)</h3>
+                    <p>ประเทศอิสราเอลเป็นประเทศเล็กๆ ในตะวันออกกลางที่มีประวัติศาสตร์ยาวนานกว่า 3,000 ปี เป็นดินแดนศักดิ์สิทธิ์ของศาสนายูดาย คริสต์ และอิสลาม สำหรับแรงงานต่างชาติที่มาทำงานในอิสราเอล การเข้าใจวัฒนธรรม ศาสนา และข้อมูลพื้นฐานเป็นสิ่งสำคัญมาก</p>
+                </div>
+
+                <!-- History Section -->
+                <div class="subsection">
+                    <h4>📜 ประวัติศาสตร์ (History)</h4>
+                    <div class="info-card">
+                        <p><strong>ความเป็นมาของชาติ:</strong> อิสราเอลสถาปนาเป็นประเทศในปี พ.ศ. 2491 (ค.ศ. 1948) หลังสงครามโลกครั้งที่สอง แต่ดินแดนแห่งนี้มีประวัติศาสตร์ที่ยาวนานกว่า 3,000 ปี เป็นบ้านเกิดของชาวยิวโบราณ</p>
+                        
+                        <p><strong>เมืองหลวง:</strong> เยรูซาเล็ม (Jerusalem) - เมืองศักดิ์สิทธิ์ที่มีอายุมากกว่า 3,000 ปี มีความสำคัญทางศาสนาสำหรับยูดาย คริสต์ และอิสลาม</p>
+                        
+                        <p><strong>ภาษา:</strong> ภาษาฮีบรู (Hebrew) และภาษาอาหรับ (Arabic) เป็นภาษาราชการ ภาษาอังกฤษใช้กันอย่างแพร่หลาย</p>
+                        
+                        <p><strong>ประชากร:</strong> ประมาณ 9.5 ล้านคน ประกอบด้วยชาวยิว 74%, ชาวอาหรับ 21% และชนกลุ่มน้อยอื่นๆ 5%</p>
+                        
+                        <p><strong>สกุลเงิน:</strong> นิวเชเกล (New Shekel - ₪ หรือ NIS) 1 NIS ประมาณ 9-10 บาทไทย</p>
+                    </div>
+                </div>
+
+                <!-- Religion Section -->
+                <div class="subsection">
+                    <h4>🕎 ศาสนา (Religion)</h4>
+                    <div class="info-card">
+                        <p><strong>ศาสนาหลัก:</strong> ศาสนายูดาย (Judaism) - ศาสนาเดิมของชาวยิว มีอายุมากกว่า 3,500 ปี</p>
+                        
+                        <p><strong>วันสับบาโต (Shabbat):</strong> วันหยุดศักดิ์สิทธิ์ของชาวยิว เริ่มตั้งแต่เย็นวันศุกร์จนถึงเย็นวันเสาร์ ร้านค้า ขนส่งสาธารณะ และธุรกิจส่วนใหญ่ปิด <strong class="important-note">แรงงานควรรู้: วางแผนการช้อปปิ้งและเดินทางล่วงหน้า!</strong></p>
+                        
+                        <p><strong>วันหยุดสำคัญ:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>โรชฮาชานา (Rosh Hashanah)</strong> - ปีใหม่ของชาวยิว (กันยายน-ตุลาคม)</li>
+                            <li><strong>ยอมกิปปูร์ (Yom Kippur)</strong> - วันลดบาป ทุกอย่างปิด 25 ชั่วโมง</li>
+                            <li><strong>เทศกาลฮานุคคาห์ (Hanukkah)</strong> - เทศกาลแห่งแสงสว่าง (ธันวาคม)</li>
+                            <li><strong>เทศกาลเปสัค (Passover)</strong> - เทศกาลปลดปล่อย (มีนาคม-เมษายน)</li>
+                        </ul>
+                        
+                        <p><strong>ข้อควรระวัง:</strong> เคารพสถานที่ศักดิ์สิทธิ์ แต่งกายสุภาพเมื่อเข้าสถานที่ทางศาสนา ผู้หญิงควรปกปิดไหล่และหัวเข่า</p>
+                    </div>
+                </div>
+
+                <!-- Food Section -->
+                <div class="subsection">
+                    <h4>🍽️ อาหาร (Food)</h4>
+                    <div class="info-card">
+                        <p><strong>กฎโคเชอร์ (Kosher):</strong> กฎอาหารของศาสนายูดาย ห้ามกินหมู ห้ามกินสัตว์ทะเลที่ไม่มีครีบหรือเกล็ด ห้ามผสมเนื้อสัตว์กับผลิตภัณฑ์นม</p>
+                        
+                        <p><strong>อาหารยอดนิยม:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>ฮูมมุส (Hummus)</strong> - น้ำพริกถั่วชิกพี รับประทานกับพิตา</li>
+                            <li><strong>ฟาลาเฟล (Falafel)</strong> - ทอดมันถั่วชิกพี อาหารมังสวิรัติที่ได้รับความนิยม</li>
+                            <li><strong>ชาวาร์มา (Shawarma)</strong> - เนื้อย่างหมุนในแผ่นพิตา คล้ายเคบับ</li>
+                            <li><strong>ชักชูกะ (Shakshuka)</strong> - ไข่ตุ๋นมะเขือเทศและพริก กินตอนเช้า</li>
+                            <li><strong>สลัดอิสราเอล</strong> - มีมะเขือเทศ แตงกวา หอม พริก สดชื่นมาก</li>
+                            <li><strong>ซาบิค (Sabich)</strong> - พิตาสอดไส้มะเขือยาวทอด ไข่ต้ม และน้ำสลัด</li>
+                        </ul>
+                        
+                        <p><strong>เคล็ดลับ:</strong> อาหารอิสราเอลมีราคาแพงเมื่อเทียบกับไทย แต่ฟาลาเฟลและฮูมมุสราคาถูกและอร่อย! หาซื้อได้ทุกที่</p>
+                    </div>
+                </div>
+
+                <!-- Geography Section -->
+                <div class="subsection">
+                    <h4>🗺️ ภูมิศาสตร์ (Geography)</h4>
+                    <div class="info-card">
+                        <p><strong>ขนาดประเทศ:</strong> เล็กมาก! ประมาณ 22,000 ตารางกิโลเมตร (เล็กกว่าภาคเหนือของไทย) แต่มีภูมิประเทศหลากหลาย</p>
+                        
+                        <p><strong>ภูมิอากาศ:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>ฤดูร้อน (เมษายน-ตุลาคม):</strong> ร้อนและแห้งมาก 30-40°C ไม่ค่อยมีฝนเลย</li>
+                            <li><strong>ฤดูหนาว (พฤศจิกายน-มีนาคม):</strong> เย็นและมีฝน 10-20°C ต้องใส่เสื้อกันหนาว</li>
+                        </ul>
+                        
+                        <p><strong>เมืองสำคัญ:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>เยรูซาเล็ม:</strong> เมืองหลวง เมืองศักดิ์สิทธิ์ มีกำแพงเมืองเก่าสวยงาม</li>
+                            <li><strong>เทลอาวีฟ:</strong> เมืองใหญ่ริมทะเลเมดิเตอร์เรเนียน ทันสมัย มีชีวิตชีวา</li>
+                            <li><strong>ไฮฟา:</strong> เมืองท่าทางเหนือ มีสวนบาไฮสวยงาม</li>
+                            <li><strong>เอลัต:</strong> เมืองท่องเที่ยวริมทะเลแดง ดำน้ำดูปะการัง</li>
+                        </ul>
+                        
+                        <p><strong>สถานที่พิเศษ:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>ทะเลตาย (Dead Sea):</strong> จุดต่ำสุดบนโลก! เค็มมากจนลอยน้ำได้ ดีต่อผิวหนัง</li>
+                            <li><strong>ทะเลทราย Negev:</strong> ทะเลทรายทางใต้ สวยงามและกว้างใหญ่</li>
+                            <li><strong>ทะเลกาลิลี:</strong> ทะเลสาบน้ำจืดทางเหนือ มีปลามากมาย</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Important Info for Workers -->
+                <div class="subsection">
+                    <h4>👷 ข้อมูลสำคัญสำหรับแรงงานต่างชาติ (Important for Overseas Workers)</h4>
+                    <div class="info-card important-info">
+                        <p><strong>🏥 ระบบสุขภาพ:</strong> อิสราเอลมีระบบสุขภาพดีมาก แรงงานต่างชาติมีสิทธิ์ประกันสุขภาพ ตรวจสอบสิทธิ์กับนายจ้าง</p>
+                        
+                        <p><strong>💰 ค่าแรง:</strong> ค่าแรงขั้นต่ำประมาณ 5,300-5,500 NIS ต่อเดือน (ประมาณ 50,000-55,000 บาท) แต่ค่าครองชีพสูง</p>
+                        
+                        <p><strong>🏠 ที่พักอาศัย:</strong> นายจ้างมักจัดหาให้ หรือหักค่าเช่าจากเงินเดือน ค่าเช่าในเมืองใหญ่แพงมาก</p>
+                        
+                        <p><strong>🚌 การเดินทาง:</strong> ขนส่งสาธารณะดีมาก มีรถบัส รถไฟ แต่ปิดในวันสับบาโต บัตรผ่าน "Rav Kav" ใช้ได้ทุกที่</p>
+                        
+                        <p><strong>📱 โทรศัพท์:</strong> ซิมการ์ดมีหลายค่าย เช่น Cellcom, Partner, Pelephone ราคาเริ่มต้น 40-50 NIS ต่อเดือน</p>
+                        
+                        <p><strong>🏪 ซูเปอร์มาร์เก็ต:</strong> Rami Levy (ราคาถูก), Shufersal, Victory, Mega - เปิดเกือบทุกวันยกเว้นสับบาโต</p>
+                        
+                        <p><strong>⚠️ ความปลอดภัย:</strong> อิสราเอลปลอดภัยโดยรวม แต่มีความตึงเครียดในบางพื้นที่ ปฏิบัติตามคำแนะนำของเจ้าหน้าที่เสมอ</p>
+                        
+                        <p><strong>👔 วัฒนธรรมการทำงาน:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>ชาวอิสราเอลมักพูดตรงไปตรงมา ไม่ต้องตกใจ!</li>
+                            <li>ตรงต่อเวลาเป็นสิ่งสำคัญ โดยเฉพาะในงานก่อสร้างและการเกษตร</li>
+                            <li>เคารพวันสับบาโตและวันหยุดทางศาสนา</li>
+                            <li>หัวหน้าส่วนใหญ่ชอบการสื่อสารแบบเปิดเผย ถามได้ถ้าไม่เข้าใจ</li>
+                        </ul>
+                        
+                        <p><strong>🆘 หมายเลขฉุกเฉิน:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>ตำรวจ:</strong> 100</li>
+                            <li><strong>พยาบาล (Magen David Adom):</strong> 101</li>
+                            <li><strong>ดับเพลิง:</strong> 102</li>
+                            <li><strong>สถานทูตไทยในอิสราเอล:</strong> +972-3-6952382</li>
+                        </ul>
+                        
+                        <p><strong>📧 ติดต่อสถานทูตไทย:</strong> อยู่ในเทลอาวีฟ เปิดทำการวันจันทร์-ศุกร์ 09:00-17:00 สามารถขอความช่วยเหลือได้</p>
+                    </div>
+                </div>
+
+                <!-- Useful Phrases for Workers -->
+                <div class="subsection">
+                    <h4>💬 วลีที่มีประโยชน์ในการทำงาน (Useful Phrases for Work)</h4>
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Shalom (Hello / Peace)</div>
+                                <div class="thai">ชาลอม - สวัสดี / สันติภาพ</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Shalom')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Toda (Thank you)</div>
+                                <div class="thai">โทดา - ขอบคุณ</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Toda')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Bevakasha (Please / You're welcome)</div>
+                                <div class="thai">เบวากาชา - กรุณา / ด้วยความยินดี</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Bevakasha')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Slicha (Excuse me / Sorry)</div>
+                                <div class="thai">สลีฮา - ขอโทษ / ขออภัย</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Slicha')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Ken (Yes) / Lo (No)</div>
+                                <div class="thai">เคน (ใช่) / โล (ไม่ใช่)</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Ken, Lo')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I don't understand</div>
+                                <div class="thai">ฉันไม่เข้าใจ</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I do not understand')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">Where is the bathroom?</div>
+                                <div class="thai">ห้องน้ำอยู่ที่ไหน?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('Where is the bathroom?')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">What time do we start work?</div>
+                                <div class="thai">เราเริ่มงานกี่โมง?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('What time do we start work?')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">I need help, please.</div>
+                                <div class="thai">ฉันต้องการความช่วยเหลือ</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('I need help, please.')">🔊 Play</button>
+                        </div>
+
+                        <div class="phrase-item">
+                            <div class="phrase-text">
+                                <div class="english">How much does this cost?</div>
+                                <div class="thai">นี่ราคาเท่าไหร่?</div>
+                            </div>
+                            <button class="audio-btn" onclick="speak('How much does this cost?')">🔊 Play</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cultural Tips -->
+                <div class="interactive-section" style="background: #fff3e0; border-left: 4px solid #ff9800;">
+                    <h3 style="color: #e65100;">🌟 เคล็ดลับวัฒนธรรม (Cultural Tips)</h3>
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <ul style="line-height: 2; margin-left: 20px;">
+                            <li><strong>การทักทาย:</strong> การจับมืออย่างเป็นมิตรเป็นเรื่องปกติ บางคนอาจจูบแก้มสองข้าง (เฉพาะคนสนิท)</li>
+                            <li><strong>การแต่งกาย:</strong> ไม่เป็นทางการมาก แต่ต้องสุภาพในสถานที่ทางศาสนา</li>
+                            <li><strong>การให้ทิป:</strong> ปกติให้ 10-12% ในร้านอาหาร ไม่จำเป็นในร้านฟาสต์ฟู้ด</li>
+                            <li><strong>การต่อรองราคา:</strong> สามารถต่อรองได้ในตลาด แต่ไม่ใช่ในร้านค้าปกติ</li>
+                            <li><strong>ภาษากาย:</strong> ชาวอิสราเอลมักใช้มือพูด พูดดัง ไม่ต้องตกใจ นั่นเป็นเรื่องปกติ!</li>
+                            <li><strong>อาหาร:</strong> ถ้าได้รับเชิญไปบ้าน อาจพกของขวัญเล็กน้อย เช่น ดอกไม้ หรือของหวาน</li>
+                            <li><strong>เวลา:</strong> "ทันเวลาตามแบบอิสราเอล" อาจหมายถึงสาย 10-15 นาที แต่ในงานต้องตรงเวลา!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inspiring Quote Section -->
+            <div class="quote-section">
+                <h2 style="margin-bottom: 20px;">💫 Daily Inspiration</h2>
+                <blockquote>
+                    "The only way to do great work is to love what you do."
+                </blockquote>
+                <div class="thai-quote">
+                    "ทางเดียวที่จะทำงานได้ดีเยี่ยมคือการรักในสิ่งที่คุณทำ"
+                </div>
+                <div class="thai-quote" style="font-size: 1em; margin-bottom: 10px;">
+                    - Steve Jobs
+                </div>
+                <button class="audio-btn" style="background: white; color: #667eea;" onclick="speak('The only way to do great work is to love what you do.')">
+                    🔊 Listen to Quote
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hebrew Letters Data
+        const hebrewLetters = [
+            {
+                letter: 'א',
+                name: 'Aleph',
+                thaiMeaning: 'ความหมาย: วัว, หัวหน้า, ความเป็นหนึ่งเดียว, จุดเริ่มต้น, พลัง, ความแข็งแกร่ง - ตัวอักษรตัวแรกของอักษรฮีบรู แสดงถึงจุดเริ่มต้นและความเป็นผู้นำ',
+                englishMeaning: 'Aleph represents the oneness and unity of God, divine power, and leadership. It is silent, symbolizing the ineffable nature of the divine. As the first letter, it signifies beginnings, strength, and the breath of life. Aleph teaches us about humility - though it is the first, it makes no sound, reminding us that true leadership comes from a place of quiet strength.',
+                thaiTranslation: 'อาเลฟแสดงถึงความเป็นหนึ่งเดียวและเอกภาพของพระเจ้า พลังอันศักดิ์สิทธิ์ และความเป็นผู้นำ เป็นตัวอักษรที่เงียบ สัญลักษณ์ของธรรมชาติอันลึกลับของสิ่งศักดิ์สิทธิ์ ในฐานะตัวอักษรแรก มันหมายถึงการเริ่มต้น ความแข็งแกร่ง และลมหายใจแห่งชีวิต อาเลฟสอนเราเกี่ยวกับความอ่อนน้อมถ่อมตน - แม้ว่าจะเป็นตัวแรก แต่ไม่มีเสียง เตือนเราว่าความเป็นผู้นำที่แท้จริงมาจากความเข้มแข็งที่เงียบงัน'
+            },
+            {
+                letter: 'ב',
+                name: 'Bet',
+                thaiMeaning: 'ความหมาย: บ้าน, ที่อยู่อาศัย, ภายใน, การอวยพร - รูปร่างของเบ็ทเปิดไปทางด้านหน้าเพื่อต้อนรับและปิดด้านหลังเพื่อปกป้อง สัญลักษณ์ของความอบอุ่นและความปลอดภัย',
+                englishMeaning: 'Bet symbolizes a house, dwelling place, and blessing. It represents the home as a sanctuary where the divine presence dwells. The shape of Bet is open on one side, welcoming guests and new possibilities, while closed on the other, protecting what is within. It teaches about creating sacred space in our lives and the importance of hospitality, warmth, and protection.',
+                thaiTranslation: 'เบ็ทเป็นสัญลักษณ์ของบ้าน ที่อยู่อาศัย และพระพร แสดงถึงบ้านเป็นสถานที่ศักดิ์สิทธิ์ที่สถิตย์อยู่ รูปร่างของเบ็ทเปิดด้านหนึ่งเพื่อต้อนรับแขกและความเป็นไปได้ใหม่ๆ ในขณะที่ปิดอีกด้านหนึ่งเพื่อปกป้องสิ่งที่อยู่ภายใน สอนเกี่ยวกับการสร้างพื้นที่ศักดิ์สิทธิ์ในชีวิตและความสำคัญของการต้อนรับ ความอบอุ่น และการปกป้อง'
+            },
+            {
+                letter: 'ג',
+                name: 'Gimel',
+                thaiMeaning: 'ความหมาย: อูฐ, ยกขึ้น, ให้, ความเอื้อเฟื้อเผื่อแผ่ - อูฐเป็นสัญลักษณ์ของการเดินทางและความอดทน กีเมลแสดงถึงการให้และการยกระดับผู้อื่น',
+                englishMeaning: 'Gimel represents a camel, which symbolizes the act of giving and lifting others up. A camel carries burdens across long journeys, teaching us about generosity, kindness, and the spiritual practice of giving to those in need. Gimel embodies the principle that when we give to others, we elevate both them and ourselves. It reminds us that true wealth is measured by what we share.',
+                thaiTranslation: 'กีเมลแสดงถึงอูฐซึ่งเป็นสัญลักษณ์ของการให้และการยกระดับผู้อื่น อูฐแบกภาระข้ามการเดินทางที่ยาวไกล สอนเราเกี่ยวกับความเอื้อเฟื้อ ความเมตตา และการปฏิบัติทางจิตวิญญาณของการให้แก่ผู้ที่ต้องการ กีเมลรวบรวมหลักการที่ว่าเมื่อเราให้กับผู้อื่น เรายกระดับทั้งพวกเขาและตัวเราเอง เตือนเราว่าความมั่งคั่งที่แท้จริงวัดจากสิ่งที่เราแบ่งปัน'
+            },
+            {
+                letter: 'ד',
+                name: 'Dalet',
+                thaiMeaning: 'ความหมาย: ประตู, ทางเดิน, ผู้ยากไร้, ความอ่อนน้อม - ดาเลทเป็นประตูสู่ความเป็นไปได้ใหม่ สัญลักษณ์ของการเปลี่ยนแปลงและการเปิดรับ',
+                englishMeaning: 'Dalet symbolizes a door or pathway, representing transitions, humility, and openness. It is associated with the poor or humble, teaching that spiritual growth requires us to be open and receptive like a doorway. Dalet reminds us that every ending is also a beginning, and that humility opens the door to wisdom. Through acknowledging our limitations, we create space for divine knowledge to enter.',
+                thaiTranslation: 'ดาเลทเป็นสัญลักษณ์ของประตูหรือทางเดิน แสดงถึงการเปลี่ยนผ่าน ความอ่อนน้อมถ่อมตน และการเปิดกว้าง เกี่ยวข้องกับผู้ยากไร้หรือผู้ถ่อมตน สอนว่าการเติบโตทางจิตวิญญาณต้องการให้เราเปิดกว้างและยอมรับเหมือนทางเดิน ดาเลทเตือนเราว่าทุกการสิ้นสุดคือจุดเริ่มต้น และความอ่อนน้อมเปิดประตูสู่ปัญญา ผ่านการยอมรับข้อจำกัดของเรา เราสร้างพื้นที่สำหรับความรู้อันศักดิ์สิทธิ์ที่จะเข้ามา'
+            },
+            {
+                letter: 'ה',
+                name: 'Hey',
+                thaiMeaning: 'ความหมาย: หน้าต่าง, ลมหายใจ, การเปิดเผย, การแสดงออก - เฮย์เป็นตัวอักษรแห่งการหายใจและวิญญาณ มันปรากฏในชื่อศักดิ์สิทธิ์ของพระเจ้า',
+                englishMeaning: 'Hey represents a window, breath, and divine revelation. It symbolizes the breath of God that gives life to all creation. As a window allows light to enter, Hey represents openness to divine inspiration and communication. It appears twice in God\'s name (YHVH), emphasizing its connection to the divine breath and presence. Hey teaches us to be open, to breathe consciously, and to receive divine wisdom.',
+                thaiTranslation: 'เฮย์แสดงถึงหน้าต่าง ลมหายใจ และการเปิดเผยอันศักดิ์สิทธิ์ เป็นสัญลักษณ์ของลมหายใจของพระเจ้าที่ให้ชีวิตแก่สิ่งสร้างทั้งหมด เช่นเดียวกับหน้าต่างที่ให้แสงเข้ามา เฮย์แสดงถึงการเปิดกว้างต่อแรงบันดาลใจและการสื่อสารอันศักดิ์สิทธิ์ ปรากฏสองครั้งในพระนามของพระเจ้า (YHVH) เน้นการเชื่อมโยงกับลมหายใจและการสถิตย์อยู่อันศักดิ์สิทธิ์ เฮย์สอนเราให้เปิดกว้าง หายใจอย่างมีสติ และรับปัญญาอันศักดิ์สิทธิ์'
+            },
+            {
+                letter: 'ו',
+                name: 'Vav',
+                thaiMeaning: 'ความหมาง: ตะขอ, ตะปู, การเชื่อมต่อ, คำเชื่อม "และ" - วาฟเชื่อมโยงสวรรค์กับโลก จิตวิญญาณกับวัตถุ มันเป็นสะพานเชื่อมระหว่างสองสิ่ง',
+                englishMeaning: 'Vav symbolizes a hook, nail, or connector, representing the divine connection between heaven and earth, spiritual and physical realms. As the conjunction "and" in Hebrew, it joins and unifies separate elements. Vav teaches about the importance of connection, relationships, and the bridges we build between different aspects of our lives. It reminds us that we are meant to connect the sacred with the everyday.',
+                thaiTranslation: 'วาฟเป็นสัญลักษณ์ของตะขอ ตะปู หรือตัวเชื่อม แสดงถึงการเชื่อมโยงอันศักดิ์สิทธิ์ระหว่างสวรรค์กับโลก อาณาจักรทางจิตวิญญาณและทางกายภาพ ในฐานะคำเชื่อม "และ" ในภาษาฮีบรู มันเชื่อมและรวมองค์ประกอบที่แยกจากกัน วาฟสอนเกี่ยวกับความสำคัญของการเชื่อมโยง ความสัมพันธ์ และสะพานที่เราสร้างระหว่างแง่มุมต่างๆ ของชีวิต เตือนเราว่าเราถูกสร้างมาเพื่อเชื่อมโยงสิ่งศักดิ์สิทธิ์กับชีวิตประจำวัน'
+            },
+            {
+                letter: 'ז',
+                name: 'Zayin',
+                thaiMeaning: 'ความหมาย: อาวุธ, ดาบ, มงกุฎ, ชัยชนะทางจิตวิญญาณ - ไซยินแสดงถึงการต่อสู้ทางจิตวิญญาณและชัยชนะเหนือความยากลำบาก',
+                englishMeaning: 'Zayin represents a weapon, sword, or crown, symbolizing spiritual warfare and victory. It teaches about the tools we need for our spiritual journey and the battles we must fight against negativity and ego. Like a sword that cuts through illusion, Zayin represents discernment and the ability to distinguish truth from falsehood. It also symbolizes sustenance and provision, as God provides us with what we need for our spiritual battles.',
+                thaiTranslation: 'ไซยินแสดงถึงอาวุธ ดาบ หรือมงกุฎ เป็นสัญลักษณ์ของสงครามทางจิตวิญญาณและชัยชนะ สอนเกี่ยวกับเครื่องมือที่เราต้องการสำหรับการเดินทางทางจิตวิญญาณและการต่อสู้ที่เราต้องสู้กับความคิดลบและอัตตา เหมือนดาบที่ตัดผ่านภาพลวงตา ไซยินแสดงถึงการมีวิจารณญาณและความสามารถในการแยกแยะความจริงจากความเท็จ นอกจากนี้ยังเป็นสัญลักษณ์ของการดำรงชีวิตและการจัดหาให้ เนื่องจากพระเจ้าจัดหาให้เราในสิ่งที่เราต้องการสำหรับการต่อสู้ทางจิตวิญญาณ'
+            },
+            {
+                letter: 'ח',
+                name: 'Chet',
+                thaiMeaning: 'ความหมาย: รั้ว, ชีวิต, พระคุณ, การปกป้อง - เช็ทสร้างขอบเขตที่ศักดิ์สิทธิ์และปกป้องสิ่งที่มีค่า มันแสดงถึงพลังชีวิตและพระคุณของพระเจ้า',
+                englishMeaning: 'Chet symbolizes a fence, life, and divine grace. It represents boundaries that protect and preserve what is sacred. Like a fence that defines and guards a space, Chet teaches about healthy boundaries in our spiritual lives. It also represents the life force and the grace of God that sustains us. The numerical value of Chet is eight, symbolizing transcendence beyond the natural world (seven) into the realm of the miraculous.',
+                thaiTranslation: 'เช็ทเป็นสัญลักษณ์ของรั้ว ชีวิต และพระคุณอันศักดิ์สิทธิ์ แสดงถึงขอบเขตที่ปกป้องและรักษาสิ่งที่ศักดิ์สิทธิ์ เหมือนรั้วที่กำหนดและปกป้องพื้นที่ เช็ทสอนเกี่ยวกับขอบเขตที่ดีต่อสุขภาพในชีวิตทางจิตวิญญาณของเรา นอกจากนี้ยังแสดงถึงพลังชีวิตและพระคุณของพระเจ้าที่ค้ำจุนเรา ค่าตัวเลขของเช็ทคือแปด เป็นสัญลักษณ์ของการอยู่เหนือโลกธรรมชาติ (เจ็ด) เข้าสู่อาณาจักรแห่งปาฏิหาริย์'
+            },
+            {
+                letter: 'ט',
+                name: 'Tet',
+                thaiMeaning: 'ความหมาย: งู, ตะกร้า, ความดี, การปกปิด - เท็ทเป็นสัญลักษณ์ของความดีที่ซ่อนอยู่และพรอันลึกซึ้ง มันสอนว่าบางครั้งความดีถูกปกปิดไว้',
+                englishMeaning: 'Tet represents a serpent and a basket, symbolizing concealed good and hidden blessings. Like a basket that contains and protects precious contents, Tet teaches that sometimes the greatest blessings come in disguised forms. It represents the concept that what appears negative may actually conceal divine goodness. Tet reminds us to look deeper, to trust in hidden providence, and to understand that challenges often carry hidden gifts.',
+                thaiTranslation: 'เท็ทแสดงถึงงูและตะกร้า เป็นสัญลักษณ์ของความดีที่ซ่อนอยู่และพรที่ถูกปกปิด เหมือนตะกร้าที่บรรจุและปกป้องสิ่งมีค่า เท็ทสอนว่าบางครั้งพรที่ยิ่งใหญ่ที่สุดมาในรูปแบบที่ปลอมตัว แสดงถึงแนวคิดที่ว่าสิ่งที่ดูเป็นลบอาจซ่อนความดีอันศักดิ์สิทธิ์ไว้จริงๆ เท็ทเตือนเราให้มองลึกลงไป เชื่อในการดูแลที่ซ่อนอยู่ และเข้าใจว่าความท้าทายมักมีของขวัญที่ซ่อนอยู่'
+            },
+            {
+                letter: 'י',
+                name: 'Yod',
+                thaiMeaning: 'ความหมาย: มือ, งาน, การกระทำ, จุดเริ่มต้นของการสร้าง - โยดเป็นตัวอักษรที่เล็กที่สุดแต่มีพลังมาก มันเป็นจุดแห่งการสร้างอันไม่มีที่สิ้นสุด',
+                englishMeaning: 'Yod represents a hand, work, and divine creative power. As the smallest letter, it teaches that from the tiniest point comes infinite creation. Yod is the first letter of God\'s name and represents the hand of God at work in the universe. It symbolizes action, deed, and the power of small beginnings. Yod reminds us that every great work begins with a single point, a single action, and that our smallest deeds can have cosmic significance.',
+                thaiTranslation: 'โยดแสดงถึงมือ งาน และพลังสร้างสรรค์อันศักดิ์สิทธิ์ ในฐานะตัวอักษรที่เล็กที่สุด สอนว่าจากจุดเล็กที่สุดมาสู่การสร้างที่ไม่มีที่สิ้นสุด โยดเป็นตัวอักษรแรกของพระนามของพระเจ้าและแสดงถึงพระหัตถ์ของพระเจ้าที่ทำงานในจักรวาล เป็นสัญลักษณ์ของการกระทำ การกระทำ และพลังของการเริ่มต้นเล็กๆ โยดเตือนเราว่างานยิ่งใหญ่ทุกชิ้นเริ่มต้นด้วยจุดเดียว การกระทำเดียว และการกระทำเล็กๆ ของเราสามารถมีความสำคัญในระดับจักรวาล'
+            }
+        ];
+
+        let currentHebrewIndex = 0;
+
+        // Initialize Hebrew display
+        function initializeHebrew() {
+            displayHebrewLetter(0);
+        }
+
+        // Display Hebrew letter
+        function displayHebrewLetter(index) {
+            const letter = hebrewLetters[index];
+            document.getElementById('hebrew-letter').textContent = letter.letter;
+            document.getElementById('hebrew-name').textContent = letter.name;
+            document.getElementById('thai-meaning').textContent = letter.thaiMeaning;
+            document.getElementById('english-meaning').textContent = letter.englishMeaning;
+            document.getElementById('thai-translation').textContent = letter.thaiTranslation;
+            document.getElementById('letter-progress').textContent = `Letter ${index + 1} of ${hebrewLetters.length}`;
+        }
+
+        // Next Hebrew letter
+        function nextHebrewLetter() {
+            currentHebrewIndex = (currentHebrewIndex + 1) % hebrewLetters.length;
+            displayHebrewLetter(currentHebrewIndex);
+            
+            // Smooth scroll to top of Hebrew section
+            document.querySelector('.hebrew-display').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Speak Hebrew meaning
+        function speakHebrewMeaning() {
+            const letter = hebrewLetters[currentHebrewIndex];
+            speak(letter.englishMeaning);
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            initializeHebrew();
+        });
+
+        // Text-to-Speech Function
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9; // Slightly slower for learners
+                utterance.pitch = 1;
+                utterance.volume = 1;
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech.');
+            }
+        }
+
+        // Quiz Answer Checker
+        function checkAnswer(element, isCorrect) {
+            // Reset all options in this question
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+
+            // Mark the selected answer
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+                // Also show the correct answer
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        // Input Answer Checker
+        function checkInput(inputId, correctAnswer) {
+            const input = document.getElementById(inputId);
+            const feedback = document.getElementById(inputId.replace('-input', '-feedback'));
+            const userAnswer = input.value.trim().toLowerCase();
+            const correct = correctAnswer.toLowerCase();
+
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add('show');
+
+            if (userAnswer === correct || userAnswer.includes('what is your favorite food')) {
+                feedback.textContent = '✓ Correct! Well done!';
+                feedback.classList.add('correct');
+            } else {
+                feedback.textContent = '✗ Not quite. The answer is: "' + correctAnswer + '"';
+                feedback.classList.add('incorrect');
+            }
+        }
+
+        // Introduction Checker
+        function checkIntroduction(inputId) {
+            const input = document.getElementById(inputId);
+            const feedback = document.getElementById(inputId.replace('-input', '-feedback'));
+            const userAnswer = input.value.trim().toLowerCase();
+
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add('show');
+
+            if (userAnswer.includes('my name is') || userAnswer.includes('i am') || userAnswer.includes('i\'m')) {
+                feedback.textContent = '✓ Great job! That\'s a good introduction!';
+                feedback.classList.add('correct');
+            } else {
+                feedback.textContent = '✗ Try using "My name is..." or "I\'m..." to introduce yourself.';
+                feedback.classList.add('incorrect');
+            }
+        }
+    </script>
+</body>
+</html>
