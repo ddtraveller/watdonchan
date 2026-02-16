@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch Programming Exam - แบบทดสอบ Scratch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sarabun', 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .exam-setup {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .difficulty-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .difficulty-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .difficulty-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block;
+            margin: 20px auto;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .start-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .question-container {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #FF6B6B;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .question-category {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .question-text-thai {
+            color: #666;
+            font-size: 1em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .option {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .option.selected {
+            background: #e3f2fd;
+            border-color: #2196F3;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .option.correct::before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .option.incorrect::before {
+            content: "✗";
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+            height: 100%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .results {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .score-display {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .grade-letter {
+            font-size: 4em;
+            margin: 10px 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .breakdown {
+            background: white;
+            color: #333;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .breakdown h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .category-result {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .category-result h4 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .retry-btn {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 10px;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .info-box {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .info-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .badge-excellent {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #856404;
+        }
+
+        .badge-good {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .badge-pass {
+            background: linear-gradient(135deg, #2196F3 0%, #1976d2 100%);
+            color: white;
+        }
+
+        .badge-retry {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .code-snippet {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        @media (min-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .content {
+                padding: 40px;
+            }
+
+            .question-text {
+                font-size: 1.3em;
+            }
+        }
+
+        .timer {
+            background: #fff3e0;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            color: #e65100;
+        }
+
+        .explanation {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .explanation h5 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Scratch Programming Exam</h1>
+            <p>แบบทดสอบความรู้ Scratch Programming</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Test Your Knowledge | ทดสอบความรู้ของคุณ</p>
+        </header>
+
+        <div class="content">
+            <!-- Exam Setup Section -->
+            <div id="examSetup" class="exam-setup">
+                <h2 style="text-align: center; color: #667eea; margin-bottom: 20px;">
+                    📝 เลือกระดับความยาก<br>
+                    Choose Difficulty Level
+                </h2>
+
+                <div class="info-box">
+                    <h4>ℹ️ About This Exam / เกี่ยวกับการสอบ</h4>
+                    <p><strong>English:</strong> This exam tests your knowledge from both Basic and Advanced Scratch tutorials. Select your difficulty level to begin!</p>
+                    <p><strong>ไทย:</strong> การสอบนี้ทดสอบความรู้จากบทเรียน Scratch ทั้งพื้นฐานและขั้นสูง เลือกระดับความยากเพื่อเริ่มต้น!</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li><strong>Easy / ง่าย:</strong> 10 questions, basic concepts / 10 ข้อ แนวคิดพื้นฐาน</li>
+                        <li><strong>Medium / ปานกลาง:</strong> 15 questions, mixed difficulty / 15 ข้อ ความยากผสม</li>
+                        <li><strong>Hard / ยาก:</strong> 20 questions, advanced topics / 20 ข้อ หัวข้อขั้นสูง</li>
+                    </ul>
+                </div>
+
+                <div class="difficulty-selector">
+                    <button class="difficulty-btn difficulty-easy" onclick="selectDifficulty('easy')">
+                        🌱 Easy<br>ง่าย
+                    </button>
+                    <button class="difficulty-btn difficulty-medium" onclick="selectDifficulty('medium')">
+                        🔍 Medium<br>ปานกลาง
+                    </button>
+                    <button class="difficulty-btn difficulty-hard" onclick="selectDifficulty('hard')">
+                        🏆 Hard<br>ยาก
+                    </button>
+                </div>
+
+                <button class="start-btn" id="startBtn" onclick="startExam()" disabled>
+                    🚀 Start Exam / เริ่มสอบ
+                </button>
+            </div>
+
+            <!-- Exam Progress -->
+            <div id="examProgress" class="hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar">0%</div>
+                </div>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="questionsContainer"></div>
+
+            <!-- Submit Button -->
+            <button class="submit-btn hidden" id="submitBtn" onclick="submitExam()">
+                ✅ Submit Exam / ส่งคำตอบ
+            </button>
+
+            <!-- Results Section -->
+            <div id="results" class="hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // Question Bank
+        const questionBank = {
+            vocabulary: {
+                easy: [
+                    {
+                        question: "What is a Sprite in Scratch?",
+                        questionThai: "Sprite ใน Scratch คืออะไร?",
+                        options: [
+                            "A character or object that can move on the stage",
+                            "The background image",
+                            "A type of sound effect",
+                            "A programming block"
+                        ],
+                        correct: 0,
+                        explanation: "A sprite is a character or object that can move and perform actions on the stage. (Sprite คือตัวละครหรือวัตถุที่สามารถเคลื่อนไหวและทำการกระทำบนเวทีได้)"
+                    },
+                    {
+                        question: "What is the Stage in Scratch?",
+                        questionThai: "Stage ใน Scratch คืออะไร?",
+                        options: [
+                            "A type of sprite",
+                            "The white area where sprites move and perform",
+                            "A programming block",
+                            "A sound file"
+                        ],
+                        correct: 1,
+                        explanation: "The stage is the white area (480x360 pixels) where sprites move and your program runs. (Stage คือพื้นที่สีขาวที่สไปรท์เคลื่อนไหวและโปรแกรมทำงาน)"
+                    },
+                    {
+                        question: "What color are Motion blocks in Scratch?",
+                        questionThai: "บลอก Motion ใน Scratch เป็นสีอะไร?",
+                        options: [
+                            "Purple / ม่วง",
+                            "Blue / น้ำเงิน",
+                            "Yellow / เหลือง",
+                            "Green / เขียว"
+                        ],
+                        correct: 1,
+                        explanation: "Motion blocks are blue and are used for movement. (บลอก Motion เป็นสีน้ำเงินและใช้สำหรับการเคลื่อนไหว)"
+                    },
+                    {
+                        question: "What is a Script in Scratch?",
+                        questionThai: "Script ใน Scratch คืออะไร?",
+                        options: [
+                            "A background image",
+                            "A group of blocks connected together to perform a task",
+                            "A sprite's costume",
+                            "A sound effect"
+                        ],
+                        correct: 1,
+                        explanation: "A script is a group of blocks connected together that perform specific tasks. (Script คือกลุ่มของบลอกที่ต่อกันเพื่อทำงานเฉพาะ)"
+                    },
+                    {
+                        question: "What is a Costume in Scratch?",
+                        questionThai: "Costume ใน Scratch คืออะไร?",
+                        options: [
+                            "A different appearance or pose of a sprite",
+                            "A type of block",
+                            "The background",
+                            "A variable"
+                        ],
+                        correct: 0,
+                        explanation: "A costume is a different appearance or pose of a sprite, used to create animations. (Costume คือรูปร่างหรือท่าทางต่างๆ ของสไปรท์ ใช้สร้างแอนิเมชั่น)"
+                    }
+                ],
+                medium: [
+                    {
+                        question: "What is a Broadcast in Scratch?",
+                        questionThai: "Broadcast ใน Scratch คืออะไร?",
+                        options: [
+                            "A way to play sounds",
+                            "A message sent between sprites",
+                            "A type of loop",
+                            "A background change"
+                        ],
+                        correct: 1,
+                        explanation: "Broadcasts are messages that sprites can send and receive to communicate with each other. (Broadcasts เป็นข้อความที่สไปรท์สามารถส่งและรับเพื่อสื่อสารกันได้)"
+                    },
+                    {
+                        question: "What color are Event blocks in Scratch?",
+                        questionThai: "บลอก Events ใน Scratch เป็นสีอะไร?",
+                        options: [
+                            "Blue / น้ำเงิน",
+                            "Yellow / เหลือง",
+                            "Orange / ส้ม",
+                            "Pink / ชมพู"
+                        ],
+                        correct: 1,
+                        explanation: "Event blocks are yellow and are used to start scripts when something happens. (บลอก Events เป็นสีเหลืองและใช้เริ่มสคริปต์เมื่อมีเหตุการณ์เกิดขึ้น)"
+                    },
+                    {
+                        question: "What does a Clone do in Scratch?",
+                        questionThai: "Clone ใน Scratch ทำอะไร?",
+                        options: [
+                            "Deletes a sprite",
+                            "Creates a copy of a sprite",
+                            "Changes the background",
+                            "Stops all scripts"
+                        ],
+                        correct: 1,
+                        explanation: "A clone creates a duplicate copy of a sprite that can act independently. (Clone สร้างสำเนาของสไปรท์ที่สามารถทำงานแยกอิสระได้)"
+                    }
+                ],
+                hard: [
+                    {
+                        question: "What is the difference between 'broadcast' and 'broadcast and wait'?",
+                        questionThai: "ความแตกต่างระหว่าง 'broadcast' และ 'broadcast and wait' คืออะไร?",
+                        options: [
+                            "There is no difference",
+                            "'broadcast and wait' pauses the script until receiving scripts finish",
+                            "'broadcast' is faster",
+                            "'broadcast and wait' sends two messages"
+                        ],
+                        correct: 1,
+                        explanation: "'broadcast and wait' sends a message and waits for all receiving scripts to finish before continuing. ('broadcast and wait' ส่งข้อความและรอให้สคริปต์ที่รับทำงานเสร็จก่อนจะดำเนินการต่อ)"
+                    }
+                ]
+            },
+            concepts: {
+                easy: [
+                    {
+                        question: "What does a Loop do?",
+                        questionThai: "Loop ทำอะไร?",
+                        options: [
+                            "Stops the program",
+                            "Repeats commands multiple times",
+                            "Changes the sprite color",
+                            "Plays a sound"
+                        ],
+                        correct: 1,
+                        explanation: "A loop repeats commands multiple times without having to write them again. (Loop ทำคำสั่งซ้ำหลายๆ ครั้งโดยไม่ต้องเขียนใหม่)"
+                    },
+                    {
+                        question: "What starts a Scratch program?",
+                        questionThai: "อะไรเป็นตัวเริ่มโปรแกรม Scratch?",
+                        options: [
+                            "Clicking the red stop button",
+                            "Clicking the green flag",
+                            "Pressing the space bar",
+                            "Closing the window"
+                        ],
+                        correct: 1,
+                        explanation: "The green flag button starts your Scratch program. (ปุ่มธงเขียวเป็นตัวเริ่มโปรแกรม Scratch)"
+                    },
+                    {
+                        question: "What is a Variable used for?",
+                        questionThai: "Variable ใช้ทำอะไร?",
+                        options: [
+                            "To store data and values",
+                            "To delete sprites",
+                            "To change backgrounds only",
+                            "To stop the program"
+                        ],
+                        correct: 0,
+                        explanation: "Variables store data like scores, names, or any values you need to remember. (Variables เก็บข้อมูลเช่น คะแนน ชื่อ หรือค่าต่างๆ ที่ต้องจำ)"
+                    }
+                ],
+                medium: [
+                    {
+                        question: "What is the purpose of 'if on edge, bounce'?",
+                        questionThai: "'if on edge, bounce' มีจุดประสงค์อะไร?",
+                        options: [
+                            "To delete the sprite",
+                            "To make the sprite bounce back when it hits the edge",
+                            "To change the sprite's color",
+                            "To play a sound"
+                        ],
+                        correct: 1,
+                        explanation: "This block makes sprites bounce back when they reach the edge of the stage. (บลอกนี้ทำให้สไปรท์เด้งกลับเมื่อชนขอบเวที)"
+                    },
+                    {
+                        question: "What does 'next costume' do?",
+                        questionThai: "'next costume' ทำอะไร?",
+                        options: [
+                            "Deletes the current costume",
+                            "Switches to the next costume in the list",
+                            "Creates a new costume",
+                            "Copies the costume"
+                        ],
+                        correct: 1,
+                        explanation: "'next costume' switches to the next costume, creating animation when used in a loop. ('next costume' เปลี่ยนไปคอสตูมถัดไป สร้างแอนิเมชั่นเมื่อใช้ในลูป)"
+                    },
+                    {
+                        question: "In Scratch, what does the 'forever' block do?",
+                        questionThai: "บลอก 'forever' ใน Scratch ทำอะไร?",
+                        options: [
+                            "Runs the code inside it one time",
+                            "Runs the code inside it continuously until stopped",
+                            "Deletes all sprites",
+                            "Changes the background"
+                        ],
+                        correct: 1,
+                        explanation: "The 'forever' block creates an infinite loop that runs continuously. (บลอก 'forever' สร้างลูปที่ทำงานต่อเนื่องไม่มีที่สิ้นสุด)"
+                    }
+                ],
+                hard: [
+                    {
+                        question: "What is the difference between 'repeat' and 'forever' loops?",
+                        questionThai: "ความแตกต่างระหว่าง 'repeat' และ 'forever' คืออะไร?",
+                        options: [
+                            "They are exactly the same",
+                            "'repeat' runs a specific number of times, 'forever' runs continuously",
+                            "'forever' is faster",
+                            "'repeat' cannot be stopped"
+                        ],
+                        correct: 1,
+                        explanation: "'repeat' loops run a specific number of times, while 'forever' loops run until the program stops. ('repeat' ทำซ้ำจำนวนครั้งที่กำหนด ส่วน 'forever' ทำต่อเนื่องจนกว่าจะหยุดโปรแกรม)"
+                    },
+                    {
+                        question: "What happens when multiple scripts with 'when green flag clicked' are in one sprite?",
+                        questionThai: "อะไรเกิดขึ้นเมื่อมีหลายสคริปต์ที่มี 'when green flag clicked' ในสไปรท์เดียวกัน?",
+                        options: [
+                            "Only the first one runs",
+                            "They all run at the same time",
+                            "The program crashes",
+                            "They run one after another"
+                        ],
+                        correct: 1,
+                        explanation: "All scripts with 'when green flag clicked' run simultaneously when the flag is clicked. (สคริปต์ทั้งหมดที่มี 'when green flag clicked' จะทำงานพร้อมกันเมื่อคลิกธง)"
+                    }
+                ]
+            },
+            coding: {
+                easy: [
+                    {
+                        question: "Which block makes a sprite say something?",
+                        questionThai: "บลอกไหนที่ทำให้สไปรท์พูดอะไรบางอย่าง?",
+                        options: [
+                            "move 10 steps",
+                            "say 'Hello!' for 2 seconds",
+                            "play sound",
+                            "change color"
+                        ],
+                        correct: 1,
+                        explanation: "The 'say' block (purple Looks block) makes sprites display speech bubbles. (บลอก 'say' สีม่วงทำให้สไปรท์แสดงกล่องข้อความ)"
+                    },
+                    {
+                        question: "Which block would you use to move a sprite forward?",
+                        questionThai: "บลอกไหนที่ใช้เพื่อเคลื่อนสไปรท์ไปข้างหน้า?",
+                        options: [
+                            "turn 15 degrees",
+                            "move 10 steps",
+                            "go to x:0 y:0",
+                            "hide"
+                        ],
+                        correct: 1,
+                        explanation: "The 'move 10 steps' block (blue Motion block) moves sprites forward. (บลอก 'move 10 steps' สีน้ำเงินเคลื่อนสไปรท์ไปข้างหน้า)"
+                    }
+                ],
+                medium: [
+                    {
+                        question: "To make a sprite follow the mouse pointer, which block should you use?",
+                        questionThai: "เพื่อให้สไปรท์ตามเมาส์ ควรใช้บลอกไหน?",
+                        options: [
+                            "go to x:0 y:0",
+                            "go to mouse-pointer",
+                            "point towards mouse-pointer",
+                            "move 10 steps"
+                        ],
+                        correct: 1,
+                        explanation: "The 'go to mouse-pointer' block makes sprites follow your mouse cursor. (บลอก 'go to mouse-pointer' ทำให้สไปรท์ตามเคอร์เซอร์เมาส์)"
+                    },
+                    {
+                        question: "Which block detects if a sprite is touching another sprite?",
+                        questionThai: "บลอกไหนที่ตรวจจับว่าสไปรท์สัมผัสกับสไปรท์อื่น?",
+                        options: [
+                            "move 10 steps",
+                            "touching [sprite]?",
+                            "distance to [sprite]",
+                            "go to [sprite]"
+                        ],
+                        correct: 1,
+                        explanation: "The 'touching' block (light blue Sensing block) detects collisions between sprites. (บลอก 'touching' สีฟ้าตรวจจับการชนกันระหว่างสไปรท์)"
+                    }
+                ],
+                hard: [
+                    {
+                        question: "What is the correct way to create a walking animation?",
+                        questionThai: "วิธีที่ถูกต้องในการสร้างแอนิเมชั่นการเดินคืออะไร?",
+                        options: [
+                            "Use one costume and move the sprite",
+                            "Use multiple costumes and switch between them while moving",
+                            "Use only the 'move' block",
+                            "Change the sprite's color"
+                        ],
+                        correct: 1,
+                        explanation: "Walking animations require multiple costumes that you switch between (using 'next costume') while the sprite moves. (แอนิเมชั่นการเดินต้องใช้หลายคอสตูมที่สลับกัน (ใช้ 'next costume') ขณะที่สไปรท์เคลื่อนไหว)"
+                    }
+                ]
+            },
+            projects: {
+                easy: [
+                    {
+                        question: "In the Cat Catching Game, what does the ball sprite do?",
+                        questionThai: "ในเกมจับแมว ลูกบอลทำอะไร?",
+                        options: [
+                            "Follows the mouse pointer",
+                            "Runs away from the player",
+                            "Stays still",
+                            "Disappears"
+                        ],
+                        correct: 0,
+                        explanation: "The ball sprite follows the mouse pointer so the player can control it to catch the cat. (ลูกบอลตามเคอร์เซอร์เมาส์เพื่อให้ผู้เล่นควบคุมไปจับแมว)"
+                    }
+                ],
+                medium: [
+                    {
+                        question: "In the Guitar Studio project, what does pressing number keys (1-4) do?",
+                        questionThai: "ในโปรเจกต์ Guitar Studio การกดปุ่มตัวเลข (1-4) ทำอะไร?",
+                        options: [
+                            "Plays different notes",
+                            "Changes the instrument sound",
+                            "Stops the music",
+                            "Deletes the sprite"
+                        ],
+                        correct: 1,
+                        explanation: "Number keys 1-4 change the instrument (Piano, Guitar, Flute, Saxophone). (ปุ่มตัวเลข 1-4 เปลี่ยนเครื่องดนตรี)"
+                    },
+                    {
+                        question: "In the Interactive Story, what is a 'broadcast' used for?",
+                        questionThai: "ในเรื่องราวแบบโต้ตอบ 'broadcast' ใช้ทำอะไร?",
+                        options: [
+                            "To play sounds",
+                            "To connect different scenes and trigger events",
+                            "To delete sprites",
+                            "To change colors"
+                        ],
+                        correct: 1,
+                        explanation: "Broadcasts connect different scenes by sending messages that trigger scene changes. (Broadcasts เชื่อมต่อฉากต่างๆ ด้วยการส่งข้อความที่เรียกให้เกิดการเปลี่ยนฉาก)"
+                    }
+                ],
+                hard: [
+                    {
+                        question: "What is the best way to create multiple difficulty levels in a game?",
+                        questionThai: "วิธีที่ดีที่สุดในการสร้างระดับความยากหลายระดับในเกมคืออะไร?",
+                        options: [
+                            "Create separate projects for each level",
+                            "Use variables to control speed, spawn rate, or other parameters",
+                            "Only use one difficulty level",
+                            "Delete sprites to make it easier"
+                        ],
+                        correct: 1,
+                        explanation: "Using variables to adjust game parameters (speed, enemy count, etc.) allows flexible difficulty levels. (ใช้ตัวแปรปรับพารามิเตอร์เกม (ความเร็ว จำนวนศัตรู ฯลฯ) ให้ปรับระดับความยากได้อย่างยืดหยุ่น)"
+                    }
+                ]
+            },
+            art: {
+                easy: [
+                    {
+                        question: "Which tool in the Paint Editor is used to draw circles?",
+                        questionThai: "เครื่องมือไหนใน Paint Editor ใช้วาดวงกลม?",
+                        options: [
+                            "Brush",
+                            "Circle",
+                            "Line",
+                            "Text"
+                        ],
+                        correct: 1,
+                        explanation: "The Circle tool draws circles and ovals in the Paint Editor. (เครื่องมือ Circle วาดวงกลมและวงรีใน Paint Editor)"
+                    },
+                    {
+                        question: "What does the Fill tool do?",
+                        questionThai: "เครื่องมือ Fill ทำอะไร?",
+                        options: [
+                            "Draws lines",
+                            "Fills an area with color",
+                            "Erases the sprite",
+                            "Adds text"
+                        ],
+                        correct: 1,
+                        explanation: "The Fill tool (paint bucket) fills enclosed areas with color. (เครื่องมือ Fill (ถังสี) ระบายสีในพื้นที่ที่ปิด)"
+                    }
+                ],
+                medium: [
+                    {
+                        question: "Why is it important to center your sprite on the + mark in Paint Editor?",
+                        questionThai: "ทำไมต้องวางสไปรท์ให้อยู่กึ่งกลางที่เครื่องหมาย + ใน Paint Editor?",
+                        options: [
+                            "It makes the sprite bigger",
+                            "It ensures rotation and movement work correctly",
+                            "It changes the sprite's color",
+                            "It deletes the sprite"
+                        ],
+                        correct: 1,
+                        explanation: "Centering on the + mark ensures the sprite rotates around its center correctly. (การวางให้อยู่กึ่งกลางที่ + ทำให้สไปรท์หมุนรอบจุดศูนย์กลางได้ถูกต้อง)"
+                    },
+                    {
+                        question: "What is a Gradient in the Paint Editor?",
+                        questionThai: "Gradient ใน Paint Editor คืออะไร?",
+                        options: [
+                            "A type of sprite",
+                            "A smooth transition between colors",
+                            "A sound effect",
+                            "A background"
+                        ],
+                        correct: 1,
+                        explanation: "A gradient is a smooth color transition, making sprites look more professional. (Gradient คือการไล่สีอย่างนุ่มนวล ทำให้สไปรท์ดูสวยขึ้น)"
+                    }
+                ],
+                hard: [
+                    {
+                        question: "What is the advantage of using 'Group' in the Paint Editor?",
+                        questionThai: "ข้อดีของการใช้ 'Group' ใน Paint Editor คืออะไร?",
+                        options: [
+                            "It deletes parts of the sprite",
+                            "It allows you to move multiple elements together as one unit",
+                            "It changes colors automatically",
+                            "It duplicates the sprite"
+                        ],
+                        correct: 1,
+                        explanation: "Grouping lets you select and move multiple elements together, making editing easier. (การจัดกลุ่มให้เลือกและย้ายหลายองค์ประกอบพร้อมกันได้ ทำให้แก้ไขง่ายขึ้น)"
+                    }
+                ]
+            }
+        };
+
+        // Exam State
+        let selectedDifficulty = null;
+        let currentQuestions = [];
+        let userAnswers = [];
+        let examStarted = false;
+
+        // Select Difficulty
+        function selectDifficulty(difficulty) {
+            selectedDifficulty = difficulty;
+            
+            // Update button states
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Enable start button
+            document.getElementById('startBtn').disabled = false;
+        }
+
+        // Generate Questions
+        function generateQuestions() {
+            let questionsPerCategory;
+            let difficultyLevels;
+
+            // Determine questions based on difficulty
+            if (selectedDifficulty === 'easy') {
+                questionsPerCategory = 2; // 2 questions per category = 10 total
+                difficultyLevels = ['easy'];
+            } else if (selectedDifficulty === 'medium') {
+                questionsPerCategory = 3; // 3 questions per category = 15 total
+                difficultyLevels = ['easy', 'medium'];
+            } else {
+                questionsPerCategory = 4; // 4 questions per category = 20 total
+                difficultyLevels = ['easy', 'medium', 'hard'];
+            }
+
+            currentQuestions = [];
+            
+            // Get questions from each category
+            Object.keys(questionBank).forEach(category => {
+                let categoryQuestions = [];
+                
+                // Collect questions from allowed difficulty levels
+                difficultyLevels.forEach(level => {
+                    if (questionBank[category][level]) {
+                        categoryQuestions.push(...questionBank[category][level].map(q => ({
+                            ...q,
+                            category: category,
+                            difficulty: level
+                        })));
+                    }
+                });
+                
+                // Shuffle and select
+                categoryQuestions = shuffleArray(categoryQuestions);
+                currentQuestions.push(...categoryQuestions.slice(0, questionsPerCategory));
+            });
+
+            // Shuffle final question order
+            currentQuestions = shuffleArray(currentQuestions);
+            userAnswers = new Array(currentQuestions.length).fill(null);
+        }
+
+        // Shuffle Array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Start Exam
+        function startExam() {
+            if (!selectedDifficulty) return;
+
+            generateQuestions();
+            examStarted = true;
+
+            // Hide setup, show exam
+            document.getElementById('examSetup').classList.add('hidden');
+            document.getElementById('examProgress').classList.remove('hidden');
+            document.getElementById('submitBtn').classList.remove('hidden');
+
+            // Render questions
+            renderQuestions();
+            updateProgress();
+        }
+
+        // Render Questions
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            currentQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.innerHTML = `
+                    <div class="question-header">
+                        <span class="question-number">Question ${index + 1} / ${currentQuestions.length}</span>
+                        <span class="question-category">${getCategoryName(q.category)}</span>
+                    </div>
+                    <div class="question-text">
+                        ${q.question}
+                        <div class="question-text-thai">${q.questionThai}</div>
+                    </div>
+                    <div class="options" id="options-${index}">
+                        ${q.options.map((opt, optIndex) => `
+                            <label class="option" onclick="selectAnswer(${index}, ${optIndex})">
+                                <input type="radio" name="question-${index}" value="${optIndex}">
+                                <span>${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        // Get Category Display Name
+        function getCategoryName(category) {
+            const names = {
+                vocabulary: '📚 Vocabulary / คำศัพท์',
+                concepts: '💡 Concepts / แนวคิด',
+                coding: '💻 Coding / การเขียนโค้ด',
+                projects: '🎮 Projects / โปรเจกต์',
+                art: '🎨 Art / ศิลปะ'
+            };
+            return names[category] || category;
+        }
+
+        // Select Answer
+        function selectAnswer(questionIndex, answerIndex) {
+            userAnswers[questionIndex] = answerIndex;
+            
+            // Update visual selection
+            const optionsDiv = document.getElementById(`options-${questionIndex}`);
+            optionsDiv.querySelectorAll('.option').forEach((opt, idx) => {
+                if (idx === answerIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+
+            updateProgress();
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const answered = userAnswers.filter(a => a !== null).length;
+            const total = currentQuestions.length;
+            const percentage = Math.round((answered / total) * 100);
+            
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = `${answered} / ${total} (${percentage}%)`;
+        }
+
+        // Submit Exam
+        function submitExam() {
+            // Check if all questions answered
+            const unanswered = userAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                if (!confirm(`You have ${unanswered} unanswered questions. Submit anyway?\nคุณมี ${unanswered} ข้อที่ยังไม่ได้ตอบ ต้องการส่งคำตอบหรือไม่?`)) {
+                    return;
+                }
+            }
+
+            // Calculate results
+            const results = calculateResults();
+            
+            // Show answers
+            showAnswers();
+            
+            // Display results
+            displayResults(results);
+
+            // Hide submit button
+            document.getElementById('submitBtn').classList.add('hidden');
+        }
+
+        // Calculate Results
+        function calculateResults() {
+            let correct = 0;
+            const categoryResults = {};
+
+            currentQuestions.forEach((q, index) => {
+                const category = q.category;
+                
+                if (!categoryResults[category]) {
+                    categoryResults[category] = {
+                        total: 0,
+                        correct: 0,
+                        questions: []
+                    };
+                }
+
+                categoryResults[category].total++;
+                
+                if (userAnswers[index] === q.correct) {
+                    correct++;
+                    categoryResults[category].correct++;
+                    categoryResults[category].questions.push({
+                        question: q.question,
+                        correct: true
+                    });
+                } else {
+                    categoryResults[category].questions.push({
+                        question: q.question,
+                        correct: false,
+                        userAnswer: q.options[userAnswers[index]] || 'No answer',
+                        correctAnswer: q.options[q.correct]
+                    });
+                }
+            });
+
+            const percentage = Math.round((correct / currentQuestions.length) * 100);
+            const grade = getGrade(percentage);
+
+            return {
+                correct,
+                total: currentQuestions.length,
+                percentage,
+                grade,
+                categoryResults
+            };
+        }
+
+        // Get Grade
+        function getGrade(percentage) {
+            if (percentage >= 90) return { letter: 'A', badge: 'excellent' };
+            if (percentage >= 80) return { letter: 'B', badge: 'good' };
+            if (percentage >= 70) return { letter: 'C', badge: 'pass' };
+            if (percentage >= 60) return { letter: 'D', badge: 'pass' };
+            return { letter: 'F', badge: 'retry' };
+        }
+
+        // Show Answers
+        function showAnswers() {
+            currentQuestions.forEach((q, index) => {
+                const optionsDiv = document.getElementById(`options-${index}`);
+                const options = optionsDiv.querySelectorAll('.option');
+                
+                options.forEach((opt, optIndex) => {
+                    opt.style.pointerEvents = 'none';
+                    
+                    if (optIndex === q.correct) {
+                        opt.classList.add('correct');
+                    }
+                    
+                    if (userAnswers[index] === optIndex && optIndex !== q.correct) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+
+                // Add explanation
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.innerHTML = `
+                    <h5>💡 Explanation / คำอธิบาย:</h5>
+                    <p>${q.explanation}</p>
+                `;
+                optionsDiv.parentElement.appendChild(explanationDiv);
+            });
+        }
+
+        // Display Results
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+
+            const badgeClass = `badge-${results.grade.badge}`;
+            let message = '';
+            let messageThai = '';
+
+            if (results.percentage >= 90) {
+                message = 'Excellent! You are a Scratch master!';
+                messageThai = 'ยอดเยี่ยม! คุณเป็นปรมาจารย์ Scratch!';
+            } else if (results.percentage >= 80) {
+                message = 'Great job! You have strong Scratch skills!';
+                messageThai = 'เก่งมาก! คุณมีทักษะ Scratch ที่แข็งแกร่ง!';
+            } else if (results.percentage >= 70) {
+                message = 'Good work! Keep practicing!';
+                messageThai = 'ทำได้ดี! ฝึกฝนต่อไป!';
+            } else if (results.percentage >= 60) {
+                message = 'You passed! Review the materials and try again!';
+                messageThai = 'คุณผ่าน! ทบทวนเนื้อหาและลองอีกครั้ง!';
+            } else {
+                message = 'Keep learning! Review the tutorials and try again!';
+                messageThai = 'เรียนรู้ต่อไป! ทบทวนบทเรียนและลองใหม่!';
+            }
+
+            resultsDiv.innerHTML = `
+                <div class="results">
+                    <h2>🎯 Exam Results / ผลสอบ</h2>
+                    <div class="grade-letter">${results.grade.letter}</div>
+                    <div class="score-display">${results.correct} / ${results.total}</div>
+                    <div class="score-display" style="font-size: 2em;">${results.percentage}%</div>
+                    <span class="badge ${badgeClass}">${message}</span>
+                    <p style="margin-top: 10px;">${messageThai}</p>
+                </div>
+
+                <div class="breakdown">
+                    <h3>📊 Detailed Breakdown / รายละเอียดผลสอบ</h3>
+                    ${generateBreakdown(results.categoryResults)}
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="retry-btn" onclick="location.reload()">
+                        🔄 Try New Exam / ทำข้อสอบใหม่
+                    </button>
+                    <button class="retry-btn" onclick="scrollToTop()">
+                        ⬆️ Back to Top / กลับด้านบน
+                    </button>
+                </div>
+            `;
+
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Generate Breakdown
+        function generateBreakdown(categoryResults) {
+            let html = '';
+
+            Object.keys(categoryResults).forEach(category => {
+                const result = categoryResults[category];
+                const percentage = Math.round((result.correct / result.total) * 100);
+                
+                html += `
+                    <div class="category-result">
+                        <h4>${getCategoryName(category)}</h4>
+                        <div class="category-stats">
+                            <div class="stat-item">
+                                <strong>Score / คะแนน:</strong> ${result.correct} / ${result.total}
+                            </div>
+                            <div class="stat-item">
+                                <strong>Percentage / เปอร์เซ็นต์:</strong> ${percentage}%
+                            </div>
+                            <div class="stat-item">
+                                <strong>Status / สถานะ:</strong> ${percentage >= 70 ? '✅ Good / ดี' : '⚠️ Review / ทบทวน'}
+                            </div>
+                        </div>
+                `;
+
+                // Show missed questions
+                const missed = result.questions.filter(q => !q.correct);
+                if (missed.length > 0) {
+                    html += `
+                        <div style="margin-top: 15px;">
+                            <strong>Topics to Review / หัวข้อที่ควรทบทวน:</strong>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                ${missed.map(q => `<li style="margin: 5px 0;">${q.question}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                html += '</div>';
+            });
+
+            return html;
+        }
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            console.log('🎓 Scratch Programming Exam Ready!');
+            console.log('Select your difficulty level to begin.');
+        });
+    </script>
+</body>
+</html>
