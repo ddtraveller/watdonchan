@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เรียนรู้ Scratch Programming - Learn Scratch Programming</title>
+    <title>Scratch Advanced Tutorials - บทเรียนขั้นสูง</title>
     <style>
         * {
             margin: 0;
@@ -74,6 +74,11 @@
             margin: 20px 0 15px 0;
         }
 
+        h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
         .play-btn {
             background: #4CAF50;
             color: white;
@@ -120,66 +125,6 @@
             border-left: 4px solid #FF9800;
         }
 
-        /* Mobile-friendly vocabulary cards instead of table */
-        .vocab-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .vocab-card {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #667eea;
-            transition: transform 0.2s;
-        }
-
-        .vocab-card:hover {
-            transform: translateX(5px);
-        }
-
-        .vocab-term {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-
-        .vocab-thai {
-            font-size: 1.1em;
-            color: #FF6B6B;
-            margin-bottom: 8px;
-        }
-
-        .vocab-definition {
-            color: #555;
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .comparison-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .comparison-card h4 {
-            color: #FF6B6B;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
         .tutorial-step {
             background: white;
             padding: 20px;
@@ -187,11 +132,6 @@
             border-radius: 10px;
             border-left: 5px solid #4CAF50;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .tutorial-step h4 {
-            color: #4CAF50;
-            margin-bottom: 10px;
         }
 
         .code-block {
@@ -237,19 +177,6 @@
             font-weight: bold;
         }
 
-        .sentence-box {
-            background: white;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .sentence-box p {
-            margin: 10px 0;
-        }
-
-        /* Fun additions */
         .fun-fact {
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
             padding: 20px;
@@ -324,6 +251,105 @@
             margin-right: 10px;
         }
 
+        .project-card {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #FF6B6B;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .project-icon {
+            font-size: 3em;
+        }
+
+        .project-title {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .tip-box h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .warning-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
         /* Tablet and larger screens */
         @media (min-width: 768px) {
             body {
@@ -355,24 +381,9 @@
                 font-size: 1.5em;
             }
 
-            .vocab-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
             .code-block {
                 font-size: 0.95em;
                 padding: 20px;
-            }
-        }
-
-        /* Desktop screens */
-        @media (min-width: 1024px) {
-            .vocab-container {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -380,831 +391,937 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎨 เรียนรู้ Scratch Programming</h1>
-            <p>Learn Scratch Programming - สำหรับคนไทยที่กำลังเรียนภาษาอังกฤษ</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">📱 Mobile-Friendly | 🔊 Audio Pronunciation | 🎮 Interactive Learning</p>
+            <h1>🎸 Scratch Advanced Tutorials</h1>
+            <p>บทเรียนขั้นสูง - สำหรับคนไทยที่กำลังเรียนภาษาอังกฤษ</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">🎵 Guitar Studio | 📖 Story Creator | 🎨 Custom Sprites</p>
         </header>
 
         <div class="content">
-            <!-- Section 1: What is Scratch -->
-            <section id="overview">
-                <h2><span class="icon">🎯</span> Scratch คืออะไร? (What is Scratch?)</h2>
+            <!-- Introduction Section -->
+            <section id="intro">
+                <h2><span class="icon">🌟</span> ยินดีต้อนรับสู่บทเรียนขั้นสูง!<br>Welcome to Advanced Tutorials!</h2>
                 
+                <div class="fun-fact">
+                    <h4>🎉 Congratulations! / ยินดีด้วย!</h4>
+                    <p><strong>English:</strong> You've completed the basics! Now it's time to create more amazing projects. These tutorials will teach you advanced Scratch techniques while improving your English!</p>
+                    <button class="play-btn" onclick="speak('You have completed the basics! Now it is time to create more amazing projects. These tutorials will teach you advanced Scratch techniques while improving your English!')">Play Audio</button>
+                    <p><strong>ไทย:</strong> คุณผ่านพื้นฐานแล้ว! ตอนนี้ถึงเวลาสร้างโปรเจกต์ที่ยอดเยี่ยมขึ้นไปอีก บทเรียนเหล่านี้จะสอนเทคนิค Scratch ขั้นสูงพร้อมกับพัฒนาภาษาอังกฤษของคุณ!</p>
+                </div>
+
                 <div class="thai-text">
-                    <h3>ภาพรวมของ Scratch</h3>
-                    <p><strong>Scratch</strong> เป็นภาษาโปรแกรมมิ่งแบบ visual (มองเห็นได้) ที่พัฒนาโดย MIT (Massachusetts Institute of Technology) สำหรับเด็กและผู้เริ่มต้นเรียนรู้การเขียนโปรแกรม แทนที่จะพิมพ์โค้ด คุณจะลากและวางบลอก (blocks) ที่มีสีสันต่างๆ เหมือนการต่อตัวต่อเลโก้</p>
-                    
-                    <h4>สิ่งที่คุณสามารถทำได้ด้วย Scratch:</h4>
+                    <h3>ในบทเรียนนี้คุณจะได้เรียนรู้:</h3>
                     <ul class="feature-list">
-                        <li>สร้างเกมส์อินเทอร์แอคทีฟ (Interactive games) เช่น เกมวิ่งกระโดด, เกมผจญภัย</li>
-                        <li>ทำแอนิเมชั่นและการ์ตูน (Animations and cartoons) ด้วยการเคลื่อนไหวของตัวละคร</li>
-                        <li>สร้างเรื่องราวแบบโต้ตอบได้ (Interactive stories) ที่ผู้ใช้สามารถเลือกทางเดินเรื่องได้</li>
-                        <li>ออกแบบศิลปะดิจิทัลและดนตรี (Digital art and music) ด้วยเอฟเฟกต์พิเศษ</li>
-                        <li>สร้างโปรเจกต์การศึกษา (Educational projects) เช่น แบบจำลองทางวิทยาศาสตร์</li>
-                        <li>พัฒนาทักษะการคิดเชิงคำนวณ (Computational thinking) และการแก้ปัญหา</li>
-                        <li>แบ่งปันผลงานกับชุมชน Scratch ทั่วโลก</li>
+                        <li>การสร้างสตูดิโอดนตรีที่สามารถเล่นเสียงกีตาร์ได้จริง</li>
+                        <li>การสร้างเรื่องราวแบบโต้ตอบที่มีตัวเลือกหลายทาง</li>
+                        <li>การออกแบบและสร้างตัวละครของคุณเองด้วย Paint Editor</li>
+                        <li>การใช้ Broadcast เพื่อสื่อสารระหว่างสไปรท์</li>
+                        <li>การสร้าง Custom Blocks (ฟังก์ชันของคุณเอง)</li>
+                        <li>การทำงานกับ Lists เพื่อเก็บข้อมูลมากกว่า 1 ค่า</li>
                     </ul>
                 </div>
 
                 <div class="english-text">
-                    <p><strong>English:</strong> Scratch is a visual programming language that makes coding easy and fun by using colorful blocks instead of typing code.</p>
-                    <button class="play-btn" onclick="speak('Scratch is a visual programming language that makes coding easy and fun by using colorful blocks instead of typing code.')">Play Audio</button>
+                    <p><strong>English:</strong> Each tutorial includes step-by-step instructions, code examples, and tips to help you succeed. Don't worry if you make mistakes - that's how we learn!</p>
+                    <button class="play-btn" onclick="speak('Each tutorial includes step by step instructions, code examples, and tips to help you succeed. Do not worry if you make mistakes, that is how we learn!')">Play Audio</button>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="#tutorial1" class="nav-btn">🎸 Guitar Studio</a>
+                    <a href="#tutorial2" class="nav-btn">📖 Story Creator</a>
+                    <a href="#tutorial3" class="nav-btn">🎨 Custom Sprites</a>
                 </div>
             </section>
 
-            <!-- Section 2: Vocabulary List -->
-            <section id="vocabulary">
-                <h2><span class="icon">📚</span> คำศัพท์สำคัญ (Key Vocabulary)</h2>
-                
-                <div class="fun-fact">
-                    <h4>💡 Fun Fact!</h4>
-                    <p>Scratch uses color-coding! Each color represents a different type of block. Blue = Movement, Purple = Looks, Pink = Sound, Yellow = Events!</p>
-                    <p>Scratch ใช้สีเพื่อแยกประเภท! น้ำเงิน = การเคลื่อนไหว, ม่วง = รูปลักษณ์, ชมพู = เสียง, เหลือง = เหตุการณ์!</p>
-                </div>
-
-                <div class="vocab-container">
-                    <div class="vocab-card">
-                        <div class="vocab-term">🎭 Sprite</div>
-                        <div class="vocab-thai">สไปรท์ / ตัวละคร</div>
-                        <div class="vocab-definition">ตัวละครหรือวัตถุที่เคลื่อนไหวได้บนเวที<br>
-                        <em>A character or object that can move on the stage</em></div>
-                        <button class="play-btn" onclick="speak('Sprite. A sprite is a character or object that can move on the stage.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🎬 Stage</div>
-                        <div class="vocab-thai">เวที / พื้นที่แสดงผล</div>
-                        <div class="vocab-definition">พื้นที่สีขาวที่สไปรท์เคลื่อนไหวและแสดงผล<br>
-                        <em>The white area where sprites move and perform</em></div>
-                        <button class="play-btn" onclick="speak('Stage. The stage is the white area where sprites move and perform.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🧩 Block</div>
-                        <div class="vocab-thai">บลอก / ชิ้นคำสั่ง</div>
-                        <div class="vocab-definition">ชิ้นคำสั่งที่สามารถต่อกันได้เหมือนเลโก้<br>
-                        <em>A puzzle piece of code that snaps together with other blocks</em></div>
-                        <button class="play-btn" onclick="speak('Block. A block is a puzzle piece of code that snaps together with other blocks.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">📜 Script</div>
-                        <div class="vocab-thai">สคริปต์ / ชุดคำสั่ง</div>
-                        <div class="vocab-definition">กลุ่มของบลอกที่ต่อกันเพื่อทำงานบางอย่าง<br>
-                        <em>A group of blocks connected together to perform a task</em></div>
-                        <button class="play-btn" onclick="speak('Script. A script is a group of blocks connected together to perform a task.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">👔 Costume</div>
-                        <div class="vocab-thai">คอสตูม / ชุดรูปร่าง</div>
-                        <div class="vocab-definition">รูปร่างหรือท่าทางต่างๆ ของสไปรท์<br>
-                        <em>A different appearance or pose of a sprite</em></div>
-                        <button class="play-btn" onclick="speak('Costume. A costume is a different appearance or pose of a sprite.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🖼️ Backdrop</div>
-                        <div class="vocab-thai">ฉากหลัง</div>
-                        <div class="vocab-definition">ภาพพื้นหลังของเวที<br>
-                        <em>The background image of the stage</em></div>
-                        <button class="play-btn" onclick="speak('Backdrop. A backdrop is the background image of the stage.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🔵 Motion</div>
-                        <div class="vocab-thai">การเคลื่อนไหว</div>
-                        <div class="vocab-definition">บลอกสีน้ำเงินที่ใช้สำหรับการเคลื่อนที่<br>
-                        <em>Blue blocks used for movement</em></div>
-                        <button class="play-btn" onclick="speak('Motion. Motion blocks are blue blocks used for movement.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🟣 Looks</div>
-                        <div class="vocab-thai">รูปลักษณ์</div>
-                        <div class="vocab-definition">บลอกสีม่วงที่ใช้เปลี่ยนรูปร่างและการแสดงผล<br>
-                        <em>Purple blocks used to change appearance</em></div>
-                        <button class="play-btn" onclick="speak('Looks. Looks blocks are purple blocks used to change appearance.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🔊 Sound</div>
-                        <div class="vocab-thai">เสียง</div>
-                        <div class="vocab-definition">บลอกสีชมพูที่ใช้เล่นเสียงและดนตรี<br>
-                        <em>Pink blocks used to play sounds and music</em></div>
-                        <button class="play-btn" onclick="speak('Sound. Sound blocks are pink blocks used to play sounds and music.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🟡 Events</div>
-                        <div class="vocab-thai">เหตุการณ์</div>
-                        <div class="vocab-definition">บลอกสีเหลืองที่เริ่มต้นการทำงาน<br>
-                        <em>Yellow blocks that start scripts</em></div>
-                        <button class="play-btn" onclick="speak('Events. Event blocks are yellow blocks that start scripts.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🟠 Control</div>
-                        <div class="vocab-thai">การควบคุม</div>
-                        <div class="vocab-definition">บลอกสีส้มที่ควบคุมการทำงาน เช่น ลูป และเงื่อนไข<br>
-                        <em>Orange blocks for loops and conditions</em></div>
-                        <button class="play-btn" onclick="speak('Control. Control blocks are orange blocks for loops and conditions.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🔷 Sensing</div>
-                        <div class="vocab-thai">การรับรู้</div>
-                        <div class="vocab-definition">บลอกสีฟ้าที่ตรวจจับการโต้ตอบและข้อมูล<br>
-                        <em>Light blue blocks that detect interactions</em></div>
-                        <button class="play-btn" onclick="speak('Sensing. Sensing blocks are light blue blocks that detect interactions.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🟢 Operators</div>
-                        <div class="vocab-thai">ตัวดำเนินการ</div>
-                        <div class="vocab-definition">บลอกสีเขียวสำหรับคณิตศาสตร์และการเปรียบเทียบ<br>
-                        <em>Green blocks for math and comparisons</em></div>
-                        <button class="play-btn" onclick="speak('Operators. Operator blocks are green blocks for math and comparisons.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">📊 Variables</div>
-                        <div class="vocab-thai">ตัวแปร</div>
-                        <div class="vocab-definition">บลอกสีส้มที่เก็บข้อมูลและค่าต่างๆ<br>
-                        <em>Orange blocks that store data and values</em></div>
-                        <button class="play-btn" onclick="speak('Variables. Variable blocks are orange blocks that store data and values.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🔄 Loop</div>
-                        <div class="vocab-thai">ลูป / การวนซ้ำ</div>
-                        <div class="vocab-definition">การทำคำสั่งซ้ำหลายๆ ครั้ง<br>
-                        <em>Repeating commands multiple times</em></div>
-                        <button class="play-btn" onclick="speak('Loop. A loop repeats commands multiple times.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">❓ Condition</div>
-                        <div class="vocab-thai">เงื่อนไข</div>
-                        <div class="vocab-definition">การตรวจสอบว่าบางอย่างเป็นจริงหรือไม่<br>
-                        <em>Checking if something is true or false</em></div>
-                        <button class="play-btn" onclick="speak('Condition. A condition checks if something is true or false.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">🚩 Green Flag</div>
-                        <div class="vocab-thai">ธงเขียว</div>
-                        <div class="vocab-definition">ปุ่มที่ใช้เริ่มต้นโปรแกรม<br>
-                        <em>The button that starts your program</em></div>
-                        <button class="play-btn" onclick="speak('Green Flag. The green flag button starts your program.')">Play</button>
-                    </div>
-
-                    <div class="vocab-card">
-                        <div class="vocab-term">👥 Clone</div>
-                        <div class="vocab-thai">โคลน / สำเนา</div>
-                        <div class="vocab-definition">การสร้างสำเนาของสไปรท์<br>
-                        <em>A copy of a sprite</em></div>
-                        <button class="play-btn" onclick="speak('Clone. A clone is a copy of a sprite.')">Play</button>
-                    </div>
-                </div>
-
-                <div class="encouragement">
-                    🎉 เยี่ยมมาก! คุณได้เรียนรู้คำศัพท์สำคัญแล้ว 18 คำ!<br>
-                    Great job! You've learned 18 important vocabulary words!
-                </div>
-            </section>
-
-            <!-- Section 3: Key Sentences -->
-            <section id="sentences">
-                <h2><span class="icon">💬</span> ประโยคสำคัญ<br>Key Sentences</h2>
-                
-                <div class="fun-fact">
-                    <h4>✨ Practice These Common Phrases! / ฝึกประโยคที่ใช้บ่อย!</h4>
-                    <p>These are sentences you'll hear and use often when learning Scratch!</p>
-                    <p>เหล่านี้คือประโยคที่คุณจะได้ยินและใช้บ่อยเมื่อเรียน Scratch!</p>
-                </div>
-                
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> เมื่อคลิกธงเขียว โปรแกรมจะเริ่มทำงาน</p>
-                    <p><strong>🇬🇧 English:</strong> When the green flag is clicked, the program starts running.</p>
-                    <button class="play-btn" onclick="speak('When the green flag is clicked, the program starts running.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> คุณสามารถลากบลอกจากพาเลตไปยังพื้นที่เขียนสคริปต์</p>
-                    <p><strong>🇬🇧 English:</strong> You can drag blocks from the palette to the scripting area.</p>
-                    <button class="play-btn" onclick="speak('You can drag blocks from the palette to the scripting area.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> บลอกที่มีสีเหมือนกันจะทำหน้าที่คล้ายกัน</p>
-                    <p><strong>🇬🇧 English:</strong> Blocks with the same color have similar functions.</p>
-                    <button class="play-btn" onclick="speak('Blocks with the same color have similar functions.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> คุณต้องต่อบลอกเข้าด้วยกันเพื่อสร้างสคริปต์</p>
-                    <p><strong>🇬🇧 English:</strong> You need to snap blocks together to create a script.</p>
-                    <button class="play-btn" onclick="speak('You need to snap blocks together to create a script.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> สไปรท์สามารถมีหลายคอสตูมเพื่อสร้างแอนิเมชั่น</p>
-                    <p><strong>🇬🇧 English:</strong> Sprites can have multiple costumes to create animations.</p>
-                    <button class="play-btn" onclick="speak('Sprites can have multiple costumes to create animations.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> ลูปช่วยให้คุณทำซ้ำคำสั่งโดยไม่ต้องเขียนหลายครั้ง</p>
-                    <p><strong>🇬🇧 English:</strong> Loops help you repeat commands without writing them multiple times.</p>
-                    <button class="play-btn" onclick="speak('Loops help you repeat commands without writing them multiple times.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> ตัวแปรใช้เก็บข้อมูลเช่น คะแนนหรือชื่อผู้เล่น</p>
-                    <p><strong>🇬🇧 English:</strong> Variables are used to store data like scores or player names.</p>
-                    <button class="play-btn" onclick="speak('Variables are used to store data like scores or player names.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> คุณสามารถเปลี่ยนฉากหลังเพื่อสร้างระดับหรือฉากที่แตกต่างกัน</p>
-                    <p><strong>🇬🇧 English:</strong> You can change backdrops to create different levels or scenes.</p>
-                    <button class="play-btn" onclick="speak('You can change backdrops to create different levels or scenes.')">Play Audio</button>
-                </div>
-
-                <div class="sentence-box">
-                    <p><strong>🇹🇭 ไทย:</strong> ใช้บลอก sensing เพื่อตรวจจับคีย์บอร์ดหรือเมาส์</p>
-                    <p><strong>🇬🇧 English:</strong> Use sensing blocks to detect keyboard or mouse input.</p>
-                    <button class="play-btn" onclick="speak('Use sensing blocks to detect keyboard or mouse input.')">Play Audio</button>
-                </div>
-
-                <div class="encouragement">
-                    💡 ยอดเยี่ยม! ตอนนี้คุณรู้ประโยคสำคัญที่ใช้ในการเขียนโปรแกรมแล้ว!<br>
-                    Excellent! Now you know important programming sentences!
-                </div>
-            </section>
-
-            <!-- Section 4: Scratch vs Python -->
-            <section id="comparison">
-                <h2><span class="icon">⚖️</span> เปรียบเทียบ Scratch กับ Python</h2>
-                
-                <div class="thai-text">
-                    <h3>ความแตกต่างระหว่าง Scratch และ Python</h3>
-                    
-                    <div class="comparison-grid">
-                        <div class="comparison-card">
-                            <h4>🎨 Scratch</h4>
-                            <ul class="feature-list">
-                                <li><strong>Visual Programming:</strong> ใช้บลอกสีสันแทนการพิมพ์โค้ด</li>
-                                <li><strong>เหมาะสำหรับ:</strong> เด็กและผู้เริ่มต้นอายุ 8-16 ปี</li>
-                                <li><strong>ง่ายต่อการเรียนรู้:</strong> ไม่ต้องจำไวยากรณ์ซับซ้อน</li>
-                                <li><strong>ใช้งาน:</strong> ทำเกม แอนิเมชั่น และโปรเจกต์สร้างสรรค์</li>
-                                <li><strong>ไม่มีข้อผิดพลาดไวยากรณ์:</strong> ต่อบลอกผิดไม่ได้</li>
-                                <li><strong>ผลลัพท์เห็นทันที:</strong> มองเห็นการเปลี่ยนแปลงแบบเรียลไทม์</li>
-                                <li><strong>จำกัด:</strong> ไม่เหมาะสำหรับโปรแกรมขั้นสูง</li>
-                            </ul>
+            <!-- Tutorial 1: Guitar Studio -->
+            <section id="tutorial1">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🎸</span>
+                        <div class="project-title">
+                            <h2>Tutorial 1: Virtual Guitar Studio</h2>
+                            <p>สตูดิโอกีตาร์เสมือนจริง</p>
                         </div>
+                        <span class="difficulty-badge difficulty-medium">Medium / ปานกลาง</span>
+                    </div>
+
+                    <div class="fun-fact">
+                        <h4>🎵 What You'll Build / สิ่งที่คุณจะสร้าง</h4>
+                        <p><strong>English:</strong> Create a virtual guitar where each key on your keyboard plays a different note. You'll learn about sound blocks, keyboard input, and visual feedback!</p>
+                        <button class="play-btn" onclick="speak('Create a virtual guitar where each key on your keyboard plays a different note. You will learn about sound blocks, keyboard input, and visual feedback!')">Play Audio</button>
+                        <p><strong>ไทย:</strong> สร้างกีตาร์เสมือนจริงที่แต่ละปุ่มบนคีย์บอร์ดเล่นโน้ตที่ต่างกัน คุณจะได้เรียนรู้เกี่ยวกับบลอกเสียง การรับข้อมูลจากคีย์บอร์ด และการแสดงผลแบบเห็นภาพ!</p>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">1</span>เตรียมโปรเจกต์ / Setup the Project</h4>
                         
-                        <div class="comparison-card">
-                            <h4>🐍 Python</h4>
-                            <ul class="feature-list">
-                                <li><strong>Text-based Programming:</strong> เขียนโค้ดด้วยตัวอักษร</li>
-                                <li><strong>เหมาะสำหรับ:</strong> วัยรุ่นและผู้ใหญ่ที่มีพื้นฐาน</li>
-                                <li><strong>มีประสิทธิภาพสูง:</strong> สร้างโปรแกรมที่ซับซ้อนได้</li>
-                                <li><strong>ใช้งาน:</strong> เว็บไซต์, AI, การวิเคราะห์ข้อมูล, วิทยาศาสตร์</li>
-                                <li><strong>ต้องเรียนรู้ไวยากรณ์:</strong> มีกฎการเขียนที่ชัดเจน</li>
-                                <li><strong>มีข้อผิดพลาด:</strong> ต้องแก้ไข syntax errors</li>
-                                <li><strong>ใช้งานจริง:</strong> ใช้ในอุตสาหกรรมทั่วโลก</li>
-                            </ul>
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong></p>
+                            <ol>
+                                <li>สร้างโปรเจกต์ใหม่ใน Scratch</li>
+                                <li>ลบสไปรท์แมวที่มีอยู่ (Right-click > Delete)</li>
+                                <li>คลิก "Choose a Sprite" และค้นหา "Guitar"</li>
+                                <li>หากไม่มีกีตาร์ ให้เลือก "Button" หรือ "Music Note" แทน</li>
+                                <li>เพิ่มฉากหลัง "Music Room" หรือสีพื้นที่คุณชอบ</li>
+                            </ol>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong></p>
+                            <button class="play-btn" onclick="speak('Step 1: Setup the Project')">Play Audio</button>
+                            <ol>
+                                <li>Create a new Scratch project</li>
+                                <li>Delete the default cat sprite (Right-click > Delete)</li>
+                                <li>Click "Choose a Sprite" and search for "Guitar"</li>
+                                <li>If there's no guitar, choose "Button" or "Music Note" instead</li>
+                                <li>Add a "Music Room" backdrop or any color you like</li>
+                            </ol>
                         </div>
                     </div>
 
-                    <h3>ความคล้ายคลึงกัน:</h3>
-                    <ul class="feature-list">
-                        <li>ทั้งสองใช้แนวคิด: ตัวแปร (Variables), ลูป (Loops), และเงื่อนไข (Conditions)</li>
-                        <li>สอนการคิดเชิงตรรกะและการแก้ปัญหา</li>
-                        <li>สามารถสร้างเกมและโปรแกรมโต้ตอบได้</li>
-                        <li>Scratch เป็นจุดเริ่มต้นที่ดีก่อนเรียน Python</li>
-                    </ul>
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">2</span>เพิ่มส่วนขยายดนตรี / Add Music Extension</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> เพิ่มบลอกดนตรีพิเศษ</p>
+                            <ol>
+                                <li>คลิกปุ่ม "Add Extension" ที่มุมล่างซ้าย (ไอคอนกล่องบวก)</li>
+                                <li>เลือก "Music" จากรายการ</li>
+                                <li>ตอนนี้คุณจะเห็นบลอกสีเขียวใหม่สำหรับดนตรี!</li>
+                            </ol>
+                        </div>
 
-                    <h3>ตัวอย่างเปรียบเทียบ: การทักทายผู้ใช้</h3>
-                    <p><strong>Scratch:</strong> ใช้บลอก "say Hello! for 2 seconds" (สีม่วง)</p>
-                    <p><strong>Python:</strong> ใช้คำสั่ง <span class="highlight">print("Hello!")</span></p>
-                </div>
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong></p>
+                            <button class="play-btn" onclick="speak('Step 2: Add the Music Extension to get special music blocks')">Play Audio</button>
+                            <ol>
+                                <li>Click the "Add Extension" button in the bottom left (box with plus icon)</li>
+                                <li>Select "Music" from the list</li>
+                                <li>Now you'll see new green blocks for music!</li>
+                            </ol>
+                            <p><strong>Why?</strong> The Music extension gives you blocks to play notes, drums, and instruments!</p>
+                            <button class="play-btn" onclick="speak('The Music extension gives you blocks to play notes, drums, and instruments!')">Play Audio</button>
+                        </div>
+                    </div>
 
-                <div class="english-text">
-                    <p><strong>English:</strong> Scratch is perfect for beginners because it uses visual blocks, while Python is more powerful but requires typing code and learning syntax.</p>
-                    <button class="play-btn" onclick="speak('Scratch is perfect for beginners because it uses visual blocks, while Python is more powerful but requires typing code and learning syntax.')">Play Audio</button>
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">3</span>สร้างโน้ตดนตรี / Create Musical Notes</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> เขียนโค้ดให้แต่ละปุ่มเล่นโน้ตต่างกัน</p>
+                            <p>เราจะใช้ปุ่ม A, S, D, F, G, H, J เป็นโน้ต Do Re Mi Fa Sol La Ti</p>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Code each key to play a different note</p>
+                            <button class="play-btn" onclick="speak('Code each key to play a different note')">Play Audio</button>
+                            <p>We'll use keys A, S, D, F, G, H, J for notes Do, Re, Mi, Fa, Sol, La, Ti</p>
+                        </div>
+
+                        <div class="code-block">
+when [a v] key pressed
+play note (60) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+
+when [s v] key pressed
+play note (62) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+
+when [d v] key pressed
+play note (64) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+
+when [f v] key pressed
+play note (65) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+
+when [g v] key pressed
+play note (67) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+
+when [h v] key pressed
+play note (69) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+
+when [j v] key pressed
+play note (71) for (0.5) beats
+change [brightness v] effect by (25)
+wait (0.1) seconds
+clear graphic effects
+                        </div>
+
+                        <div class="tip-box">
+                            <h4>💡 Understanding Note Numbers / ทำความเข้าใจตัวเลขโน้ต</h4>
+                            <div class="lang-thai">
+                                <ul>
+                                    <li><strong>60 = C (Do)</strong> - โน้ตกลาง</li>
+                                    <li><strong>62 = D (Re)</strong> - สูงขึ้น 2</li>
+                                    <li><strong>64 = E (Mi)</strong> - สูงขึ้น 4</li>
+                                    <li><strong>65 = F (Fa)</strong> - สูงขึ้น 5</li>
+                                    <li><strong>67 = G (Sol)</strong> - สูงขึ้น 7</li>
+                                    <li><strong>69 = A (La)</strong> - สูงขึ้น 9</li>
+                                    <li><strong>71 = B (Ti)</strong> - สูงขึ้น 11</li>
+                                </ul>
+                            </div>
+                            <div class="lang-english">
+                                <p><strong>English:</strong> Each number represents a musical note. 60 is middle C, and higher numbers are higher notes!</p>
+                                <button class="play-btn" onclick="speak('Each number represents a musical note. 60 is middle C, and higher numbers are higher notes!')">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">4</span>เพิ่มเครื่องดนตรี / Add Different Instruments</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> ให้ผู้เล่นเลือกเสียงเครื่องดนตรีได้</p>
+                            <p>เพิ่มบลอกนี้ที่ด้านบนของโค้ด:</p>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Let players choose different instrument sounds</p>
+                            <button class="play-btn" onclick="speak('Let players choose different instrument sounds')">Play Audio</button>
+                        </div>
+
+                        <div class="code-block">
+when green flag clicked
+set instrument to (1) Piano ▼
+
+when [1 v] key pressed
+set instrument to (1) Piano ▼
+say [Piano! 🎹] for (1) seconds
+
+when [2 v] key pressed
+set instrument to (4) Guitar ▼
+say [Guitar! 🎸] for (1) seconds
+
+when [3 v] key pressed
+set instrument to (12) Flute ▼
+say [Flute! 🎺] for (1) seconds
+
+when [4 v] key pressed
+set instrument to (16) Saxophone ▼
+say [Saxophone! 🎷] for (1) seconds
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>Explanation:</strong> Now players can press 1, 2, 3, or 4 to change instruments!</p>
+                            <button class="play-btn" onclick="speak('Now players can press 1, 2, 3, or 4 to change instruments!')">Play Audio</button>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">5</span>เพิ่มคำแนะนำบนหน้าจอ / Add On-Screen Instructions</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> สร้างสไปรท์ข้อความแสดงวิธีเล่น</p>
+                            <ol>
+                                <li>เพิ่มสไปรท์ "Button" ใหม่</li>
+                                <li>ไปที่แท็บ "Costumes"</li>
+                                <li>ใช้ Text Tool (T) พิมพ์คำแนะนำ</li>
+                                <li>ตัวอย่าง: "Press A-S-D-F-G-H-J to play notes!"</li>
+                                <li>วางไว้มุมบนของเวที</li>
+                            </ol>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Create a text sprite showing how to play</p>
+                            <button class="play-btn" onclick="speak('Create a text sprite showing how to play')">Play Audio</button>
+                            <ol>
+                                <li>Add a new "Button" sprite</li>
+                                <li>Go to the "Costumes" tab</li>
+                                <li>Use the Text Tool (T) to type instructions</li>
+                                <li>Example: "Press A-S-D-F-G-H-J to play notes!"</li>
+                                <li>Position it at the top of the stage</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="encouragement">
+                        🎸 Amazing! You've created a virtual guitar studio!<br>
+                        ยอดเยี่ยม! คุณสร้างสตูดิโอกีตาร์เสมือนจริงแล้ว!<br>
+                        <span class="progress-badge">🎵 Music Creator Unlocked!</span>
+                    </div>
+
+                    <div class="fun-fact">
+                        <h4>🚀 Challenge Ideas / ไอเดียท้าทาย</h4>
+                        <div class="lang-thai">
+                            <ul class="feature-list">
+                                <li>เพิ่มปุ่มเล่นเพลงสำเร็จรูป (Play "Happy Birthday" automatically)</li>
+                                <li>สร้างระบบบันทึกเสียง (Record and playback)</li>
+                                <li>เพิ่มจังหวะกลอง (Add drum beats)</li>
+                                <li>สร้างคีย์บอร์ดเปียโนที่คลิกได้</li>
+                                <li>เพิ่ม Tempo Control (ความเร็วเพลง)</li>
+                            </ul>
+                        </div>
+                        <div class="lang-english">
+                            <p><strong>English:</strong> Try adding automatic songs, recording features, drum beats, clickable piano keys, or tempo control!</p>
+                            <button class="play-btn" onclick="speak('Try adding automatic songs, recording features, drum beats, clickable piano keys, or tempo control!')">Play Audio</button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- Section 5: How to Use Scratch Console -->
-            <section id="console">
-                <h2><span class="icon">🖥️</span> วิธีใช้งาน Scratch Editor</h2>
-                
-                <div class="thai-text">
-                    <h3>ส่วนประกอบหลักของ Scratch Editor:</h3>
-                    
-                    <div class="tutorial-step">
-                        <h4>1. พื้นที่แสดงผล (Stage Area) - ด้านบนขวา</h4>
-                        <p>เป็นที่ที่คุณจะเห็นสไปรท์เคลื่อนไหวและโปรแกรมทำงาน ขนาด 480 x 360 พิกเซล</p>
-                        <ul>
-                            <li>กดธงเขียว (Green Flag) เพื่อเริ่มโปรแกรม</li>
-                            <li>กดปุ่มหยุด (Stop) รูปหกเหลี่ยมสีแดง เพื่อหยุดโปรแกรม</li>
-                            <li>สามารถเปลี่ยนโหมดเต็มจอได้</li>
-                        </ul>
+            <!-- Tutorial 2: Interactive Story -->
+            <section id="tutorial2">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">📖</span>
+                        <div class="project-title">
+                            <h2>Tutorial 2: Interactive Story Creator</h2>
+                            <p>สร้างเรื่องราวแบบโต้ตอบได้</p>
+                        </div>
+                        <span class="difficulty-badge difficulty-medium">Medium / ปานกลาง</span>
+                    </div>
+
+                    <div class="fun-fact">
+                        <h4>📚 What You'll Build / สิ่งที่คุณจะสร้าง</h4>
+                        <p><strong>English:</strong> Create an interactive adventure story where the reader makes choices that change the story! You'll learn about broadcasts, backdrops, and branching narratives.</p>
+                        <button class="play-btn" onclick="speak('Create an interactive adventure story where the reader makes choices that change the story! You will learn about broadcasts, backdrops, and branching narratives.')">Play Audio</button>
+                        <p><strong>ไทย:</strong> สร้างเรื่องราวผจญภัยแบบโต้ตอบที่ผู้อ่านทำการเลือกที่เปลี่ยนเรื่องราว! คุณจะได้เรียนรู้เกี่ยวกับ broadcasts, ฉากหลัง และการแตกแขนงของเรื่อง</p>
                     </div>
 
                     <div class="tutorial-step">
-                        <h4>2. รายการสไปรท์ (Sprite List) - ด้านล่างขวา</h4>
-                        <p>แสดงสไปรท์ทั้งหมดในโปรเจกต์ของคุณ</p>
-                        <ul>
-                            <li>คลิกไอคอนแมว (Choose a Sprite) เพื่อเพิ่มสไปรท์ใหม่</li>
-                            <li>คลิกที่สไปรท์เพื่อเลือกและแก้ไข</li>
-                            <li>สไปรท์ที่เลือกจะมีกรอบสีน้ำเงิน</li>
-                        </ul>
+                        <h4><span class="step-number">1</span>วางแผนเรื่องราว / Plan Your Story</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> เรื่องราวตัวอย่าง: "ผจญภัยในป่าวิเศษ"</p>
+                            <p><strong>โครงเรื่อง:</strong></p>
+                            <ul class="feature-list">
+                                <li><strong>Scene 1:</strong> คุณพบทางแยก - ไปซ้ายหรือขวา?</li>
+                                <li><strong>Scene 2A:</strong> (ซ้าย) พบสายน้ำและนางฟ้า</li>
+                                <li><strong>Scene 2B:</strong> (ขวา) พบถ้ำและมังกร</li>
+                                <li><strong>Scene 3:</strong> Happy Ending!</li>
+                            </ul>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Example story: "Adventure in the Magic Forest"</p>
+                            <button class="play-btn" onclick="speak('Example story: Adventure in the Magic Forest')">Play Audio</button>
+                            <p><strong>Story Structure:</strong></p>
+                            <ul class="feature-list">
+                                <li><strong>Scene 1:</strong> You find a fork in the road - go left or right?</li>
+                                <li><strong>Scene 2A:</strong> (Left) Find a river and a fairy</li>
+                                <li><strong>Scene 2B:</strong> (Right) Find a cave and a dragon</li>
+                                <li><strong>Scene 3:</strong> Happy Ending!</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="tutorial-step">
-                        <h4>3. Block Palette (บล็อกพาเลต) - ด้านซ้าย</h4>
-                        <p>บริเวณที่มีบลอกคำสั่งทั้งหมดแบ่งเป็น 9 หมวดหมู่:</p>
-                        <ul>
-                            <li><span class="highlight">Motion (สีน้ำเงิน)</span> - การเคลื่อนไหว</li>
-                            <li><span class="highlight">Looks (สีม่วง)</span> - รูปลักษณ์</li>
-                            <li><span class="highlight">Sound (สีชมพู)</span> - เสียง</li>
-                            <li><span class="highlight">Events (สีเหลือง)</span> - เหตุการณ์</li>
-                            <li><span class="highlight">Control (สีส้ม)</span> - การควบคุม</li>
-                            <li><span class="highlight">Sensing (สีฟ้า)</span> - การรับรู้</li>
-                            <li><span class="highlight">Operators (สีเขียว)</span> - ตัวดำเนินการ</li>
-                            <li><span class="highlight">Variables (สีส้มเข้ม)</span> - ตัวแปร</li>
-                            <li><span class="highlight">My Blocks (สีแดงอมม่วง)</span> - ฟังก์ชันที่สร้างเอง</li>
-                        </ul>
+                        <h4><span class="step-number">2</span>เตรียมฉากหลัง / Prepare Backdrops</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> สร้างหรือเลือกฉากหลังสำหรับแต่ละฉาก</p>
+                            <ol>
+                                <li>คลิก "Backdrops" ที่มุมล่างขวา</li>
+                                <li>คลิก "Choose a Backdrop"</li>
+                                <li>เลือก: "Forest" (ฉาก 1)</li>
+                                <li>เพิ่ม: "Lake" (ฉาก 2A - ทางซ้าย)</li>
+                                <li>เพิ่ม: "Cave" (ฉาก 2B - ทางขวา)</li>
+                                <li>เพิ่ม: "Garden" (ฉาก 3 - จบ)</li>
+                            </ol>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Create or choose backdrops for each scene</p>
+                            <button class="play-btn" onclick="speak('Create or choose backdrops for each scene')">Play Audio</button>
+                            <ol>
+                                <li>Click "Backdrops" in the bottom right</li>
+                                <li>Click "Choose a Backdrop"</li>
+                                <li>Select: "Forest" (Scene 1)</li>
+                                <li>Add: "Lake" (Scene 2A - left path)</li>
+                                <li>Add: "Cave" (Scene 2B - right path)</li>
+                                <li>Add: "Garden" (Scene 3 - ending)</li>
+                            </ol>
+                        </div>
                     </div>
 
                     <div class="tutorial-step">
-                        <h4>4. Scripting Area (พื้นที่เขียนสคริปต์) - ตรงกลาง</h4>
-                        <p>พื้นที่ว่างๆ ที่คุณจะลากบลอกมาต่อกันเพื่อเขียนโปรแกรม</p>
-                        <ul>
-                            <li>ลากบลอกจาก Block Palette มาวางที่นี่</li>
-                            <li>ต่อบลอกเข้าด้วยกัน จะมีเสียง "คลิก" เมื่อต่อได้</li>
-                            <li>ดับเบิลคลิกที่บลอกเพื่อทดสอบการทำงาน</li>
-                            <li>ลากบลอกกลับไปที่ Palette เพื่อลบ</li>
-                        </ul>
+                        <h4><span class="step-number">3</span>สร้างตัวเล่าเรื่อง / Create the Narrator</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> สร้างสไปรท์ที่เล่าเรื่อง</p>
+                            <ol>
+                                <li>ลบสไปรท์แมว</li>
+                                <li>เพิ่มสไปรท์ "Wizard" หรือ "Narrator"</li>
+                                <li>หากไม่มี ให้ใช้ "Person" หรือ "Character"</li>
+                            </ol>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Create a narrator sprite</p>
+                            <button class="play-btn" onclick="speak('Create a narrator sprite to tell the story')">Play Audio</button>
+                        </div>
+
+                        <div class="code-block">
+when green flag clicked
+switch backdrop to (Forest v)
+show
+say [Welcome to the Magic Forest! 🌲] for (2) seconds
+say [You see two paths ahead.] for (2) seconds
+say [Press LEFT ARROW for left path] for (2) seconds
+say [Press RIGHT ARROW for right path] for (2) seconds
+                        </div>
+
+                        <div class="lang-thai">
+                            <p><strong>คำอธิบาย:</strong></p>
+                            <ul class="feature-list">
+                                <li><strong>switch backdrop to Forest</strong> - เปลี่ยนเป็นฉากป่า</li>
+                                <li><strong>show</strong> - แสดงตัวละคร</li>
+                                <li><strong>say ... for 2 seconds</strong> - พูดข้อความ 2 วินาที</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="tutorial-step">
-                        <h4>5. แท็บด้านบน (Tabs)</h4>
-                        <p>มี 3 แท็บสำหรับแต่ละสไปรท์:</p>
-                        <ul>
-                            <li><strong>Code:</strong> เขียนและแก้ไขสคริปต์</li>
-                            <li><strong>Costumes:</strong> แก้ไขรูปร่างและท่าทางของสไปรท์</li>
-                            <li><strong>Sounds:</strong> เพิ่มและแก้ไขเสียง</li>
-                        </ul>
+                        <h4><span class="step-number">4</span>สร้างทางเลือก / Create Choice System</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> ให้ผู้เล่นเลือกทางได้</p>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Let the player make choices</p>
+                            <button class="play-btn" onclick="speak('Let the player make choices using arrow keys')">Play Audio</button>
+                        </div>
+
+                        <div class="code-block">
+when [left arrow v] key pressed
+broadcast (LeftPath v)
+
+when [right arrow v] key pressed
+broadcast (RightPath v)
+
+when I receive [LeftPath v]
+switch backdrop to (Lake v)
+say [You chose the left path! 🌊] for (2) seconds
+say [You meet a beautiful fairy by the lake.] for (3) seconds
+say [She gives you a magic star! ⭐] for (2) seconds
+wait (1) seconds
+broadcast (Ending v)
+
+when I receive [RightPath v]
+switch backdrop to (Cave v)
+say [You chose the right path! 🏔️] for (2) seconds
+say [You find a sleeping dragon in a cave.] for (3) seconds
+say [You sneak past quietly... 🐉] for (2) seconds
+wait (1) seconds
+broadcast (Ending v)
+
+when I receive [Ending v]
+switch backdrop to (Garden v)
+say [You made it home safely! 🏡] for (2) seconds
+say [The End! Thank you for playing! 🎉] for (3) seconds
+                        </div>
+
+                        <div class="tip-box">
+                            <h4>💡 Understanding Broadcasts / ทำความเข้าใจ Broadcasts</h4>
+                            <div class="lang-thai">
+                                <p><strong>Broadcast</strong> เหมือนการส่งข้อความให้สไปรท์อื่นฟัง:</p>
+                                <ul>
+                                    <li><strong>broadcast (LeftPath)</strong> = ส่งสัญญาณ "LeftPath"</li>
+                                    <li><strong>when I receive (LeftPath)</strong> = เมื่อได้รับสัญญาณ "LeftPath" ให้ทำอะไร</li>
+                                    <li>ใช้เชื่อมต่อการกระทำระหว่างสไปรท์</li>
+                                </ul>
+                            </div>
+                            <div class="lang-english">
+                                <p><strong>English:</strong> Broadcasts are like sending messages between sprites. One sprite sends a signal, and other sprites listen for it!</p>
+                                <button class="play-btn" onclick="speak('Broadcasts are like sending messages between sprites. One sprite sends a signal, and other sprites listen for it!')">Play Audio</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <h3>ขั้นตอนการใช้งานพื้นฐาน:</h3>
-                    <ol class="feature-list">
-                        <li>เปิดเว็บไซต์ <span class="highlight">scratch.mit.edu</span></li>
-                        <li>คลิก "Create" เพื่อสร้างโปรเจกต์ใหม่</li>
-                        <li>เลือกหมวดบลอกจาก Block Palette</li>
-                        <li>ลากบลอกมาวางในพื้นที่เขียนสคริปต์</li>
-                        <li>ต่อบลอกเข้าด้วยกันตามที่ต้องการ</li>
-                        <li>คลิกธงเขียวเพื่อทดสอบโปรแกรม</li>
-                        <li>บันทึกงานโดยคลิก "File" > "Save now"</li>
-                    </ol>
-                </div>
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">5</span>เพิ่มตัวละครพิเศษ / Add Special Characters</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> เพิ่มนางฟ้าและมังกรที่ปรากฏในฉากต่างๆ</p>
+                        </div>
 
-                <div class="english-text">
-                    <p><strong>English:</strong> The Scratch editor has four main areas: the Stage where your program runs, the Block Palette with all available blocks, the Scripting Area where you build your code, and the Sprite List showing all characters in your project.</p>
-                    <button class="play-btn" onclick="speak('The Scratch editor has four main areas: the Stage where your program runs, the Block Palette with all available blocks, the Scripting Area where you build your code, and the Sprite List showing all characters in your project.')">Play Audio</button>
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Add a fairy and dragon that appear in different scenes</p>
+                            <button class="play-btn" onclick="speak('Add a fairy and dragon that appear in different scenes')">Play Audio</button>
+                        </div>
+
+                        <div class="lang-thai">
+                            <p><strong>สำหรับสไปรท์นางฟ้า:</strong></p>
+                        </div>
+
+                        <div class="code-block">
+when green flag clicked
+hide
+
+when I receive [LeftPath v]
+switch costume to (fairy-a v)
+go to x: (50) y: (0)
+show
+say [Hello traveler! Take this magic star! ⭐] for (3) seconds
+                        </div>
+
+                        <div class="lang-thai">
+                            <p><strong>สำหรับสไปรท์มังกร:</strong></p>
+                        </div>
+
+                        <div class="code-block">
+when green flag clicked
+hide
+
+when I receive [RightPath v]
+switch costume to (dragon-a v)
+go to x: (0) y: (-50)
+show
+say [Zzzzz... 😴] for (2) seconds
+                        </div>
+                    </div>
+
+                    <div class="encouragement">
+                        📖 Fantastic! You're now a story creator!<br>
+                        ยอดเยี่ยม! ตอนนี้คุณเป็นนักสร้างเรื่องราวแล้ว!<br>
+                        <span class="progress-badge">📚 Story Master Unlocked!</span>
+                    </div>
+
+                    <div class="fun-fact">
+                        <h4>🚀 Story Improvement Ideas / ไอเดียปรับปรุงเรื่อง</h4>
+                        <div class="lang-thai">
+                            <ul class="feature-list">
+                                <li>เพิ่มมากกว่า 2 ทางเลือกในแต่ละจุด</li>
+                                <li>สร้างฉาก 5-10 ฉากสำหรับเรื่องที่ยาวขึ้น</li>
+                                <li>เพิ่มเอฟเฟกต์เสียงประกอบ</li>
+                                <li>ให้ตัวละครเคลื่อนไหวระหว่างฉาก</li>
+                                <li>เพิ่มระบบสะสมของ (Inventory)</li>
+                                <li>สร้าง Multiple Endings (จบหลายแบบ)</li>
+                                <li>เพิ่มเกมมินิในเรื่อง</li>
+                            </ul>
+                        </div>
+                        <div class="lang-english">
+                            <p><strong>English:</strong> Try adding more choices, longer stories, sound effects, moving characters, an inventory system, multiple endings, or mini-games!</p>
+                            <button class="play-btn" onclick="speak('Try adding more choices, longer stories, sound effects, moving characters, an inventory system, multiple endings, or mini games!')">Play Audio</button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- Section 6: Tutorial -->
-            <section id="tutorial">
-                <h2><span class="icon">🎮</span> บทเรียน: สร้างเกมจับแมว<br>Tutorial: Make a Catch the Cat Game</h2>
-                
-                <div class="fun-fact">
-                    <h4>🎯 What You'll Learn / สิ่งที่คุณจะได้เรียนรู้</h4>
-                    <p><strong>English:</strong> In this tutorial, you'll create your first interactive game! You'll learn to make sprites move, detect collisions, keep score, and respond to player actions.</p>
-                    <p><strong>ไทย:</strong> ในบทเรียนนี้ คุณจะสร้างเกมแบบโต้ตอบเกมแรกของคุณ! คุณจะได้เรียนรู้การทำให้สไปรท์เคลื่อนไหว ตรวจจับการชน นับคะแนน และตอบสนองต่อการกระทำของผู้เล่น</p>
-                </div>
+            <!-- Tutorial 3: Custom Sprites -->
+            <section id="tutorial3">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-icon">🎨</span>
+                        <div class="project-title">
+                            <h2>Tutorial 3: Custom Sprite Creator</h2>
+                            <p>สร้างตัวละครของคุณเอง</p>
+                        </div>
+                        <span class="difficulty-badge difficulty-easy">Easy / ง่าย</span>
+                    </div>
 
-                <div class="bilingual-box">
-                    <div class="lang-thai">
-                        <h3>โครงการ: เกมจับแมวอย่างง่าย 🐱</h3>
-                        <p>เราจะสร้างเกมที่ผู้เล่นต้องเคลื่อนที่เพื่อจับแมวที่วิ่งหนีไปมา และนับคะแนน</p>
+                    <div class="fun-fact">
+                        <h4>🎨 What You'll Learn / สิ่งที่คุณจะเรียนรู้</h4>
+                        <p><strong>English:</strong> Learn to design your own unique characters using Scratch's Paint Editor! You'll create custom sprites from scratch and make them animated.</p>
+                        <button class="play-btn" onclick="speak('Learn to design your own unique characters using Scratch Paint Editor! You will create custom sprites from scratch and make them animated.')">Play Audio</button>
+                        <p><strong>ไทย:</strong> เรียนรู้การออกแบบตัวละครพิเศษของคุณเองด้วย Paint Editor ของ Scratch! คุณจะสร้างสไปรท์พิเศษตั้งแต่ต้นและทำให้มีแอนิเมชั่น</p>
                     </div>
-                    <div class="lang-english">
-                        <h3>Project: Simple Cat Catching Game 🐱</h3>
-                        <p>We will create a game where the player must move to catch a cat that runs around randomly, and keep score of how many times you catch it!</p>
-                        <button class="play-btn" onclick="speak('We will create a game where the player must move to catch a cat that runs around randomly, and keep score of how many times you catch it.')">Play</button>
-                    </div>
-                </div>
 
-                <div class="tutorial-step">
-                    <h4><span class="step-number">1</span>ขั้นตอนที่ 1: เตรียมสไปรท์</h4>
-                    
-                    <div class="lang-thai">
-                        <p><strong>🇹🇭 ไทย:</strong> เพิ่มสไปรท์ที่จำเป็น</p>
-                        <ul>
-                            <li>ใช้สไปรท์แมว (Cat) ที่มีอยู่แล้ว - นี่จะเป็นตัวที่ต้องจับ</li>
-                            <li>เพิ่มสไปรท์ลูกบอล (Ball) หรือ ไม้กายสิทธิ์ (Wand) - นี่จะเป็นตัวที่เราควบคุม</li>
-                            <li>คลิก Backdrops และเลือกฉากหลังที่ชอบ เช่น สวน (Garden)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="lang-english">
-                        <p><strong>🇬🇧 English: Step 1: Prepare the Sprites</strong></p>
-                        <p>Add the necessary sprites for our game.</p>
-                        <button class="play-btn" onclick="speak('Step 1: Prepare the Sprites. Add the necessary sprites for our game.')">Play</button>
-                        <ul>
-                            <li>Use the Cat sprite that's already there - this will be the character we need to catch</li>
-                            <li>Add a Ball sprite or Wand sprite - this will be the character we control</li>
-                            <li>Click on Backdrops and choose a background you like, such as Garden</li>
-                        </ul>
-                        <p><strong>Why?</strong> The ball or wand follows your mouse, and you try to touch the cat with it!</p>
-                        <button class="play-btn" onclick="speak('The ball or wand follows your mouse, and you try to touch the cat with it.')">Play</button>
-                    </div>
-                </div>
-
-                <div class="tutorial-step">
-                    <h4><span class="step-number">2</span>ขั้นตอนที่ 2: สร้างตัวแปรคะแนน</h4>
-                    
-                    <div class="lang-thai">
-                        <p><strong>🇹🇭 ไทย:</strong> สร้างตัวแปรเพื่อเก็บคะแนน</p>
-                        <ol>
-                            <li>ไปที่หมวด "Variables" (สีส้ม)</li>
-                            <li>คลิก "Make a Variable"</li>
-                            <li>ตั้งชื่อว่า "Score" หรือ "คะแนน"</li>
-                            <li>เลือก "For all sprites"</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="lang-english">
-                        <p><strong>🇬🇧 English: Step 2: Create a Score Variable</strong></p>
-                        <p>Create a variable to store and display the score.</p>
-                        <button class="play-btn" onclick="speak('Step 2: Create a score variable to store and display the score.')">Play</button>
-                        <ol>
-                            <li>Go to the "Variables" category (orange blocks)</li>
-                            <li>Click "Make a Variable"</li>
-                            <li>Name it "Score"</li>
-                            <li>Select "For all sprites"</li>
-                        </ol>
-                        <p><strong>Remember:</strong> Variables are like boxes that store information. This one will count how many times you catch the cat!</p>
-                        <button class="play-btn" onclick="speak('Variables are like boxes that store information. This one will count how many times you catch the cat.')">Play</button>
-                    </div>
-                </div>
-
-                <div class="tutorial-step">
-                    <h4><span class="step-number">3</span>ขั้นตอนที่ 3: เขียนโค้ดสำหรับลูกบอล</h4>
-                    
-                    <div class="lang-thai">
-                        <p><strong>🇹🇭 ไทย:</strong> ทำให้ลูกบอลเคลื่อนไหวตามเมาส์</p>
-                        <p><strong>บลอกที่ต้องใช้:</strong></p>
-                    </div>
-                    
-                    <div class="code-block">
-when green flag clicked
-set [Score v] to [0]
-forever
-    go to (mouse-pointer v)
-end
-                    </div>
-                    
-                    <div class="lang-thai">
-                        <p><strong>คำอธิบายแต่ละบลอก:</strong></p>
-                        <ul>
-                            <li><strong>when green flag clicked</strong> - เริ่มโปรแกรมเมื่อคลิกธงเขียว</li>
-                            <li><strong>set Score to 0</strong> - ตั้งค่าคะแนนเป็น 0</li>
-                            <li><strong>forever</strong> - วนซ้ำตลอด</li>
-                            <li><strong>go to mouse-pointer</strong> - เคลื่อนที่ไปที่ตำแหน่งเมาส์</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="lang-english">
-                        <p><strong>🇬🇧 English: Step 3: Code for the Ball (The Controller)</strong></p>
-                        <p>Make the ball follow the mouse pointer so you can control it.</p>
-                        <button class="play-btn" onclick="speak('Make the ball follow the mouse pointer so you can control it.')">Play</button>
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">1</span>เปิด Paint Editor / Open Paint Editor</h4>
                         
-                        <p><strong>Explanation of each block:</strong></p>
-                        <ul>
-                            <li><strong>when green flag clicked</strong> - This starts the program when you click the green flag</li>
-                            <li><strong>set Score to 0</strong> - This resets the score to zero at the beginning</li>
-                            <li><strong>forever</strong> - This creates a loop that repeats forever</li>
-                            <li><strong>go to mouse-pointer</strong> - This makes the ball move to wherever your mouse is</li>
-                        </ul>
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> เริ่มต้นสร้างสไปรท์ใหม่</p>
+                            <ol>
+                                <li>คลิก "Choose a Sprite" ที่มุมล่างขวา</li>
+                                <li>เลือก "Paint" (ไอคอนพู่กัน)</li>
+                                <li>จะเปิด Paint Editor ขึ้นมา</li>
+                            </ol>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Start creating a new sprite</p>
+                            <button class="play-btn" onclick="speak('Start creating a new sprite using the Paint Editor')">Play Audio</button>
+                            <ol>
+                                <li>Click "Choose a Sprite" in the bottom right</li>
+                                <li>Select "Paint" (paintbrush icon)</li>
+                                <li>The Paint Editor will open</li>
+                            </ol>
+                        </div>
+
+                        <div class="tip-box">
+                            <h4>🖌️ Paint Editor Tools / เครื่องมือใน Paint Editor</h4>
+                            <div class="lang-thai">
+                                <ul class="feature-list">
+                                    <li><strong>Brush (พู่กัน)</strong> - วาดเส้นอิสระ</li>
+                                    <li><strong>Line (เส้นตรง)</strong> - วาดเส้นตรง</li>
+                                    <li><strong>Circle (วงกลม)</strong> - วาดวงกลม/วงรี</li>
+                                    <li><strong>Rectangle (สี่เหลี่ยม)</strong> - วาดสี่เหลี่ยม</li>
+                                    <li><strong>Text (ข้อความ)</strong> - เพิ่มตัวอักษร</li>
+                                    <li><strong>Fill (เติมสี)</strong> - ระบายสีพื้นที่</li>
+                                    <li><strong>Eraser (ยางลบ)</strong> - ลบส่วนที่ไม่ต้องการ</li>
+                                    <li><strong>Select (เลือก)</strong> - เลือกและย้ายส่วนต่างๆ</li>
+                                </ul>
+                            </div>
+                            <div class="lang-english">
+                                <p><strong>English:</strong> Use these tools to draw: Brush, Line, Circle, Rectangle, Text, Fill, Eraser, and Select!</p>
+                                <button class="play-btn" onclick="speak('Use these tools to draw: Brush, Line, Circle, Rectangle, Text, Fill, Eraser, and Select!')">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">2</span>สร้างตัวละครแบบง่าย / Create a Simple Character</h4>
                         
-                        <p><strong>How to build it:</strong> Drag the "when green flag clicked" block first. Then snap the "set Score to 0" below it. Then wrap everything in a "forever" loop. Put "go to mouse-pointer" inside the forever loop.</p>
-                        <button class="play-btn" onclick="speak('Drag the when green flag clicked block first. Then snap the set Score to zero below it. Then add a forever loop and put go to mouse pointer inside the loop.')">Play</button>
-                    </div>
-                </div>
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> วาดสัตว์น่ารักง่ายๆ - กระต่าย!</p>
+                            <p><strong>ขั้นตอน:</strong></p>
+                            <ol>
+                                <li><strong>หัว:</strong> ใช้เครื่องมือ Circle วาดวงกลมสีขาวขนาดใหญ่</li>
+                                <li><strong>หู:</strong> วาดวงรี 2 อันด้านบนหัว</li>
+                                <li><strong>ตา:</strong> วาดวงกลมเล็กสีดำ 2 อัน</li>
+                                <li><strong>จมูก:</strong> วาดสามเหลี่ยมสีชมพูเล็กๆ</li>
+                                <li><strong>ปาก:</strong> ใช้เส้นวาดรอยยิ้ม</li>
+                                <li><strong>ตัว:</strong> วาดวงรีใหญ่ด้านล่างหัว</li>
+                                <li><strong>แขนขา:</strong> วาดวงรีเล็กๆ 4 อัน</li>
+                            </ol>
+                        </div>
 
-                <div class="tutorial-step">
-                    <h4><span class="step-number">4</span>ขั้นตอนที่ 4: เขียนโค้ดสำหรับแมว (ตัวที่ต้องจับ)</h4>
-                    
-                    <div class="lang-thai">
-                        <p><strong>🇹🇭 ไทย:</strong> ทำให้แมววิ่งหนีและนับคะแนนเมื่อถูกจับ</p>
-                        <p>แมวต้องมี <strong>2 สคริปต์</strong> ทำงานพร้อมกัน!</p>
-                    </div>
-                    
-                    <div class="lang-english">
-                        <p><strong>🇬🇧 English: Step 4: Code for the Cat (The Target)</strong></p>
-                        <p>Make the cat run away randomly and count points when it's caught.</p>
-                        <button class="play-btn" onclick="speak('Make the cat run away randomly and count points when it is caught.')">Play</button>
-                        <p>The cat needs <strong>2 separate scripts</strong> running at the same time!</p>
-                        <button class="play-btn" onclick="speak('The cat needs two separate scripts running at the same time.')">Play</button>
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Draw a cute simple animal - a bunny!</p>
+                            <button class="play-btn" onclick="speak('Draw a cute simple bunny using circles and ovals')">Play Audio</button>
+                            <p><strong>Steps:</strong></p>
+                            <ol>
+                                <li><strong>Head:</strong> Use Circle tool to draw a large white circle</li>
+                                <li><strong>Ears:</strong> Draw 2 ovals on top of the head</li>
+                                <li><strong>Eyes:</strong> Draw 2 small black circles</li>
+                                <li><strong>Nose:</strong> Draw a small pink triangle</li>
+                                <li><strong>Mouth:</strong> Use Line to draw a smile</li>
+                                <li><strong>Body:</strong> Draw a large oval below the head</li>
+                                <li><strong>Limbs:</strong> Draw 4 small ovals for arms and legs</li>
+                            </ol>
+                        </div>
+
+                        <div class="warning-box">
+                            <h4>⚠️ Important Tip / เคล็ดลับสำคัญ</h4>
+                            <div class="lang-thai">
+                                <p>อย่าลืมวางตัวละครที่ <strong>จุดกึ่งกลาง</strong> ของ Canvas! จุดกึ่งกลางคือที่ที่มีเครื่องหมาย + สีเทา นี่จะทำให้ตัวละครหมุนและเคลื่อนไหวได้ถูกต้อง</p>
+                            </div>
+                            <div class="lang-english">
+                                <p><strong>English:</strong> Always center your character on the + mark! This makes rotation and movement work correctly.</p>
+                                <button class="play-btn" onclick="speak('Always center your character on the plus mark! This makes rotation and movement work correctly.')">Play Audio</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="lang-thai">
-                        <p><strong>สคริปต์ที่ 1: การเคลื่อนไหวสุ่ม</strong></p>
-                    </div>
-                    <div class="lang-english">
-                        <p><strong>Script 1: Random Movement</strong></p>
-                    </div>
-                    
-                    <div class="code-block">
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">3</span>สร้างคอสตูมสำหรับแอนิเมชั่น / Create Costumes for Animation</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> ทำให้กระต่ายเดินได้!</p>
+                            <ol>
+                                <li>คลิกขวาที่คอสตูม และเลือก "Duplicate" (ทำซ้ำ)</li>
+                                <li>ในคอสตูมที่ 2 เปลี่ยนตำแหน่งขาเล็กน้อย</li>
+                                <li>ทำซ้ำอีกครั้งสำหรับคอสตูมที่ 3</li>
+                                <li>เปลี่ยนขาอีกครั้ง</li>
+                                <li>ตอนนี้คุณมี 3 คอสตูมสำหรับการเดิน!</li>
+                            </ol>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Make the bunny walk!</p>
+                            <button class="play-btn" onclick="speak('Make the bunny walk by creating multiple costumes')">Play Audio</button>
+                            <ol>
+                                <li>Right-click the costume and select "Duplicate"</li>
+                                <li>In costume 2, move the legs slightly</li>
+                                <li>Duplicate again for costume 3</li>
+                                <li>Change the legs again</li>
+                                <li>Now you have 3 walking costumes!</li>
+                            </ol>
+                        </div>
+
+                        <div class="code-block">
 when green flag clicked
 forever
-    move (5) steps
+    move (3) steps
+    next costume
     if on edge, bounce
-    turn right (pick random (1) to (10)) degrees
+    wait (0.1) seconds
 end
-                    </div>
-                    
-                    <div class="lang-thai">
-                        <p><strong>คำอธิบาย:</strong></p>
-                        <ul>
-                            <li><strong>move 5 steps</strong> - เคลื่อนที่ 5 ก้าว</li>
-                            <li><strong>if on edge, bounce</strong> - เด้งกลับเมื่อชนขอบ</li>
-                            <li><strong>turn right (random)</strong> - หมุนแบบสุ่ม 1-10 องศา</li>
-                        </ul>
+                        </div>
+
+                        <div class="lang-thai">
+                            <p><strong>คำอธิบาย:</strong></p>
+                            <ul class="feature-list">
+                                <li><strong>next costume</strong> - เปลี่ยนไปคอสตูมถัดไป</li>
+                                <li>เมื่อใช้กับหลายคอสตูม จะสร้างแอนิเมชั่น!</li>
+                                <li><strong>wait 0.1 seconds</strong> - ควบคุมความเร็วของแอนิเมชั่น</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="lang-english">
-                        <p><strong>Explanation:</strong></p>
-                        <ul>
-                            <li><strong>move 5 steps</strong> - The cat walks forward 5 steps</li>
-                            <li><strong>if on edge, bounce</strong> - When the cat hits the edge, it bounces back</li>
-                            <li><strong>turn right (pick random 1 to 10)</strong> - The cat randomly turns between 1 and 10 degrees to make unpredictable movement</li>
-                        </ul>
-                        <p><strong>Tip:</strong> You can change "5 steps" to make the cat faster or slower! Try 10 for fast, or 3 for slow.</p>
-                        <button class="play-btn" onclick="speak('You can change 5 steps to make the cat faster or slower. Try 10 for fast, or 3 for slow.')">Play</button>
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">4</span>เพิ่มสีและเอฟเฟกต์ / Add Colors and Effects</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> ทำให้ตัวละครสวยงามขึ้น!</p>
+                            <ul class="feature-list">
+                                <li><strong>Gradient (ไล่สี):</strong> คลิก Fill > เลือก Gradient > ระบายสี</li>
+                                <li><strong>Outline (ขอบ):</strong> เพิ่มเส้นขอบสีดำรอบตัวละคร</li>
+                                <li><strong>Shadow (เงา):</strong> วาดวงรีสีเทาด้านล่างตัวละคร</li>
+                                <li><strong>Details (รายละเอียด):</strong> เพิ่มลวดลายหรือรอยยิ้ม</li>
+                            </ul>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Make your character beautiful!</p>
+                            <button class="play-btn" onclick="speak('Make your character beautiful with gradients, outlines, shadows, and details!')">Play Audio</button>
+                            <ul class="feature-list">
+                                <li><strong>Gradient:</strong> Click Fill > Select Gradient > Paint colors</li>
+                                <li><strong>Outline:</strong> Add black borders around your character</li>
+                                <li><strong>Shadow:</strong> Draw a gray oval below the character</li>
+                                <li><strong>Details:</strong> Add patterns or expressions</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="lang-thai">
-                        <p><strong>สคริปต์ที่ 2: ตรวจจับการสัมผัส</strong></p>
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">5</span>สร้างตัวละครประเภทอื่น / Create Different Character Types</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> ลองสร้างตัวละครอื่นๆ!</p>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Try creating different types of characters!</p>
+                            <button class="play-btn" onclick="speak('Try creating different types of characters!')">Play Audio</button>
+                        </div>
+
+                        <div class="fun-fact">
+                            <h4>💡 Character Ideas / ไอเดียตัวละคร</h4>
+                            <div class="lang-thai">
+                                <ul class="feature-list">
+                                    <li><strong>Robot (หุ่นยนต์):</strong> ใช้รูปสี่เหลี่ยมและวงกลม</li>
+                                    <li><strong>Monster (สัตว์ประหลาด):</strong> ใช้สีสันสดใส รูปร่างไม่เหมือนใคร</li>
+                                    <li><strong>Superhero (ฮีโร่):</strong> เพิ่มผ้าคลุมและสัญลักษณ์</li>
+                                    <li><strong>Animal (สัตว์):</strong> แมว สุนัข นก ปลา</li>
+                                    <li><strong>Fantasy (แฟนตาซี):</strong> มังกร นางฟ้า ยูนิคอร์น</li>
+                                    <li><strong>Food (อาหาร):</strong> พิซซ่ายิ้ม ไอศกรีมน่ารัก</li>
+                                </ul>
+                            </div>
+                            <div class="lang-english">
+                                <p><strong>English:</strong> Try robots, monsters, superheroes, animals, fantasy creatures, or cute food characters!</p>
+                                <button class="play-btn" onclick="speak('Try robots, monsters, superheroes, animals, fantasy creatures, or cute food characters!')">Play Audio</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="lang-english">
-                        <p><strong>Script 2: Detect Touching (Collision Detection)</strong></p>
-                    </div>
-                    
-                    <div class="code-block">
+
+                    <div class="tutorial-step">
+                        <h4><span class="step-number">6</span>ใช้ตัวละครในเกม / Use Your Character in Games</h4>
+                        
+                        <div class="lang-thai">
+                            <p><strong>🇹🇭 ไทย:</strong> นำตัวละครที่สร้างไปใช้ในเกม!</p>
+                        </div>
+
+                        <div class="lang-english">
+                            <p><strong>🇬🇧 English:</strong> Use your custom character in games!</p>
+                            <button class="play-btn" onclick="speak('Use your custom character in games!')">Play Audio</button>
+                        </div>
+
+                        <div class="code-block">
 when green flag clicked
+set size to (100) %
+go to x: (0) y: (0)
 forever
-    if &lt;touching (Ball v)?&gt; then
-        change [Score v] by (1)
-        play sound (meow v)
-        go to (random position v)
+    if &lt;key (up arrow v) pressed?&gt; then
+        change y by (10)
+        switch costume to (walking1 v)
+    end
+    if &lt;key (down arrow v) pressed?&gt; then
+        change y by (-10)
+        switch costume to (walking2 v)
+    end
+    if &lt;key (left arrow v) pressed?&gt; then
+        change x by (-10)
+        point in direction (-90)
+    end
+    if &lt;key (right arrow v) pressed?&gt; then
+        change x by (10)
+        point in direction (90)
     end
 end
-                    </div>
-                    
-                    <div class="lang-thai">
-                        <p><strong>คำอธิบาย:</strong></p>
-                        <ul>
-                            <li><strong>if touching Ball?</strong> - ถ้าสัมผัสกับลูกบอล</li>
-                            <li><strong>change Score by 1</strong> - เพิ่มคะแนน 1</li>
-                            <li><strong>play sound meow</strong> - เล่นเสียงเหมียว</li>
-                            <li><strong>go to random position</strong> - ไปที่ตำแหน่งสุ่ม</li>
-                        </ul>
-                    </div>
+                        </div>
 
-                    <div class="lang-english">
-                        <p><strong>Explanation:</strong></p>
-                        <ul>
-                            <li><strong>if touching Ball?</strong> - This checks if the cat is touching the ball sprite</li>
-                            <li><strong>change Score by 1</strong> - Add 1 point to the score</li>
-                            <li><strong>play sound meow</strong> - Play a meow sound effect when caught</li>
-                            <li><strong>go to random position</strong> - Move the cat to a random spot on the stage</li>
-                        </ul>
-                        <p><strong>This is how the game works!</strong> Every time your ball touches the cat, you get a point and the cat jumps to a new location!</p>
-                        <button class="play-btn" onclick="speak('Every time your ball touches the cat, you get a point and the cat jumps to a new location!')">Play</button>
-                    </div>
-                </div>
-
-                <div class="encouragement">
-                    🎊 ยอดเยี่ยม! คุณเพิ่งสร้างเกมแรกของคุณแล้ว!<br>
-                    Awesome! You just created your first game!<br>
-                    <span class="progress-badge">Beginner Level Complete!</span>
-                </div>
-
-                <div class="tutorial-step">
-                    <h4><span class="step-number">5</span>ขั้นตอนที่ 5: ทดสอบและปรับปรุง</h4>
-                    
-                    <div class="lang-thai">
-                        <p><strong>🇹🇭 ไทย:</strong> ทดลองเล่นและทำให้ดีขึ้น</p>
-                        <ol>
-                            <li>คลิกธงเขียวเพื่อเริ่มเกม</li>
-                            <li>เคลื่อนเมาส์ไปจับแมว</li>
-                            <li>ดูว่าคะแนนเพิ่มขึ้นไหม</li>
-                            <li>ลองเล่นหลายครั้ง!</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="lang-english">
-                        <p><strong>🇬🇧 English: Step 5: Test and Improve</strong></p>
-                        <p>Try playing your game and make it better!</p>
-                        <button class="play-btn" onclick="speak('Try playing your game and make it better!')">Play</button>
-                        <ol>
-                            <li>Click the green flag to start the game</li>
-                            <li>Move your mouse to catch the cat</li>
-                            <li>Watch the score increase</li>
-                            <li>Try playing multiple times!</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="fun-fact">
-                        <h4>💡 Pro Tips for Improvement / เคล็ดลับการปรับปรุง</h4>
                         <div class="lang-thai">
-                            <p><strong>ไอเดียการปรับปรุงเกม:</strong></p>
+                            <p>ตอนนี้คุณสามารถควบคุมตัวละครที่สร้างเองด้วยลูกศร!</p>
+                        </div>
+                    </div>
+
+                    <div class="encouragement">
+                        🎨 Incredible! You're now a character designer!<br>
+                        เหลือเชื่อ! ตอนนี้คุณเป็นนักออกแบบตัวละครแล้ว!<br>
+                        <span class="progress-badge">🖌️ Artist Badge Unlocked!</span>
+                    </div>
+
+                    <div class="fun-fact">
+                        <h4>🚀 Advanced Art Tips / เทคนิคขั้นสูง</h4>
+                        <div class="lang-thai">
                             <ul class="feature-list">
-                                <li>เพิ่มความเร็วของแมวเมื่อคะแนนสูงขึ้น (เพิ่มความท้าทาย!)</li>
-                                <li>เพิ่มเวลานับถอยหลังด้วยตัวแปร Timer</li>
-                                <li>เพิ่มสไปรท์ที่สองที่วิ่งเร็วกว่าและให้คะแนนมากกว่า</li>
-                                <li>เพิ่มเสียงพื้นหลัง (Background Music)</li>
-                                <li>สร้างหน้าจอ Game Over เมื่อหมดเวลา</li>
-                                <li>เปลี่ยนคอสตูมของแมวเพื่อให้ดูเหมือนวิ่ง</li>
+                                <li>ใช้ <strong>Layer</strong> (ชั้น) โดยการวาดแยกส่วน</li>
+                                <li>ใช้ <strong>Group/Ungroup</strong> เพื่อจัดกลุ่มชิ้นส่วน</li>
+                                <li>ใช้ <strong>Flip Horizontal</strong> เพื่อกลับด้าน</li>
+                                <li>ใช้ <strong>Copy/Paste</strong> สำหรับชิ้นส่วนที่เหมือนกัน</li>
+                                <li>เพิ่ม <strong>Costume Center</strong> ให้ถูกต้องสำหรับการหมุน</li>
+                                <li>สร้าง <strong>Sprite Sheet</strong> หลายคอสตูมในภาพเดียว</li>
                             </ul>
                         </div>
-                        
                         <div class="lang-english">
-                            <p><strong>Game Improvement Ideas:</strong></p>
-                            <ul class="feature-list">
-                                <li>Make the cat faster when the score gets higher (more challenging!)</li>
-                                <li>Add a countdown timer with a Timer variable</li>
-                                <li>Add a second sprite that moves faster and gives more points</li>
-                                <li>Add background music</li>
-                                <li>Create a Game Over screen when time runs out</li>
-                                <li>Change the cat's costume to make it look like it's running</li>
-                            </ul>
-                            <button class="play-btn" onclick="speak('Try adding a timer, faster sprites, background music, or a game over screen to make your game even better!')">Play</button>
+                            <p><strong>English:</strong> Use layers, grouping, flipping, copying, proper centering, and sprite sheets for professional results!</p>
+                            <button class="play-btn" onclick="speak('Use layers, grouping, flipping, copying, proper centering, and sprite sheets for professional results!')">Play Audio</button>
                         </div>
-                    </div>
-                </div>
-
-                <div class="bilingual-box">
-                    <div class="lang-thai">
-                        <h3>🎓 สิ่งที่คุณได้เรียนรู้:</h3>
-                        <ul class="feature-list">
-                            <li>การใช้ Event blocks (when green flag clicked)</li>
-                            <li>การใช้ Motion blocks (move, go to, turn)</li>
-                            <li>การใช้ Control blocks (forever, if-then)</li>
-                            <li>การใช้ Sensing blocks (touching?)</li>
-                            <li>การใช้ Variables (Score)</li>
-                            <li>การใช้ Operators (pick random)</li>
-                            <li>การใช้ Sound blocks (play sound)</li>
-                            <li>การทำงานหลายสคริปต์พร้อมกัน</li>
-                        </ul>
-                    </div>
-
-                    <div class="lang-english">
-                        <h3>🎓 What You Learned:</h3>
-                        <ul class="feature-list">
-                            <li>How to use Event blocks (when green flag clicked)</li>
-                            <li>How to use Motion blocks (move, go to, turn)</li>
-                            <li>How to use Control blocks (forever, if-then)</li>
-                            <li>How to use Sensing blocks (touching?)</li>
-                            <li>How to use Variables (Score)</li>
-                            <li>How to use Operators (pick random)</li>
-                            <li>How to use Sound blocks (play sound)</li>
-                            <li>How to run multiple scripts at the same time</li>
-                        </ul>
-                        <button class="play-btn" onclick="speak('You learned how to use events, motion, control, sensing, variables, operators, and sound blocks. Great job!')">Play</button>
-                    </div>
-                </div>
-
-                <div class="tutorial-step">
-                    <h4>🎯 Challenge Time! / เวลาท้าทาย!</h4>
-                    
-                    <div class="lang-thai">
-                        <p><strong>🇹🇭 ไทย:</strong> ลองสร้างเกมของคุณเอง! คุณสามารถสร้าง:</p>
-                        <ul class="feature-list">
-                            <li>เกมผจญภัยที่มีหลายฉาก (Multi-scene adventure game)</li>
-                            <li>เกมเต้นตามจังหวะ (Rhythm game)</li>
-                            <li>เกมตอบคำถาม (Quiz game)</li>
-                            <li>แอนิเมชั่นเรื่องราว (Story animation)</li>
-                            <li>เกมแข่งรถ (Racing game)</li>
-                            <li>เกมจับผี (Ghost catching game)</li>
-                            <li>เกมเดินเก็บของ (Collection game)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="lang-english">
-                        <p><strong>🇬🇧 English:</strong> Try creating your own game! You can make:</p>
-                        <button class="play-btn" onclick="speak('Try creating your own game!')">Play</button>
-                        <ul class="feature-list">
-                            <li>A multi-scene adventure game</li>
-                            <li>A rhythm or music game</li>
-                            <li>An educational quiz game</li>
-                            <li>An animated story</li>
-                            <li>A racing game</li>
-                            <li>A ghost catching game</li>
-                            <li>A collection or treasure hunt game</li>
-                        </ul>
-                        <p><strong>Remember:</strong> The best way to learn is by doing! Don't be afraid to experiment and try new things.</p>
-                        <button class="play-btn" onclick="speak('The best way to learn is by doing. Do not be afraid to experiment and try new things.')">Play</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Footer Section -->
-            <section id="resources">
-                <h2><span class="icon">🔗</span> แหล่งข้อมูลเพิ่มเติม<br>Additional Resources</h2>
+            <!-- Final Resources Section -->
+            <section id="conclusion">
+                <h2><span class="icon">🎓</span> สรุปและขั้นตอนต่อไป<br>Summary and Next Steps</h2>
                 
-                <div class="fun-fact">
-                    <h4>🌟 Did You Know? / รู้ไหม?</h4>
-                    <p><strong>English:</strong> Over 90 million people have created projects on Scratch! It's used in more than 150 countries worldwide.</p>
-                    <p><strong>ไทย:</strong> มีผู้คนมากกว่า 90 ล้านคนสร้างโปรเจกต์บน Scratch แล้ว! และใช้งานในกว่า 150 ประเทศทั่วโลก</p>
-                    <button class="play-btn" onclick="speak('Over 90 million people have created projects on Scratch. It is used in more than 150 countries worldwide.')">Play</button>
-                </div>
-                
-                <div class="bilingual-box">
-                    <div class="lang-thai">
-                        <h3>🌐 เว็บไซต์และทรัพยากร:</h3>
-                        <ul class="feature-list">
-                            <li><strong>Scratch Official Website:</strong> <a href="https://scratch.mit.edu" target="_blank">scratch.mit.edu</a> - เว็บไซต์หลักของ Scratch (ฟรี 100%!)</li>
-                            <li><strong>Scratch Wiki:</strong> คู่มือและเอกสารประกอบการเรียนรู้ภาษาอังกฤษ</li>
-                            <li><strong>Scratch Community:</strong> แบ่งปันและเรียนรู้จากผู้อื่นทั่วโลก</li>
-                            <li><strong>Scratch Tutorials:</strong> บทเรียนวิดีโอฟรีมากมายบน YouTube</li>
-                            <li><strong>ScratchEd:</strong> ทรัพยากรสำหรับครูและผู้เรียน</li>
-                        </ul>
-                    </div>
-
-                    <div class="lang-english">
-                        <h3>🌐 Websites and Resources:</h3>
-                        <ul class="feature-list">
-                            <li><strong>Scratch Official Website:</strong> <a href="https://scratch.mit.edu" target="_blank">scratch.mit.edu</a> - Main Scratch website (100% Free!)</li>
-                            <li><strong>Scratch Wiki:</strong> Comprehensive guides and documentation</li>
-                            <li><strong>Scratch Community:</strong> Share and learn from others worldwide</li>
-                            <li><strong>Scratch Tutorials:</strong> Many free video tutorials on YouTube</li>
-                            <li><strong>ScratchEd:</strong> Resources for teachers and learners</li>
-                        </ul>
-                        <button class="play-btn" onclick="speak('Visit scratch dot mit dot edu to start creating projects today. It is completely free!')">Play</button>
-                    </div>
+                <div class="encouragement">
+                    <h3>🌟 Congratulations! / ยินดีด้วย! 🌟</h3>
+                    <p><strong>English:</strong> You've completed three advanced Scratch tutorials! You now know how to create music studios, interactive stories, and custom characters. Keep practicing and creating amazing projects!</p>
+                    <button class="play-btn" onclick="speak('You have completed three advanced Scratch tutorials! You now know how to create music studios, interactive stories, and custom characters. Keep practicing and creating amazing projects!')">Play Audio</button>
+                    <p><strong>ไทย:</strong> คุณผ่านบทเรียนขั้นสูงทั้ง 3 บทแล้ว! ตอนนี้คุณรู้วิธีสร้างสตูดิโอดนตรี เรื่องราวแบบโต้ตอบ และตัวละครของคุณเอง ฝึกฝนต่อไปและสร้างโปรเจกต์ที่ยอดเยี่ยม!</p>
                 </div>
 
                 <div class="bilingual-box">
                     <div class="lang-thai">
-                        <h3>💪 เคล็ดลับการเรียนรู้:</h3>
+                        <h3>📚 สิ่งที่คุณได้เรียนรู้:</h3>
                         <ul class="feature-list">
-                            <li><strong>ฝึกฝนทุกวัน:</strong> แม้แค่ 15-30 นาที ก็จะช่วยให้คุณพัฒนาอย่างรวดเร็ว</li>
-                            <li><strong>เริ่มง่ายๆ:</strong> เริ่มจากโปรเจกต์ง่ายๆ แล้วค่อยๆ เพิ่มความซับซ้อน</li>
-                            <li><strong>เรียนรู้จากคนอื่น:</strong> ดู "Remix" โปรเจกต์ของคนอื่นและเรียนรู้จากโค้ด</li>
-                            <li><strong>อย่ากลัวผิด:</strong> การทดลองและผิดพลาดคือวิธีเรียนรู้ที่ดีที่สุด!</li>
-                            <li><strong>แบ่งปันผลงาน:</strong> อัพโหลดโปรเจกต์และรับคำแนะนำจากชุมชน</li>
-                            <li><strong>ตั้งเป้าหมาย:</strong> สร้างโปรเจกต์ใหม่ทุกสัปดาห์</li>
-                            <li><strong>เรียนภาษาอังกฤษไปด้วย:</strong> Scratch จะช่วยให้คุณฝึกอ่านภาษาอังกฤษด้วย!</li>
+                            <li><strong>Music Extension:</strong> การใช้บลอกดนตรีขั้นสูง</li>
+                            <li><strong>Broadcasts:</strong> การส่งสัญญาณระหว่างสไปรท์</li>
+                            <li><strong>Backdrops:</strong> การเปลี่ยนฉากหลัง</li>
+                            <li><strong>Keyboard Input:</strong> การรับข้อมูลจากคีย์บอร์ด</li>
+                            <li><strong>Paint Editor:</strong> การวาดและออกแบบสไปรท์</li>
+                            <li><strong>Costumes:</strong> การสร้างแอนิเมชั่นด้วยหลายคอสตูม</li>
+                            <li><strong>Story Structure:</strong> การออกแบบโครงเรื่อง</li>
+                            <li><strong>Visual Feedback:</strong> การแสดงผลตอบสนอง</li>
                         </ul>
                     </div>
 
                     <div class="lang-english">
-                        <h3>💪 Learning Tips:</h3>
+                        <h3>📚 What You Learned:</h3>
                         <ul class="feature-list">
-                            <li><strong>Practice Daily:</strong> Even just 15-30 minutes a day helps you improve quickly</li>
-                            <li><strong>Start Simple:</strong> Begin with easy projects and gradually increase complexity</li>
-                            <li><strong>Learn from Others:</strong> "Remix" other people's projects and study their code</li>
-                            <li><strong>Don't Fear Mistakes:</strong> Experimenting and making errors is the best way to learn!</li>
-                            <li><strong>Share Your Work:</strong> Upload projects and get feedback from the community</li>
-                            <li><strong>Set Goals:</strong> Try to create a new project every week</li>
-                            <li><strong>Learn English Too:</strong> Scratch helps you practice reading English!</li>
+                            <li><strong>Music Extension:</strong> Advanced music blocks</li>
+                            <li><strong>Broadcasts:</strong> Sending messages between sprites</li>
+                            <li><strong>Backdrops:</strong> Changing scenes</li>
+                            <li><strong>Keyboard Input:</strong> Detecting key presses</li>
+                            <li><strong>Paint Editor:</strong> Drawing and designing sprites</li>
+                            <li><strong>Costumes:</strong> Creating animations with multiple costumes</li>
+                            <li><strong>Story Structure:</strong> Designing narrative flow</li>
+                            <li><strong>Visual Feedback:</strong> Providing player response</li>
                         </ul>
-                        <button class="play-btn" onclick="speak('Practice daily, start simple, learn from others, and do not fear mistakes. This is the best way to learn programming!')">Play</button>
+                        <button class="play-btn" onclick="speak('You learned about music extensions, broadcasts, backdrops, keyboard input, paint editor, costumes, story structure, and visual feedback!')">Play Audio</button>
                     </div>
                 </div>
 
                 <div class="fun-fact">
-                    <h4>🎯 Your Learning Journey / เส้นทางการเรียนรู้ของคุณ</h4>
-                    <p><span class="progress-badge">Level 1: Beginner 🌱</span> You're here! Learn basics</p>
-                    <p><span class="progress-badge">Level 2: Explorer 🔍</span> Create 5+ simple games</p>
-                    <p><span class="progress-badge">Level 3: Builder 🏗️</span> Make complex projects with multiple sprites</p>
-                    <p><span class="progress-badge">Level 4: Creator 🎨</span> Remix and improve others' projects</p>
-                    <p><span class="progress-badge">Level 5: Master 🏆</span> Share knowledge and help others!</p>
+                    <h4>🎯 Project Combination Ideas / ไอเดียรวมโปรเจกต์</h4>
+                    <div class="lang-thai">
+                        <p><strong>ลองรวมทุกอย่างที่เรียน!</strong></p>
+                        <ul class="feature-list">
+                            <li><strong>Musical Story:</strong> เรื่องราวที่มีดนตรีประกอบ</li>
+                            <li><strong>Character Creator Game:</strong> เกมให้ผู้เล่นออกแบบตัวละครเอง</li>
+                            <li><strong>Band Simulator:</strong> วงดนตรีที่มีหลายเครื่องดนตรี</li>
+                            <li><strong>Animated Music Video:</strong> MV ที่ใช้ตัวละครสร้างเอง</li>
+                            <li><strong>Adventure with Sound:</strong> เกมผจญภัยที่มีเสียงประกอบ</li>
+                        </ul>
+                    </div>
+                    <div class="lang-english">
+                        <p><strong>English:</strong> Combine everything you learned into mega projects like musical stories, character creator games, band simulators, animated music videos, or adventures with sound effects!</p>
+                        <button class="play-btn" onclick="speak('Combine everything you learned into mega projects like musical stories, character creator games, band simulators, animated music videos, or adventures with sound effects!')">Play Audio</button>
+                    </div>
+                </div>
+
+                <div class="bilingual-box">
+                    <div class="lang-thai">
+                        <h3>🚀 ความท้าทายถัดไป:</h3>
+                        <ul class="feature-list">
+                            <li>สร้างโปรเจกต์ที่ใช้เวลา 1 สัปดาห์</li>
+                            <li>แบ่งปันโปรเจกต์บน Scratch Community</li>
+                            <li>Remix โปรเจกต์ของผู้อื่นและพัฒนาต่อ</li>
+                            <li>เรียนรู้ Lists และ Custom Blocks</li>
+                            <li>เรียนรู้ Cloud Variables (ตัวแปรออนไลน์)</li>
+                            <li>เริ่มเรียน Python หรือ JavaScript</li>
+                            <li>สร้างโปรเจกต์การศึกษาที่มีประโยชน์</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-english">
+                        <h3>🚀 Next Challenges:</h3>
+                        <ul class="feature-list">
+                            <li>Create a project that takes 1 week to complete</li>
+                            <li>Share your project on Scratch Community</li>
+                            <li>Remix other people's projects and improve them</li>
+                            <li>Learn Lists and Custom Blocks</li>
+                            <li>Learn Cloud Variables (online variables)</li>
+                            <li>Start learning Python or JavaScript</li>
+                            <li>Create useful educational projects</li>
+                        </ul>
+                        <button class="play-btn" onclick="speak('Next, try week long projects, sharing on Scratch, remixing, learning lists and custom blocks, cloud variables, Python, JavaScript, or creating educational projects!')">Play Audio</button>
+                    </div>
+                </div>
+
+                <div class="fun-fact">
+                    <h4>💬 English Learning Through Scratch / เรียนภาษาอังกฤษผ่าน Scratch</h4>
+                    <div class="lang-thai">
+                        <p><strong>คำศัพท์ใหม่ที่คุณได้เรียนรู้:</strong></p>
+                        <ul class="feature-list">
+                            <li><strong>Broadcast</strong> - การส่งสัญญาณ</li>
+                            <li><strong>Extension</strong> - ส่วนขยาย</li>
+                            <li><strong>Instrument</strong> - เครื่องดนตรี</li>
+                            <li><strong>Narrator</strong> - ผู้เล่าเรื่อง</li>
+                            <li><strong>Gradient</strong> - การไล่สี</li>
+                            <li><strong>Duplicate</strong> - ทำซ้ำ</li>
+                            <li><strong>Outline</strong> - เส้นขอบ</li>
+                            <li><strong>Feedback</strong> - การตอบสนอง</li>
+                        </ul>
+                        <p>คุณได้ฝึกอ่านและฟังภาษาอังกฤษมากกว่า 100 ประโยคแล้ว!</p>
+                    </div>
+                    <div class="lang-english">
+                        <p><strong>English:</strong> You've practiced reading and listening to over 100 English sentences! Keep using Scratch to improve your English naturally!</p>
+                        <button class="play-btn" onclick="speak('You have practiced reading and listening to over 100 English sentences! Keep using Scratch to improve your English naturally!')">Play Audio</button>
+                    </div>
                 </div>
 
                 <div class="encouragement">
-                    <h3>🌈 สุดท้าย... / Finally...</h3>
-                    <p><strong>ไทย:</strong> การเขียนโปรแกรมคือการสร้างสรรค์! ไม่มีคำตอบที่ถูกหรือผิดอย่างเดียว ลองทำให้สนุกและแสดงความคิดสร้างสรรค์ของคุณ!</p>
-                    <p><strong>English:</strong> Programming is creative! There's no single right or wrong answer. Have fun and express your creativity!</p>
-                    <button class="play-btn" onclick="speak('Programming is creative. There is no single right or wrong answer. Have fun and express your creativity!')">Play</button>
-                    <p style="margin-top: 15px; font-size: 1.2em;">🎉 Happy Coding! / สนุกกับการเขียนโค้ด! 🎉</p>
+                    <h3>🌈 Final Words / คำสุดท้าย</h3>
+                    <p><strong>ไทย:</strong> การเขียนโปรแกรมคือการแก้ปัญหาและสร้างสรรค์ ทุกครั้งที่คุณสร้างโปรเจกต์ คุณกำลังพัฒนาทั้งทักษะเทคโนโลยีและภาษาอังกฤษไปพร้อมกัน! อย่าหยุดเรียนรู้!</p>
+                    <p><strong>English:</strong> Programming is about problem-solving and creativity. Every project you create develops both your technology skills and English skills together! Never stop learning!</p>
+                    <button class="play-btn" onclick="speak('Programming is about problem solving and creativity. Every project you create develops both your technology skills and English skills together! Never stop learning!')">Play Audio</button>
+                    <p style="margin-top: 20px; font-size: 1.3em;">
+                        <span class="progress-badge">🎸 Music Master</span>
+                        <span class="progress-badge">📖 Story Creator</span>
+                        <span class="progress-badge">🎨 Artist</span>
+                    </p>
+                    <p style="margin-top: 15px; font-size: 1.2em;">
+                        🎉 Happy Creating! / สนุกกับการสร้างสรรค์! 🎉
+                    </p>
                 </div>
 
                 <div class="bilingual-box" style="text-align: center; margin-top: 20px;">
-                    <p><strong>Made with 💙 for Thai English Learners</strong></p>
+                    <p><strong>Created with 💙 for Thai English Learners</strong></p>
                     <p>สร้างด้วย 💙 สำหรับคนไทยที่กำลังเรียนภาษาอังกฤษ</p>
-                    <p style="margin-top: 10px; font-size: 0.9em;">📱 Tap the 🔊 buttons anytime to hear English pronunciation!</p>
-                    <p style="font-size: 0.9em;">กดปุ่ม 🔊 เมื่อไรก็ได้เพื่อฟังการออกเสียงภาษาอังกฤษ!</p>
+                    <p style="margin-top: 15px; font-size: 0.9em;">📱 Keep pressing 🔊 to practice pronunciation!</p>
+                    <p style="font-size: 0.9em;">กดปุ่ม 🔊 ต่อไปเพื่อฝึกการออกเสียง!</p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://scratch.mit.edu" target="_blank" class="nav-btn">Visit Scratch.mit.edu</a>
+                    </p>
                 </div>
             </section>
         </div>
@@ -1275,8 +1392,22 @@ end
 
         // Add a welcome message
         window.addEventListener('load', () => {
-            console.log('🎨 Welcome to Scratch Learning Page!');
+            console.log('🎨 Welcome to Advanced Scratch Tutorials!');
+            console.log('🎸 Learn to create music, stories, and custom characters!');
             console.log('Click any Play button to hear English pronunciation.');
+        });
+
+        // Add scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // You can add a progress bar element if desired
+            if (scrolled > 50 && !window.scrolledHalfway) {
+                window.scrolledHalfway = true;
+                console.log('🎉 Great progress! You're halfway through!');
+            }
         });
     </script>
 </body>
